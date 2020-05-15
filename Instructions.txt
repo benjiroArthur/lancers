@@ -1,0 +1,15 @@
+STEPS TO FOLLOW AFTER CLONING THIS REPOSITORY
+
+Software Requirement
+1. Composer
+2. Node js
+3. XAMPP
+
+STEPS
+1. Run "composer install" to install laravel
+2. Run "npm install" to install node modules
+3. Duplicate ".example.env" and rename it ".env"
+4. Run "php artisan key:generate" to generate app key
+5. Configure the database name in the .env and run "php artisan migrate"
+6. Run "php artisan serve" to start the server
+7. Run "npm run dev"
