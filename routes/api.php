@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//Register, Login, Reset Password and Email Verification Routes
+Route::post('/register', 'Api\AuthController@register');
+Route::post('/login', 'Api\AuthController@login');
+Route::post('/password/email', 'Api\ForgotPasswordController@sendResetLinkEmail');
+Route::post('/password/reset', 'Api\ResetPasswordController@reset');
+Route::get('/email/resend', 'Api\VerificationController@resend')->name('verification.resend');
+Route::get('/email/verify/{id}/{hash}', 'Api\VerificationController@verify')->name('verification.verify');
+

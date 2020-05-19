@@ -13,3 +13,14 @@ STEPS
 5. Configure the database name in the .env and run "php artisan migrate"
 6. Run "php artisan serve" to start the server
 7. Run "npm run dev"
+
+
+//register mailtrap and use your own username and password
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=mailtrapUsername
+MAIL_PASSWORD=mailtrapPassword
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS=lancers@mail.com
+MAIL_FROM_NAME="${APP_NAME}"

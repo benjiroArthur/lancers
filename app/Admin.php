@@ -8,7 +8,7 @@ class Admin extends Model
 {
     //fillables
     protected $fillable = [
-        'first_name', 'last_name', 'other_name', 'gender', 'dob', 'profile_picture'
+        'first_name', 'last_name', 'other_name', 'gender', 'dob', 'profile_picture', 'email'
     ];
 
     public function user(){

@@ -2,13 +2,15 @@
 
 namespace App;
 
+use App\Notifications\PasswordResetNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable;
+    use HasApiTokens, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -38,6 +40,9 @@ class User extends Authenticatable
         'profile_updated' => 'boolean',
         'active' => 'boolean'
     ];
+
+    //return with
+    protected $with = ['userable'];
 
     //relationships
     public function role(){
@@ -75,4 +80,7 @@ class User extends Authenticatable
 //            return $this->belongsToMany('App\User', 'payments', 'user_id', 'receiver_id');
 //        }
 
+    public function sendPasswordResetNotification($token){
+       $this->notify(new PasswordResetNotification($token));
+    }
 }
