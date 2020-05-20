@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class JobOffered extends Model
 {
     //fillable
-    protected $fillable = ['project_id', 'freelancer_id'];
+    protected $fillable = ['project_id', 'freelancer_id', 'status'];
 
     //relationship
-    
+
     public function project(){
         return $this->belongsTo('App\Project');
     }
