@@ -1,20 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="65d3e354-87e2-4a4f-9c35-4b2a6ea8cf44" name="Default" comment="Login, Register and Password Reset done">
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_05_19_172443_add_status_to_job_offereds_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sass/_variables.scss" afterDir="false" />
+    <list default="true" id="65d3e354-87e2-4a4f-9c35-4b2a6ea8cf44" name="Default" comment="vue and npm installed">
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_05_20_234657_update_active_in_users_table.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/vendor/@mdi/materialdesignicons-webfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/vendor/@mdi/materialdesignicons-webfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/vendor/@mdi/materialdesignicons-webfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/vendor/@mdi/materialdesignicons-webfont.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Lancers.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Lancers.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/JobOffered.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/JobOffered.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Project.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/RegisterController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,8 +128,6 @@
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
-      <path value="$PROJECT_DIR$/vendor/jakub-onderka/php-console-color" />
-      <path value="$PROJECT_DIR$/vendor/jakub-onderka/php-console-highlighter" />
       <path value="$PROJECT_DIR$/vendor/phar-io/version" />
       <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
       <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
@@ -140,7 +159,6 @@
       <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
       <path value="$PROJECT_DIR$/vendor/symfony/psr-http-message-bridge" />
       <path value="$PROJECT_DIR$/vendor/laravel/ui" />
-      <path value="$PROJECT_DIR$/vendor/laravel/airlock" />
       <path value="$PROJECT_DIR$/vendor/laravel/sanctum" />
       <path value="$PROJECT_DIR$/vendor/erusev/parsedown" />
       <path value="$PROJECT_DIR$/vendor/php-di/invoker" />
@@ -153,6 +171,11 @@
       <path value="$PROJECT_DIR$/vendor/mpociot/laravel-apidoc-generator" />
       <path value="$PROJECT_DIR$/vendor/mpociot/documentarian" />
       <path value="$PROJECT_DIR$/vendor/mpociot/reflection-docblock" />
+      <path value="$PROJECT_DIR$/vendor/ramsey/collection" />
+      <path value="$PROJECT_DIR$/vendor/brick/math" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
     </include_path>
   </component>
   <component name="ProjectId" id="1c0Ehqdg8rA99ONcx8R72q4OReR" />
@@ -167,7 +190,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../TripitGh" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -212,7 +235,8 @@
       <workItem from="1589831676447" duration="14659000" />
       <workItem from="1589906022128" duration="4143000" />
       <workItem from="1589917663334" duration="1674000" />
-      <workItem from="1589985338970" duration="5641000" />
+      <workItem from="1589985338970" duration="9941000" />
+      <workItem from="1590016104562" duration="6633000" />
     </task>
     <task id="LOCAL-00001" summary="Clean Commit">
       <created>1589542990728</created>
@@ -235,7 +259,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589847892226</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="vue and npm installed">
+      <created>1589999786925</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1589999786925</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,9 +278,14 @@
     <MESSAGE value="Clean Commit" />
     <MESSAGE value="Instruction added" />
     <MESSAGE value="Login, Register and Password Reset done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login, Register and Password Reset done" />
+    <MESSAGE value="vue and npm installed" />
+    <option name="LAST_COMMIT_MESSAGE" value="vue and npm installed" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="687" y="269" key="#File_Watchers" timestamp="1590000734770">
+      <screen x="0" y="0" width="1600" height="870" />
+    </state>
+    <state x="687" y="269" key="#File_Watchers/0.0.1600.870@0.0.1600.870" timestamp="1590000734770" />
     <state x="685" y="293" key="#Notifications" timestamp="1589679762505">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -258,14 +294,14 @@
       <screen x="0" y="0" width="1600" height="870" />
     </state>
     <state x="604" y="103" key="#com.intellij.ide.util.MemberChooser/0.0.1600.870@0.0.1600.870" timestamp="1589824435192" />
-    <state x="131" y="190" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1589836043197">
+    <state x="131" y="190" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1590017773932">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
-    <state x="131" y="190" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.870@0.0.1600.870" timestamp="1589836043197" />
-    <state x="413" y="0" key="CommitChangelistDialog2" timestamp="1589847871904">
+    <state x="131" y="190" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.870@0.0.1600.870" timestamp="1590017773932" />
+    <state x="413" y="0" key="CommitChangelistDialog2" timestamp="1589999781486">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
-    <state x="413" y="0" key="CommitChangelistDialog2/0.0.1600.870@0.0.1600.870" timestamp="1589847871904" />
+    <state x="413" y="0" key="CommitChangelistDialog2/0.0.1600.870@0.0.1600.870" timestamp="1589999781486" />
     <state x="563" y="345" key="ComposerInitDialogKey" timestamp="1589992378133">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
@@ -274,26 +310,26 @@
       <screen x="0" y="0" width="1600" height="870" />
     </state>
     <state x="467" y="213" key="EditFileWatcherDialog/0.0.1600.870@0.0.1600.870" timestamp="1589997432357" />
-    <state x="580" y="190" key="FileChooserDialogImpl" timestamp="1589809713631">
+    <state x="580" y="190" key="FileChooserDialogImpl" timestamp="1590017050992">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
-    <state x="580" y="190" key="FileChooserDialogImpl/0.0.1600.870@0.0.1600.870" timestamp="1589809713631" />
-    <state width="1557" height="219" key="GridCell.Tab.0.bottom" timestamp="1589996748098">
+    <state x="580" y="190" key="FileChooserDialogImpl/0.0.1600.870@0.0.1600.870" timestamp="1590017050992" />
+    <state width="1557" height="219" key="GridCell.Tab.0.bottom" timestamp="1590004057698">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
-    <state width="1557" height="219" key="GridCell.Tab.0.bottom/0.0.1600.870@0.0.1600.870" timestamp="1589996748098" />
-    <state width="1557" height="219" key="GridCell.Tab.0.center" timestamp="1589996748098">
+    <state width="1557" height="219" key="GridCell.Tab.0.bottom/0.0.1600.870@0.0.1600.870" timestamp="1590004057698" />
+    <state width="1557" height="219" key="GridCell.Tab.0.center" timestamp="1590004057697">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
-    <state width="1557" height="219" key="GridCell.Tab.0.center/0.0.1600.870@0.0.1600.870" timestamp="1589996748098" />
-    <state width="1557" height="219" key="GridCell.Tab.0.left" timestamp="1589996748097">
+    <state width="1557" height="219" key="GridCell.Tab.0.center/0.0.1600.870@0.0.1600.870" timestamp="1590004057697" />
+    <state width="1557" height="219" key="GridCell.Tab.0.left" timestamp="1590004057697">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
-    <state width="1557" height="219" key="GridCell.Tab.0.left/0.0.1600.870@0.0.1600.870" timestamp="1589996748097" />
-    <state width="1557" height="219" key="GridCell.Tab.0.right" timestamp="1589996748098">
+    <state width="1557" height="219" key="GridCell.Tab.0.left/0.0.1600.870@0.0.1600.870" timestamp="1590004057697" />
+    <state width="1557" height="219" key="GridCell.Tab.0.right" timestamp="1590004057697">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
-    <state width="1557" height="219" key="GridCell.Tab.0.right/0.0.1600.870@0.0.1600.870" timestamp="1589996748098" />
+    <state width="1557" height="219" key="GridCell.Tab.0.right/0.0.1600.870@0.0.1600.870" timestamp="1590004057697" />
     <state x="301" y="76" key="SettingsEditor" timestamp="1589997418337">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
