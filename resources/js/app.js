@@ -125,16 +125,7 @@ Vue.filter('fromdate', function(text){
 });
 
 
-router.beforeResolve((to, from, next)=>{
-    if(to.path){
 
-    }
-    next();
-});
-
-router.afterEach(()=>{
-
-});
 
 import VueLazyload from 'vue-lazyload';
 
@@ -160,6 +151,10 @@ Vue.component(VueCropper);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('my-header', require('./components/Header/Header.vue').default);
+Vue.component('login-register', require('./components/LoginRegister/LoginRegister.vue').default);
+Vue.component('login-form', require('./components/LoginRegister/LoginForm.vue').default);
+Vue.component('register-form', require('./components/LoginRegister/RegisterForm.vue').default);
 
 
 let routes = [
@@ -169,6 +164,17 @@ let routes = [
 const router = new VueRouter({
     mode:'history',
     routes
+
+});
+
+router.beforeResolve((to, from, next)=>{
+    if(to.path){
+
+    }
+    next();
+});
+
+router.afterEach(()=>{
 
 });
 
