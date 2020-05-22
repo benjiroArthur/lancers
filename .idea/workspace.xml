@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="65d3e354-87e2-4a4f-9c35-4b2a6ea8cf44" name="Default" comment="working on welcome page" />
+    <list default="true" id="65d3e354-87e2-4a4f-9c35-4b2a6ea8cf44" name="Default" comment="working on welcome page">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -290,10 +292,10 @@
       <screen x="0" y="0" width="1600" height="870" />
     </state>
     <state x="131" y="190" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.870@0.0.1600.870" timestamp="1590017773932" />
-    <state x="413" y="0" key="CommitChangelistDialog2" timestamp="1590153128873">
+    <state x="413" y="0" key="CommitChangelistDialog2" timestamp="1590154591912">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
-    <state x="413" y="0" key="CommitChangelistDialog2/0.0.1600.870@0.0.1600.870" timestamp="1590153128873" />
+    <state x="413" y="0" key="CommitChangelistDialog2/0.0.1600.870@0.0.1600.870" timestamp="1590154591912" />
     <state x="563" y="345" key="ComposerInitDialogKey" timestamp="1589992378133">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
