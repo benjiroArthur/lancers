@@ -41,15 +41,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                {{--<a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>--}}
-                                @php($login = 'login')
-                                <login-register info="login"></login-register>
+                                <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                   {{-- <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>--}}
-                                    @php($register = 'register')
-                                    <login-register info="register"></login-register>
+                                    <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -79,7 +75,6 @@
         <main class="py-4">
             @yield('content')
         </main>
-        <login-form></login-form>
     </div>
 </body>
 </html>

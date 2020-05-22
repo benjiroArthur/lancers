@@ -3,16 +3,16 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
-
-                <div class="card-body">
+        <div class="login-box justify-content-center col-md-5">
+            <!-- /.login-logo -->
+            <div class="card shadow">
+                <div class="card-body login-card-body justify-content-center mt-5 mb-5">
                     @if (session('resent'))
                         <div class="alert alert-success" role="alert">
                             {{ __('A fresh verification link has been sent to your email address.') }}
                         </div>
                     @endif
+                        <p class="login-box-msg text-center text-lancer h3 mt-3 mb-3"><b>Verify Your Email Address</b></p>
 
                     {{ __('Before proceeding, please check your email for a verification link.') }}
                     {{ __('If you did not receive the email') }},
@@ -21,6 +21,8 @@
                         <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
                     </form>
                 </div>
+
+                <!-- /.login-card-body -->
             </div>
         </div>
     </div>
