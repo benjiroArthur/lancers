@@ -486,9 +486,12 @@ h2 {
 .loginBox input[type="email"],
 .loginBox input[type="password"],
 .loginBox input[type="number"] {
-  border: none;
-  border-bottom: 2px solid #32a778;
-  background: transparent;
+  border-left: 2px solid #32a778 !important;
+  border-top: 2px solid #32a778 !important;
+  border-bottom: 2px solid #32a778 !important;
+  border-right: none;
+  background: transparent !important;
+  border-radius: 50px;
   outline: none;
   height: 40px;
   color: #000000;
@@ -496,43 +499,96 @@ h2 {
 }
 
 .divBor {
-  border: none;
-  border-bottom: 2px solid #32a778;
-  background: transparent;
-  outline: none;
+  border-right: 2px solid #32a778 !important;
+  border-top: 2px solid #32a778 !important;
+  border-bottom: 2px solid #32a778 !important;
+  border-radius: 5px !important;
+  border-left: none !important;
+  background: transparent !important;
+  outline: none !important;
+}
+
+.inputDiv {
+  border: 2px solid #32a778 !important;
+  background: transparent !important;
+  outline: none !important;
+  display: inline;
+  border-radius: 50px;
 }
 
 .loginBox textarea[type="text"] {
-  border: none;
-  border-bottom: 2px solid #32a778;
-  background: transparent;
+  border-left: 2px solid #32a778 !important;
+  border-top: 2px solid #32a778 !important;
+  border-bottom: 2px solid #32a778 !important;
+  border-right: none;
+  background: transparent !important;
+  border-radius: 50px;
   outline: none;
-  height: 80px;
   color: #000000;
   font-size: 16px;
 }
 
 .loginBox select {
-  border: none;
-  border-bottom: 2px solid #32a778;
-  background: transparent;
+  border-left: 2px solid #32a778 !important;
+  border-top: 2px solid #32a778 !important;
+  border-bottom: 2px solid #32a778 !important;
+  border-right: none;
+  background: transparent !important;
+  border-radius: 50px;
   outline: none;
   color: #000000;
 }
 
 ::-moz-placeholder {
-  color: rgba(255, 255, 255, 0.5);
+  color: #024a2d !important;
 }
 
-.loginBox input[type="submit"] {
-  border: none;
+::-webkit-input-placeholder {
+  color: #024a2d !important;
+}
+
+:-ms-input-placeholder {
+  color: #024a2d !important;
+}
+
+::-ms-input-placeholder {
+  color: #024a2d !important;
+}
+
+::placeholder {
+  color: #024a2d !important;
+}
+
+::-ms-input-placeholder {
+  color: #024a2d !important;
+}
+
+:-ms-input-placeholder {
+  color: #024a2d !important;
+}
+
+.loginBox input[type="submit"],
+.loginBox button[type="submit"] {
+  border: 2px solid #024a2d !important;
   outline: none;
-  height: 40px;
-  color: #fff;
-  font-size: 24px;
-  background: #32a778;
+  color: #024a2d !important;
+  font-size: 16px;
+  background: #ffffff;
   cursor: pointer;
-  border-radius: 20px;
+  border-radius: 10px;
+}
+
+.loginBox input[type="submit"]:hover,
+.loginBox button[type="submit"]:hover {
+  color: #ffffff !important;
+  background: #024a2d;
+}
+
+.butDiv {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  width: 8rem;
 }
 
 .loginBox input[type="file"] {
