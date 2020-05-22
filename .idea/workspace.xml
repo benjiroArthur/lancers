@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="65d3e354-87e2-4a4f-9c35-4b2a6ea8cf44" name="Default" comment="Login, Register component created, yet to add content">
       <change afterPath="$PROJECT_DIR$/resources/js/components/Welcome.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -22,6 +23,9 @@
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
+=======
+    <list default="true" id="65d3e354-87e2-4a4f-9c35-4b2a6ea8cf44" name="Default" comment="made migration on the jobs table" />
+>>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -241,6 +245,11 @@
       <workItem from="1589917663334" duration="1674000" />
       <workItem from="1589985338970" duration="9941000" />
       <workItem from="1590016104562" duration="6633000" />
+<<<<<<< Updated upstream
+=======
+      <workItem from="1590109599599" duration="3579000" />
+      <workItem from="1590152571948" duration="307000" />
+>>>>>>> Stashed changes
     </task>
     <task id="LOCAL-00001" summary="Clean Commit">
       <created>1589542990728</created>
@@ -270,7 +279,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589999786925</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="made migration on the jobs table">
+      <created>1590152773840</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1590152773840</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,7 +299,8 @@
     <MESSAGE value="Instruction added" />
     <MESSAGE value="Login, Register and Password Reset done" />
     <MESSAGE value="vue and npm installed" />
-    <option name="LAST_COMMIT_MESSAGE" value="vue and npm installed" />
+    <MESSAGE value="made migration on the jobs table" />
+    <option name="LAST_COMMIT_MESSAGE" value="made migration on the jobs table" />
   </component>
   <component name="WindowStateProjectService">
     <state x="687" y="269" key="#File_Watchers" timestamp="1590000734770">
