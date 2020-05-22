@@ -151,6 +151,7 @@ Vue.component(VueCropper);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('welcome', require('./components/Welcome.vue').default);
 
 
 

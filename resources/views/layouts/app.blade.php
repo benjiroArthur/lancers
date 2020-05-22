@@ -19,7 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="bg-lancer-light">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-lancer shadow-sm">
             <div class="container">
@@ -75,6 +75,19 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <footer class="bg-lancer">
+            <div class="container-fluid ml-4 mr-3">
+                <div class="row mt-3 mb-3">
+                    <div class="col-md-2">bkljbsdljkaklnflkds</div>
+                    <div class="col-md-2">bkljbsdljkaklnflkds</div>
+                    <div class="col-md-2">bkljbsdljkaklnflkds</div>
+                    <div class="col-md-2">bkljbsdljkaklnflkds</div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-2">bkljbsdljkaklnflkds</div>
+                </div>
+            </div>
+        </footer>
     </div>
 </body>
 </html>
