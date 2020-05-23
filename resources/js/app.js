@@ -59,10 +59,6 @@ Vue.component(AlertError.name, AlertError);
 Vue.component(AlertErrors.name, AlertErrors);
 Vue.component(AlertSuccess.name, AlertSuccess);
 
-
-/*Vue.component(HasError.name, HasError);
-Vue.component(AlertError.name, AlertError);*/
-
 import VueProgressBar from 'vue-progressbar'
 
 Vue.use(VueProgressBar, {
@@ -194,4 +190,21 @@ const app = new Vue({
     el: '#app',
     router,
     vuetify: new Vuetify(),
+    data: () => ({
+        pageLoader: true,
+        userId: '',
+    }),
+    mounted() {
+        setTimeout(val => {
+            this.pageLoader = false;
+        }, 4000);
+
+        Echo.channel('newUser').listen('NewUser', function(e){
+            //this.index();
+            console.log(e);
+        });
+    },
+    created(){
+        this.userId = $('meta[name = "user-id"]').attr('content')
+    },
 });
