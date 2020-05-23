@@ -152,6 +152,7 @@ Vue.component(VueCropper);
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('welcome', require('./components/Welcome.vue').default);
+Vue.component('contact-us', require('./components/ContactUs.vue').default);
 
 
 
