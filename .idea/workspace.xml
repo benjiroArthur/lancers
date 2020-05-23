@@ -1,10 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
+
     <list default="true" id="65d3e354-87e2-4a4f-9c35-4b2a6ea8cf44" name="Default" comment="working on welcome page">
       <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
     </list>
+
+    <list default="true" id="65d3e354-87e2-4a4f-9c35-4b2a6ea8cf44" name="Default" comment="working on welcome page" />
+
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -170,9 +192,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../TripitGh" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/components/ProjectManager" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -186,6 +210,9 @@
       <recent name="C:\xampp\htdocs\lancers\resources\js\components\LoginRegister" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\lancers\resources\js\components\ProjectManager" />
+      <recent name="C:\xampp\htdocs\lancers\resources\js\components\Admin" />
+      <recent name="C:\xampp\htdocs\lancers\storage\app\public\images\job_catecories" />
       <recent name="C:\xampp\htdocs\lancers" />
       <recent name="C:\xampp\htdocs\lancers\app\Http\Controllers\Api" />
     </key>
@@ -224,6 +251,8 @@
       <workItem from="1589917663334" duration="1674000" />
       <workItem from="1589985338970" duration="9941000" />
       <workItem from="1590016104562" duration="6633000" />
+      <workItem from="1590109599599" duration="3579000" />
+      <workItem from="1590181775106" duration="12555000" />
     </task>
     <task id="LOCAL-00001" summary="Clean Commit">
       <created>1589542990728</created>
@@ -253,13 +282,32 @@
       <option name="project" value="LOCAL" />
       <updated>1589999786925</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="working on welcome page">
+      <created>1590153134474</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1590153134474</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+
+
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
@@ -269,7 +317,8 @@
     <MESSAGE value="Instruction added" />
     <MESSAGE value="Login, Register and Password Reset done" />
     <MESSAGE value="vue and npm installed" />
-    <option name="LAST_COMMIT_MESSAGE" value="vue and npm installed" />
+    <MESSAGE value="working on welcome page" />
+    <option name="LAST_COMMIT_MESSAGE" value="working on welcome page" />
   </component>
   <component name="WindowStateProjectService">
     <state x="687" y="269" key="#File_Watchers" timestamp="1590000734770">
@@ -288,10 +337,10 @@
       <screen x="0" y="0" width="1600" height="870" />
     </state>
     <state x="131" y="190" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.870@0.0.1600.870" timestamp="1590017773932" />
-    <state x="413" y="0" key="CommitChangelistDialog2" timestamp="1589999781486">
+    <state x="413" y="0" key="CommitChangelistDialog2" timestamp="1590198905288">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
-    <state x="413" y="0" key="CommitChangelistDialog2/0.0.1600.870@0.0.1600.870" timestamp="1589999781486" />
+    <state x="413" y="0" key="CommitChangelistDialog2/0.0.1600.870@0.0.1600.870" timestamp="1590198905288" />
     <state x="563" y="345" key="ComposerInitDialogKey" timestamp="1589992378133">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
@@ -329,17 +378,13 @@
     </state>
     <state x="301" y="75" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1589682759495" />
     <state x="301" y="76" key="SettingsEditor/0.0.1600.870@0.0.1600.870" timestamp="1589997418337" />
-    <state x="392" y="164" key="Vcs.Push.Dialog.v2" timestamp="1589847979167">
+    <state x="392" y="164" key="Vcs.Push.Dialog.v2" timestamp="1590198927260">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
-    <state x="392" y="164" key="Vcs.Push.Dialog.v2/0.0.1600.870@0.0.1600.870" timestamp="1589847979167" />
+    <state x="392" y="164" key="Vcs.Push.Dialog.v2/0.0.1600.870@0.0.1600.870" timestamp="1590198927260" />
     <state x="607" y="340" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589682797839">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="607" y="340" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1600.860@0.0.1600.860" timestamp="1589682797839" />
-    <state x="456" y="198" key="run.anything.popup" timestamp="1590085250341">
-      <screen x="0" y="0" width="1600" height="870" />
-    </state>
-    <state x="456" y="198" key="run.anything.popup/0.0.1600.870@0.0.1600.870" timestamp="1590085250341" />
   </component>
 </project>

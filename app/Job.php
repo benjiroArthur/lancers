@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Job extends Model
 {
     //fillables
-    protected $fillable = ['name', 'category_id'];
+    protected $fillable = ['name', 'job_category_id'];
 
     //relationships
     public function category(){
@@ -17,4 +17,5 @@ class Job extends Model
     public function project(){
         return $this->hasMany('App\Project');
     }
+
 }

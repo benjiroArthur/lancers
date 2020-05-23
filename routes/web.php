@@ -21,3 +21,23 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
+    Route::resource('/job-category', 'JobCategoryController');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//should be the last route
+Route::get('{path}', 'HomeController@index')->where('path', '([A-z\-/_.]+)?' );
