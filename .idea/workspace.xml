@@ -199,15 +199,15 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2020.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\lancers\resources\js\components\LoginRegister" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\lancers\resources\js\components\ProjectManager" />
       <recent name="C:\xampp\htdocs\lancers\resources\js\components\Admin" />
       <recent name="C:\xampp\htdocs\lancers\storage\app\public\images\job_catecories" />
       <recent name="C:\xampp\htdocs\lancers" />
       <recent name="C:\xampp\htdocs\lancers\app\Http\Controllers\Api" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\lancers\resources\js\components\LoginRegister" />
     </key>
   </component>
   <component name="SvnConfiguration">
