@@ -11,13 +11,13 @@ class ChangeCategoryIdInJobsTable extends Migration
      *
      * @return void
      */
-    public function up()
+  /*  public function up()
     {
 
         Schema::table('jobs', function (Blueprint $table) {
             $table->renameColumn('category_id', 'job_category_id');
         });
-    }
+    }*/
 
     /**
      * Reverse the migrations.
