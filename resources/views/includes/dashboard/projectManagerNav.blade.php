@@ -27,7 +27,7 @@
         <li class="nav-item">
             <router-link to="/dashboard/freelancer/completed" class="nav-link text-white">
                 <p>
-                    BROWSE JOBS
+                    POST JOB
                 </p>
             </router-link>
         </li>
@@ -35,7 +35,7 @@
         <li class="nav-item">
             <router-link to="/dashboard/freelancer/completed" class="nav-link text-white">
                 <p>
-                    SUBMIT JOBS
+                    MAKE PAYMENT
                 </p>
             </router-link>
         </li>
