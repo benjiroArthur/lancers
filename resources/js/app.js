@@ -214,10 +214,10 @@ const app = new Vue({
             this.pageLoader = false;
         }, 4000);
 
-        Echo.channel('newUser').listen('NewUser', function(e){
+        /*Echo.channel('newUser').listen('NewUser', function(e){
             //this.index();
             console.log(e);
-        });
+        });*/
     },
     created(){
         this.userId = $('meta[name = "user-id"]').attr('content')
