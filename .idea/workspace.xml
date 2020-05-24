@@ -20,6 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="04c6dffd-d844-4ab0-b83b-3a728cf510e7" name="Default Changelist" comment="added project_title to projects table&#10;populated the projects table with 51 entries" />
+    <list default="true" id="65d3e354-87e2-4a4f-9c35-4b2a6ea8cf44" name="Default" comment="dashboard layout generated" />
+    <list id="6a4091e1-7c25-4e05-b689-0f6fdc4951c3" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -306,6 +308,21 @@
       <updated>1590323097769</updated>
     </task>
     <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00008" summary="dashboard layout generated">
+      <created>1590297264008</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1590297264008</updated>
+    </task>
+    <task id="LOCAL-00009" summary="dashboard layout generated">
+      <created>1590322366577</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1590322366577</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -335,6 +352,8 @@
     <MESSAGE value="working on dashboard layout" />
     <MESSAGE value="added project_title to projects table&#10;populated the projects table with 51 entries" />
     <option name="LAST_COMMIT_MESSAGE" value="added project_title to projects table&#10;populated the projects table with 51 entries" />
+    <MESSAGE value="dashboard layout generated" />
+    <option name="LAST_COMMIT_MESSAGE" value="dashboard layout generated" />
   </component>
   <component name="WindowStateProjectService">
     <state x="687" y="269" key="#File_Watchers" timestamp="1590000734770">
@@ -361,6 +380,10 @@
       <screen x="0" y="0" width="1600" height="870" />
     </state>
     <state x="413" y="0" key="CommitChangelistDialog2/0.0.1600.870@0.0.1600.870" timestamp="1590283976168" />
+    <state x="413" y="0" key="CommitChangelistDialog2" timestamp="1590322363042">
+      <screen x="0" y="0" width="1600" height="870" />
+    </state>
+    <state x="413" y="0" key="CommitChangelistDialog2/0.0.1600.870@0.0.1600.870" timestamp="1590322363042" />
     <state x="563" y="345" key="ComposerInitDialogKey" timestamp="1589992378133">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
@@ -398,10 +421,10 @@
     </state>
     <state x="301" y="75" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1589682759495" />
     <state x="301" y="76" key="SettingsEditor/0.0.1600.870@0.0.1600.870" timestamp="1589997418337" />
-    <state x="392" y="164" key="Vcs.Push.Dialog.v2" timestamp="1590198927260">
+    <state x="392" y="164" key="Vcs.Push.Dialog.v2" timestamp="1590297286931">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
-    <state x="392" y="164" key="Vcs.Push.Dialog.v2/0.0.1600.870@0.0.1600.870" timestamp="1590198927260" />
+    <state x="392" y="164" key="Vcs.Push.Dialog.v2/0.0.1600.870@0.0.1600.870" timestamp="1590297286931" />
     <state x="607" y="340" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589682797839">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
