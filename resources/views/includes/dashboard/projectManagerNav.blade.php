@@ -3,21 +3,21 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <li class="nav-item">
-            <router-link to="/dashboard/freelancer/all-project" class="nav-link text-white">
+            <router-link to="/scrum/dashboard/all-project" class="nav-link text-white">
 
                     ALL PROJECTS
 
             </router-link>
         </li>
         <li class="nav-item">
-            <router-link to="/dashboard/freelancer/in-progress" class="nav-link text-white">
+            <router-link to="/scrum/dashboard/in-progress" class="nav-link text-white">
 
                     IN PROGRESS
 
             </router-link>
         </li>
         <li class="nav-item">
-            <router-link to="/dashboard/freelancer/completed" class="nav-link text-white">
+            <router-link to="/scrum/dashboard/completed" class="nav-link text-white">
                 <p>
                     COMPLETED
                 </p>
@@ -25,7 +25,7 @@
         </li>
 
         <li class="nav-item">
-            <router-link to="/dashboard/freelancer/completed" class="nav-link text-white">
+            <router-link to="/scrum/dashboard/post-job" class="nav-link text-white">
                 <p>
                     POST JOB
                 </p>
@@ -33,7 +33,7 @@
         </li>
 
         <li class="nav-item">
-            <router-link to="/dashboard/freelancer/completed" class="nav-link text-white">
+            <router-link to="/scrum/dashboard/payment" class="nav-link text-white">
                 <p>
                     MAKE PAYMENT
                 </p>
@@ -41,7 +41,7 @@
         </li>
 
         <li class="nav-item">
-            <router-link to="/dashboard/freelancer/profile" class="nav-link text-white">
+            <router-link to="/scrum/dashboard/profile" class="nav-link text-white">
                 <p>
                     PROFILE
                 </p>

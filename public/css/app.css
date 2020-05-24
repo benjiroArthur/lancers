@@ -32061,6 +32061,10 @@ select option:hover {
   margin: 0 !important;
 }
 
+.main-sidebar.nav-link {
+  font-size: 14px !important;
+}
+
 /*!
  * Bootstrap v4.5.0 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
