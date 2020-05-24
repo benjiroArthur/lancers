@@ -23,7 +23,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::resource('/job-category', 'JobCategoryController');
+    Route::get('/completed-projects', 'FreelancerDashController@completed');
+    Route::get('/in-progress', 'FreelancerDasController@progress');
+    Route::get('/not-completed', 'FreelancerDashController@yet');
+    Route::get('/job-offered', 'FreelancerDashController@all');
 });
+
 
 
 
