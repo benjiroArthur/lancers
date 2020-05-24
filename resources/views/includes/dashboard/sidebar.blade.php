@@ -17,7 +17,13 @@
 
         <!-- Sidebar Menu -->
         <div class="p-0 bg-lancer-dark m-0">
+
+            @if(Auth()->user()->role->name === 'freelancer')
             @include('includes.dashboard.freelancerNav')
+            @elseif(Auth()->user()->role->name === 'client')
+            @include('includes.dashboard.projectManagerNav')
+            @endif
+
         </div>
 
 

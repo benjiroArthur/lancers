@@ -353,7 +353,10 @@ select option:hover{
 
 .router-link-exact-active{
     background-color: #65f1b9 !important;
-    color: #024a2d !important;
+    color: #012617 !important;
+    &.nav-link{
+        color: #012617 !important;
+    }
 }
 .nav-link:hover{
     color: #65f1b9 !important;
@@ -364,9 +367,7 @@ select option:hover{
 .main-sidebar{
     margin: 0 !important;
 }
-.nav-link{
-    color: white;
-}
+
 
 
 
