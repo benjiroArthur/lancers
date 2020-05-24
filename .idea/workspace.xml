@@ -19,8 +19,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04c6dffd-d844-4ab0-b83b-3a728cf510e7" name="Default Changelist" comment="added project_title to projects table&#10;populated the projects table with 51 entries" />
-    <list default="true" id="65d3e354-87e2-4a4f-9c35-4b2a6ea8cf44" name="Default" comment="dashboard layout generated" />
+    <list default="true" id="65d3e354-87e2-4a4f-9c35-4b2a6ea8cf44" name="Default" comment="dashboard layout generated">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/DashboardController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/dashboard.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Freelancer/Dashboard.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/styles.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/includes/dashboard/freelancerNav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/dashboard/freelancerNav.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/includes/dashboard/projectManagerNav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/dashboard/projectManagerNav.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
     <list id="6a4091e1-7c25-4e05-b689-0f6fdc4951c3" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -276,6 +287,7 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2020.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
+ HEAD
     <key name="MoveFile.RECENT_KEYS">
 HEAD
 
@@ -283,6 +295,7 @@ HEAD
 staged
       <recent name="C:\xampp\htdocs\lancers\resources\js\components\LoginRegister" />
     </key>
+1eb9b819475d415af9c26af9bb1b559f92298b6f
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\lancers\public\images" />
       <recent name="C:\xampp\htdocs\lancers\resources\views\includes" />
@@ -310,7 +323,14 @@ d5f903a604e231d5843c6aa181e07cca0933295c
     </option>
 
     </key>
+ HEAD
 staged
+
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\lancers\storage\app\public\images\job_category" />
+      <recent name="C:\xampp\htdocs\lancers\resources\js\components\LoginRegister" />
+    </key>
+1eb9b819475d415af9c26af9bb1b559f92298b6f
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -399,14 +419,6 @@ staged
       <option name="project" value="LOCAL" />
       <updated>1590283979582</updated>
     </task>
-    <task id="LOCAL-00008" summary="added project_title to projects table&#10;populated the projects table with 51 entries">
-      <created>1590323097769</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1590323097769</updated>
-    </task>
-    <option name="localTasksCounter" value="9" />
     <task id="LOCAL-00008" summary="dashboard layout generated">
       <created>1590297264008</created>
       <option name="number" value="00008" />
@@ -578,7 +590,6 @@ HEAD
     <MESSAGE value="Worked on the description column in jab category table&#10;I have added most routes for the freelancer dashboard" />
     <MESSAGE value="working on dashboard layout" />
     <MESSAGE value="added project_title to projects table&#10;populated the projects table with 51 entries" />
-    <option name="LAST_COMMIT_MESSAGE" value="added project_title to projects table&#10;populated the projects table with 51 entries" />
     <MESSAGE value="dashboard layout generated" />
     <option name="LAST_COMMIT_MESSAGE" value="dashboard layout generated" />
   </component>
@@ -603,10 +614,6 @@ HEAD
       <screen x="0" y="0" width="1600" height="870" />
     </state>
     <state x="131" y="190" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1600.870@0.0.1600.870" timestamp="1590017773932" />
-    <state x="413" y="0" key="CommitChangelistDialog2" timestamp="1590283976168">
-      <screen x="0" y="0" width="1600" height="870" />
-    </state>
-    <state x="413" y="0" key="CommitChangelistDialog2/0.0.1600.870@0.0.1600.870" timestamp="1590283976168" />
     <state x="413" y="0" key="CommitChangelistDialog2" timestamp="1590322363042">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
@@ -639,10 +646,10 @@ HEAD
       <screen x="0" y="0" width="1600" height="870" />
     </state>
     <state width="1557" height="219" key="GridCell.Tab.0.right/0.0.1600.870@0.0.1600.870" timestamp="1590004057697" />
-    <state x="634" y="354" key="NewPhpFileDialog" timestamp="1590245770266">
+    <state x="634" y="354" key="NewPhpFileDialog" timestamp="1590337673863">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
-    <state x="634" y="354" key="NewPhpFileDialog/0.0.1600.870@0.0.1600.870" timestamp="1590245770266" />
+    <state x="634" y="354" key="NewPhpFileDialog/0.0.1600.870@0.0.1600.870" timestamp="1590337673863" />
     <state x="301" y="76" key="SettingsEditor" timestamp="1589997418337">
       <screen x="0" y="0" width="1600" height="870" />
     </state>
@@ -656,6 +663,13 @@ HEAD
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="607" y="340" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1600.860@0.0.1600.860" timestamp="1589682797839" />
+ HEAD
  staged
+
+    <state x="456" y="198" key="run.anything.popup" timestamp="1590337678101">
+      <screen x="0" y="0" width="1600" height="870" />
+    </state>
+    <state x="456" y="198" key="run.anything.popup/0.0.1600.870@0.0.1600.870" timestamp="1590337678101" />
+ 1eb9b819475d415af9c26af9bb1b559f92298b6f
   </component>
 </project>

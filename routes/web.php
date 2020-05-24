@@ -17,9 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function () {
+/*Route::get('/test', function () {
     return view('test');
-});
+});*/
 
 Auth::routes(['verify' => true]);
 
@@ -51,5 +51,6 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
 
 
 //should be the last route
-Route::get('/dashboard/{path}', 'HomeController@index')->where('path', '([A-z\-/_.]+)?' );
+Route::get('/freelancer/dashboard/{path}', 'DashboardController@index')->where('path', '([A-z\-/_.]+)?' );
+Route::get('/scrum/dashboard/{path}', 'DashboardController@index')->where('path', '([A-z\-/_.]+)?' );
 Route::get('{path}', 'HomeController@index')->where('path', '([A-z\-/_.]+)?' );

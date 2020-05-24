@@ -366,6 +366,9 @@ select option:hover{
 }
 .main-sidebar{
     margin: 0 !important;
+    &.nav-link{
+        font-size: 14px !important;
+    }
 }
 
 
