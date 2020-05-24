@@ -19,7 +19,17 @@
     <select />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="65d3e354-87e2-4a4f-9c35-4b2a6ea8cf44" name="Default" comment="working on welcome page" />
+=======
+<<<<<<< Updated upstream
+    <list default="true" id="65d3e354-87e2-4a4f-9c35-4b2a6ea8cf44" name="Default" comment="Worked on the description column in jab category table&#10;I have added most routes for the freelancer dashboard" />
+=======
+    <list default="true" id="6a4091e1-7c25-4e05-b689-0f6fdc4951c3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+>>>>>>> Stashed changes
+>>>>>>> kwame
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -207,6 +217,10 @@
       <recent name="C:\xampp\htdocs\lancers\app\Http\Controllers\Api" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+<<<<<<< HEAD
+=======
+      <recent name="C:\xampp\htdocs\lancers\storage\app\public\images\job_category" />
+>>>>>>> kwame
       <recent name="C:\xampp\htdocs\lancers\resources\js\components\LoginRegister" />
     </key>
   </component>
@@ -246,6 +260,7 @@
       <workItem from="1590016104562" duration="6633000" />
       <workItem from="1590109599599" duration="3579000" />
       <workItem from="1590181775106" duration="12555000" />
+      <workItem from="1590270981889" duration="6638000" />
     </task>
     <task id="LOCAL-00001" summary="Clean Commit">
       <created>1589542990728</created>
@@ -282,7 +297,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590153134474</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Worked on the description column in jab category table&#10;I have added most routes for the freelancer dashboard">
+      <created>1590278665406</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1590278665406</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -308,7 +330,8 @@
     <MESSAGE value="Login, Register and Password Reset done" />
     <MESSAGE value="vue and npm installed" />
     <MESSAGE value="working on welcome page" />
-    <option name="LAST_COMMIT_MESSAGE" value="working on welcome page" />
+    <MESSAGE value="Worked on the description column in jab category table&#10;I have added most routes for the freelancer dashboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="Worked on the description column in jab category table&#10;I have added most routes for the freelancer dashboard" />
   </component>
   <component name="WindowStateProjectService">
     <state x="687" y="269" key="#File_Watchers" timestamp="1590000734770">
