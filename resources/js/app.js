@@ -155,20 +155,20 @@ Vue.component('contact-us', require('./components/ContactUs.vue').default);
 let routes = [
     {path:'/home', component: require('./components/Home.vue').default},
     //freelancer routes
-    {path:'/freelancer/dashboard/all-project', component: require('./components/Freelancer/').default},
-    {path:'/freelancer/dashboard/in-progress', component: require('./components/Freelancer').default},
-    {path:'/freelancer/dashboard/completed', component: require('./components/Freelancer').default},
-    {path:'/freelancer/dashboard/all-jobs', component: require('./components/Freelancer').default},
-    {path:'/freelancer/dashboard/submit-jobs', component: require('./components/Freelancer').default},
-    {path:'/freelancer/dashboard/profile', component: require('./components/Freelancer').default},
+    {path:'/freelancer/dashboard/all-project', component: require('./components/Freelancer/Dashboard/AllProjects').default},
+    {path:'/freelancer/dashboard/in-progress', component: require('./components/Freelancer/Dashboard/InProgress').default},
+    {path:'/freelancer/dashboard/completed', component: require('./components/Freelancer/Dashboard/Completed').default},
+    {path:'/freelancer/dashboard/all-jobs', component: require('./components/Freelancer/Dashboard/AllJobs').default},
+    {path:'/freelancer/dashboard/submit-jobs', component: require('./components/Freelancer/Dashboard/SubmitJobs').default},
+    {path:'/freelancer/dashboard/profile', component: require('./components/Freelancer/Dashboard/Profile').default},
 
     //project manager routes
-    {path:'/scrum/dashboard/all-project', component: require('./components/ProjectManager/').default},
-    {path:'/scrum/dashboard/in-progress', component: require('./components/ProjectManager').default},
-    {path:'/scrum/dashboard/completed', component: require('./components/ProjectManager').default},
-    {path:'/scrum/dashboard/post-job', component: require('./components/ProjectManager').default},
-    {path:'/scrum/dashboard/payment', component: require('./components/ProjectManager').default},
-    {path:'/scrum/dashboard/profile', component: require('./components/ProjectManager').default},
+    {path:'/scrum/dashboard/all-project', component: require('./components/ProjectManager/Dashboard/AllProjects').default},
+    {path:'/scrum/dashboard/in-progress', component: require('./components/ProjectManager/Dashboard/InProgress').default},
+    {path:'/scrum/dashboard/completed', component: require('./components/ProjectManager/Dashboard/Completed').default},
+    {path:'/scrum/dashboard/post-job', component: require('./components/ProjectManager/Dashboard/PostJobs').default},
+    {path:'/scrum/dashboard/payment', component: require('./components/ProjectManager/Dashboard/Payment').default},
+    {path:'/scrum/dashboard/profile', component: require('./components/ProjectManager/Dashboard/Profile').default},
 ];
 
 const router = new VueRouter({
