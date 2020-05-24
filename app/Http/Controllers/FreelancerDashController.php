@@ -23,13 +23,11 @@ class FreelancerDashController extends Controller
     public function yet() {
         $yet = JobOffered::where('status', 'not started')->get();
         return response()->json($yet);
-
-
     }
 
     // lists all projects either in progress, yet to start or completed
     public function all() {
-        $projects = JobOffered::where('status', 'all')->get();
+        $projects = JobOffered::all();
         return response()->json($projects);
     }
 
