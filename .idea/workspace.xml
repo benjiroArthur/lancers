@@ -19,29 +19,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-
-    <list default="true" id="65d3e354-87e2-4a4f-9c35-4b2a6ea8cf44" name="Default" comment="working on welcome page" />
-
-
-    <list default="true" id="65d3e354-87e2-4a4f-9c35-4b2a6ea8cf44" name="Default" comment="Worked on the description column in jab category table&#10;I have added most routes for the freelancer dashboard" />
-
-    <list default="true" id="6a4091e1-7c25-4e05-b689-0f6fdc4951c3" name="Default Changelist" comment="">
+    <list default="true" id="04c6dffd-d844-4ab0-b83b-3a728cf510e7" name="Default Changelist" comment="added some extension to the gitignore file">
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_05_24_120223_add_project_title_to_projects_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
-
-    <list default="true" id="65d3e354-87e2-4a4f-9c35-4b2a6ea8cf44" name="Default" comment="working on dashboard layout">
-      <change afterPath="$PROJECT_DIR$/database/factories/ClientFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/factories/FreelancerFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/factories/ProjectFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/ClientsTableSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/FreelancersTableSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/ProjectsTableSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Project.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/factories/ProjectFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/ProjectFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/ClientsTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/ClientsTableSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/ProjectsTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/ProjectsTableSeeder.php" afterDir="false" />
     </list>
-
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -221,19 +207,16 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2020.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\lancers\storage\app\public\images\job_category" />
+      <recent name="C:\xampp\htdocs\lancers\resources\js\components\LoginRegister" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\lancers\public\images" />
       <recent name="C:\xampp\htdocs\lancers\resources\views\includes" />
       <recent name="C:\xampp\htdocs\lancers\resources\js\components\ProjectManager" />
       <recent name="C:\xampp\htdocs\lancers\resources\js\components\Admin" />
       <recent name="C:\xampp\htdocs\lancers\storage\app\public\images\job_catecories" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-
-
-      <recent name="C:\xampp\htdocs\lancers\storage\app\public\images\job_category" />
-
-      <recent name="C:\xampp\htdocs\lancers\resources\js\components\LoginRegister" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -309,16 +292,6 @@
       <option name="project" value="LOCAL" />
       <updated>1590153134474</updated>
     </task>
-
-    <task id="LOCAL-00006" summary="Worked on the description column in jab category table&#10;I have added most routes for the freelancer dashboard">
-      <created>1590278665406</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1590278665406</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
-
     <task id="LOCAL-00006" summary="working on dashboard layout">
       <created>1590271125154</created>
       <option name="number" value="00006" />
@@ -334,7 +307,6 @@
       <updated>1590283979582</updated>
     </task>
     <option name="localTasksCounter" value="8" />
-
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -360,13 +332,9 @@
     <MESSAGE value="Login, Register and Password Reset done" />
     <MESSAGE value="vue and npm installed" />
     <MESSAGE value="working on welcome page" />
-
     <MESSAGE value="Worked on the description column in jab category table&#10;I have added most routes for the freelancer dashboard" />
-    <option name="LAST_COMMIT_MESSAGE" value="Worked on the description column in jab category table&#10;I have added most routes for the freelancer dashboard" />
-
     <MESSAGE value="working on dashboard layout" />
     <option name="LAST_COMMIT_MESSAGE" value="working on dashboard layout" />
-
   </component>
   <component name="WindowStateProjectService">
     <state x="687" y="269" key="#File_Watchers" timestamp="1590000734770">

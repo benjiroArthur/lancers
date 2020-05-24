@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     //fillable
-    protected $fillable = ['job_id', 'description', 'client_id', 'project_cost', 'duration', 'approved'];
+    protected $fillable = ['job_id', 'description', 'client_id', 'project_title', 'project_cost', 'duration', 'approved'];
 
     protected $casts = [
         'approved' => 'boolean'
