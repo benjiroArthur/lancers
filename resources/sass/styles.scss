@@ -347,6 +347,28 @@ select option:hover{
     background-color:#32a778 !important;
 }
 
+.d-bord-wrapper{
+    min-height: 100% !important;
+}
+
+.router-link-exact-active{
+    background-color: #65f1b9 !important;
+    color: #012617 !important;
+    &.nav-link{
+        color: #012617 !important;
+    }
+}
+.nav-link:hover{
+    color: #65f1b9 !important;
+}
+.stack-top{
+    z-index: 9;
+}
+.main-sidebar{
+    margin: 0 !important;
+}
+
+
 
 
 
