@@ -37,9 +37,11 @@
 <body class="hold-transition sidebar-mini bg-lancer-light">
 <div class="wrapper d-bord-wrapper" id="app">
     <!--    navbar -->
-@include('includes.dashboard.headerbar')
+<div>
+    @include('includes.dashboard.headerbar')
 
-@include('includes.dashboard.navbar')
+    @include('includes.dashboard.navbar')
+</div>
 
 <!-- Main Sidebar Container -->
 

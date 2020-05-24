@@ -16,7 +16,7 @@
 
 
         <!-- Sidebar Menu -->
-        <div class="p-0 bg-lancer-dark ">
+        <div class="p-0 bg-lancer-dark m-0">
             @include('includes.dashboard.freelancerNav')
         </div>
 

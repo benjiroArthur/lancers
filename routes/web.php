@@ -27,6 +27,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::resource('/job-category', 'JobCategoryController');
+    //type yours here
 });
 
 
@@ -44,4 +45,5 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
 
 
 //should be the last route
+Route::get('/dashboard/{path}', 'HomeController@index')->where('path', '([A-z\-/_.]+)?' );
 Route::get('{path}', 'HomeController@index')->where('path', '([A-z\-/_.]+)?' );

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-lancer shadow-sm">
+<nav class="navbar navbar-expand-md navbar-light bg-lancer shadow-sm stack-top">
     <div class="container">
         <a class="navbar-brand text-white" href="{{ url('/') }}">
             {{--{{ config('app.name', 'Lancer') }}--}}

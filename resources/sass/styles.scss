@@ -348,7 +348,7 @@ select option:hover{
 }
 
 .d-bord-wrapper{
-    min-height: 100%;
+    min-height: 100% !important;
 }
 
 .router-link-exact-active{
@@ -357,6 +357,15 @@ select option:hover{
 }
 .nav-link:hover{
     color: #65f1b9 !important;
+}
+.stack-top{
+    z-index: 9;
+}
+.main-sidebar{
+    margin: 0 !important;
+}
+.nav-link{
+    color: white;
 }
 
 
