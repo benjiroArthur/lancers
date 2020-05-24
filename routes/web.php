@@ -32,6 +32,11 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::get('/in-progress', 'FreelancerDasController@progress');
     Route::get('/not-completed', 'FreelancerDashController@yet');
     Route::get('/job-offered', 'FreelancerDashController@all');
+    Route::get('/browse-jobs', 'FreelancerDashController@jobs');
+    Route::get('/completed-projects', 'ClientDashController@completed');
+    Route::get('/in-progress', 'ClientDashController@progress');
+    Route::get('/not-completed', 'ClientDashController@yet');
+    Route::get('/projects', 'ClientDashController@projects');
 
 });
 

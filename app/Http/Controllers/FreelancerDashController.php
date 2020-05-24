@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\JobOffered;
+use App\Project;
 use Illuminate\Http\Request;
 
 class FreelancerDashController extends Controller
@@ -29,6 +30,11 @@ class FreelancerDashController extends Controller
     public function all() {
         $projects = JobOffered::all();
         return response()->json($projects);
+    }
+
+    public function jobs() {
+        $jobs = Project::all();
+        return response()->json($jobs);
     }
 
     public function profile() {

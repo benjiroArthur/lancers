@@ -19,7 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04c6dffd-d844-4ab0-b83b-3a728cf510e7" name="Default Changelist" comment="added project_title to projects table&#10;populated the projects table with 51 entries" />
+    <list default="true" id="04c6dffd-d844-4ab0-b83b-3a728cf510e7" name="Default Changelist" comment="added project_title to projects table&#10;populated the projects table with 51 entries">
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ClientDashController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FreelancerDashController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FreelancerDashController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/mail.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/mail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -216,7 +222,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="65d3e354-87e2-4a4f-9c35-4b2a6ea8cf44" name="Default" comment="" />
+      <changelist id="04c6dffd-d844-4ab0-b83b-3a728cf510e7" name="Default Changelist" comment="added project_title to projects table&#10;populated the projects table with 51 entries" />
       <created>1583314750740</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -248,6 +254,7 @@
       <workItem from="1590109599599" duration="3579000" />
       <workItem from="1590181775106" duration="12555000" />
       <workItem from="1590270981889" duration="6638000" />
+      <workItem from="1590346930698" duration="6103000" />
     </task>
     <task id="LOCAL-00001" summary="Clean Commit">
       <created>1589542990728</created>
