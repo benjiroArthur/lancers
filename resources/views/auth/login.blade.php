@@ -39,31 +39,27 @@
                                     </span>
                             @enderror
                         </div>
+                        <a class="text-lancer d-block text-success" href="{{ route('password.request') }}">
+                            Forgot Your Password?
+                        </a>
 
-                        <div class="row align-items-center" style="width: 100%">
+                        <div class="col-12 mb-3">
+                            <div class="icheck-primary text-lancer">
+                                <input type="checkbox" id="remember" name="remember">
+                                <label for="remember text-lancer">
+                                    Remember Me
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row align-items-center mb-3" style="width: 100%">
                             <div class="col-12 mb-2 align-items-center">
                                 <button type="submit" class="btn btn-success align-items-center butDiv">Sign In</button>
                             </div>
 
-                            <!-- /.col -->
-
-                            <div class="col-12 mt-3">
-                                <div class="icheck-primary text-lancer">
-                                    <input type="checkbox" id="remember" name="remember">
-                                    <label for="remember text-lancer">
-                                        Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                            <!-- /.col -->
 
                         </div>
                     </form>
-                    <p class="mb-1">
-                        <a class="text-lancer" href="{{ route('password.request') }}">
-                            {{ __('Forgot Your Password?') }}
-                        </a>
-                    </p>
+                    <br>
                     <div class="row justify-content-center">
 
                         <div class="col-12">

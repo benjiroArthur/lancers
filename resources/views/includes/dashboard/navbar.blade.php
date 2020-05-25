@@ -1,8 +1,8 @@
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand bg-lancer-light">
+<nav class="main-header bg-lancer-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
-        <li class="nav-item">
+        <li class="nav-item ml-2">
             <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars text-lancer"></i></a>
         </li>
     </ul>
