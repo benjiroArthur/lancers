@@ -68,8 +68,7 @@ HEAD
  kwame
 
     <list default="true" id="7080c9c1-a759-4fef-8fe9-dc41b20bc83b" name="Default Changelist" comment="migrated the job offered table for the status column to show">
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
  kwame
     <option name="SHOW_DIALOG" value="false" />
