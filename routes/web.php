@@ -35,15 +35,15 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::resource('/job-category', 'JobCategoryController');
     Route::resource('/project', 'ProjectController');
 
-    Route::get('/completed-projects', 'FreelancerDashController@completed');
-    Route::get('/in-progress', 'FreelancerDasController@progress');
-    Route::get('/not-completed', 'FreelancerDashController@yet');
-    Route::get('/job-offered', 'FreelancerDashController@all');
-    Route::get('/browse-jobs', 'FreelancerDashController@jobs');
-    Route::get('/completed-projects', 'ClientDashController@completed');
-    Route::get('/in-progress', 'ClientDashController@progress');
-    Route::get('/not-completed', 'ClientDashController@yet');
-    Route::get('/projects', 'ClientDashController@projects');
+    Route::get('/freelancer/completed-projects', 'FreelancerDashController@completed');
+    Route::get('/freelancer/in-progress', 'FreelancerDasController@progress');
+    Route::get('/freelancer/not-completed', 'FreelancerDashController@yet');
+    Route::get('/freelancer/job-offered', 'FreelancerDashController@all');
+    Route::get('/freelancer/browse-jobs', 'FreelancerDashController@jobs');
+    Route::get('/client/completed-projects', 'ClientDashController@completed');
+    Route::get('/client/in-progress', 'ClientDashController@progress');
+    Route::get('/client/not-completed', 'ClientDashController@yet');
+    Route::get('/client/projects', 'ClientDashController@projects');
 
 });
 
