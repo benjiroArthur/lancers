@@ -19,6 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
  HEAD
 HEAD
     <list default="true" id="65d3e354-87e2-4a4f-9c35-4b2a6ea8cf44" name="Default" comment="working route links for dashboard" />
@@ -61,6 +62,9 @@ HEAD
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
  kwame
+=======
+    <list default="true" id="04c6dffd-d844-4ab0-b83b-3a728cf510e7" name="Default Changelist" comment="migrated the job offered table for the status column to show" />
+>>>>>>> kwame
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -613,8 +617,19 @@ Kwame-Swift
       <option name="project" value="LOCAL" />
       <updated>1590354905353</updated>
     </task>
+<<<<<<< HEAD
     <option name="localTasksCounter" value="10" />
  kwame
+=======
+    <task id="LOCAL-00010" summary="migrated the job offered table for the status column to show">
+      <created>1590422560208</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1590422560232</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
+>>>>>>> kwame
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -853,8 +868,13 @@ HEAD
     <option name="LAST_COMMIT_MESSAGE" value="working route links for dashboard" />
 
     <MESSAGE value="Client Controllers and its routes done" />
+<<<<<<< HEAD
     <option name="LAST_COMMIT_MESSAGE" value="Client Controllers and its routes done" />
  kwame
+=======
+    <MESSAGE value="migrated the job offered table for the status column to show" />
+    <option name="LAST_COMMIT_MESSAGE" value="migrated the job offered table for the status column to show" />
+>>>>>>> kwame
   </component>
   <component name="WindowStateProjectService">
     <state x="687" y="269" key="#File_Watchers" timestamp="1590000734770">
