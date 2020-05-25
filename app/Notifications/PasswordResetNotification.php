@@ -42,11 +42,16 @@ class PasswordResetNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        /*$url = url(config('app.url').route('api.password.reset', [
+        $url = url(route('password.reset', [
+                'token' => $this->token,
+                'email' => $notifiable->getEmailForPasswordReset(),
+            ], false));
+
+       /* $url = url(config('app.url').route('password.reset', [
                 'token' => $this->token,
                 'email' => $notifiable->getEmailForPasswordReset(),
             ], false));*/
-        $url = "http://LancersFrontEnd/reset-password-form/?token=".$this->token;
+        //$url = "http://LancersFrontEnd/reset-password-form/?token=".$this->token;
 
 
         return (new MailMessage)

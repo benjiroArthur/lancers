@@ -18,6 +18,10 @@ window.RotateSquare2 = RotateSquare2;
 
 Vue.use(VueRouter);
 
+import VueCarousel from 'vue-carousel';
+
+Vue.use(VueCarousel);
+
 
 require('@fortawesome/fontawesome-free/js/all.js');
 require('bootstrap-table/dist/bootstrap-table.min.css');
@@ -30,7 +34,7 @@ require('bootstrap-table/dist/extensions/print/bootstrap-table-print.min.js');
 require('bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.min.css');
 require('bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.min.js');
 
-import VueSlickCarousel from 'vue-slick-carousel';
+
 
 import * as VueGoogleMaps from 'vue2-google-maps';
 
@@ -134,7 +138,7 @@ import VueCropper from 'vue-cropperjs';
 import 'cropperjs/dist/cropper.css';
 Vue.component(VueCropper);
 
-
+import VueSlickCarousel from 'vue-slick-carousel';
 
 
 
@@ -153,6 +157,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('welcome', require('./components/Welcome.vue').default);
 Vue.component('contact-us', require('./components/ContactUs.vue').default);
 Vue.component('notification', require('./components/Resources/Notification.vue').default);
+Vue.component('slider', require('./components/Resources/Slider.vue').default);
 Vue.component('VueSlickCarousel', VueSlickCarousel);
 
 

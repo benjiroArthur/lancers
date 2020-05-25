@@ -65,4 +65,6 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
 //should be the last route
 Route::get('/freelancer/dashboard/{path}', 'DashboardController@index')->where('path', '([A-z\-/_.]+)?' );
 Route::get('/scrum/dashboard/{path}', 'DashboardController@index')->where('path', '([A-z\-/_.]+)?' );
-Route::get('{path}', 'HomeController@index')->where('path', '([A-z\-/_.]+)?' );
+Route::get('{path}', function (){
+    return redirect('/home');
+})->where('path', '([A-z\-/_.]+)?' );
