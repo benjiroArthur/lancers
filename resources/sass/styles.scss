@@ -1,6 +1,9 @@
 .text-lancer{
     color: #32a778;
 }
+.text-lancer-dark{
+    color: #024a2d;
+}
 .bg-lancer{
     background-color: #32a778;
 }
@@ -351,16 +354,7 @@ select option:hover{
     min-height: 100% !important;
 }
 
-.router-link-exact-active{
-    background-color: #65f1b9 !important;
-    color: #012617 !important;
-    &.nav-link{
-        color: #012617 !important;
-    }
-}
-.nav-link:hover{
-    color: #65f1b9 !important;
-}
+
 .stack-top{
     z-index: 9;
 }
@@ -369,6 +363,42 @@ select option:hover{
     &.nav-link{
         font-size: 14px !important;
     }
+    &.router-link-exact-active{
+        background-color: #65f1b9 !important;
+        color: #012617 !important;
+        &.nav-link{
+            color: #012617 !important;
+        }
+    }
+    &.nav-link:hover{
+        color: #65f1b9 !important;
+    }
+}
+
+.home-navs{
+
+    &.nav-link{
+        font-size: 8px !important;
+        border: none;
+        background: transparent !important;
+        color: white !important;
+    }
+    &.router-link-exact-active{
+        border-bottom: 2px solid #012617 !important;
+        color: white !important;
+        &.nav-link{
+            color: white !important;
+        }
+    }
+    &.nav-link:hover{
+        color: black !important;
+    }
+
+}
+
+.lancer-search{
+        border: 1px solid white !important;
+        background: transparent;
 }
 
 

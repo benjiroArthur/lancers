@@ -18,6 +18,7 @@ window.RotateSquare2 = RotateSquare2;
 
 Vue.use(VueRouter);
 
+
 require('@fortawesome/fontawesome-free/js/all.js');
 require('bootstrap-table/dist/bootstrap-table.min.css');
 require('bootstrap-table/dist/bootstrap-table.js');
@@ -28,6 +29,8 @@ require('bootstrap-table/dist/extensions/print/bootstrap-table-print.min.js');
 
 require('bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.min.css');
 require('bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.min.js');
+
+import VueSlickCarousel from 'vue-slick-carousel';
 
 import * as VueGoogleMaps from 'vue2-google-maps';
 
@@ -149,6 +152,8 @@ Vue.component(VueCropper);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('welcome', require('./components/Welcome.vue').default);
 Vue.component('contact-us', require('./components/ContactUs.vue').default);
+Vue.component('notification', require('./components/Resources/Notification.vue').default);
+Vue.component('VueSlickCarousel', VueSlickCarousel);
 
 
 
@@ -208,6 +213,7 @@ const app = new Vue({
     data: () => ({
         pageLoader: true,
         userId: '',
+        resource_path: '',
     }),
     mounted() {
         setTimeout(val => {
@@ -221,5 +227,6 @@ const app = new Vue({
     },
     created(){
         this.userId = $('meta[name = "user-id"]').attr('content')
+        this.resource_path = $('meta[name = "resource_path"]').attr('content')
     },
 });
