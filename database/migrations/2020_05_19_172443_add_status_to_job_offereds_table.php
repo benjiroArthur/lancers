@@ -14,7 +14,7 @@ class AddStatusToJobOfferedsTable extends Migration
     public function up()
     {
         Schema::table('job_offereds', function (Blueprint $table) {
-            //
+            $table->text('status')->default('not started');
         });
     }
 
