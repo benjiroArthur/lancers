@@ -19,6 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
+ HEAD
+ HEAD
+ HEAD
 HEAD
     <list default="true" id="65d3e354-87e2-4a4f-9c35-4b2a6ea8cf44" name="Default" comment="working route links for dashboard" />
 HEAD
@@ -48,10 +51,25 @@ HEAD
 
     <list default="true" id="04c6dffd-d844-4ab0-b83b-3a728cf510e7" name="Default Changelist" comment="added project_title to projects table&#10;populated the projects table with 51 entries">
       <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ClientDashController.php" afterDir="false" />
+
+    <list default="true" id="04c6dffd-d844-4ab0-b83b-3a728cf510e7" name="Default Changelist" comment="Client Controllers and its routes done">
+      <change afterPath="$PROJECT_DIR$/database/factories/JobApplicationFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/factories/JobOfferedFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeds/JobApplicationTableSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeds/JobOfferedTableSeeder.php" afterDir="false" />
+ kwame
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FreelancerDashController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FreelancerDashController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/mail.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/mail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
+ kwame
+
+    <list default="true" id="04c6dffd-d844-4ab0-b83b-3a728cf510e7" name="Default Changelist" comment="migrated the job offered table for the status column to show" />
+ kwame
+
+    <list default="true" id="7080c9c1-a759-4fef-8fe9-dc41b20bc83b" name="Default Changelist" comment="migrated the job offered table for the status column to show">
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
     </list>
  kwame
     <option name="SHOW_DIALOG" value="false" />
@@ -426,6 +444,7 @@ HEAD
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2020.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
+ HEAD
 HEAD
  HEAD
     <key name="MoveFile.RECENT_KEYS">
@@ -438,6 +457,8 @@ staged
 1eb9b819475d415af9c26af9bb1b559f92298b6f
 
 Kwame-Swift
+
+ kwame
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\lancers\public\images" />
       <recent name="C:\xampp\htdocs\lancers\resources\views\includes" />
@@ -450,6 +471,10 @@ Kwame-Swift
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\lancers\lancers\resources\js\components\Freelancer" />
+      <recent name="C:\xampp\htdocs\lancers\storage\app\public\images\job_category" />
+      <recent name="C:\xampp\htdocs\lancers\resources\js\components\LoginRegister" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\lancers\storage\app\public\images\job_category" />
       <recent name="C:\xampp\htdocs\lancers\resources\js\components\LoginRegister" />
     </key>
@@ -516,7 +541,8 @@ Kwame-Swift
       <workItem from="1590109599599" duration="3579000" />
       <workItem from="1590181775106" duration="12555000" />
       <workItem from="1590270981889" duration="6638000" />
-      <workItem from="1590346930698" duration="6103000" />
+      <workItem from="1590346930698" duration="12911000" />
+      <workItem from="1590407389260" duration="5709000" />
     </task>
     <task id="LOCAL-00001" summary="Clean Commit">
       <created>1589542990728</created>
@@ -581,6 +607,7 @@ Kwame-Swift
       <option name="project" value="LOCAL" />
       <updated>1590322366577</updated>
     </task>
+ HEAD
     <task id="LOCAL-00010" summary="working route links for dashboard">
       <created>1590338835866</created>
       <option name="number" value="00010" />
@@ -589,6 +616,27 @@ Kwame-Swift
       <updated>1590338835866</updated>
     </task>
     <option name="localTasksCounter" value="11" />
+
+    <task id="LOCAL-00009" summary="Client Controllers and its routes done">
+      <created>1590354905353</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1590354905353</updated>
+    </task>
+ HEAD
+    <option name="localTasksCounter" value="10" />
+ kwame
+
+    <task id="LOCAL-00010" summary="migrated the job offered table for the status column to show">
+      <created>1590422560208</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1590422560232</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
+ kwame
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -821,9 +869,19 @@ HEAD
     <MESSAGE value="Worked on the description column in jab category table&#10;I have added most routes for the freelancer dashboard" />
     <MESSAGE value="working on dashboard layout" />
     <MESSAGE value="added project_title to projects table&#10;populated the projects table with 51 entries" />
+ HEAD
     <MESSAGE value="dashboard layout generated" />
     <MESSAGE value="working route links for dashboard" />
     <option name="LAST_COMMIT_MESSAGE" value="working route links for dashboard" />
+
+    <MESSAGE value="Client Controllers and its routes done" />
+ HEAD
+    <option name="LAST_COMMIT_MESSAGE" value="Client Controllers and its routes done" />
+ kwame
+
+    <MESSAGE value="migrated the job offered table for the status column to show" />
+    <option name="LAST_COMMIT_MESSAGE" value="migrated the job offered table for the status column to show" />
+ kwame
   </component>
   <component name="WindowStateProjectService">
     <state x="687" y="269" key="#File_Watchers" timestamp="1590000734770">
