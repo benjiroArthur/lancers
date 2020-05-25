@@ -17,10 +17,24 @@ class DatabaseSeeder extends Seeder
 
         //$this->call(ProjectsTableSeeder::class);
         //$this->call(JobApplicationTableSeeder::class);
+ HEAD
+
+ Updated upstream
+        $this->call(JobOfferedTableSeeder::class);
+
+ HEAD
+ kwame
         //$this->call(JobOfferedTableSeeder::class);
 
         
 
+ HEAD
+
+
+        $this->call(JobOfferedTableSeeder::class);
+ kwame
+ Stashed changes
+ kwame
 
     }
 }
