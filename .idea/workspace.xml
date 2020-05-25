@@ -19,11 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04c6dffd-d844-4ab0-b83b-3a728cf510e7" name="Default Changelist" comment="Created factory and seeder for JobOffered and ProjectApplication">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_05_19_172443_add_status_to_job_offereds_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_05_19_172443_add_status_to_job_offereds_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-    </list>
+    <list default="true" id="04c6dffd-d844-4ab0-b83b-3a728cf510e7" name="Default Changelist" comment="migrated the job offered table for the status column to show" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -318,7 +314,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590354905353</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="migrated the job offered table for the status column to show">
+      <created>1590422560208</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1590422560232</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -348,7 +351,8 @@
     <MESSAGE value="working on dashboard layout" />
     <MESSAGE value="added project_title to projects table&#10;populated the projects table with 51 entries" />
     <MESSAGE value="Client Controllers and its routes done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Client Controllers and its routes done" />
+    <MESSAGE value="migrated the job offered table for the status column to show" />
+    <option name="LAST_COMMIT_MESSAGE" value="migrated the job offered table for the status column to show" />
   </component>
   <component name="WindowStateProjectService">
     <state x="687" y="269" key="#File_Watchers" timestamp="1590000734770">
