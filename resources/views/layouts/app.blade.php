@@ -4,8 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    @php($resource_path = asset('images'))
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="resource_path" content="{{ $resource_path }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -76,7 +78,7 @@
             @yield('content')
         </main>
 
-        <footer class="bg-lancer main-footer p-4">
+        <footer class="bg-lancer p-4">
             <div class="container-fluid ml-4 mr-3 mt-3 mb-3">
                 <div class="row mt-3 mb-3">
                     <div class="col-md-2">

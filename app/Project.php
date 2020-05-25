@@ -3,6 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Job;
+use App\JobCategory;
+use App\Client;
 
 class Project extends Model
 {
@@ -13,18 +16,23 @@ class Project extends Model
         'approved' => 'boolean'
     ];
 
+    protected $appends = ['image'];
+
     //relationships
 
     public function job(){
-        return $this->belongsTo('App\Job');
+        return $this->belongsTo(Job::class);
     }
 
-    public function category(){
-        return $this->hasOneThrough('App\JobCategory', 'App\Job');
-    }
+//    public function jobCategory(){
+//        return $this->hasOneThrough(JobCategory::class, Job::class);
+//    }
 
     public function client(){
-        return $this->belongsTo('App\Client');
+        return $this->belongsTo(Client::class);
+    }
+    public function getImageAttribute(){
+        return $this->job->category->image_path;
     }
 
 

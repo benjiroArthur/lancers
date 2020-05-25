@@ -17,9 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/*Route::get('/test', function () {
-    return view('test');
-});*/
+Route::get('/js/popper.js.map', function () {
+    return redirect('/home');
+});
+Route::get('/js/vuejs-datatable.esm.js.map', function () {
+    return redirect('/home');
+});
+Route::get('/js/vuetify.js.map', function () {
+    return redirect('/home');
+});
 
 Auth::routes(['verify' => true]);
 
@@ -27,6 +33,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::resource('/job-category', 'JobCategoryController');
+    Route::resource('/project', 'ProjectController');
 
     Route::get('/completed-projects', 'FreelancerDashController@completed');
     Route::get('/in-progress', 'FreelancerDasController@progress');
