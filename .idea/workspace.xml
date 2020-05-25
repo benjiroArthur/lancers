@@ -19,11 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04c6dffd-d844-4ab0-b83b-3a728cf510e7" name="Default Changelist" comment="added project_title to projects table&#10;populated the projects table with 51 entries">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ClientDashController.php" afterDir="false" />
+    <list default="true" id="04c6dffd-d844-4ab0-b83b-3a728cf510e7" name="Default Changelist" comment="Client Controllers and its routes done">
+      <change afterPath="$PROJECT_DIR$/database/factories/JobApplicationFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/factories/JobOfferedFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeds/JobApplicationTableSeeder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/seeds/JobOfferedTableSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/FreelancerDashController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/FreelancerDashController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/mail.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/mail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -205,16 +207,16 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2020.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\lancers\storage\app\public\images\job_category" />
-      <recent name="C:\xampp\htdocs\lancers\resources\js\components\LoginRegister" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\lancers\public\images" />
       <recent name="C:\xampp\htdocs\lancers\resources\views\includes" />
       <recent name="C:\xampp\htdocs\lancers\resources\js\components\ProjectManager" />
       <recent name="C:\xampp\htdocs\lancers\resources\js\components\Admin" />
       <recent name="C:\xampp\htdocs\lancers\storage\app\public\images\job_catecories" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\lancers\storage\app\public\images\job_category" />
+      <recent name="C:\xampp\htdocs\lancers\resources\js\components\LoginRegister" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -254,7 +256,8 @@
       <workItem from="1590109599599" duration="3579000" />
       <workItem from="1590181775106" duration="12555000" />
       <workItem from="1590270981889" duration="6638000" />
-      <workItem from="1590346930698" duration="6103000" />
+      <workItem from="1590346930698" duration="12911000" />
+      <workItem from="1590407389260" duration="5709000" />
     </task>
     <task id="LOCAL-00001" summary="Clean Commit">
       <created>1589542990728</created>
@@ -312,7 +315,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590323097769</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Client Controllers and its routes done">
+      <created>1590354905353</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1590354905353</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -341,7 +351,8 @@
     <MESSAGE value="Worked on the description column in jab category table&#10;I have added most routes for the freelancer dashboard" />
     <MESSAGE value="working on dashboard layout" />
     <MESSAGE value="added project_title to projects table&#10;populated the projects table with 51 entries" />
-    <option name="LAST_COMMIT_MESSAGE" value="added project_title to projects table&#10;populated the projects table with 51 entries" />
+    <MESSAGE value="Client Controllers and its routes done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Client Controllers and its routes done" />
   </component>
   <component name="WindowStateProjectService">
     <state x="687" y="269" key="#File_Watchers" timestamp="1590000734770">
