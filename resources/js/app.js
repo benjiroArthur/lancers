@@ -8,8 +8,11 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import Slick from 'vue-slick';
 import Vuetify from 'vuetify';
 Vue.use(Vuetify);
+
+
 
 import {RotateSquare2} from 'vue-loading-spinner';
 
@@ -18,9 +21,10 @@ window.RotateSquare2 = RotateSquare2;
 
 Vue.use(VueRouter);
 
-import VueCarousel from 'vue-carousel';
+/*import VueCarousel from 'vue-carousel';
 
-Vue.use(VueCarousel);
+Vue.use(VueCarousel);*/
+//import VueSlickCarousel from 'vue-slick-carousel';
 
 
 require('@fortawesome/fontawesome-free/js/all.js');
@@ -138,7 +142,7 @@ import VueCropper from 'vue-cropperjs';
 import 'cropperjs/dist/cropper.css';
 Vue.component(VueCropper);
 
-import VueSlickCarousel from 'vue-slick-carousel';
+
 
 
 
@@ -158,7 +162,8 @@ Vue.component('welcome', require('./components/Welcome.vue').default);
 Vue.component('contact-us', require('./components/ContactUs.vue').default);
 Vue.component('notification', require('./components/Resources/Notification.vue').default);
 Vue.component('slider', require('./components/Resources/Slider.vue').default);
-Vue.component('VueSlickCarousel', VueSlickCarousel);
+//Vue.component('VueSlickCarousel', VueSlickCarousel);
+Vue.component('slick', Slick);
 
 
 

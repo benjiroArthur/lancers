@@ -12,7 +12,7 @@
 
         </div>-->
         <v-carousel :show-arrows=false
-                    autoplay="autoplay">
+                    :autoplay=true >
             <v-carousel-item
                 v-for="(item,i) in items"
                 :key="i"
@@ -20,41 +20,20 @@
             ></v-carousel-item>
         </v-carousel>
 
-
+<button class="btn" type="button" @click="show = !show"> Show</button>
         <h2 class="text-center mt-3 mb-3 text-bold text-dark">POPULAR PROJECTS</h2>
         <div class="row">
-            <!--<VueSlickCarousel
-                v-bind="settings" >
-                <img :src="resource_path+'/do_it_your_self/laravel.jpg'" alt="Image" class="img-fluid">
-                <img :src="resource_path+'/do_it_your_self/laravel.jpg'" alt="Image" class="img-fluid">
-                <img :src="resource_path+'/do_it_your_self/digital.jpg'" alt="Image" class="img-fluid">
-                <img :src="resource_path+'/do_it_your_self/digital.jpg'" alt="Image" class="img-fluid">
-                &lt;!&ndash;<div v-for="(popular_project, index) in this.popular_projects"  class="col-md-6 col-lg-2" :key="index">
-
-                    <v-card class="cat-card p-2 shadow">
-                        <v-card-title primary-title class="m-3 text-center">
-                            <div>
-                                <h4 class="headline mb-2 text-bold">{{popular_project.project_title}}</h4>
-                                <p> {{ popular_project.description | descFilter }} </p>
-                            </div>
-                        </v-card-title>
-                        <v-img class="m-3"
-                               :src="popular_project.image"
-                               alt="image"
-                        ></v-img>
-
-                    </v-card>
-                </div>&ndash;&gt;
-            </VueSlickCarousel>-->
-            <VueSlickCarousel v-if="popular_projects.length > 0"
-                              v-bind="settings"
+            <slick v-if="popular_projects.length > 0"
+                   :options="options"
+                   ref="slick"
 
             >
-                <div v-for="(project, index) in popular_projects" :key="index">
-                    <img :src="project.image" alt="dsfds">
-                </div>
+                <!--<div v-for="(project, index) in popular_projects" :key="index" class="img-fluid">-->
+                    <img v-for="(project, index) in popular_projects" :key="index" :src="project.image" alt="dsfds" class="py3">
 
-            </VueSlickCarousel>
+
+            </slick>
+            <img v-for="(project, index) in popular_projects" :key="index" :src="project.image" alt="dsfds" class="py3">
 
             <!--<div v-for="popular_project in this.popular_projects"  class="col-md-6 col-lg-2">
 
@@ -137,6 +116,7 @@
         name: "Home",
         data(){
             return{
+                show: false,
                 projects: {},
                 popular_projects: {},
                 recent_projects: {},
@@ -165,6 +145,20 @@
                     centerMode: true,
                     centerPadding: "20px",
                 },
+                options: {
+                    fullscreen: true,
+                    autoplay: true,
+                    keyboard: true,
+                    centerPadding: '40px',
+                    slidesToShow: 3,
+                    infinite: false,
+                    //arrows: true,
+                    dots: true,
+                    title: false,
+                    //draggable: true,
+                    //edgeFriction: 0.30,
+                    //swipe: true
+                },
             }
         },
         methods:{
@@ -177,7 +171,22 @@
                         this.recent_projects = this.projects.recently;
                     })
                     .catch()
-            }
+            },
+
+            next() {
+                this.$refs.slick.next();
+            },
+
+            prev() {
+                this.$refs.slick.prev();
+            },
+
+            reInit() {
+                // Helpful if you have to deal with v-for to update dynamic lists
+                this.$nextTick(() => {
+                    this.$refs.slick.reSlick();
+                });
+            },
         },
         filters:{
             descFilter(value){
