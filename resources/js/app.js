@@ -18,6 +18,7 @@ window.RotateSquare2 = RotateSquare2;
 
 Vue.use(VueRouter);
 
+
 require('@fortawesome/fontawesome-free/js/all.js');
 require('bootstrap-table/dist/bootstrap-table.min.css');
 require('bootstrap-table/dist/bootstrap-table.js');
@@ -28,6 +29,8 @@ require('bootstrap-table/dist/extensions/print/bootstrap-table-print.min.js');
 
 require('bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.min.css');
 require('bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.min.js');
+
+import VueSlickCarousel from 'vue-slick-carousel';
 
 import * as VueGoogleMaps from 'vue2-google-maps';
 
@@ -149,26 +152,28 @@ Vue.component(VueCropper);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('welcome', require('./components/Welcome.vue').default);
 Vue.component('contact-us', require('./components/ContactUs.vue').default);
+Vue.component('notification', require('./components/Resources/Notification.vue').default);
+Vue.component('VueSlickCarousel', VueSlickCarousel);
 
 
 
 let routes = [
     {path:'/home', component: require('./components/Home.vue').default},
     //freelancer routes
-    {path:'/freelancer/dashboard/all-project', component: require('./components/Freelancer/Dashboard/AllProjects').default},
-    {path:'/freelancer/dashboard/in-progress', component: require('./components/Freelancer/Dashboard/InProgress').default},
-    {path:'/freelancer/dashboard/completed', component: require('./components/Freelancer/Dashboard/Completed').default},
-    {path:'/freelancer/dashboard/all-jobs', component: require('./components/Freelancer/Dashboard/AllJobs').default},
-    {path:'/freelancer/dashboard/submit-jobs', component: require('./components/Freelancer/Dashboard/SubmitJobs').default},
-    {path:'/freelancer/dashboard/profile', component: require('./components/Freelancer/Dashboard/Profile').default},
+    {path:'/freelancer/dashboard/all-project', component: require('./components/Freelancer/Dashboard/AllProjects.vue').default},
+    {path:'/freelancer/dashboard/in-progress', component: require('./components/Freelancer/Dashboard/InProgress.vue').default},
+    {path:'/freelancer/dashboard/completed', component: require('./components/Freelancer/Dashboard/Completed.vue').default},
+    {path:'/freelancer/dashboard/all-jobs', component: require('./components/Freelancer/Dashboard/AllJobs.vue').default},
+    {path:'/freelancer/dashboard/submit-jobs', component: require('./components/Freelancer/Dashboard/SubmitJobs.vue').default},
+    {path:'/freelancer/dashboard/profile', component: require('./components/Freelancer/Dashboard/Profile.vue').default},
 
     //project manager routes
-    {path:'/scrum/dashboard/all-project', component: require('./components/ProjectManager/Dashboard/AllProjects').default},
-    {path:'/scrum/dashboard/in-progress', component: require('./components/ProjectManager/Dashboard/InProgress').default},
-    {path:'/scrum/dashboard/completed', component: require('./components/ProjectManager/Dashboard/Completed').default},
-    {path:'/scrum/dashboard/post-job', component: require('./components/ProjectManager/Dashboard/PostJobs').default},
-    {path:'/scrum/dashboard/payment', component: require('./components/ProjectManager/Dashboard/Payment').default},
-    {path:'/scrum/dashboard/profile', component: require('./components/ProjectManager/Dashboard/Profile').default},
+    {path:'/scrum/dashboard/all-project', component: require('./components/ProjectManager/Dashboard/AllProjects.vue').default},
+    {path:'/scrum/dashboard/in-progress', component: require('./components/ProjectManager/Dashboard/InProgress.vue').default},
+    {path:'/scrum/dashboard/completed', component: require('./components/ProjectManager/Dashboard/Completed.vue').default},
+    {path:'/scrum/dashboard/post-job', component: require('./components/ProjectManager/Dashboard/PostJobs.vue').default},
+    {path:'/scrum/dashboard/payment', component: require('./components/ProjectManager/Dashboard/Payment.vue').default},
+    {path:'/scrum/dashboard/profile', component: require('./components/ProjectManager/Dashboard/Profile.vue').default},
 ];
 
 const router = new VueRouter({
@@ -208,18 +213,20 @@ const app = new Vue({
     data: () => ({
         pageLoader: true,
         userId: '',
+        resource_path: '',
     }),
     mounted() {
         setTimeout(val => {
             this.pageLoader = false;
         }, 4000);
 
-        Echo.channel('newUser').listen('NewUser', function(e){
+        /*Echo.channel('newUser').listen('NewUser', function(e){
             //this.index();
             console.log(e);
-        });
+        });*/
     },
     created(){
         this.userId = $('meta[name = "user-id"]').attr('content')
+        this.resource_path = $('meta[name = "resource_path"]').attr('content')
     },
 });

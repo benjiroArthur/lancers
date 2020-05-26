@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
+    @php($resource_path = asset('images'))
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="resource_path" content="{{ $resource_path }}">
 
     @auth
         <meta name="user-id" content="{{ Auth::user()->id }}">
