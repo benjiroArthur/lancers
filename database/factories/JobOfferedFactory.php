@@ -9,5 +9,6 @@ $factory->define(\App\JobOffered::class, function (Faker $faker) {
     return [
         'project_id' => App\Project::all()->random()->id,
         'freelancer_id' => App\Freelancer::all()->random()->id,
+
     ];
 });
