@@ -1,75 +1,76 @@
 <template>
     <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-md-3">
+        <div class="row">
+            <div class="col-md-3 align-items-center d-block justify-content-center">
                 <circle-counter
                     size="10rem"
-                    :text="AllProject"
-                    :dashCount="AllProject"
-                    :activeCount="AllProject"
-                    strokeWidth="25"
-                    activeWidth="20"
-                    stroke="#32a778"
+                    :text="AllProjectNum.toString()"
+                    :dashCount="AllProjectNum"
+                    :activeCount="AllProjectNum"
+                    :strokeWidth=25
+                    :activeWidth=20
+                    stroke="#65f1b9"
                     activeStroke="dark"
-                    dashSpacing="0"
-                    rotate="-90"
+                    :dashSpacing=0
+                    :rotate="-90"
                     :reverse=false
                 >
                 </circle-counter>
-                <p class="text-center text-dark">All Projects</p>
+                <p class="text-dark h3 mt-3">All Projects</p>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 justify-content-center">
                 <circle-counter
                     size="10rem"
-                    :text="NotStarted"
+                    :text="NotStarted.toString()"
                     :dashCount="AllProject"
                     :activeCount="NotStarted"
-                    strokeWidth="25"
-                    activeWidth="20"
-                    stroke="#32a778"
+                    :strokeWidth=25
+                    :activeWidth=20
+                    stroke="#65f1b9"
                     activeStroke="red"
-                    dashSpacing="0"
-                    rotate="-90"
+                    :dashSpacing=0
+                    :rotate="-90"
                     :reverse=false
                 >
                 </circle-counter>
-                <p class="text-center text-danger">Pending</p>
+                <p class="text-danger h3 mt-3">Pending</p>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 justify-content-center">
                 <circle-counter
                     size="10rem"
-                    :text="InProgress"
+                    :text="InProgress.toString()"
                     :dashCount="AllProject"
                     :activeCount="InProgress"
-                    strokeWidth="25"
-                    activeWidth="20"
-                    stroke="#32a778"
+                    :strokeWidth=25
+                    :activeWidth=20
+                    stroke="#65f1b9"
                     activeStroke="orange"
-                    dashSpacing="0"
-                    rotate="-90"
+                    :dashSpacing=0
+                    :rotate="-90"
                     :reverse=false
                 >
                 </circle-counter>
-                <p class="text-center orange">In Progress</p>
+                <p class="orange h3 mt-3">In Progress</p>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 justify-content-center">
                 <circle-counter
                     size="10rem"
-                    :text="Completed"
+                    :text="Completed.toString()"
                     :dashCount="AllProject"
                     :activeCount="Completed"
-                    strokeWidth="25"
-                    activeWidth="20"
-                    stroke="#32a778"
+                    :strokeWidth=25
+                    :activeWidth=20
+                    stroke="#65f1b9"
                     activeStroke="#024a2d"
-                    dashSpacing="0"
-                    rotate="-90"
+                    :dashSpacing=0
+                    :rotate="-90"
                     :reverse=false
                 >
                 </circle-counter>
-                <p class="text-center text-lancer-dark">Completer</p>
+                <p class="text-lancer-dark h3 mt-3">Completed</p>
             </div>
         </div>
+
     </div>
 </template>
 
@@ -80,30 +81,32 @@
         components: {circleCounter},
         data(){
             return{
-                AllProject: 56,
+                AllProject: {},
+                AllProjectNum: '',
                 InProgress: 22,
                 NotStarted: 20,
                 Completed: 14,
+
             }
 
         },
         methods:{
             getAllProject(){
                 axios
-                    .get('/data/project')
+                    .get('/data/freelancer/job-offered')
                     .then((response)=>{
-                        this.projects = response.data;
-                        this.popular_projects = this.projects.popularProject;
-                        this.recent_projects = this.projects.recently;
+                        this.AllProject = response.data;
+                        this.AllProjectNum = this.AllProject.length;
                     })
                     .catch()
             }
         },
         mounted() {
+            this.getAllProject();
         }
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>

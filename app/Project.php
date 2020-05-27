@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use App\Job;
 use App\JobCategory;
@@ -33,6 +34,10 @@ class Project extends Model
     }
     public function getImageAttribute(){
         return $this->job->category->image_path;
+    }
+
+    public function fromNowAttribute(){
+        //return Carbon::now()->diffForHumans($this->created_at);
     }
 
 

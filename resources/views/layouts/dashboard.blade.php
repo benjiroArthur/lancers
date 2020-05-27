@@ -40,12 +40,12 @@
 <body class="hold-transition sidebar-mini bg-lancer-light">
 <div class="wrapper d-bord-wrapper" id="app">
     <!--    navbar -->
-<div>
+
     {{--@include('includes.dashboard.headerbar')--}}
-    @include('includes.nav.navbarTop')
+    {{--@include('includes.nav.navbarTop')--}}
 
     @include('includes.dashboard.navbar')
-</div>
+
 
 <!-- Main Sidebar Container -->
 
