@@ -355,24 +355,12 @@ select option:hover{
 }
 
 
-.stack-top{
+/*.stack-top{
     z-index: 9;
-}
-.main-sidebar{
-    margin: 0 !important;
-    &.nav-link{
-        font-size: 14px !important;
-    }
-    &.router-link-exact-active{
-        background-color: #65f1b9 !important;
-        color: #012617 !important;
-        &.nav-link{
-            color: #012617 !important;
-        }
-    }
-    &.nav-link:hover{
-        color: #65f1b9 !important;
-    }
+}*/
+.b-white{
+    border: 1px solid white !important;
+    background: transparent !important;
 }
 
 .home-navs{
