@@ -21,9 +21,9 @@
             <div class="col-md-3 justify-content-center">
                 <circle-counter
                     size="10rem"
-                    :text="NotStarted.toString()"
-                    :dashCount="AllProject"
-                    :activeCount="NotStarted"
+                    :text="NotStartedNum.toString()"
+                    :dashCount="AllProjectNum"
+                    :activeCount="NotStartedNum"
                     :strokeWidth=25
                     :activeWidth=20
                     stroke="#65f1b9"
@@ -38,9 +38,9 @@
             <div class="col-md-3 justify-content-center">
                 <circle-counter
                     size="10rem"
-                    :text="InProgress.toString()"
-                    :dashCount="AllProject"
-                    :activeCount="InProgress"
+                    :text="InProgressNum.toString()"
+                    :dashCount="AllProjectNum"
+                    :activeCount="InProgressNum"
                     :strokeWidth=25
                     :activeWidth=20
                     stroke="#65f1b9"
@@ -55,9 +55,9 @@
             <div class="col-md-3 justify-content-center">
                 <circle-counter
                     size="10rem"
-                    :text="Completed.toString()"
-                    :dashCount="AllProject"
-                    :activeCount="Completed"
+                    :text="CompletedNum.toString()"
+                    :dashCount="AllProjectNum"
+                    :activeCount="CompletedNum"
                     :strokeWidth=25
                     :activeWidth=20
                     stroke="#65f1b9"
@@ -83,9 +83,12 @@
             return{
                 AllProject: {},
                 AllProjectNum: '',
-                InProgress: 22,
-                NotStarted: 20,
-                Completed: 14,
+                InProgress: {},
+                InProgressNum: '',
+                NotStarted: {},
+                NotStartedNum: '',
+                Completed: {},
+                CompletedNum: '',
 
             }
 
