@@ -12,17 +12,3 @@ $factory->define(\App\JobOffered::class, function (Faker $faker) {
     ];
 });
 
-
-$factory->define(\App\Project::class, function (Faker $faker) {
-    return [
-
-];
-
-});
-
-$factory->define(\App\Project::class, function (Faker $faker) {
-    return [
-
-    ];
-
-});

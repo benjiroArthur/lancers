@@ -30,15 +30,28 @@ class ClientDashController extends Controller
     }
 
     public function projectPostProject(Request $request) {
+
+        $this->validate($request, [
+            'job_id' => 'required',
+            'project_title' => 'required',
+            'description' => 'required',
+            'project_cost' => 'required',
+            'duration' => 'required',
+        ]);
         $project = new Project();
-        $project->project_title = $request['project_title'];
-        $project->description = $request['description'];
-        $project->project_cost = $request['project_cost'];
-        $project->duration = $request['duration'];
-        $request->user()->role()->client()->project()->save($project);
-        return redirect()->route('dashboard');
+        $data = $request->all();
+        $data['client_id'] = auth()->user()->userable->id;
+        /*
+         * when the above line is not needed
+         * or we don't need to add extra info to the request coming from the user
+         *
+         * ignore the $data and just do this:
+         * $project = new Project();
+         * $project = $project->create($request->all());
+         * */
+        $project = $project->create($data);
 
-
+        return response()->json($project);
 
     }
 
