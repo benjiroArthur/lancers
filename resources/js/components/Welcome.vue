@@ -1,15 +1,52 @@
 <template>
     <div class="container-fluid">
-        <div class="jumbotron jumbotron-fluid welcome-jumbo">
-            <div class="container justify-content-center">
-                <h2 class="display-4 text-center text-dark">Welcome To Lancers</h2>
-                <p class="lead text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid architecto, ducimus eius id iure odit rem ut voluptatem! Esse est excepturi facere illo perferendis quia reprehenderit sunt unde! Quibusdam, soluta.</p>
-                <div class="row justify-content-center">
-                    <button class="btn btn-success text-white bg-lancer-dark m-2">Become a Freelancer</button>
-                    <button class="btn btn-success text-white bg-lancer-dark m-2">Become a Project Manager</button>
+        <!--<VueSlickCarousel
+            v-bind="settings" >
+            <img v-for="(item,i) in items" :src="resource_path+item.src" class="img-fluid" alt="..."  :key="i">
+        </VueSlickCarousel>-->
+        <!--<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="height: 550px">
+            <div class="carousel-inner">
+                <div class="carousel-item active img-fluid">
+                    <img :src="this.resource_path +'/banner/banner1.jpg'" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item img-fluid">
+                    <img :src="this.resource_path +'/banner/banner2.jpg'" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item img-fluid">
+                    <img :src="this.resource_path +'/banner/banner3.jpg'" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item img-fluid">
+                    <img :src="this.resource_path +'/banner/banner4.jpg'" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item img-fluid">
+                    <img :src="this.resource_path +'/banner/banner5.jpg'" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item img-fluid">
+                    <img :src="this.resource_path +'/banner/banner6.jpg'" class="d-block w-100" alt="...">
+
                 </div>
             </div>
-        </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>-->
+
+        <v-carousel hide-controls>
+            <v-carousel-item
+                v-for="(item,i) in items"
+                :key="i"
+                :src="resource_path+item.src"
+            ></v-carousel-item>
+        </v-carousel>
+
+
+
+
 
 
         <h2 class="text-center mt-3 mb-3 text-bold text-dark">OUR PROJECT CATEGORIES</h2>
@@ -34,8 +71,8 @@
 
         <h2 class="text-center mt-3 mb-3 text-bold text-dark">HOW TO GET STARTED</h2>
 
-        <div class="row">
-            <img :src="this.resource_path + '/howToGetStarted.gif'" alt="">
+        <div class="row img-fluid">
+            <img :src="this.resource_path + '/howToGetStarted.gif'" alt="" class="img-fluid">
         </div>
 
         <h2 class="text-center mt-3 mb-3 text-bold text-dark">DO IT YOURSELF</h2>
@@ -43,40 +80,44 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="card text-center">
-                    <div class="card-title mt-3 mb-2">Lifestyle</div>
+                    <div class="card-image m-3 img-fluid cat-card">
+                        <img :src="resource_path+'/do_it_your_self/laravel.jpg'" alt="Image" class="img-fluid">
+                    </div>
+                    <div class="card-title mt-3">Build a basic Laravel website</div>
                     <div class="card-body">
                         <div class="card-text mb-2">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores dolorum ex explicabo ipsam, libero molestias mollitia nesciunt obcaecati
+                            This tutorial gives an overview of Laravel and walks beginners through making a simple Laravel website.
                         </div>
-                        <div class="card-image m-3 img-fluid">
-                            <img src="" alt="Image">
+                        <a class="btn btn-success mr-0" href="https://medium.com/@assertchris/laravel-basic-site-d5790d77367d" target="_blank">Explore >> </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-image m-3 img-fluid cat-card">
+                        <img :src="resource_path+'/do_it_your_self/digital.jpg'" alt="Image" class="img-fluid">
+                    </div>
+                    <div class="card-title mt-3">How to make digital paintings</div>
+                    <div class="card-body">
+                        <div class="card-text mb-2">
+                            These resources will guid you on how to make professional digital paintings, Explore and learn more.
                         </div>
+                        <a class="btn btn-success mr-0" href="https://paintable.cc/digital-painting-the-ultimate-beginners-guide/" target="_blank">Explore >> </a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card text-center">
-                    <div class="card-title mt-3 mb-2">Lifestyle</div>
-                    <div class="card-body">
-                        <div class="card-text mb-2">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores dolorum ex explicabo ipsam, libero molestias mollitia nesciunt obcaecati
-                        </div>
-                        <div class="card-image m-3 img-fluid">
-                            <img src="" alt="Image">
-                        </div>
+                    <div class="card-image m-3 img-fluid cat-card">
+                        <img :src="resource_path+'/do_it_your_self/bootstrap.jpg'" alt="Image" class="img-fluid">
                     </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card text-center">
-                    <div class="card-title mt-3 mb-2">Lifestyle</div>
+                    <div class="card-title mt-3">Bootstrap Collections</div>
                     <div class="card-body">
                         <div class="card-text mb-2">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores dolorum ex explicabo ipsam, libero molestias mollitia nesciunt obcaecati
+                            Get all your bootstrap icons, templates, themes, and documentation from this ultimate bootstrap resource.
                         </div>
-                        <div class="card-image m-3 img-fluid">
-                            <img src="" alt="Image">
-                        </div>
+                        <a class="btn btn-success mr-0" href="https://getbootstrap.com/" target="_blank">Explore >> </a>
                     </div>
                 </div>
             </div>
@@ -91,6 +132,30 @@
             return{
                 categories: {},
                 resource_path: '',
+                items: [
+                    {
+                        src: '/banner/banner1.jpg'
+                    },
+                    {
+                        src: '/banner/banner2.jpg'
+                    },
+                    {
+                        src: '/banner/banner3.jpg'
+                    },
+                    {
+                        src: '/banner/banner4.jpg'
+                    }
+                ],
+                settings: {
+                    dots: true,
+                    autoplay: true,
+                    slidesToShow: 2,
+                    arrow: true,
+                    dotsClass: "slick-dots",
+                    infinite: true,
+                    centerMode: true,
+                    centerPadding: "20px",
+                },
             }
         },
         methods:{

@@ -23,6 +23,7 @@
     <title>{{ config('app.name', 'Lancers') }}</title>
 
     <!-- Scripts -->
+    {{--<script src="{{ asset('js/jquery.min.js') }}" type="text/javascript"></script>--}}
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -40,7 +41,8 @@
 <div class="wrapper d-bord-wrapper" id="app">
     <!--    navbar -->
 <div>
-    @include('includes.dashboard.headerbar')
+    {{--@include('includes.dashboard.headerbar')--}}
+    @include('includes.nav.navbarTop')
 
     @include('includes.dashboard.navbar')
 </div>

@@ -5,9 +5,14 @@
 @import 'variables';
 @import 'styles';
 
-// Bootstrap
 @import '~bootstrap/scss/bootstrap';
 @import '~admin-lte/dist/css/adminlte.css';
+@import '~vuetify/dist/vuetify.min.css';
+@import "~slick-carousel/slick/slick";
+@import "~slick-carousel/slick/slick-theme";
+//@import '~vue-slick-carousel/dist/vue-slick-carousel.css';
+// optional style for arrows & dots
+//@import '~vue-slick-carousel/dist/vue-slick-carousel-theme.css';
 
 //font awesome
 $fa-font-path: "../webfonts";
@@ -20,4 +25,4 @@ $fa-font-path: "../webfonts";
 
 //mdi
 @import '~@mdi/font/scss/materialdesignicons';
-@import '~vuetify/dist/vuetify.min.css';
+
