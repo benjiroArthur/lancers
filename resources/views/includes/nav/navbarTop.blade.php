@@ -27,9 +27,9 @@
                     @endif
                 @else
                     <li class="nav-item home-navs">
-                        <router-link to="/home" class="nav-link text-white">
+                        <a href="{{url('/home')}}" class="nav-link text-white">
                             Home
-                        </router-link>
+                        </a>
                     </li>
 
                     <li class="nav-item dropdown ml-4 home-navs">
@@ -125,3 +125,5 @@
         </div>
     </div>
 </nav>
+
+
