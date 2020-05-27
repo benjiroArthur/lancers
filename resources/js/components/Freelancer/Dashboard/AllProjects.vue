@@ -1,16 +1,16 @@
 <template>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3 align-items-center d-block justify-content-center">
+            <div class="col-md-3 col-sm-3 justify-content-center">
                 <circle-counter
                     size="10rem"
                     :text="AllProjectNum.toString()"
-                    :dashCount="parseInt(AllProjectNum)"
-                    :activeCount="parseInt(AllProjectNum)"
+                    :dashCount=AllProjectNum+1
+                    :activeCount=AllProjectNum
                     :strokeWidth=25
                     :activeWidth=20
                     stroke="#65f1b9"
-                    activeStroke="dark"
+                    activeStroke="black"
                     :dashSpacing=0
                     :rotate="-90"
                     :reverse=false
@@ -18,12 +18,12 @@
                 </circle-counter>
                 <p class="text-dark h3 mt-3">All Projects</p>
             </div>
-            <div class="col-md-3 justify-content-center">
+            <div class="col-md-3 col-sm-3 justify-content-center">
                 <circle-counter
                     size="10rem"
                     :text="NotStartedNum.toString()"
-                    :dashCount="AllProjectNum"
-                    :activeCount="NotStartedNum"
+                    :dashCount=AllProjectNum
+                    :activeCount=NotStartedNum
                     :strokeWidth=25
                     :activeWidth=20
                     stroke="#65f1b9"
@@ -35,12 +35,12 @@
                 </circle-counter>
                 <p class="text-danger h3 mt-3">Pending</p>
             </div>
-            <div class="col-md-3 justify-content-center">
+            <div class="col-md-3 col-sm-3 justify-content-center">
                 <circle-counter
                     size="10rem"
                     :text="InProgressNum.toString()"
-                    :dashCount="AllProjectNum"
-                    :activeCount="InProgressNum"
+                    :dashCount=AllProjectNum
+                    :activeCount=InProgressNum
                     :strokeWidth=25
                     :activeWidth=20
                     stroke="#65f1b9"
@@ -52,12 +52,12 @@
                 </circle-counter>
                 <p class="orange h3 mt-3">In Progress</p>
             </div>
-            <div class="col-md-3 justify-content-center">
+            <div class="col-md-3 col-sm-3 justify-content-center">
                 <circle-counter
                     size="10rem"
                     :text="CompletedNum.toString()"
-                    :dashCount="AllProjectNum"
-                    :activeCount="CompletedNum"
+                    :dashCount=AllProjectNum
+                    :activeCount=CompletedNum
                     :strokeWidth=25
                     :activeWidth=20
                     stroke="#65f1b9"
@@ -68,6 +68,20 @@
                 >
                 </circle-counter>
                 <p class="text-lancer-dark h3 mt-3">Completed</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card shadow pro-card">
+                    <div v-if="AllProject.length > 0" class="row p-2">
+                        <div v-for="(job, i) in AllProject" class="col-md-3" :key="i">
+                            <div class="card shadow-lg m-2" :class="singlePro(job.status)" >
+                                <p>{{job.project.project_title}}</p>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -82,13 +96,13 @@
         data(){
             return{
                 AllProject: {},
-                AllProjectNum: '',
+                AllProjectNum: 0,
                 InProgress: {},
-                InProgressNum: '',
+                InProgressNum: 0,
                 NotStarted: {},
-                NotStartedNum: '',
+                NotStartedNum: 0,
                 Completed: {},
-                CompletedNum: '',
+                CompletedNum: 0,
                 user:{},
 
             }
@@ -97,7 +111,7 @@
         methods:{
             getAllProject(){
                 axios
-                    .get('/data/freelancer/job-offered')
+                    .get('/data/freelancer/job-offered/'+this.$parent.userId)
                     .then((response)=>{
                         this.AllProject = response.data;
                         this.AllProjectNum = this.AllProject.length;
@@ -106,7 +120,7 @@
             },
             getInProgress(){
                 axios
-                    .get('/data/freelancer/in-progress')
+                    .get('/data/freelancer/in-progress/'+this.$parent.userId)
                     .then((response)=>{
                         this.InProgress = response.data;
                         this.InProgressNum = this.InProgress.length;
@@ -115,7 +129,7 @@
             },
             getNotStarted(){
                 axios
-                    .get('/data/freelancer/not-started')
+                    .get('/data/freelancer/not-started/'+this.$parent.userId)
                     .then((response)=>{
                         this.NotStarted = response.data;
                         this.NotStartedNum = this.NotStarted.length;
@@ -124,7 +138,7 @@
             },
             getCompleted(){
                 axios
-                    .get('/data/freelancer/completed-projects')
+                    .get('/data/freelancer/completed-projects/'+this.$parent.userId)
                     .then((response)=>{
                         this.Completed = response.data;
                         this.CompletedNum = this.Completed.length;
@@ -139,6 +153,18 @@
                     })
                     .catch()
             },
+
+            singlePro(param){
+                if(param === 'in progress'){
+                    return 'my-c-orange'
+                }
+                else if(param === 'not started'){
+                    return 'my-c-red'
+                }
+                else if(param === 'completed'){
+                    return 'my-c-green'
+                }
+            },
         },
         mounted() {
             this.getAllProject();
@@ -151,5 +177,16 @@
 </script>
 
 <style lang="scss" scoped>
-
+    .pro-card{
+        min-height: 25rem;
+    }
+    .my-c-red{
+        border: 2px solid red;
+    }
+    .my-c-orange{
+        border: 2px solid #f3892d;
+    }
+    .my-c-green{
+        border: 2px solid green;
+    }
 </style>

@@ -17,6 +17,7 @@ class Project extends Model
         'approved' => 'boolean'
     ];
 
+
     protected $appends = ['image'];
 
     //relationships

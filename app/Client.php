@@ -27,4 +27,5 @@ class Client extends Model
         return asset('storage/images/users/'.$val);
     }
 
+
 }

@@ -16,7 +16,8 @@ class FreelancerDashController extends Controller
      * */
     public function completed($id) {
         $freelance = User::findOrFail($id)->userable;
-        $completed = JobOffered::where('status', 'completed')->where('freelancer_id', $freelance->id)->get();
+        $completed = $freelance->jobOffered()->where('status', 'completed')->with('project')->latest()->get();
+
         return response()->json($completed);
     }
 
@@ -27,7 +28,8 @@ class FreelancerDashController extends Controller
      * */
     public function progress($id) {
         $freelance = User::findOrFail($id)->userable;
-        $progress = JobOffered::where('status', 'in progress')->where('freelancer_id', $freelance->id)->get();
+        $progress = $freelance->jobOffered()->where('status', 'in progress')->with('project')->latest()->get();
+
         return response()->json($progress);
     }
 
@@ -38,7 +40,8 @@ class FreelancerDashController extends Controller
      * */
     public function yet($id) {
         $freelance = User::findOrFail($id)->userable;
-        $yet = JobOffered::where('status', 'not started')->where('freelancer_id', $freelance->id)->get();
+        $yet = $freelance->jobOffered()->where('status', 'not started')->with('project')->latest()->get();
+
         return response()->json($yet);
     }
 
@@ -49,7 +52,8 @@ class FreelancerDashController extends Controller
      * */
     public function all($id) {
         $freelance = User::findOrFail($id)->userable;
-        $projects = JobOffered::where('freelancer_id', $freelance->id)->get();
+        $projects = $freelance->jobOffered()->with('project')->latest()->get();
+
         return response()->json($projects);
     }
 

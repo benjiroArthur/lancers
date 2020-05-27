@@ -26,10 +26,10 @@ class Freelancer extends Model
     public function project_apply(){
         return $this->hasMany('App\ProjectApplication');
     }
-    public function job_offered(){
+    public function jobOffered(){
         return $this->hasMany('App\JobOffered');
     }
-    public function job_profile(){
+    public function jobProfile(){
         return $this->hasMany('App\JobProfile');
     }
     public function job_history(){
