@@ -25,7 +25,6 @@
 <body class="bg-lancer-light">
     <div id="app">
        @include('includes.nav.navbarTop')
-
         <main class="py-4">
             <router-view>
                 {{--Vue elements goes here--}}
