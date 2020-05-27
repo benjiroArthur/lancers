@@ -1,65 +1,60 @@
 <template>
     <div class="container-fluid">
-        <!--<div class="jumbotron jumbotron-fluid welcome-jumbo">
-            <div class="container justify-content-center">
-                <h2 class="display-4 text-center text-dark">Welcome To Lancers</h2>
-                <p class="lead text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid architecto, ducimus eius id iure odit rem ut voluptatem! Esse est excepturi facere illo perferendis quia reprehenderit sunt unde! Quibusdam, soluta.</p>
-                <div class="row justify-content-center">
-                    <button class="btn btn-success text-white bg-lancer-dark m-2">Become a Freelancer</button>
-                    <button class="btn btn-success text-white bg-lancer-dark m-2">Become a Project Manager</button>
-                </div>
-            </div>
+        <VueSlickCarousel
+            v-bind="settings" >
+            <img v-for="(item,i) in items" :src="resource_path+item.src" class="img-fluid" alt="..."  :key="i">
+        </VueSlickCarousel>
 
-        </div>-->
-        <v-carousel :show-arrows=false
-                    :autoplay=true >
-            <v-carousel-item
-                v-for="(item,i) in items"
-                :key="i"
-                :src="resource_path+item.src"
-            ></v-carousel-item>
-        </v-carousel>
 
-<button class="btn" type="button" @click="show = !show"> Show</button>
+
+
         <h2 class="text-center mt-3 mb-3 text-bold text-dark">POPULAR PROJECTS</h2>
-        <div class="row">
-            <slick v-if="popular_projects.length > 0"
-                   :options="options"
-                   ref="slick"
 
+            <VueSlickCarousel v-if="popular_projects.length > 0"
+                v-bind="options"
             >
-                <!--<div v-for="(project, index) in popular_projects" :key="index" class="img-fluid">-->
-                    <img v-for="(project, index) in popular_projects" :key="index" :src="project.image" alt="dsfds" class="py3">
 
 
-            </slick>
-            <img v-for="(project, index) in popular_projects" :key="index" :src="project.image" alt="dsfds" class="py3">
+                    <v-card class="p-2 cat-card shadow m-2" v-for="(project, i) in popular_projects" :key="i">
+                        <v-card-title primary-title class="m-3 text-center">
+                            <div>
+                                <h5 class="headline mb-2 text-bold"> <span class="fas fa-user-circle bg-lancer text-white"></span> {{project.project_title | titleFilter}}</h5>
+                                <p> {{ project.description | descFilter }} </p>
+                            </div>
+                        </v-card-title>
+                        <v-img class="m-3"
+                               :src="project.image"
+                               alt="image"
+                        ></v-img>
 
-            <!--<div v-for="popular_project in this.popular_projects"  class="col-md-6 col-lg-2">
+                    </v-card>
 
-                <v-card class="cat-card p-2 shadow">
-                    <v-card-title primary-title class="m-3 text-center">
-                        <div>
-                            <h4 class="headline mb-2 text-bold">{{popular_project.project_title}}</h4>
-                            <p> {{ popular_project.description | descFilter }} </p>
-                        </div>
-                    </v-card-title>
-                    <v-img class="m-3"
-                           :src="popular_project.image"
-                           alt="image"
-                    ></v-img>
+            </VueSlickCarousel>
 
-                </v-card>
-            </div>-->
-        </div>
 
         <h2 class="text-center mt-3 mb-3 text-bold text-dark">RECENTLY VIEWED PROJECTS</h2>
 
-        <div class="row justify-content-center">
-           <div class="col-md-10 img-holder">
-               <img :src="this.resource_path + '/howToGetStarted.gif'" alt="" class="img-fluid">
-           </div>
-        </div>
+        <VueSlickCarousel v-if="recent_projects.length > 0"
+                          v-bind="options"
+        >
+            <!--<img v-for="(project, i) in popular_projects" :key="i" :src="project.image" alt="..." class="img-fluid">-->
+
+            <v-card class="p-2 cat-card shadow mx-2" v-for="(project, i) in recent_projects" :key="i">
+                <v-card-title primary-title class="m-3 text-center">
+                    <div>
+                        <h5 class="headline mb-2 text-bold"><span class="fas fa-user-circle bg-lancer text-white"></span> {{project.project_title | titleFilter}}</h5>
+                        <span class="pull-right">{{project.from_now}}</span>
+                        <p> {{ project.description | descFilter }} </p>
+                    </div>
+                </v-card-title>
+                <v-img class="m-3"
+                       :src="project.image"
+                       alt="image"
+                ></v-img>
+
+            </v-card>
+
+        </VueSlickCarousel>
 
         <h2 class="text-center mt-3 mb-3 text-bold text-dark">DO IT YOURSELF</h2>
 
@@ -118,8 +113,8 @@
             return{
                 show: false,
                 projects: {},
-                popular_projects: {},
-                recent_projects: {},
+                popular_projects: [],
+                recent_projects: [],
                 resource_path: '',
                 items: [
                     {
@@ -136,9 +131,9 @@
                     }
                 ],
                 settings: {
-                    dots: true,
+                    dots: false,
                     autoplay: true,
-                    slidesToShow: 6,
+                    slidesToShow: 2,
                     arrow: true,
                     dotsClass: "slick-dots",
                     infinite: true,
@@ -146,18 +141,41 @@
                     centerPadding: "20px",
                 },
                 options: {
-                    fullscreen: true,
+                    dots: false,
                     autoplay: true,
-                    keyboard: true,
-                    centerPadding: '40px',
-                    slidesToShow: 3,
-                    infinite: false,
-                    //arrows: true,
-                    dots: true,
-                    title: false,
-                    //draggable: true,
-                    //edgeFriction: 0.30,
-                    //swipe: true
+                    slidesToShow: 5,
+                    arrow: true,
+                    dotsClass: "slick-dots",
+                    infinite: true,
+                    centerMode: true,
+                    centerPadding: "20px",
+                    responsive: [
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                slidesToShow: 3,
+                                slidesToScroll: 3,
+                                infinite: true,
+                                dots: true
+                            }
+                        },
+                        {
+                            breakpoint: 600,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 2
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1,
+                                centerMode: true,
+                            }
+                        }
+
+                    ]
                 },
             }
         },
@@ -190,8 +208,15 @@
         },
         filters:{
             descFilter(value){
-                let val = value.slice(0, 20);
-                return value.length < 20 ? value : val + '...'
+                let len = 20;
+                let val = value.slice(0, len);
+                return value.length < len ? value : val + '...'
+            },
+
+            titleFilter(value){
+                let len = 20;
+                let val = value.slice(0, len);
+                return value.length < len ? value : val + '...'
             }
         },
         mounted() {

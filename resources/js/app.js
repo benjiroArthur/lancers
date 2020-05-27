@@ -21,10 +21,10 @@ window.RotateSquare2 = RotateSquare2;
 
 Vue.use(VueRouter);
 
-/*import VueCarousel from 'vue-carousel';
+import VueCarousel from 'vue-carousel';
 
-Vue.use(VueCarousel);*/
-//import VueSlickCarousel from 'vue-slick-carousel';
+Vue.use(VueCarousel);
+import VueSlickCarousel from 'vue-slick-carousel';
 
 
 require('@fortawesome/fontawesome-free/js/all.js');
@@ -98,6 +98,12 @@ jQuery.extend(true, jQuery.fn.datetimepicker.defaults,{
     }
 });
 
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+// Install BootstrapVue
+Vue.use(BootstrapVue);
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin);
+Vue.component('pagination', require('laravel-vue-pagination'));
 
 import Swal from 'sweetalert2';
 window.Swal = Swal;
@@ -161,8 +167,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('welcome', require('./components/Welcome.vue').default);
 Vue.component('contact-us', require('./components/ContactUs.vue').default);
 Vue.component('notification', require('./components/Resources/Notification.vue').default);
-Vue.component('slider', require('./components/Resources/Slider.vue').default);
-//Vue.component('VueSlickCarousel', VueSlickCarousel);
+
+Vue.component('VueSlickCarousel', VueSlickCarousel);
 Vue.component('slick', Slick);
 
 
