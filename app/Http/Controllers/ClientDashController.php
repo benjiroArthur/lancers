@@ -29,5 +29,17 @@ class ClientDashController extends Controller
         return response()->json($projects);
     }
 
+    public function projectPostProject(Request $request) {
+        $project = new Project();
+        $project->project_title = $request['project_title'];
+        $project->description = $request['description'];
+        $project->project_cost = $request['project_cost'];
+        $project->duration = $request['duration'];
+        $request->user()->role()->client()->project()->save($project);
+        return redirect()->route('dashboard');
+
+
+
+    }
 
 }
