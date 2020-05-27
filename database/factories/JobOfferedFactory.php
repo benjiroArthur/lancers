@@ -19,3 +19,10 @@ $factory->define(\App\Project::class, function (Faker $faker) {
 ];
 
 });
+
+$factory->define(\App\Project::class, function (Faker $faker) {
+    return [
+
+    ];
+
+});
