@@ -1,52 +1,9 @@
 <template>
     <div class="container-fluid">
-        <!--<VueSlickCarousel
+        <VueSlickCarousel
             v-bind="settings" >
             <img v-for="(item,i) in items" :src="resource_path+item.src" class="img-fluid" alt="..."  :key="i">
-        </VueSlickCarousel>-->
-        <!--<div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="height: 550px">
-            <div class="carousel-inner">
-                <div class="carousel-item active img-fluid">
-                    <img :src="this.resource_path +'/banner/banner1.jpg'" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item img-fluid">
-                    <img :src="this.resource_path +'/banner/banner2.jpg'" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item img-fluid">
-                    <img :src="this.resource_path +'/banner/banner3.jpg'" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item img-fluid">
-                    <img :src="this.resource_path +'/banner/banner4.jpg'" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item img-fluid">
-                    <img :src="this.resource_path +'/banner/banner5.jpg'" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item img-fluid">
-                    <img :src="this.resource_path +'/banner/banner6.jpg'" class="d-block w-100" alt="...">
-
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>-->
-
-        <v-carousel hide-controls>
-            <v-carousel-item
-                v-for="(item,i) in items"
-                :key="i"
-                :src="resource_path+item.src"
-            ></v-carousel-item>
-        </v-carousel>
-
-
-
-
+        </VueSlickCarousel>
 
 
         <h2 class="text-center mt-3 mb-3 text-bold text-dark">OUR PROJECT CATEGORIES</h2>
@@ -147,7 +104,7 @@
                     }
                 ],
                 settings: {
-                    dots: true,
+                    dots: false,
                     autoplay: true,
                     slidesToShow: 2,
                     arrow: true,
@@ -182,9 +139,5 @@
             font-size: 14px;
         }
         font-family: "Roboto", sans-serif;
-    }
-    .welcome-jumbo{
-        background: url("/images/welcome_banner.jpg") no-repeat center fixed;
-        background-size: cover;
     }
 </style>
