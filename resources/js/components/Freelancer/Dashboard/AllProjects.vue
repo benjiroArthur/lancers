@@ -102,6 +102,15 @@
                         this.AllProjectNum = this.AllProject.length;
                     })
                     .catch()
+            },
+            getInProgress(){
+                axios
+                    .get('/data/freelancer/in-progress')
+                    .then((response)=>{
+                        this.AllProject = response.data;
+                        this.AllProjectNum = this.AllProject.length;
+                    })
+                    .catch()
             }
         },
         mounted() {
