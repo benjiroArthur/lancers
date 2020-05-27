@@ -11,3 +11,11 @@ $factory->define(\App\JobOffered::class, function (Faker $faker) {
         'freelancer_id' => App\ProjctApplication::all()->random()->freelancer_id,
     ];
 });
+
+
+$factory->define(\App\Project::class, function (Faker $faker) {
+    return [
+
+];
+
+});
