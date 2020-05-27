@@ -7,11 +7,12 @@
 
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-block" style="border-bottom: 1px solid #ffffff;">
-            <div class="image row justify-content-center">
-                <img src="" class="img-circle elevation-2" alt="User Image">
+            <div class="row justify-content-center">
+                <img src="{{Auth::user()->userable->profile_picture}}" class="img-circle elevation-2" alt="User Image" width="100" height="100">
             </div>
             <br>
-            <p class="text-center text-white">Hi Benjamin</p>
+            <p class="text-center text-white h4">{{Auth::user()->userable->full_name}}</p>
+            <p class="text-center text-white">{{Auth::user()->userable->email}}</p>
         </div>
 
 

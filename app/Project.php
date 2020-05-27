@@ -2,11 +2,11 @@
 
 namespace App;
 
+use App\Client;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use App\Job;
 use App\JobCategory;
-use App\Client;
 
 class Project extends Model
 {
@@ -32,6 +32,11 @@ class Project extends Model
     public function client(){
         return $this->belongsTo(Client::class);
     }
+
+    public function jobOffered(){
+        return $this->hasOne(Client::class);
+    }
+
     public function getImageAttribute(){
         return $this->job->category->image_path;
     }

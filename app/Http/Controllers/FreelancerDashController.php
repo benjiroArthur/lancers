@@ -4,31 +4,52 @@ namespace App\Http\Controllers;
 
 use App\JobOffered;
 use App\Project;
+use App\User;
 use Illuminate\Http\Request;
 
 class FreelancerDashController extends Controller
 {
     // lists all completed projects
-    public function completed() {
-        $completed = JobOffered::where('status', 'completed')->get();
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * */
+    public function completed($id) {
+        $freelance = User::findOrFail($id)->userable;
+        $completed = JobOffered::where('status', 'completed')->where('freelancer_id', $freelance->id)->get();
         return response()->json($completed);
     }
 
     // lists all projects in progress
-    public function progress() {
-        $progress = JobOffered::where('status', 'in progress')->get();
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * */
+    public function progress($id) {
+        $freelance = User::findOrFail($id)->userable;
+        $progress = JobOffered::where('status', 'in progress')->where('freelancer_id', $freelance->id)->get();
         return response()->json($progress);
     }
 
     // lists projects yet to start
-    public function yet() {
-        $yet = JobOffered::where('status', 'not started')->get();
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * */
+    public function yet($id) {
+        $freelance = User::findOrFail($id)->userable;
+        $yet = JobOffered::where('status', 'not started')->where('freelancer_id', $freelance->id)->get();
         return response()->json($yet);
     }
 
     // lists all projects either in progress, yet to start or completed
-    public function all() {
-        $projects = JobOffered::all();
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * */
+    public function all($id) {
+        $freelance = User::findOrFail($id)->userable;
+        $projects = JobOffered::where('freelancer_id', $freelance->id)->get();
         return response()->json($projects);
     }
 

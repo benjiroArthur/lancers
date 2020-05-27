@@ -13,11 +13,18 @@ class Client extends Model
 
     //relationships
     public function user(){
-        return $this->morphOne('App\User', 'userable');
+        return $this->morphOne(User::class, 'userable');
     }
 
-    public function project(){
-        return $this->hasMany('App\Project');
+    public function projects(){
+        return $this->hasMany(Project::class);
+    }
+    public function jobOffered(){
+        return $this->hasManyThrough(JobOffered::class, Project::class);
+    }
+
+    public function getProfilePictureAttribute($val){
+        return asset('storage/images/users/'.$val);
     }
 
 }

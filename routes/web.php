@@ -17,6 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::middleware('auth')->get('/data/user', function () {
+    return Auth::user();
+});
 
 Auth::routes(['verify' => true]);
 
@@ -26,12 +29,12 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::resource('/job-category', 'JobCategoryController');
     Route::resource('/project', 'ProjectController');
 
-    Route::get('/freelancer/completed-projects', 'FreelancerDashController@completed');
-    Route::get('/freelancer/in-progress', 'FreelancerDasController@progress');
-    Route::get('/freelancer/not-completed', 'FreelancerDashController@yet');
-    Route::get('/freelancer/job-offered', 'FreelancerDashController@all');
+    Route::get('/freelancer/completed-projects/{id}', 'FreelancerDashController@completed');
+    Route::get('/freelancer/in-progress/{id}', 'FreelancerDashController@progress');
+    Route::get('/freelancer/not-started/{id}', 'FreelancerDashController@yet');
+    Route::get('/freelancer/job-offered/{id}', 'FreelancerDashController@all');
     Route::get('/freelancer/browse-jobs', 'FreelancerDashController@jobs');
-    Route::get('/client/completed-projects', 'ClientDashController@completed');
+    Route::get('/client/completed-projects/{id}', 'ClientDashController@completed');
     Route::get('/client/in-progress', 'ClientDashController@progress');
     Route::get('/client/not-completed', 'ClientDashController@yet');
     Route::get('/client/projects', 'ClientDashController@projects');

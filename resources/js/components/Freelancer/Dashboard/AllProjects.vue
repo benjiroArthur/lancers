@@ -5,8 +5,8 @@
                 <circle-counter
                     size="10rem"
                     :text="AllProjectNum.toString()"
-                    :dashCount="AllProjectNum"
-                    :activeCount="AllProjectNum"
+                    :dashCount="parseInt(AllProjectNum)"
+                    :activeCount="parseInt(AllProjectNum)"
                     :strokeWidth=25
                     :activeWidth=20
                     stroke="#65f1b9"
@@ -89,6 +89,7 @@
                 NotStartedNum: '',
                 Completed: {},
                 CompletedNum: '',
+                user:{},
 
             }
 
@@ -107,14 +108,44 @@
                 axios
                     .get('/data/freelancer/in-progress')
                     .then((response)=>{
-                        this.AllProject = response.data;
-                        this.AllProjectNum = this.AllProject.length;
+                        this.InProgress = response.data;
+                        this.InProgressNum = this.InProgress.length;
                     })
                     .catch()
-            }
+            },
+            getNotStarted(){
+                axios
+                    .get('/data/freelancer/not-started')
+                    .then((response)=>{
+                        this.NotStarted = response.data;
+                        this.NotStartedNum = this.NotStarted.length;
+                    })
+                    .catch()
+            },
+            getCompleted(){
+                axios
+                    .get('/data/freelancer/completed-projects')
+                    .then((response)=>{
+                        this.Completed = response.data;
+                        this.CompletedNum = this.Completed.length;
+                    })
+                    .catch()
+            },
+            getUser(){
+                axios
+                    .get('/data/user')
+                    .then((response)=>{
+                        this.user = response.data;
+                    })
+                    .catch()
+            },
         },
         mounted() {
             this.getAllProject();
+            this.getInProgress();
+            this.getNotStarted();
+            this.getCompleted();
+            this.getUser();
         }
     }
 </script>

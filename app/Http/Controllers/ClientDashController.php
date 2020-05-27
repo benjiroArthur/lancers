@@ -4,13 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use App\JobOffered;
+use App\User;
+use http\Client;
 use Illuminate\Http\Request;
 
 
 class ClientDashController extends Controller
 {
-    public function completed() {
-        $completed = JobOffered::where('status', 'completed')->get();
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * */
+    public function completed($id) {
+        $client = User::findOrFail($id)->userable;
+        $completed = $client->projects->whereHas('job_offered', function ($q){
+            $q->where('status', 'completed');
+        });
         return response()->json($completed);
     }
 

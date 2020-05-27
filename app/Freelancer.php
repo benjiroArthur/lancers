@@ -10,9 +10,17 @@ class Freelancer extends Model
     protected $fillable = [
         'first_name', 'last_name', 'other_name', 'gender', 'dob', 'profile_picture', 'email'
     ];
+    protected $appends = ['full_name'];
 
     public function user(){
         return $this->morphOne('App\User', 'userable');
+    }
+
+    public function getFullNameAttribute(){
+        if($this->other_name !== null){
+            return $this->first_name.' '.$this->other_name.' '.$this->last_name;
+        }
+        return $this->first_name.' '.$this->last_name;
     }
 
     public function project_apply(){
@@ -28,5 +36,8 @@ class Freelancer extends Model
         return $this->hasMany('App\JobHistory');
     }
 
+    public function getProfilePictureAttribute($val){
+        return asset('storage/images/users/'.$val);
+    }
 
 }
