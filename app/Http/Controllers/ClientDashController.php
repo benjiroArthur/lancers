@@ -32,11 +32,14 @@ class ClientDashController extends Controller
         return response()->json($progress);
     }
 
-
-    public function yet() {
-        $yet = JobOffered::where('status', 'not-started')->get();
+    public function yet($id) {
+        $client = User::findorFail($id)->userable;
+        $yet = $client->projects->whereHas('job_offered', function ($y){
+            $y->where('status', 'not-completed');
+        });
         return response()->json($yet);
     }
+
 
     public function projects() {
         $projects = Project::all();
