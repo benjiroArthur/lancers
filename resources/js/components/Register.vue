@@ -10,7 +10,7 @@
                         <img :src="this.$parent.resource_path+'/lancers_logo.png'" width="auto" height="50" alt="" loading="lazy">
                     </div>
                     <p class="login-box-msg text-center text-lancer text-bold h3 mt-3 mb-3"><b>Sign Up</b></p>
-                    <form name="login" class="main-login-form text-center" @submit.prevent="submit" method="post">
+                    <form name="login" class="main-login-form text-center" @submit.prevent="next" method="post">
                         <div class="mb-3">
                             <input v-model="form.email" type="email" class="form-control" placeholder="Email"
                                    :class="{ 'is-invalid': form.errors.has('email') }" name="email" id="email">
@@ -35,7 +35,7 @@
                         </div>
 
                         <div class="text-center mt-3">
-                            <button @click="next" type="button" class="btn btn-success bg-lancer btn-block">Join Lancers</button>
+                            <button type="submit" class="btn btn-success bg-lancer btn-block">Join Lancers</button>
 
                         </div></form>
                     <div class="row justify-content-center">
@@ -96,10 +96,8 @@
         },
         methods:{
             next(){
-                if(this.form.email !== null && this.form.password !== null && this.password_confirmation !== null){
-                    this.nextPage = true;
-                }
-                return;
+                 this.nextPage = true;
+
             },
             back(){
                 this.nextPage = false;
