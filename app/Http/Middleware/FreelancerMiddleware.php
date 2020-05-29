@@ -15,7 +15,7 @@ class FreelancerMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(Auth()->user()->role !== 'freelancer'){
+        if(auth()->check() && auth()->user()->role->name !== 'freelancer'){
             return redirect()->back();
         }
         return $next($request);

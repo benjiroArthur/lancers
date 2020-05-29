@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+   {{-- <div class="container">
         <div class="row justify-content-center">
             <div class="login-box justify-content-center col-md-5">
                 <!-- /.login-logo -->
@@ -84,6 +84,8 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--}}
+
+   <example-component></example-component>
 @endsection
 
