@@ -1,10 +1,10 @@
 <template>
-    <div>
+    <div class="justify-content-center align-items-center text-center">
         <h3 class="text-white">Contact Us</h3>
         <form>
             <input v-model="form.email" class="form-control contact-input" type="text" name="email" id="email" placeholder="Enter Your Email" required>
             <textarea v-model="form.message" class="form-control mt-2 contact-input" type="text" name="message" id="message" placeholder="Your Message Here" cols="4" required></textarea>
-            <button class="contact-button btn bg-lancer mt-3" type="submit" @click.prevent="send">Send</button>
+            <button class="contact-button btn btn-success bg-gradient-success mt-3" type="submit" @click.prevent="send">Send</button>
         </form>
     </div>
 </template>
@@ -40,5 +40,6 @@
     .contact-button{
         border: 2px solid white;
         color: white;
+        horiz-align: center;
     }
 </style>

@@ -86,6 +86,6 @@
         </div>
     </div>--}}
 
-   <example-component></example-component>
+   <register></register>
 @endsection
 

@@ -76,5 +76,5 @@
     </div>
 </div>--}}
     {{--<example-component></example-component>--}}
-    <freelancer-profile></freelancer-profile>
+    <login></login>
 @endsection
