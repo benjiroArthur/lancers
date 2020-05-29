@@ -74,5 +74,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>--}}
+    {{--<example-component></example-component>--}}
+    <login></login>
 @endsection
