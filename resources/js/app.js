@@ -166,7 +166,13 @@ Vue.component(VueCropper);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('welcome', require('./components/Welcome.vue').default);
 Vue.component('contact-us', require('./components/ContactUs.vue').default);
-Vue.component('notification', require('./components/Resources/Notification.vue').default);
+Vue.component('update', require('./components/Resources/Update.vue').default);
+Vue.component('browse', require('./components/Resources/Browse.vue').default);
+Vue.component('messages', require('./components/Resources/Messages.vue').default);
+Vue.component('my-project', require('./components/Resources/MyProject.vue').default);
+Vue.component('login', require('./components/Login.vue').default);
+Vue.component('register', require('./components/Register.vue').default);
+Vue.component('freelancer-profile', require('./components/Freelancer/FreelancerProfile.vue').default);
 
 Vue.component('VueSlickCarousel', VueSlickCarousel);
 Vue.component('slick', Slick);
