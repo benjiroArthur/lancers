@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\JobOffered;
-use App\ProjctApplication;
+use App\ProjectApplication;
 use App\Project;
 use App\User;
 use Illuminate\Http\Request;
@@ -68,7 +68,7 @@ class FreelancerDashController extends Controller
             'client_id' => 'required',
         ]);
 
-        $jobapplication = new ProjctApplication();
+        $jobapplication = new ProjectApplication();
         $data = $request->all();
         $data['freelancer_id'] = auth()->user()->userable->id;
 

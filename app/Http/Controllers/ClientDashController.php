@@ -28,7 +28,6 @@ class ClientDashController extends Controller
         return response()->json($progress);
     }
 
- HEAD
 
     public function yet($id) {
         $client = User::findorFail($id)->userable;
@@ -39,21 +38,11 @@ class ClientDashController extends Controller
     public function projects($id) {
         $client = User::findorFail($id)->userable;
         $projects = $client->jobOffered;
-
-    public function yet($id) {
-        $client = User::findorFail($id)->userable;
-        $yet = $client->projects->whereHas('job_offered', function ($y){
-            $y->where('status', 'not-completed');
-        });
-        return response()->json($yet);
-    }
-
-
-    public function projects() {
-        $projects = Project::all();
- kwame
         return response()->json($projects);
     }
+
+
+
 
     public function projectPostProject(Request $request) {
 

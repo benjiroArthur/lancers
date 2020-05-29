@@ -10,10 +10,10 @@ class Freelancer extends Model
     protected $fillable = [
         'first_name', 'last_name', 'other_name', 'gender', 'dob', 'profile_picture', 'email'
     ];
-    protected $appends = ['full_name'];
+    protected $appends = ['full_name', 'image_path'];
 
     public function user(){
-        return $this->morphOne('App\User', 'userable');
+        return $this->morphOne(User::class, 'userable');
     }
 
     public function getFullNameAttribute(){
@@ -24,20 +24,24 @@ class Freelancer extends Model
     }
 
     public function project_apply(){
-        return $this->hasMany('App\ProjectApplication');
+        return $this->hasMany(ProjectApplication::class);
     }
     public function jobOffered(){
-        return $this->hasMany('App\JobOffered');
+        return $this->hasMany(JobOffered::class);
     }
     public function jobProfile(){
-        return $this->hasMany('App\JobProfile');
+        return $this->hasMany(JobProfile::class);
     }
     public function job_history(){
-        return $this->hasMany('App\JobHistory');
+        return $this->hasMany(JobHistory::class);
     }
 
-    public function getProfilePictureAttribute($val){
-        return asset('storage/images/users/'.$val);
+    public function getImagePathAttribute(){
+        return asset('storage/images/users/'.$this->profile_picture);
+    }
+
+    public function portfolio(){
+        return $this->hasOne(Portfolio::class);
     }
 
 }
