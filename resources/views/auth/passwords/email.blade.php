@@ -7,6 +7,9 @@
             <!-- /.login-logo -->
             <div class="card shadow">
                 <div class=" text-center card-body login-card-body justify-content-center mt-5 mb-5">
+                    <div class="card-image text-center">
+                        <img src="{{asset('/images/lancers_logo.png')}}" width="auto" height="50" alt="" loading="lazy">
+                    </div>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -14,7 +17,7 @@
                     @endif
                     <p class="login-box-msg text-center text-lancer h3 mt-3 mb-3"><b>Reset Password</b></p>
 
-                    <form action="{{route('password.email')}}" method="post" class="main-login-form loginBox">
+                    <form action="{{route('password.email')}}" method="post" class="main-login-form">
                         @csrf
 
                         <div class="mb-3">
