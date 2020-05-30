@@ -6,7 +6,7 @@
         <div class="login-box justify-content-center col-md-5">
             <!-- /.login-logo -->
             <div class="card shadow">
-                <div class="card-body login-card-body justify-content-center mt-5 mb-5">
+                <div class=" text-center card-body login-card-body justify-content-center mt-5 mb-5">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -17,13 +17,8 @@
                     <form action="{{route('password.email')}}" method="post" class="main-login-form loginBox">
                         @csrf
 
-                        <div class="input-group mb-3">
+                        <div class="mb-3">
                             <input id="email" type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                            <div class="input-group-append">
-                                <div class="input-group-text divBor">
-                                    <span class="fas fa-envelope text-lancer bg-none"></span>
-                                </div>
-                            </div>
 
                             @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -34,7 +29,7 @@
 
                         <div class="row align-items-center" style="width: 100%">
                             <div class="col-12 mb-2 align-items-center">
-                                <button type="submit" class="btn btn-success align-items-center butDiv" style="width: 18rem">Send Password Reset Link</button>
+                                <button type="submit" class="btn btn-success align-items-center" style="width: 18rem">Send Password Reset Link</button>
                             </div>
                         </div>
                     </form>
