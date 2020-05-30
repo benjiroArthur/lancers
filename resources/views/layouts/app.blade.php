@@ -22,7 +22,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="bg-lancer-light">
+<body class="bg-lancer-light bodyClass">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm">
             <div class="container">
@@ -79,7 +79,7 @@
 
                             <li class="nav-item dropdown ml-2">
                                 <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <img class="img-bordered-sm img-sm rounded-circle" src="{{auth()->user()->userable->profile_picture}}" alt="Profile image">
+                                    <img class="img-bordered-sm img-sm rounded-circle" src="{{auth()->user()->userable->image_path}}" alt="Profile image">
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="navbarDropdown">
