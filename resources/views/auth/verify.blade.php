@@ -7,6 +7,9 @@
             <!-- /.login-logo -->
             <div class="card shadow">
                 <div class="card-body login-card-body justify-content-center mt-5 mb-5">
+                    <div class="card-image text-center">
+                        <img src="{{asset('/images/lancers_logo.png')}}" width="auto" height="50" alt="" loading="lazy">
+                    </div>
                     @if (session('resent'))
                         <div class="alert alert-success" role="alert">
                             {{ __('A fresh verification link has been sent to your email address.') }}

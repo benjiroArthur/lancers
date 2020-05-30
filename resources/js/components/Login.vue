@@ -84,7 +84,7 @@
                 })
             },
             signUp(){
-                window.location.assign('/signup');
+                window.location.assign('/register');
             },
             resetPass(){
                 window.location.assign('/password/reset');

@@ -1,8 +1,7 @@
 <template>
     <li class="nav-item dropdown ml-4">
-        <a class="nav-link count-indicator text-white" id="notificationDropdown" href="#" data-toggle="dropdown">
-            <i class="fas fa-facebook-messenger text-dark h4"></i>
-            Messages
+        <a class="nav-link count-indicator text-dark" id="notificationDropdown" href="#" data-toggle="dropdown">
+            <i class="fab fa-facebook-messenger text-dark h4"></i> Messages
         </a>
 
 
