@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Job;
+use App\JobType;
 use App\JobCategory;
 use App\Project;
 use Illuminate\Http\Request;
@@ -25,7 +25,7 @@ class ProjectController extends Controller
 
         /*//$pro = Project::find(6);
         $pro = Project::find(6);
-        //$pro = Job::find(6);
+        //$pro = JobType::find(6);
         $pro = $pro->job->category;*/
 
         return response()->json($projects);

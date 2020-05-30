@@ -5,13 +5,13 @@ namespace App;
 use App\Client;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use App\Job;
+use App\JobType;
 use App\JobCategory;
 
 class Project extends Model
 {
     //fillable
-    protected $fillable = ['job_id', 'description', 'client_id', 'project_title', 'project_cost', 'duration', 'approved'];
+    protected $fillable = ['job_type_id', 'description', 'client_id', 'project_title', 'project_cost', 'duration', 'approved'];
 
     protected $casts = [
         'approved' => 'boolean'
@@ -23,11 +23,11 @@ class Project extends Model
     //relationships
 
     public function job(){
-        return $this->belongsTo(Job::class);
+        return $this->belongsTo(JobType::class);
     }
 
 //    public function jobCategory(){
-//        return $this->hasOneThrough(JobCategory::class, Job::class);
+//        return $this->hasOneThrough(JobCategory::class, JobType::class);
 //    }
 
     public function client(){

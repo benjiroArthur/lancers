@@ -41,6 +41,9 @@ class ClientDashController extends Controller
         return response()->json($projects);
     }
 
+
+
+
     public function projectPostProject(Request $request) {
 
         $this->validate($request, [

@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(\App\JobOffered::class, function (Faker $faker) {
     return [
         'project_id' => $faker->unique()->randomElement(App\Project::pluck('id', 'id')->toArray()),
-        'freelancer_id' => App\ProjctApplication::all()->random()->freelancer_id,
+        'freelancer_id' => App\ProjectApplication::all()->random()->freelancer_id,
     ];
 });
 

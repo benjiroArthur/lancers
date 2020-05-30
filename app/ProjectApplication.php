@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProjctApplication extends Model
+class ProjectApplication extends Model
 {
     //fillables
     protected $fillable = ['project_id', 'freelancer_id'];

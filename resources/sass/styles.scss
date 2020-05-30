@@ -390,10 +390,14 @@ select option:hover{
 }
 
 .router-link-exact-active {
-    background-color: #65f1b9 !important;
-    color: #012617 !important;
+
+    border: none;
+    border-bottom: 2px solid #32a778;
 }
 
+.bodyClass{
+    min-height: 100%;
+}
 
 
 

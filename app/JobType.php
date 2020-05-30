@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Project;
 use App\JobCategory;
 
-class Job extends Model
+class JobType extends Model
 {
     //fillables
     protected $fillable = ['name', 'job_category_id'];

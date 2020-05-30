@@ -38,6 +38,8 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::get('/client/in-progress/{id}', 'ClientDashController@progress');
     Route::get('/client/not-completed/{id}', 'ClientDashController@yet');
     Route::get('/client/projects/{id}', 'ClientDashController@projects');
+    Route::post('/user/profile', 'ProfileController@profile');
+    Route::post('/user/profile_picture', 'ProfileController@profilePicture');
 
 });
 
@@ -57,6 +59,15 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
 
 
 //should be the last route
+Route::middleware('auth')->get('/dashboard', function(){
+    if(Auth()->user()->role->name === 'freelancer'){
+        return redirect('/freelancer/dashboard/all-project');
+    }
+    else if(Auth()->user()->role->name === 'client'){
+        return redirect('/freelancer/dashboard/all-project');
+    }
+
+});
 Route::middleware('auth')->get('/freelancer/dashboard/{path}', 'DashboardController@index')->where('path', '([A-z\-/_.]+)?' );
 Route::middleware('auth')->get('/scrum/dashboard/{path}', 'DashboardController@index')->where('path', '([A-z\-/_.]+)?' );
 Route::middleware('auth')->get('{path}', function (){

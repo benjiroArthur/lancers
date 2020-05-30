@@ -1,8 +1,7 @@
 <template>
     <li class="nav-item dropdown ml-4">
-        <a class="nav-link count-indicator text-white" id="notificationDropdown" href="#" data-toggle="dropdown">
-            <i class="fas fa-bell text-white h4"></i>
-            <span class="badge badge-danger">9</span>
+        <a class="nav-link count-indicator text-dark" id="notificationDropdown" href="#" data-toggle="dropdown">
+            <i class="fas fa-bell text-dark h4"></i> Updates
         </a>
 
 

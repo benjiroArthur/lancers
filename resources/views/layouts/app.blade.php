@@ -22,12 +22,13 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="bg-lancer-light">
+<body class="bg-lancer-light bodyClass">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-lancer shadow-sm">
-            <div class="container-fluid">
-                <a class="navbar-brand text-white ml-5" href="{{ url('/') }}">
-                    {{ config('app.name', 'Lancer') }}
+        <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm">
+            <div class="container">
+                <a class="navbar-brand text-white" href="{{ url('/') }}">
+                   {{-- {{ config('app.name', 'Lancer') }}--}}
+                    <img src="{{asset('/images/lancers_logo.png')}}" width="auto" height="30" alt="" loading="lazy">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -36,7 +37,17 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        @auth
+                            <li class="nav-item home-navs">
+                                <router-link to="/home" class="nav-link text-dark">
+                                    Dashboard
+                                </router-link>
+                            </li>
+                            <browse></browse>
+                            <my-project></my-project>
+                            <messages></messages>
+                            <update></update>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -44,55 +55,18 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link text-dark text-bold" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link text-dark text-bold" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item home-navs">
-                                <a href="{{url('/home')}}" class="nav-link text-white">
-                                    Home
-                                </a>
-                            </li>
 
-                            <li class="nav-item dropdown ml-4 home-navs">
-                                <a id="navbarDropdown" class="nav-link text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Categories
-                                </a>
 
-                                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="navbarDropdown">
-                                    <ul class="nav nav-treeview home-navs">
-                                        <li class="nav-item">
-                                            <router-link to="/manage/admin" class="nav-link">
-                                                <p>Programming & Tech</p>
-                                            </router-link>
-                                        </li>
 
-                                        <li class="nav-item">
-                                            <router-link to="/manage/hotel" class="nav-link">
-                                                <p>Graphics Design</p>
-                                            </router-link>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <router-link to="/manage/traveller" class="nav-link">
-                                                <p>Digital Marketting</p>
-                                            </router-link>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <router-link to="/manage/transport" class="nav-link">
-                                                <p>Video & Animation</p>
-                                            </router-link>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </li>
-                            <form action="#" class="d-none d-sm-block ml-4">
+                           {{-- <form action="#" class="d-none d-sm-block ml-4">
                                 <div class="input-group search-box">
                                     <input type="text" class="form-control lancer-search" placeholder="Search…">
                                     <div class="input-group-prepend">
@@ -101,11 +75,11 @@
                                       </span>
                                     </div>
                                 </div>
-                            </form>
-                            <notification></notification>
+                            </form>--}}
+
                             <li class="nav-item dropdown ml-2">
                                 <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <img class="img-bordered-sm img-sm rounded-circle" src="{{auth()->user()->userable->profile_picture}}" alt="Profile image">
+                                    <img class="img-bordered-sm img-sm rounded-circle" src="{{auth()->user()->userable->image_path}}" alt="Profile image">
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="navbarDropdown">
@@ -156,12 +130,12 @@
             @yield('content')
         </main>
 
-        <footer class="bg-lancer p-4">
+        <footer class="bg-lancer p-4 text-center">
             <div class="container-fluid ml-4 mr-3 mt-3 mb-3">
                 <div class="row mt-3 mb-3">
                     <div class="col-md-2">
                         <p></p>
-                        <p class="text-bold h3 text-white">Lancers</p>
+                        <img src="{{asset('/images/lancers_logo_inverted.png')}}" width="auto" height="30" alt="" loading="lazy">
                         <p class="text-white">@Lancers {{date('Y')}}</p>
                     </div>
                     <div class="col-md-2 text-white">

@@ -18,7 +18,9 @@
         "laravel/sanctum": "^2.3",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
-        "mpociot/laravel-apidoc-generator": "^4.8"
+        "laravelcollective/html": "^6.1",
+        "mpociot/laravel-apidoc-generator": "^4.8",
+        "spatie/laravel-permission": "^3.13"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.7",
