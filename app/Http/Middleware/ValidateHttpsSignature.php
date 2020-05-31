@@ -7,6 +7,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Exceptions\InvalidSignatureException;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\App;
 
 class ValidateHttpsSignature
 {
