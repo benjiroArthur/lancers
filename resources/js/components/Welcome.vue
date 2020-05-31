@@ -179,6 +179,10 @@
 
         <!-- End of comments -->
 
+        <div class="test-div">
+
+        </div>
+
 
     </div>
 </template>
@@ -235,8 +239,9 @@
 </script>
 
 <style lang="scss" scoped>
-
-
+    .test-div{
+        min-height: 400px;
+    }
     .cat-card{
         border: 1px solid #44f631;
         & p{
