@@ -49,8 +49,8 @@ class ChatController extends Controller
      */
     public function show($id)
     {
-        $friend = User::find($id);
-        return view('Chat.show')->withFriend($friend);
+        $friends = User::find($id);
+        return view('Chat.show')->withFriend($friends);
     }
 
     /**
