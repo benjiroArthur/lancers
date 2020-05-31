@@ -6,7 +6,5 @@
        <client-home></client-home>
    @elseif(auth()->user()->role->name === 'admin')
        <admin-home></admin-home>
-  {{-- @elseif(auth()->user()->role->name === 'super-admin')
-       <admin-home></admin-home>--}}
    @endif
 @endsection
