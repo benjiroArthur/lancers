@@ -58,6 +58,18 @@ class FreelancerDashController extends Controller
         return response()->json($projects);
     }
 
+    // lists all projects either in progress, yet to start or completed
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * */
+    public function recentProject($id) {
+        $freelance = User::findOrFail($id)->userable;
+        $projects = $freelance->jobOffered()->with('project')->latest()->limit(3)->get();
+
+        return response()->json($projects);
+    }
+
     public function jobs() {
         $jobs = Project::all();
         return response()->json($jobs);
