@@ -22,7 +22,7 @@ class Project extends Model
 
     //relationships
 
-    public function job(){
+    public function jobType(){
         return $this->belongsTo(JobType::class);
     }
 
@@ -39,7 +39,7 @@ class Project extends Model
     }
 
     public function getImageAttribute(){
-        return $this->job->category->image_path;
+        return $this->jobType->category->image_path;
     }
 
     public function fromNowAttribute(){

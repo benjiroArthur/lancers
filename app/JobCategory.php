@@ -13,7 +13,7 @@ class JobCategory extends Model
     protected $appends = ['image_path'];
 
     //relationship
-    public function jobs(){
+    public function jobTypes(){
         return $this->hasMany(JobType::class);
     }
 

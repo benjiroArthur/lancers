@@ -11,6 +11,7 @@ class Freelancer extends Model
         'first_name', 'last_name', 'other_name', 'gender', 'dob', 'profile_picture', 'email'
     ];
     protected $appends = ['full_name', 'image_path'];
+    protected $with = ['portfolio', 'links'];
 
     public function user(){
         return $this->morphOne(User::class, 'userable');
@@ -42,6 +43,10 @@ class Freelancer extends Model
 
     public function portfolio(){
         return $this->hasOne(Portfolio::class);
+    }
+
+    public function links(){
+        return $this->hasMany(Link::class);
     }
 
 }

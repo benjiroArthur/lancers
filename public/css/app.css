@@ -69760,3 +69760,7 @@ select option:hover {
   min-height: 100%;
 }
 
+.nav-item {
+  list-style: none !important;
+}
+

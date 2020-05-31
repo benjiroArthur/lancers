@@ -18,12 +18,13 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->get('/data/user', function () {
-    return Auth::user();
+    return response()->json(Auth::user());
 });
 
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/profile', 'ProfileController@index')->name('profile');
 
 Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::resource('/job-category', 'JobCategoryController');
@@ -33,6 +34,7 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::get('/freelancer/in-progress/{id}', 'FreelancerDashController@progress');
     Route::get('/freelancer/not-started/{id}', 'FreelancerDashController@yet');
     Route::get('/freelancer/job-offered/{id}', 'FreelancerDashController@all');
+    Route::get('/freelancer/recent-project/{id}', 'FreelancerDashController@recentProject');
     Route::get('/freelancer/browse-jobs', 'FreelancerDashController@jobs');
     Route::get('/client/completed-projects/{id}', 'ClientDashController@completed');
     Route::get('/client/in-progress/{id}', 'ClientDashController@progress');
@@ -41,6 +43,11 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::post('/user/profile', 'ProfileController@profile');
     Route::post('/user/profile_picture', 'ProfileController@profilePicture');
 
+
+    // routes for messaging
+    Route::get('/chat', 'ChatController@index')->middleware('auth')->name('chat.index');
+    Route::get('/chat/{id}', 'ChatController@show')->middleware('auth')->name('chat.show');
+    Route::post('/chat/getChat/{id}', 'ChatController@getChat')->middleware('auth');
 });
 
 
