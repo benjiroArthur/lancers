@@ -5,6 +5,101 @@
             <img v-for="(item,i) in items" :src="resource_path+item.src" class="img-fluid" alt="..."  :key="i">
         </VueSlickCarousel>
 
+        <!-- Commenting this whole block out --
+
+        <h2 class = "text-centre mt-3 text-bold text-dark">NEED WORK DONE?</h2>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-image m-3 img-fluid cat-card">
+                        <img :src="resource_path+'/do_it_your_self/post_job.jpg'" alt="Image" class="img-fluid">
+                    </div>
+                    <div class="card-title mt-3"><strong> Post A Job</strong></div>
+                    <div class="card-body">
+                        <div class="card-text mb-2">
+                            Easy way to get your projects or ideas become a reality. Post a job and get it done to your best satisfaction.
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-image m-3 img-fluid cat-card">
+                        <img :src="resource_path+'/do_it_your_self/hire_freelancer.jpg'" alt="Image" class="img-fluid">
+                    </div>
+                    <div class="card-title mt-3"><strong>Choose A Freelancer</strong></div>
+                    <div class="card-body">
+                        <div class="card-text mb-2">
+                            You get the option to choose a particular freelancer to execute your project for you. The experience of freelancers span in many fields from
+                            Web Development, Mobile Applications, Graphic Design etc.
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-image m-3 img-fluid cat-card">
+                        <img :src="resource_path+'/do_it_your_self/safe_payment.jpg'" alt="Image" class="img-fluid">
+                    </div>
+                    <div class="card-title mt-3"><strong>Secure Payment</strong></div>
+                    <div class="card-body">
+                        <div class="card-text mb-2">
+                            We have a secured payment platform that works seamlessly with easy steps and process to get freelancers paid.
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class = "text-centre mt-3 text-bold text-dark">What Is Great About lancers </h2>
+
+        <div class = "row">
+              <div class = "col-md-3">
+                    <div class="card text-white bg-primary mb-3" style="max-width: 16rem;">
+                        <div class="card-header"><strong>Browse Portfolios</strong> </div>
+                        <div class="card-body">
+
+                            <h5 class="card-text">Find professionals you can trust by browsing their samples of previous work and reading their profile reviews.</h5>
+                        </div>
+                    </div>
+              </div>
+
+            <div class = "col-md-3">
+                    <div class="card text-white bg-secondary mb-3" style="max-width: 16rem;">
+                        <div class="card-header"><strong>Track Progress</strong> </div>
+                        <div class="card-body">
+
+                            <h5 class="card-text">Keep up-to-date and on-the-go with our time tracker, and mobile app.</h5>
+                        </div>
+                    </div>
+            </div>
+
+            <div class = "col-md-3">
+                <div class="card text-white bg-primary mb-3" style="max-width: 16rem;">
+                    <div class="card-header"><strong>Live Chat</strong> </div>
+                    <div class="card-body">
+                        <h5 class="card-text">You can live chat with your freelancers to get constant updates on the progress of your work.</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "col-md-3">
+                <div class="card text-white bg-secondary mb-3" style="max-width: 16rem;">
+                    <div class="card-header"><strong>Pay For Quality</strong> </div>
+                    <div class="card-body">
+                        <h5 class="card-text"> Pay for work when it has been completed and you're 100% satisfied. </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <h2 class="text-center mt-3 mb-3 text-bold text-dark">OUR PROJECT CATEGORIES</h2>
         <div v-if="categories.length > 0" class="row">
@@ -81,8 +176,13 @@
         </div>
 
 
+
+        <!-- End of comments -->
+
+
     </div>
 </template>
+
 
 <script>
     export default {
@@ -135,6 +235,8 @@
 </script>
 
 <style lang="scss" scoped>
+
+
     .cat-card{
         border: 1px solid #44f631;
         & p{
