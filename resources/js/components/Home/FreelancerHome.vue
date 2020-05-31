@@ -13,8 +13,23 @@
                             </div>
 
                             <div class="card-body text-center">
-                               <div class="mt-5 ml-5 pr-2">
-                                   <i class="fas fa-clipboard-list h1 text-lancer"></i>
+                               <div class="mt-2 ml-5 pr-2">
+
+                                   <a class="btn bg-lancer text-white">Browse Projects</a>
+                               </div>
+                            </div>
+                        </div>
+                        <div class="card shadow">
+                            <div class="card-header">
+                                <div class="card-title text-bold">Recent Projects</div>
+                                <div class="card-tools">
+                                    <a class="text-lancer" href="#">View All <span class="fas fa-arrow-right"></span></a>
+                                </div>
+                            </div>
+
+                            <div class="card-body text-center">
+                               <div class="mt-2 ml-5 pr-2">
+                                   <i class="fas fa-clipboard-list pro-list-icon text-lancer"></i>
                                    <p>Start bidding now on projects the meet your skills</p>
                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A exercitationem labore nesciunt sequi velit. Aliquid minima necessitatibus recusandae! Alias autem corporis eos error labore libero odio quam quis vero voluptatem!</p>
                                    <a class="btn bg-lancer text-white">Browse Projects</a>
@@ -89,7 +104,7 @@
                             <div class="card-header bg-lancer text-white text-bold">
                                 <div class="card-title">
                                     <p>Welcome Back</p>
-                                    <p>{{this.freelancer.userable.full_name}}</p>
+                                    <p v-if="freelancer.userable.full_name !== null">{{this.freelancer.userable.full_name}}</p>
                                     <p>{{this.freelancer.email}}</p>
                                 </div>
                                 <div class="card-tools"></div>
@@ -125,6 +140,9 @@
         data(){
             return{
                 freelancer:{},
+                recentProjects:{},
+
+
             }
         },
         methods:{
@@ -134,14 +152,27 @@
                 .then((response) => {
                     this.freelancer = response.data;
                 })
-            }
+            },
+            getRecentlProject(){
+                axios
+                    .get('/data/freelancer/recent-project/'+this.$parent.userId)
+                    .then((response)=>{
+                        this.recentProjects = response.data;
+                    })
+                    .catch()
+            },
+
         },
         mounted() {
             this.getIndex();
+            this.getRecentlProject();
         }
     }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+    .pro-list-icon {
+        font-size: 150px !important;
+        margin: 20px;
+    }
 </style>

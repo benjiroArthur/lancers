@@ -26,13 +26,13 @@
                             </div>
 
                               <div class=" row d-flex">
-                                  <div class="icheck-success text-lancer text-left col-6">
+                                  <div class="icheck-success text-dark text-left col-6">
                                       <input type="checkbox" id="remember" name="remember" v-model="form.remember">
                                       <label for="remember">
                                           Remember Me
                                       </label>
                                   </div>
-                                  <a class="text-lancer d-block text-success text-sm-center text-lg-right col-6" href="#" @click="resetPass">
+                                  <a class="text-lancer d-block text-primary text-sm-center text-lg-right col-6" href="#" @click="resetPass">
                                       Forgot Your Password?
                                   </a>
 

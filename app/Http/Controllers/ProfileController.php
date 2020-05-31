@@ -81,7 +81,7 @@ class ProfileController extends Controller
             \Storage::disk('profile-picture')->put($imageNameToStore, $image);
 
             //delete old images
-            if(\Storage::disk('profile-picture')->exists($oldImage)){
+            if($oldImage !== 'noimage.jpg' &&  \Storage::disk('profile-picture')->exists($oldImage)){
                 \Storage::disk('profile-picture')->delete($oldImage);
             }
 

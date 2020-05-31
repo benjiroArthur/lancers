@@ -81,6 +81,7 @@ Vue.use(VueProgressBar, {
 
 // Import this component
 import datePicker from 'vue-bootstrap-datetimepicker';
+/*import 'pc-bootstrap4-datetimepicker/build/css/bootstrap-datetimepicker.css';*/
 window.datePicker = datePicker;
 
 jQuery.extend(true, jQuery.fn.datetimepicker.defaults,{
@@ -188,20 +189,20 @@ Vue.component('slick', Slick);
 let routes = [
     //{path:'/home', component: require('./components/Home.vue').default},
     //freelancer routes
-    {path:'/freelancer/dashboard/all-project', component: require('./components/Freelancer/Dashboard/AllProjects.vue').default},
+    /*{path:'/freelancer/dashboard/all-project', component: require('./components/Freelancer/Dashboard/AllProjects.vue').default},
     {path:'/freelancer/dashboard/in-progress', component: require('./components/Freelancer/Dashboard/InProgress.vue').default},
     {path:'/freelancer/dashboard/completed', component: require('./components/Freelancer/Dashboard/Completed.vue').default},
     {path:'/freelancer/dashboard/all-jobs', component: require('./components/Freelancer/Dashboard/AllJobs.vue').default},
     {path:'/freelancer/dashboard/submit-jobs', component: require('./components/Freelancer/Dashboard/SubmitJobs.vue').default},
-    {path:'/freelancer/dashboard/profile', component: require('./components/Freelancer/Dashboard/FreelancerProfile.vue').default},
+    {path:'/freelancer/dashboard/profile', component: require('./components/Freelancer/Dashboard/FreelancerProfile.vue').default},*/
 
     //project manager routes
-    {path:'/scrum/dashboard/all-project', component: require('./components/ProjectManager/Dashboard/AllProjects.vue').default},
+   /* {path:'/scrum/dashboard/all-project', component: require('./components/ProjectManager/Dashboard/AllProjects.vue').default},
     {path:'/scrum/dashboard/in-progress', component: require('./components/ProjectManager/Dashboard/InProgress.vue').default},
     {path:'/scrum/dashboard/completed', component: require('./components/ProjectManager/Dashboard/Completed.vue').default},
     {path:'/scrum/dashboard/post-job', component: require('./components/ProjectManager/Dashboard/PostJobs.vue').default},
     {path:'/scrum/dashboard/payment', component: require('./components/ProjectManager/Dashboard/Payment.vue').default},
-    {path:'/scrum/dashboard/profile', component: require('./components/ProjectManager/Dashboard/Profile.vue').default},
+    {path:'/scrum/dashboard/profile', component: require('./components/ProjectManager/Dashboard/Profile.vue').default},*/
 ];
 
 const router = new VueRouter({
