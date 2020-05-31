@@ -84,32 +84,24 @@
 
                                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="navbarDropdown">
                                     <ul>
-                                        @if(Auth::user()->role->name === 'client')
                                             <li class="nav-item text-center text-dark">
-                                                <a href="{{url('scrum/dashboard/profile')}}" class="dropdown-item">
+                                                <a href="{{url('/profile')}}" class="dropdown-item nav-item">
                                                     <p>Profile</p>
                                                 </a>
                                             </li>
                                             <li class="nav-item text-center text-dark">
-                                                <a href="{{url('scrum/dashboard/all-project')}}" class="dropdown-item">
-                                                    <p>Dashboard</p>
+                                                <a href="#" class="dropdown-item nav-item">
+                                                    <p>User Settings</p>
                                                 </a>
                                             </li>
-                                        @elseif (Auth::user()->role->name === 'freelancer')
 
-                                            <li class="nav-item text-center text-dark">
-                                                <a href="{{url('freelancer/dashboard/profile')}}" class="dropdown-item">
-                                                    <p>Profile</p>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item text-center text-dark">
-                                                <a href="{{url('freelancer/dashboard/all-project')}}" class="dropdown-item">
-                                                    <p>Dashboard</p>
-                                                </a>
-                                            </li>
-                                        @endif
+                                        <li class="nav-item text-center text-dark">
+                                            <a href="#" class="dropdown-item nav-item">
+                                                <p>Get Support</p>
+                                            </a>
+                                        </li>
                                     </ul>
-                                    <a class="dropdown-item text-center" href="{{ route('logout') }}"
+                                    <a class="dropdown-item text-center nav-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}

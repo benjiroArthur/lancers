@@ -42,7 +42,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     //return with
-    protected $with = ['userable'];
+    protected $with = ['userable', 'address'];
 
     //relationships
     public function role(){
@@ -69,7 +69,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function friends(){
-        return $this->friendOfMine()->merge($this->friendOf());
+        return $this->friendsOfMine->merge($this->friendOf());
     }
 
 //    public function sender(){

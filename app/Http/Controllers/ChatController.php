@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Chat;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use App\User;
 
 class ChatController extends Controller
@@ -12,12 +12,12 @@ class ChatController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {
         $friends = Auth::user()->friends();
-        return view('Chat.index')->withFriends($friends);
+        return view('Chat.index', compact('friends'));
     }
 
     /**

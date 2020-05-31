@@ -18,12 +18,13 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->get('/data/user', function () {
-    return Auth::user();
+    return response()->json(Auth::user());
 });
 
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/profile', 'ProfileController@index')->name('profile');
 
 Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::resource('/job-category', 'JobCategoryController');
