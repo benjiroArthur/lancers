@@ -20,7 +20,12 @@
                             <input v-model="form.password" placeholder="Password" id="password" type="password"
                                    :class="{ 'is-invalid': form.errors.has('password') }" class="form-control" name="password" required autocomplete="password">
                             <has-error :form="form" field="password"></has-error>
+                            <div class = "strength" :class = "'level_0'" ></div>
+
+                            <i class = "fas fa-eye show-icon" v-if = "show" @click="show = !show"></i>
+                            <i class = "fas fa-eye-slash hide-icon" v-else @click="show = !show"></i>
                         </div>
+
                         <div class="mb-3">
                             <input v-model="form.password_confirmation" placeholder="Confirm Password" id="password-confirm" type="password"
                                    :class="{ 'is-invalid': form.errors.has('password_confirmation') }" class="form-control" name="password_confirmation" required autocomplete="new-password">
@@ -126,6 +131,7 @@
         mounted() {
             console.log('Component mounted.')
         }
+
     }
 </script>
 
@@ -139,5 +145,60 @@
             -moz-transition: all 0.4s;
             transition: all 0.4s;
         }
+
     }
+
+    .strength {
+        position: absolute;
+        bottom: 233px;
+        left: 20px;
+        right: 0px;
+        display: inline-block;
+        width: 2%;
+        height: 2%;
+        background-color: #BB4440;
+        border-radius: 40px;
+        overflow: hidden;
+        z-index: 9;
+        transition: all .5s linear;
+    }
+    @mixin level($position, $width, $color) {
+        bottom: 233px;
+        width: $width;
+        background-color: $color;
+    }
+
+    .level_0 {
+        @include level(0, 0%, #BB4440);
+    }
+    .level_1 {
+        @include level(-10px, 25%, #BB4440);
+    }
+    .level_2 {
+        @include level(-10px, 50%, #1cb386);
+    }
+    .level_3 {
+        @include level(-10px, 75%, #00e676);
+    }
+    .level_4 {
+        @include level(-10px, 90%, #00e676);
+    }
+
+    @mixin showpass($property) {
+        position: absolute;
+        left: 400px;
+        top: 230px;
+        z-index: 11;
+        cursor: pointer;
+    }
+
+    .show-icon {
+        @include showpass(20px);
+    }
+
+    .hide-icon {
+        @include showpass(18px);
+        color: #4e555b;
+    }
+
 </style>

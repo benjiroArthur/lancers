@@ -70,6 +70,69 @@
                 </div>
                 <!--Portfolio ends-->
 
+                <!--Address Details Starts-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div v-show="addressEditMode === false" class="card shadow">
+                            <div class="card-header bg-none">
+                                <div class="card-title text-bold">Address Information</div>
+                                <div class="card-tools text-right">
+                                    <a class="text-white text-bold text-left btn bg-lancer" @click="addressToggle('true', $event)" href="#">Edit</a>
+                                </div>
+                            </div>
+
+                            <div class="card-body text-left">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p>Country:  {{this.freelancer.userable.country | checkNull}}</p>
+                                        <p>City:  {{this.freelancer.userable.city | checkNull}}</p>
+                                        <p>Zip Code: {{this.freelancer.userable.zipcode | checkNull}}</p>
+                                        <p>Phone number: {{this.freelancer.userable.phone_number | checkNull}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-show="addressEditMode === true" class="card shadow">
+                            <div class="card-header bg-none">
+                                <div class="card-title text-bold">Edit Address</div>
+                            </div>
+                            <div class="card-body text-center">
+                                <form ref="profileForm" @submit.prevent="updateAddress">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input v-model="addressForm.country" type="text" name="country" placeholder="Country"
+                                                       class="form-control" :class="{ 'is-invalid': addressForm.errors.has('country') }" required>
+                                                <has-error :form="addressForm" field="country"></has-error>
+                                            </div>
+                                            <div class="form-group">
+                                                <input v-model="addressForm.city" type="text" name="city" placeholder="City"
+                                                       class="form-control" :class="{ 'is-invalid': addressForm.errors.has('city') }">
+                                                <has-error :form="addressForm" field="city"></has-error>
+                                            </div>
+                                            <div class="form-group">
+                                                <input v-model="addressForm.zipcode" type="text" name="zipcode" placeholder="Zip Code"
+                                                       class="form-control" :class="{ 'is-invalid': addressForm.errors.has('zipcode') }" required>
+                                                <has-error :form="addressForm" field="zipcode"></has-error>
+                                            </div>
+                                            <div class="form-group">
+                                                <input v-model="addressForm.phone_number" type="text" name="phone_number" placeholder="Phone Number"
+                                                       class="form-control" :class="{ 'is-invalid': addressForm.errors.has('phone_number') }" required>
+                                                <has-error :form="addressForm" field="phone_number"></has-error>
+                                            </div>
+                                            <div class="text-right">
+                                                <button type="button" class="btn btn-danger" @click="addressToggle('false', $event)" >Cancel</button>
+                                                <button type="submit" class="btn bg-lancer text-white">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Address Details Ends-->
+
                 <!--Links Starts-->
                 <div class="row">
                     <div class="col-md-12">
@@ -265,6 +328,14 @@
                     title: '',
                     description: ''
                 }),
+                addressForm: new Form({
+                    country: '',
+                    city: '',
+                    zipcode: '',
+                    phone_number: '',
+                    user_id: '',
+                }),
+
                 profileForm: new Form({
                     first_name: '',
                     last_name: '',
@@ -274,6 +345,7 @@
                     email: '',
                 }),
                 portfolioEditMode: false,
+                addressEditMode: false,
                 profileEditMode: false,
                 genderOptions: [
                     { value: 'male', text: 'Male' },
@@ -309,7 +381,7 @@
                 };
 
             },
-            //dave profile image
+            //save profile image
             submitImage(){
 
                 //Initialize the form data
@@ -351,6 +423,9 @@
                     });
                 $('#profileModal').modal('hide');
             },
+
+            //update address
+            updateAddress(){},
             //update user profile
             updateProfile(){},
             //toggle edit mode
@@ -363,6 +438,17 @@
                     this.portfolioEditMode = false;
                 }
             },
+
+            addressToggle(val, event){
+                event.preventDefault();
+                if(val === 'true'){
+                    this.addressEditMode = true;
+                }
+                else if(val === 'false'){
+                    this.addressEditMode = false;
+                }
+            },
+
             profileToggle(val, event){
                 event.preventDefault();
                 if(val === 'true'){
