@@ -4,7 +4,7 @@
             <div class="col-md-8">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card shadow">
+                        <!--<div class="card shadow">
                             <div class="card-header">
                                 <div class="card-title text-bold">Recent Projects</div>
                                 <div class="card-tools">
@@ -18,7 +18,7 @@
                                    <a class="btn bg-lancer text-white">Browse Projects</a>
                                </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="card shadow">
                             <div class="card-header">
                                 <div class="card-title text-bold">Recent Projects</div>
@@ -112,7 +112,8 @@
 
                             <div class="card-body">
                                 <p>Setup Your Account</p>
-                                <p class="text-danger text-bold" v-if="freelancer.profile_updated === false">Please Update Your Profile</p>
+                                <p class="text-danger text-bold" v-if="freelancer.profile_updated === false"><a
+                                    href="#" @click="goToProfile" class="text-danger">Please Update Your Profile</a></p>
                             </div>
                         </div>
                     </div>
@@ -146,6 +147,9 @@
             }
         },
         methods:{
+            goToProfile(){
+                window.location.assign('/profile')
+            },
             getIndex(){
                 axios
                 .get('/data/user')

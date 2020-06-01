@@ -77,14 +77,14 @@
                             <div class="card-header bg-none">
                                 <div class="card-title text-bold">Links to Projects Worked On</div>
                                 <div class="card-tools text-right">
-                                    <a class="text-white text-bold text-left btn bg-lancer" href="#">Add Link</a>
+                                    <a class="text-white text-bold text-left btn bg-lancer" @click="linksToggle($event)" href="#">Add Link</a>
                                 </div>
                             </div>
 
                             <div class="card-body text-left text-dark">
-                                <ul v-if="freelancer.links > 0">
-                                    <li v-for="(link, i) in freelancer.links" :key="i" class="nav-item">
-                                        <a href="" class="nav-link">{{link.name}}</a>
+                                <ul v-if="links.length > 0">
+                                    <li v-for="(link, i) in links" :key="i" class="nav-item">
+                                        <a :href="link.name" class="nav-link" target="_blank">{{link.name}}</a>
                                     </li>
                                 </ul>
                                 <ul v-else>
@@ -250,8 +250,32 @@
         </div>
     </div>
     <!--modal for profile image ends here-->
-
-
+    <!--link modal start-->
+    <div class="modal" id="linkModal" tabindex="-1" role="dialog" aria-labelledby="linkModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h5 class="modal-title">Add A Link To Your Project</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form @submit.prevent="submitLink">
+                <div class="modal-body">
+                    <div class="form-group">
+                                <label>Link Address</label>
+                                <input   id="name" type="text" name="name"  class="form-control" v-model="singleLink.name" required placeholder="https://linktofile">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Add Link<i class="fas fa-user-plus"></i></button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--link modal end-->
 </div>
 </template>
 
@@ -283,6 +307,10 @@
                 file: null,
                 image_file: '',
                 formData: new FormData(),
+                singleLink: new Form({
+                    name:''
+                }),
+                links:{},
 
             }
         },
@@ -293,10 +321,27 @@
                     .get('/data/user')
                     .then((response) => {
                         this.freelancer = response.data;
+                        this.portfolioForm.fill(this.freelancer.userable.portfolio)
+                        this.profileForm.fill(this.freelancer.userable)
+                        this.links = this.freelancer.userable.links
                     })
             },
             //update user portfolio
-            updatePortfolio(){},
+            updatePortfolio(){
+                this.portfolioForm.post('/data/user/portfolio')
+                                    .then((response) => {
+                                        this.portfolioEditMode = false;
+                                        Fire.$emit('profileUpdate');
+                                        Swal.fire(
+                                            'Update',
+                                            'Portfolio Updated Successfully',
+                                            'success'
+                                        );
+                                    })
+                                    .catch((error) => {
+                                        this.portfolioEditMode = true;
+                                    })
+            },
             //load profile image for preview
             loadImage(e){
                 //
@@ -329,7 +374,7 @@
                 ).then((response) => {
                     Fire.$emit('profileUpdate');
 
-                    if(response.data === 'Success'){
+                    if(response.data.message === 'success'){
                         Swal.fire(
                             'Update',
                             'Profile Picture Updated Successfully',
@@ -338,8 +383,8 @@
                     }
                     else{
                         Swal.fire(
-                            'Update',
-                            response.data,
+                            'Error',
+                            response.data.message,
                             'warning'
                         );
                     }
@@ -352,7 +397,36 @@
                 $('#profileModal').modal('hide');
             },
             //update user profile
-            updateProfile(){},
+            updateProfile(){
+                this.profileForm.post('/data/user/profile')
+                    .then((response) => {
+                        Fire.$emit('profileUpdate');
+                        this.profileEditMode = false;
+                        Swal.fire(
+                            'Update',
+                            'Profile Updated Successfully',
+                            'success'
+                        );
+                    })
+                    .catch((error) => {
+                        this.profileEditMode = true;
+                    })
+            },
+            //add link
+            submitLink(){
+                this.singleLink
+                .post('/data/user/job_link')
+                .then((response)=>{
+                    $('#linkModal').modal('hide');
+                    Fire.$emit('profileUpdate');
+                    Swal.fire(
+                        'Success',
+                        'Link Added Successfully',
+                        'success'
+                    );
+                })
+                .catch((error)=>{})
+            },
             //toggle edit mode
             portfolioToggle(val, event){
                 event.preventDefault();
@@ -371,6 +445,10 @@
                 else if(val === 'false'){
                     this.profileEditMode = false;
                 }
+            },
+            linksToggle(event){
+                event.preventDefault();
+                $('#linkModal').modal('show');
             },
         },
         filters:{

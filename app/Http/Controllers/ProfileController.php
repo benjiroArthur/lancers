@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;
 use App\Link;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -47,22 +50,19 @@ class ProfileController extends Controller
     /**
      * @param Request $request
      * @throws \Illuminate\Validation\ValidationException
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      * */
     public function profilePicture(Request $request)
     {
         //get the authenticated user
         $user = Auth()->user();
         $oldImage = $user->userable->profile_picture;
-        if($request->hasfile('image')){
+        if($request->hasfile('profile_picture')){
             //validate file type
-            try {
+
                 $this->validate($request, [
-                    'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
+                    'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg'
                 ]);
-            } catch (ValidationException $e) {
-                return response()->json($e);
-            }
 
             $image_file = $request->file('profile_picture');
 
@@ -90,10 +90,10 @@ class ProfileController extends Controller
                 'profile_picture' => $imageNameToStore
             ]);
 
-            return response()->json(['message' => 'success']);
+            return response(['message' => 'success']);
         }
         //if no file selected
-        return response()->json(['message' => 'no file selected']);
+        return response(['message' => 'no file selected']);
     }
 
     /**
@@ -108,7 +108,7 @@ class ProfileController extends Controller
         $user = Auth()->user();
         $portfolio = $user->userable->portfolio;
         if($portfolio === null){
-            $port = $user->userable->portfolio->create($request->all());
+            $port = $user->userable->portfolio()->create($request->all());
 
         }
         else{
@@ -128,7 +128,7 @@ class ProfileController extends Controller
         $this->validate($request, ['name' => 'required']);
         //get the authenticated user and update their records
         $user = Auth()->user();
-        $link = $user->userable()->links()->create($request->all());
+        $link = $user->userable->links()->create($request->all());
         return response()->json($link);
     }
 

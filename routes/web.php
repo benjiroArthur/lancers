@@ -46,6 +46,9 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::get('/client/projects/{id}', 'ClientDashController@projects');
     Route::post('/user/profile', 'ProfileController@profile');
     Route::post('/user/profile_picture', 'ProfileController@profilePicture');
+    Route::post('/user/portfolio', 'ProfileController@portfolio');
+    Route::post('/user/job_link', 'ProfileController@addLinks');
+    Route::post('/user/job_link/edit/{id}', 'ProfileController@editLink');
 
 
     // routes for messaging
