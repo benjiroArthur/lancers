@@ -1,9 +1,7 @@
 <template>
     <div class="container-fluid">
-
-
             <!-- DIRECT CHAT SUCCESS -->
-            <div class="card card-success cardutline direct-chat direct-chat-success">
+            <div class="chat-app card card-success card-outline direct-chat direct-chat-success">
                 <!--header-->
                 <chat-header></chat-header>
                 <!-- /.card-header -->
@@ -14,7 +12,7 @@
                     <!--/.direct-chat-messages-->
 
                     <!-- Contacts are loaded here -->
-                   <contact-list></contact-list>
+                   <contact-list :contacts="contacts" :onlineUsers="onlineUsers"></contact-list>
                     <!-- /.direct-chat-pane -->
                 </div>
                 <!-- /.card-body -->
@@ -30,12 +28,36 @@
 
 <script>
     import Conversation from "./Conversation";
+    import MessagesComposer from "./MessagesComposer";
     export default {
         name: "Chat",
-        components: {Conversation}
+        components: {Conversation, MessagesComposer},
+        data(){
+            return{
+                selectedContact: null,
+                messages: [],
+                contacts: [],
+                onlineUsers: null,
+            }
+        },
+        methods:{
+            getContact(){
+                axios.get('/data/chat/friends')
+                .then((response)=>{
+                    this.contacts = response.data;
+                })
+                .catch((error)=>{})
+            }
+        },
+
+        mounted() {
+            this.getContact();
+        }
     }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+    .chat-app{
+        min-height: 500px;
+    }
 </style>

@@ -22,6 +22,13 @@ class ChatController extends Controller
         //return view('Chat.index');
     }
 
+
+    public function contacts()
+    {
+        $contact = Auth::user()->friends;
+        return response()->json($contact);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

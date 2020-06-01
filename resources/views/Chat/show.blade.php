@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class = "container">
+   {{-- <div class = "container">
         <div class = "column is-8 is-offset-2">
             <div class = "panel">
                 <div class = "panel-heading">
@@ -12,7 +12,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--}}
 
 
 @endsection

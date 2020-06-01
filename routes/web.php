@@ -58,6 +58,7 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::get('/chat', 'ChatController@index')->middleware('auth')->name('chat.index');
     Route::get('/chat/{id}', 'ChatController@show')->middleware('auth')->name('chat.show');
     Route::post('/chat/getChat/{id}', 'ChatController@getChat')->middleware('auth');
+    Route::post('/chat/friends', 'ChatController@contacts')->middleware('auth');
 });
 
 

@@ -68,9 +68,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id');
     }
 
-    /*public function friends(){
+    public function friends(){
         return $this->friendsOfMine->merge($this->friendOf);
-    }*/
+    }
 
 //    public function sender(){
 //        return $this->hasMany('App\Paymentr', 'payments', 'user_id', 'sender_id');
@@ -84,9 +84,9 @@ class User extends Authenticatable implements MustVerifyEmail
        $this->notify(new PasswordResetNotification($token));
     }
 
-    public function getFriendsAttribute(){
+    /*public function getFriendsAttribute(){
         $friendsOfMine = $this->friendOfMine;
         $friendOf = $this->friendOf;
         return $friendsOfMine->merge($friendOf);
-    }
+    }*/
 }

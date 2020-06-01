@@ -12,7 +12,7 @@
                     <p class="login-box-msg text-center text-lancer text-bold h3 mt-3 mb-3"><b>Sign Up</b></p>
                     <form name="login" class="main-login-form text-center" @submit.prevent="next" method="post">
                         <div :validator="v" class="mb-3">
-                            <input v-model="form.email" type="email" class="form-control" placeholder="Email"
+                            <input v-model="form.email" type="email" class="form-control" placeholder="Email" @input="checkEmail"
                                    :class="{ 'is-invalid': form.errors.has('email') }" name="email" id="email" required>
                             <has-error :form="form" field="email"></has-error>
                         </div>
@@ -146,6 +146,8 @@
             },
         },
             methods: {
+            checkEmail(){
+            },
 
                 next() {
                     this.nextPage = true;
