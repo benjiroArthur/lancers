@@ -178,7 +178,7 @@ Vue.component('admin-home', require('./components/Home/AdminHome.vue').default);
 Vue.component('freelancer-home', require('./components/Home/FreelancerHome.vue').default);
 Vue.component('client-home', require('./components/Home/ClientHome.vue').default);
 Vue.component('freelancer-profile', require('./components/Freelancer/Dashboard/FreelancerProfile.vue').default);
-Vue.component('client-profile', require('./components/ProjectManager/Dashboard/Profile.vue').default);
+Vue.component('client-profile', require('./components/ProjectManager/Dashboard/ClientProfile.vue').default);
 Vue.component('admin-profile', require('./components/Admin/Dashboard.vue').default);
 
 Vue.component('VueSlickCarousel', VueSlickCarousel);
@@ -202,7 +202,7 @@ let routes = [
     {path:'/scrum/dashboard/completed', component: require('./components/ProjectManager/Dashboard/Completed.vue').default},
     {path:'/scrum/dashboard/post-job', component: require('./components/ProjectManager/Dashboard/PostJobs.vue').default},
     {path:'/scrum/dashboard/payment', component: require('./components/ProjectManager/Dashboard/Payment.vue').default},
-    {path:'/scrum/dashboard/profile', component: require('./components/ProjectManager/Dashboard/Profile.vue').default},*/
+    {path:'/scrum/dashboard/profile', component: require('./components/ProjectManager/Dashboard/ClientProfile.vue').default},*/
 ];
 
 const router = new VueRouter({
