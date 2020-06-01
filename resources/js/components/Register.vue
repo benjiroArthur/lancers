@@ -11,31 +11,22 @@
                     </div>
                     <p class="login-box-msg text-center text-lancer text-bold h3 mt-3 mb-3"><b>Sign Up</b></p>
                     <form name="login" class="main-login-form text-center" @submit.prevent="next" method="post">
-                        <div class="mb-3">
+                        <div :validator="v" class="mb-3">
                             <input v-model="form.email" type="email" class="form-control" placeholder="Email"
                                    :class="{ 'is-invalid': form.errors.has('email') }" name="email" id="email" required>
                             <has-error :form="form" field="email"></has-error>
                         </div>
                         <div class="mb-3">
 
-                            <input v-model="form.password" placeholder="Password" id="password" :type="show === true ?'text' : 'password'"
+                            <input  v-model="form.password" placeholder="Password" id="password" :type="show === true ?'text' : 'password'"
                                    :class="{ 'is-invalid': form.errors.has('password') }" class="form-control" name="password" required autocomplete="password">
-                            <hr class="strength" :class="'level_' + strengthLevel">
-                            <i class="fa fa-eye show-icon" v-if="show" @click="show = !show"></i>
-                            <i class="fa fa-eye-slash hide-icon" v-if="show" @click="show = !show"></i>
+                            <!--<hr class="strength" :class="'level_' + strengthLevel">-->
                             <has-error :form="form" field="password"></has-error>
- HEAD
-                            {{scorePassword}}
 
-                            <div class = "strength" :class = "'level_0'" ></div>
-
-                            <i class = "fas fa-eye show-icon" v-if = "show" @click="show = !show"></i>
-                            <i class = "fas fa-eye-slash hide-icon" v-else @click="show = !show"></i>
- kwame
-                        </div>
+                 </div>
 
                         <div class="mb-3">
-                            <input v-model="form.password_confirmation" placeholder="Confirm Password" id="password-confirm" :type="showConfirm === true ?'text' : 'password'"
+                            <input  v-model="form.password_confirmation" placeholder="Confirm Password" id="password-confirm" :type="showConfirm === true ?'text' : 'password'"
                                    :class="{ 'is-invalid': form.errors.has('password_confirmation') }" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             <has-error :form="form" field="password_confirmation"></has-error>
                         </div>
@@ -115,74 +106,74 @@
                 nextPage: false,
             }
         },
-        validations:{
-            password:{
-                required,
-                minLength: minLength(8),
-                hasLetters(value){
-                    if(value === '')return true;
+        validations: {
+            form: {
+                password: {
+                    required,
+                    minLength: minLength(8),
+                    hasLetters(value) {
+                        if (value === '') return true;
 
-                    let text_reg = '/([a-z].*[A-Z])|([A-Z].*[a-z])/';
-                    return new Promise((resolve) => {
-                        setTimeout(()=>{
-                            resolve(text_reg.test(value))
-                        }, 350 + Math.random() * 300);
-                    });
+                        let text_reg = '/([a-z].*[A-Z])|([A-Z].*[a-z])/';
+                        return new Promise((resolve) => {
+                            setTimeout(() => {
+                                resolve(text_reg.test(value))
+                            }, 350 + Math.random() * 300);
+                        });
+                    },
+                    hasNumbers(value) {
+                        if (value === '') return true;
+                        let text_reg = '/([0-9])/';
+                        return new Promise((resolve) => {
+                            setTimeout(() => {
+                                resolve(text_reg.test(value))
+                            }, 350 + Math.random() * 300);
+                        });
+                    },
+                    hasChar(value) {
+                        if (value === '') return true;
+                        let text_reg = '/(.*[!,%,&,@,#,$,^,*,?,_,~].*[!,%,&,@,#,$,^,*,?,_,~])/';
+                        return new Promise((resolve) => {
+                            setTimeout(() => {
+                                resolve(text_reg.test(value))
+                            }, 350 + Math.random() * 300);
+                        });
+                    }
+
+
                 },
-                hasNumbers(value){
-                    if(value === '')return true;
-                    let text_reg = '/([0-9])/';
-                    return new Promise((resolve) => {
-                        setTimeout(()=>{
-                            resolve(text_reg.test(value))
-                        }, 350 + Math.random() * 300);
-                    });
+                password_confirmation: {},
+            },
+        },
+            methods: {
+
+                next() {
+                    this.nextPage = true;
+
                 },
-                hasChar(value){
-                    if(value === '')return true;
-                    let text_reg = '/(.*[!,%,&,@,#,$,^,*,?,_,~].*[!,%,&,@,#,$,^,*,?,_,~])/';
-                    return new Promise((resolve) => {
-                        setTimeout(()=>{
-                            resolve(text_reg.test(value))
-                        }, 350 + Math.random() * 300);
-                    });
-                }
+                back() {
+                    this.nextPage = false;
+                },
+                submit() {
+                    if (this.form.user_type !== null) {
+                        this.$Progress.start()
+                        this.form.post('/register').then((response) => {
+                            window.location.assign('/home');
+                        })
+                            .catch((error) => {
+                                this.nextPage = false;
+                            })
+                    }
+                },
+                signIn() {
+                    window.location.assign('/login');
+                },
+            },
+            mounted() {
+                console.log('Component mounted.')
 
-
             },
-            password_confirmation:{
-
-            },
-        },
-        methods:{
-
-            next(){
-                 this.nextPage = true;
-
-            },
-            back(){
-                this.nextPage = false;
-            },
-            submit(){
-                if(this.form.user_type !== null){
-                    this.$Progress.start()
-                    this.form.post('/register').then((response)=>{
-                        window.location.assign('/home');
-                    })
-                    .catch((error)=>{
-                        this.nextPage = false;
-                    })
-                }
-            },
-            signIn(){
-              window.location.assign('/login');
-            },
-        },
-        mounted() {
-            console.log('Component mounted.')
-HEAD
-        },
-        computed:{
+            /*computed:{
             scorePassword(){
                 let score = 0;
                 if(this.form.password === '')return score;
@@ -215,11 +206,9 @@ HEAD
                 if(pass < 75) return 3;
                 if(pass >= 75) return 4;
             },
-        },
+        },*/
 
-        }
 
- kwame
     }
 </script>
 
@@ -333,5 +322,4 @@ HEAD
         color: #4e555b;
     }
 
- kwame
 </style>

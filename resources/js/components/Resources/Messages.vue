@@ -9,12 +9,8 @@
             <v-card>
                 <v-list>
                     <v-list-item>
-                        <v-list-item-avatar>
-
-                        </v-list-item-avatar>
-
                         <v-list-item-content>
-                            <v-list-item-title></v-list-item-title>
+                            <v-list-item-title @click="chat">Chat</v-list-item-title>
                             <v-list-item-subtitle></v-list-item-subtitle>
                         </v-list-item-content>
 
@@ -51,7 +47,17 @@
 
 <script>
     export default {
-        name: "Messages"
+        name: "Messages",
+        data(){
+          return{
+
+          }
+        },
+        methods:{
+            chat(){
+                window.location.assign('/data/chat');
+            }
+        },
     }
 </script>
 
