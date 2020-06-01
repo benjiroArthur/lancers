@@ -183,6 +183,11 @@ Vue.component('freelancer-profile', require('./components/Freelancer/Dashboard/F
 Vue.component('client-profile', require('./components/ProjectManager/Dashboard/ClientProfile.vue').default);
 Vue.component('admin-profile', require('./components/Admin/Dashboard.vue').default);
 Vue.component('chat', require('./components/Chat/Chat.vue').default);
+Vue.component('chat-header', require('./components/Chat/ChatHeader.vue').default);
+Vue.component('contact-list', require('./components/Chat/ContactList.vue').default);
+Vue.component('conversation', require('./components/Chat/Conversation.vue').default);
+Vue.component('messages-composer', require('./components/Chat/MessagesComposer').default);
+Vue.component('messages-feed', require('./components/Chat/MessagesFeed.vue').default);
 
 Vue.component('VueSlickCarousel', VueSlickCarousel);
 Vue.component('slick', Slick);
