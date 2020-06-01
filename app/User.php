@@ -61,11 +61,11 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function friendOfMine(){
-        return $this->belongsToMany('App\User', 'friends', 'user_id', 'friend_id');
+        return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id');
     }
 
     public function friendOf(){
-        return $this->belongsToMany('App\User', 'friends', 'friend_id', 'user_id');
+        return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id');
     }
 
     public function friends(){

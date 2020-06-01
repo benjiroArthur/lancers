@@ -17,14 +17,18 @@
                             <has-error :form="form" field="email"></has-error>
                         </div>
                         <div class="mb-3">
-                            <input v-model="form.password" placeholder="Password" id="password" type="password"
+
+                            <input v-model="form.password" placeholder="Password" id="password" :type="show === true ?'text' : 'password'"
                                    :class="{ 'is-invalid': form.errors.has('password') }" class="form-control" name="password" required autocomplete="password">
+                            <hr class="strength" :class="'level_' + strengthLevel">
+                            <i class="fa fa-eye show-icon" v-if="show" @click="show = !show"></i>
+                            <i class="fa fa-eye-slash hide-icon" v-if="show" @click="show = !show"></i>
                             <has-error :form="form" field="password"></has-error>
+                            {{scorePassword}}
                         </div>
                         <div class="mb-3">
-                            <input v-model="form.password_confirmation" placeholder="Confirm Password" id="password-confirm" type="password"
+                            <input v-model="form.password_confirmation" placeholder="Confirm Password" id="password-confirm" :type="showConfirm === true ?'text' : 'password'"
                                    :class="{ 'is-invalid': form.errors.has('password_confirmation') }" class="form-control" name="password_confirmation" required autocomplete="new-password">
-
                             <has-error :form="form" field="password_confirmation"></has-error>
                         </div>
                         <div class="form-check mt-2">
@@ -82,10 +86,13 @@
 </template>
 
 <script>
+    import {required, minLength, maxLength, between, sameAs, email} from 'vuelidate/lib/validators'
     export default {
         name: "Register",
         data(){
             return{
+                show:false,
+                showConfirm:false,
                 options: [
                     { value: null, text: 'Select Your User Type' },
                     { value: 'freelancer', text: 'I Want To Work' },
@@ -100,7 +107,47 @@
                 nextPage: false,
             }
         },
+        validations:{
+            password:{
+                required,
+                minLength: minLength(8),
+                hasLetters(value){
+                    if(value === '')return true;
+
+                    let text_reg = '/([a-z].*[A-Z])|([A-Z].*[a-z])/';
+                    return new Promise((resolve) => {
+                        setTimeout(()=>{
+                            resolve(text_reg.test(value))
+                        }, 350 + Math.random() * 300);
+                    });
+                },
+                hasNumbers(value){
+                    if(value === '')return true;
+                    let text_reg = '/([0-9])/';
+                    return new Promise((resolve) => {
+                        setTimeout(()=>{
+                            resolve(text_reg.test(value))
+                        }, 350 + Math.random() * 300);
+                    });
+                },
+                hasChar(value){
+                    if(value === '')return true;
+                    let text_reg = '/(.*[!,%,&,@,#,$,^,*,?,_,~].*[!,%,&,@,#,$,^,*,?,_,~])/';
+                    return new Promise((resolve) => {
+                        setTimeout(()=>{
+                            resolve(text_reg.test(value))
+                        }, 350 + Math.random() * 300);
+                    });
+                }
+
+
+            },
+            password_confirmation:{
+
+            },
+        },
         methods:{
+
             next(){
                  this.nextPage = true;
 
@@ -125,7 +172,41 @@
         },
         mounted() {
             console.log('Component mounted.')
-        }
+        },
+        computed:{
+            scorePassword(){
+                let score = 0;
+                if(this.form.password === '')return score;
+
+                let letters = {};
+                for(let i = 0; i < this.form.password.length; i++){
+                    letters[this.form.password[i]] = (letters[this.form.password[i]] || 0) + 1;
+                    score += 5.0 / letters[this.form.password[i]];
+                }
+
+                let variations = {
+                    digits:/\d/.test(this.form.password),
+                    lower:/[a-z]/.test(this.form.password),
+                    upper:/[A-Z]/.test(this.form.password),
+                    special:/\W/.test(this.form.password)
+                };
+                let variationsCount = 0;
+                for(let check in variations){
+                    variationsCount += (variations[check] === true) ? 1 : 0;
+                }
+                score += (variationsCount - 1) * 10;
+
+                return parseInt(score);
+            },
+            strengthLevel(){
+                let pass = this.scorePassword;
+                if(pass === 0) return 0;
+                if(pass < 25) return 1;
+                if(pass < 50) return 2;
+                if(pass < 75) return 3;
+                if(pass >= 75) return 4;
+            },
+        },
     }
 </script>
 
@@ -134,10 +215,52 @@
         cursor: pointer;
         &:hover{
             background-color: white;
-            color: #32a778;
+            color: #9bf806;
             -webkit-transition: all 0.4s;
             -moz-transition: all 0.4s;
             transition: all 0.4s;
         }
+    }
+    .strength{
+        width: 25%;
+        margin-top: -3px;
+        height: 3px;
+        border-radius: 10px;
+        //overflow: hidden;
+        //z-index: 9;
+        //transition: all .5s linear;
+    }
+    @mixin level($position, $width, $color){
+        border: $position;
+        width: $width;
+        background-color: $color;
+    }
+    .level_0{
+        @include level(0, 25%, #f80606)
+    }
+    .level_1{
+        @include level(-10, 25%, #f80606)
+    }
+    .level_2{
+        @include level(-10, 50%, #f6681b)
+    }
+    .level_3{
+        @include level(-10, 75%, #f8d006)
+    }
+    .level_4{
+        @include level(-10, 100%, #9bf806)
+    }
+    @mixin showpass($property){
+        position: absolute;
+        left: $property;
+        z-index: 11;
+        cursor: pointer;
+    }
+    .show-icon{
+        @include showpass(20px);
+    }
+    .hide-icon{
+        @include showpass(18px);
+        color: grey;
     }
 </style>

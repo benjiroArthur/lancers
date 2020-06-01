@@ -17,10 +17,13 @@ if (App::environment('production')) {
     URL::forceScheme('https');
 }
 
+
+
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/data/isUnique', 'IsUniqueController@email');
 Route::middleware('auth')->get('/data/user', function () {
     return response()->json(Auth::user());
 });
