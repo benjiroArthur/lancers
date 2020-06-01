@@ -34,7 +34,7 @@
                         <div class="form-check mt-2">
                             <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" required>
                             <label class="form-check-label" for="defaultCheck1">
-                                I Agree To The Lancers <a href="#">User Agreement</a> And <a href="#">Privacy Policy</a>
+                                I Agree To The<a href="#">User Agreement</a> And <a href="#">Privacy Policy</a>
                             </label>
                         </div>
 
