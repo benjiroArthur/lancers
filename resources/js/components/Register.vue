@@ -219,8 +219,7 @@ HEAD
 
         }
 
- kwame
-    }
+
 </script>
 
 <style lang="scss" scoped>
@@ -333,5 +332,4 @@ HEAD
         color: #4e555b;
     }
 
- kwame
 </style>
