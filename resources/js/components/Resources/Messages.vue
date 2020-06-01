@@ -10,7 +10,7 @@
                 <v-list>
                     <v-list-item>
                         <v-list-item-content>
-                            <v-list-item-title @click="chat">Chat</v-list-item-title>
+                            <v-list-item-title class="mes-tab" @click="chat">Chat</v-list-item-title>
                             <v-list-item-subtitle></v-list-item-subtitle>
                         </v-list-item-content>
 
@@ -61,6 +61,8 @@
     }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+    .mes-tab{
+        cursor: pointer;
+    }
 </style>
