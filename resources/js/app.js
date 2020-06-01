@@ -180,6 +180,7 @@ Vue.component('client-home', require('./components/Home/ClientHome.vue').default
 Vue.component('freelancer-profile', require('./components/Freelancer/Dashboard/FreelancerProfile.vue').default);
 Vue.component('client-profile', require('./components/ProjectManager/Dashboard/ClientProfile.vue').default);
 Vue.component('admin-profile', require('./components/Admin/Dashboard.vue').default);
+Vue.component('chat', require('./components/Chat/Chat.vue').default);
 
 Vue.component('VueSlickCarousel', VueSlickCarousel);
 Vue.component('slick', Slick);

@@ -16,8 +16,9 @@ class ChatController extends Controller
      */
     public function index()
     {
-        $friends = Auth::user()->friends();
-        return view('Chat.index', compact('friends'));
+       /* $friends = Auth::user()->friends();
+        return view('Chat.index', compact('friends'));*/
+        return view('Chat.index');
     }
 
     /**
