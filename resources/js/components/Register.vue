@@ -17,14 +17,17 @@
                             <has-error :form="form" field="email"></has-error>
                         </div>
                         <div class="mb-3">
-                            <input v-model="form.password" placeholder="Password" id="password" type="password"
+                            <input v-model="form.password" placeholder="Password" id="password" :type="show === true ?'text' : 'password'"
                                    :class="{ 'is-invalid': form.errors.has('password') }" class="form-control" name="password" required autocomplete="password">
+                            <div class="strength" :class="'level_3'"></div>
+                            <i class="fa fa-eye show-icon" v-if="show" @click="show = !show"></i>
+                            <i class="fa fa-eye-slash hide-icon" v-if="show" @click="show = !show"></i>
                             <has-error :form="form" field="password"></has-error>
+
                         </div>
                         <div class="mb-3">
-                            <input v-model="form.password_confirmation" placeholder="Confirm Password" id="password-confirm" type="password"
+                            <input v-model="form.password_confirmation" placeholder="Confirm Password" id="password-confirm" :type="showConfirm === true ?'text' : 'password'"
                                    :class="{ 'is-invalid': form.errors.has('password_confirmation') }" class="form-control" name="password_confirmation" required autocomplete="new-password">
-
                             <has-error :form="form" field="password_confirmation"></has-error>
                         </div>
                         <div class="form-check mt-2">
@@ -86,6 +89,8 @@
         name: "Register",
         data(){
             return{
+                show:false,
+                showConfirm:false,
                 options: [
                     { value: null, text: 'Select Your User Type' },
                     { value: 'freelancer', text: 'I Want To Work' },
@@ -134,10 +139,44 @@
         cursor: pointer;
         &:hover{
             background-color: white;
-            color: #32a778;
+            color: #9bf806;
             -webkit-transition: all 0.4s;
             -moz-transition: all 0.4s;
             transition: all 0.4s;
         }
+    }
+    .strength{
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        right: 0;
+        display: block;
+        width: 25%;
+        height: 100%;
+        background-color: #00b44e;
+        border-radius: 10px;
+        overflow: hidden;
+        z-index: 9;
+        transition: all .5s linear;
+    }
+    @mixin level($position, $width, $color){
+        border: $position;
+        width: $width;
+        color: $color;
+    }
+    .level_0{
+        @include level(0, 25%, #f80606)
+    }
+    .level_1{
+        @include level(-10, 25%, #f80606)
+    }
+    .level_2{
+        @include level(-10, 50%, #f6681b)
+    }
+    .level_3{
+        @include level(-10, 75%, #f8d006)
+    }
+    .level_4{
+        @include level(-10, 100%, #9bf806)
     }
 </style>
