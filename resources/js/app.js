@@ -18,6 +18,8 @@ import {RotateSquare2} from 'vue-loading-spinner';
 
 window.RotateSquare2 = RotateSquare2;
 
+import Vuelidate from "vuelidate";
+Vue.use(Vuelidate);
 
 Vue.use(VueRouter);
 
