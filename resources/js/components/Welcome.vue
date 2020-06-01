@@ -5,6 +5,32 @@
             <img v-for="(item,i) in items" :src="resource_path+item.src" class="img-fluid" alt="..."  :key="i">
         </VueSlickCarousel>
 
+
+        <div id = "myCarousel" class = "carousel slide" data-action="carousel">
+            <ol class = "carousel-indicators">
+                <li data-target = "#myCarousel" data-slide-to = "0" class="active"></li>
+                <li data-target = "#myCarousel" data-slide-to = "1"></li>
+                <li data-target = "#myCarousel" data-slide-to = "2"></li>
+                <li data-target = "#myCarousel" data-slide-to = "3"></li>
+            </ol>
+
+            <div class = "carousel-inner">
+                    <div class = "carousel-item active">
+                        <svg class = "bd-placeholder-img" width="100%" height="100%" xmlns = "" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/> </svg>
+                    </div>
+                        <div class = "container">
+                            <div class = "carousel-caption text-center">
+                                <h1>Hire the best freelancer for any job online</h1>
+                                <button type="button" class="btn btn-primary btn-lg">Hire A Freelancer</button>
+                                <button type="button" class="btn btn-primary btn-lg">Earn Money Freelancing</button>
+                            </div>
+                        </div>
+            </div>
+        </div>
+
+
+
+
         <!-- Commenting this whole block out --
 
         <h2 class = "text-centre mt-3 text-bold text-dark">NEED WORK DONE?</h2>
@@ -178,12 +204,15 @@
 
 
         <!-- End of comments -->
+ HEAD
 
         <div class="test-div">
 
         </div>
 
 
+
+ kwame
     </div>
 </template>
 
