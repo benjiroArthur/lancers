@@ -23,14 +23,14 @@
                                         </div>
                                         <div class="col-8">
                                             <div class="card-title text-dark text-bold">{{this.client.userable.email}}</div>
-                                            <!--<div class="card-tools text-right">
+                                            <div class="card-tools text-right">
                                                 <a class="text-white text-bold text-left btn bg-lancer" @click="portfolioToggle('true', $event)" href="#">Edit Profile</a>
-                                            </div>-->
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!--<div v-show="portfolioEditMode === true" class="card shadow">
+                            <div v-show="portfolioEditMode === true" class="card shadow">
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-4 text-left">
