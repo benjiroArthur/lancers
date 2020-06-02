@@ -135,29 +135,22 @@
 
         <footer class="bg-lancer text-center text-white">
             <div class="container-fluid">
-                <div class="row">
+                <div class="row text-white">
                     <div class="col-md-2">
                         <img src="{{asset('/images/lancers_logo_inverted.png')}}" width="auto" height="30" alt="" loading="lazy">
-
                     </div>
-                    <div class="col-md-4">
-                        <p></p>
+                    <div class="col-md-7">
                         <p class="text-white">@Lancers {{date('Y')}}</p>
                     </div>
-
-                    <div class="col-md-2 text-white">
-                        <p></p>
+                    <div class="col-md-1 text-white">
                         <p><span class="fab fa-instagram"></span>&nbsp;  Instagram</p>
                     </div>
-                    <div class="col-md-2">
-                        <p></p>
+                    <div class="col-md-1">
                         <p><span class="fab fa-facebook"></span>&nbsp;  Facebook</p>
                     </div>
-                    <div class="col-md-2">
-                        <p></p>
+                    <div class="col-md-1">
                         <p><span class="fab fa-twitter"></span>&nbsp;  Twitter</p>
                     </div>
-                    <div class="col-md-1 text-white"></div>
                 </div>
             </div>
         </footer>
