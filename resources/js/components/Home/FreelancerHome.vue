@@ -30,8 +30,10 @@
                             <div class="card-body text-center">
                                <div class="mt-2 ml-5 pr-2">
                                    <i class="fas fa-clipboard-list pro-list-icon text-lancer"></i>
-                                   <p>Start bidding now on projects the meet your skills</p>
-                                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A exercitationem labore nesciunt sequi velit. Aliquid minima necessitatibus recusandae! Alias autem corporis eos error labore libero odio quam quis vero voluptatem!</p>
+                                   <p>Start bidding now on projects that meet your skills</p>
+                                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                       A exercitationem labore nesciunt sequi velit. Aliquid minima
+                                       necessitatibus recusandae! Alias autem corporis eos error labore libero odio quam quis vero voluptatem!</p>
                                    <a class="btn bg-lancer text-white">Browse Projects</a>
                                </div>
                             </div>

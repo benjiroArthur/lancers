@@ -1,6 +1,7 @@
 <template>
     <div class="card-header">
-        <h3 class="card-title">{{selectedContact.length > 0 ? selectedContact.userable.full_name : 'Select A Contact'}}</h3>
+        <h3 v-if="contact !== null" class="card-title" >{{contact.userable.full_name}}</h3>
+        <h3 v-show="contact === null" class="card-title">Select A Contact</h3>
 
         <div class="card-tools">
             <span v-show="unreadCount > 0" data-toggle="tooltip" :title="unreadCount + 'New Messages'" class="badge bg-success">{{this.unreadCount}}</span>
@@ -8,7 +9,7 @@
             </button>-->
             <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Contacts"
                     data-widget="chat-pane-toggle">
-                <i class="fas fa-user-circle"></i></button>
+                <i class="fas fa-user-circle h3"></i></button>
             <!--<button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
             </button>-->
         </div>
@@ -18,6 +19,12 @@
 <script>
     export default {
         name: "Header",
+        props:{
+            contact:{
+                type: Object,
+                default: null,
+            },
+        },
         data(){
            return{
                selectedContact:{},
@@ -28,9 +35,9 @@
 
         },
         mounted() {
-            Fire.$on('contactSelected', (contact)=>{
+            /*Fire.$on('contactSelected', (contact)=>{
                 this.selectedContact = contact;
-            });
+            });*/
         }
     }
 </script>

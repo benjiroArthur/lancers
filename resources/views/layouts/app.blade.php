@@ -94,25 +94,25 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="navbarDropdown">
-                                    <ul class="text-dark">
-                                            <li class="nav-item text-center">
+                                    <ul class="text-dark text-left">
+                                            <li class="nav-item">
                                                 <a href="{{url('/profile')}}" class="dropdown-item nav-link  text-dark">
                                                     <p>Profile</p>
                                                 </a>
                                             </li>
-                                            <li class="nav-item text-center">
+                                            <li class="nav-item">
                                                 <a href="#" class="dropdown-item nav-link  text-dark">
                                                     <p>User Settings</p>
                                                 </a>
                                             </li>
 
-                                        <li class="nav-item text-center text-dark">
+                                        <li class="nav-item text-dark">
                                             <a href="#" class="dropdown-item nav-link  text-dark">
                                                 <p>Get Support</p>
                                             </a>
                                         </li>
                                     </ul>
-                                    <a class="dropdown-item text-center nav-item" href="{{ route('logout') }}"
+                                    <a class="dropdown-item nav-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -130,6 +130,7 @@
         </nav>
 
         <main class="py-4">
+            @include('includes.messages')
             @yield('content')
         </main>
 
@@ -139,7 +140,7 @@
                     <div class="col-md-2">
                         <img src="{{asset('/images/lancers_logo_inverted.png')}}" width="auto" height="30" alt="" loading="lazy">
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-6">
                         <p class="text-white">@Lancers {{date('Y')}}</p>
                     </div>
                     <div class="col-md-1 text-white">
@@ -150,6 +151,8 @@
                     </div>
                     <div class="col-md-1">
                         <p><span class="fab fa-twitter"></span>&nbsp;  Twitter</p>
+                    </div>
+                    <div class="col-md-1">
                     </div>
                 </div>
             </div>

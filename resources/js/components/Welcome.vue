@@ -199,20 +199,15 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-
+        </div> -->
 
         <!-- End of comments -->
- HEAD
 
         <div class="test-div">
 
         </div>
 
 
-
- kwame
     </div>
 </template>
 

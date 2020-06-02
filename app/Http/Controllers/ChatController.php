@@ -16,9 +16,6 @@ class ChatController extends Controller
      */
     public function index()
     {
-        //$friends = Auth::user()->friends;
-        // return $friends;
-        //return view('Chat.index', compact('friends'));
        return view('Chat.index');
     }
 
@@ -43,11 +40,20 @@ class ChatController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        //
+       $this->validate($request,[
+           'to' => 'required',
+           'chat' => 'required'
+       ]);
+
+       $data = $request->all();
+       $data['from'] = \auth()->user()->id;
+       $chat = new Chat();
+       $chat = $chat->create($data);
+       return response()->json($chat);
     }
 
     /**
@@ -98,9 +104,9 @@ class ChatController extends Controller
 
     public function getChat($id) {
         $chats = Chat::where(function ($query) use ($id) {
-            $query->where('user_id', '=', Auth::user()->id)->where('friend_id', '=', $id);
+            $query->where('from', '=', Auth::user()->id)->where('to', '=', $id);
         })->orWhere(function ($query) use ($id){
-            $query->where('user_id', '=', $id)->where('friend_id', '=', Auth::user()->id);
+            $query->where('from', '=', $id)->where('to', '=', Auth::user()->id);
         })->get();
 
         return $chats;
