@@ -152,8 +152,14 @@ class ProfileController extends Controller
 
     //save address
     public function address(Request $request){
+        $address = auth()->user()->address;
+        if(isEmpty($address)){
         auth()->user()->address()->create($request->all());
         return response("success");
+        }else{
+            auth()->address()->update($address);
+            return ("success");
+        }
     }
 
 }
