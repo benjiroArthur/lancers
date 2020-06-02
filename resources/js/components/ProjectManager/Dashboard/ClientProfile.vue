@@ -23,52 +23,86 @@
                                         </div>
                                         <div class="col-8">
                                             <div class="card-title text-dark text-bold">{{this.client.userable.email}}</div>
-                                            <!--<div class="card-tools text-right">
-                                                <a class="text-white text-bold text-left btn bg-lancer" @click="portfolioToggle('true', $event)" href="#">Edit Profile</a>
-                                            </div>-->
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!--<div v-show="portfolioEditMode === true" class="card shadow">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-4 text-left">
-                                            <div class="img-holder mb-2">
-                                                <img :src="client.userable.image_path" alt="" class="img-thumbnail">
-                                                <span class="fas fa-camera" data-toggle="modal" data-target="#profileModal" tooltip="Edit Profile Picture"
-                                                      style="position: absolute; transform: translate(-70%, 200%); -ms-transform: translate(-70%, 200%); width:20px;"></span>
-                                            </div>
-                                        </div>
-                                        <div class="col-8">
-                                            <div class="card-header bg-none">
-                                                <div class="card-title text-dark text-bold mb-3">{{this.client.userable.email}}</div>
-                                            </div>
-                                            <div class="card-body text-left">
-                                                <form ref="portfolioForm" @submit.prevent="updatePortfolio">
-                                                    <div class="form-group">
-                                                        <input v-model="portfolioForm.title" type="text" name="title" placeholder="Professional Title"
-                                                               class="form-control" :class="{ 'is-invalid': portfolioForm.errors.has('title') }">
-                                                        <has-error :form="portfolioForm" field="title"></has-error>
-                                                    </div>
-                                                    <div class="form-group">
-                                                    <textarea v-model="portfolioForm.description" type="text" name="description" rows="5" placeholder="Summary"
-                                                              class="form-control" :class="{ 'is-invalid': portfolioForm.errors.has('description') }"></textarea>
-                                                        <has-error :form="portfolioForm" field="description"></has-error>
-                                                    </div>
-                                                    <div class="text-right">
-                                                        <button type="button" class="btn btn-danger" @click="portfolioToggle('false', $event)" >Cancel</button>
-                                                        <button type="submit" class="btn bg-lancer text-white">Save</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>-->
                         </div>
                     </div>
                     <!--Portfolio ends-->
+
+                    <!--Address Details Starts-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div v-show="addressEditMode === false" class="card shadow">
+                                <div class="card-header bg-none">
+                                    <div class="card-title text-bold">Address Information</div>
+                                    <div class="card-tools text-right">
+                                        <a class="text-white text-bold text-left btn bg-lancer" @click="addressToggle('true', $event)" href="#">Edit</a>
+                                    </div>
+                                </div>
+
+                                <div class="card-body text-left">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <p>Country:  {{this.client.address.country | checkNull}}</p>
+                                            <p>City:  {{this.client.address.city | checkNull}}</p>
+                                            <p>Zip Code: {{this.client.address.zipcode | checkNull}}</p>
+                                            <p>Phone number: {{this.client.address.phone_number | checkNull}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-show="addressEditMode === true" class="card shadow">
+                                <div class="card-header bg-none">
+                                    <div class="card-title text-bold">Edit Address</div>
+                                </div>
+                                <div class="card-body text-center">
+                                    <form ref="profileForm" @submit.prevent="updateAddress">
+                                        <div class="row">
+                                            <div class ="col-6">
+                                                <div class="form-group">
+                                                    <select v-model="addressForm.country" type="text" name="country"
+                                                            class="form-control" :class="{ 'is-invalid': addressForm.errors.has('country') }" required>
+                                                        <option selected>Country</option>
+                                                        <option v-for="(country, i) in countries" :key="i">{{country.name}}</option>
+                                                    </select>
+                                                    <has-error :form="addressForm" field="country"></has-error>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input v-model="addressForm.city" type="text" name="city" placeholder="City"
+                                                           class="form-control" :class="{ 'is-invalid': addressForm.errors.has('city') }">
+                                                    <has-error :form="addressForm" field="city"></has-error>
+                                                </div>
+                                            </div>
+                                            <div class ="col-6">
+                                                <div class="form-group">
+                                                    <input v-model="addressForm.zipcode" type="text" name="zipcode" placeholder="Zip Code"
+                                                           class="form-control" :class="{ 'is-invalid': addressForm.errors.has('zipcode') }" required>
+                                                    <has-error :form="addressForm" field="zipcode"></has-error>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input v-model="addressForm.phone_number" type="text" name="phone_number" placeholder="Phone Number"
+                                                           class="form-control" :class="{ 'is-invalid': addressForm.errors.has('phone_number') }" required>
+                                                    <has-error :form="addressForm" field="phone_number"></has-error>
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class ="row">
+                                            <div class="text-center">
+                                                <button type="button" class="btn btn-danger" @click="addressToggle('false', $event)" >Cancel</button>
+                                                <button type="submit" class="btn bg-lancer text-white">Save</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Address Details Ends-->
 
                     <!--Links Starts-->
                     <div class="row">
@@ -284,6 +318,7 @@
         name: "ClientProfile",
         data(){
             return{
+                countries:{},
                 client:{},
                 portfolioForm: new Form({
                     title: '',
@@ -297,8 +332,16 @@
                     dob: '',
                     email: '',
                 }),
+                addressForm: new Form({
+                    country: '',
+                    city: '',
+                    zipcode: '',
+                    phone_number: '',
+                    user_id: '',
+                }),
                 portfolioEditMode: false,
                 profileEditMode: false,
+                addressEditMode: false,
                 genderOptions: [
                     { value: 'male', text: 'Male' },
                     { value: 'female', text: 'Female' },
@@ -315,6 +358,15 @@
             }
         },
         methods:{
+            addressToggle(val, event){
+                event.preventDefault();
+                if(val === 'true'){
+                    this.addressEditMode = true;
+                }
+                else if(val === 'false'){
+                    this.addressEditMode = false;
+                }
+            },
             //get user details
             getIndex(){
                 axios
@@ -324,6 +376,14 @@
                         this.portfolioForm.fill(this.client.userable.portfolio)
                         this.profileForm.fill(this.client.userable)
                         this.links = this.client.userable.links
+                    })
+            },
+            //get countries
+            getCountries(){
+                axios
+                    .get('https://restcountries.eu/rest/v2/all')
+                    .then((response) => {
+                        this.countries = response.data;
                     })
             },
             //update user portfolio
