@@ -1,18 +1,18 @@
 <template>
-     <div class="direct-chat-contacts">
+     <div class="direct-chat-contacts p-2 bg-lancer">
             <ul v-if="contacts.length > 0" class="contacts-list">
-                <li v-for="contact in contacts" :key="contact.id">
-                    <a href="#" @click="contactSelected(contact)">
-                        <img class="contacts-list-img" :src="contact.userable.image_path">
+                <li v-for="(contact, index) in contacts" :key="contact.id" @click="contactSelected(index, contact)"
+                    :class="{ 'selected' : index === selected}">
+                    <div>
+                        <img class="contacts-list-img" :src="contact.userable.image_path" alt="A">
 
-                        <div class="contacts-list-info">
+                        <div class="contacts-list-info text-black">
                               <span class="contacts-list-name">
                                 {{contact.userable.full_name}}
                               </span>
                         </div>
                         <!-- /.contacts-list-info -->
-                    </a>
-                    <span class="fas fa-times-circle text-danger float-right ml-5" @click.prevent="removeFromList(contact)"></span>
+                    </div>
                 </li>
                 <!-- End Contact Item -->
             </ul>
@@ -27,17 +27,19 @@
         props:{
             contacts:{
                 type: Array,
+                default: [],
             },
             onlineUsers:{},
         },
         data(){
             return{
-
+                selected: 0,
             }
         },
         methods:{
-            contactSelected(contact){
-                Fire.$emit('contactSelected', contact);
+            contactSelected(index, contact){
+                this.selected = index;
+                Fire.$emit('selected', contact);
             },
             removeFromList(contact){
                 alert('Yes');
@@ -89,8 +91,11 @@
         @media (max-width: 600px) {
             margin-left: 100px;
         }
-       margin-left: 500px;
-        max-height: 500px;
+        @media (max-width: 980px) {
+            margin-left: 400px;
+        }
+       margin-left: 700px;
+        max-height: 800px;
         min-height: 500px;
         overflow-y: scroll;
         padding-top: 10px;
@@ -99,15 +104,19 @@
         list-style: none;
         padding-left: 0;
         li{
-            display: flex;
+            //display: flex;
             border-bottom: 1px solid #a6a6a6;
             padding: 2px;
-            height: 80px;
+            //height: 80px;
             position: relative;
             cursor: pointer;
+            color: black !important;
             &.selected{
-                background: #c7a3e2 !important;
-                color: white;
+                background: #f7f7fc !important;
+                color: #0e0e0e !important;
+                span{
+                    color: #0e0e0e !important;
+                }
             }
 
             .avatar{
@@ -137,7 +146,7 @@
                 }
             }
             span.unread{
-                background: #4c0ab8;
+                background: #ff373e;
                 color: #fff;
                 position: absolute;
                 top: 20px;

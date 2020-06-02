@@ -1,18 +1,15 @@
 <template>
-    <div class="container-fluid">
+    <div class="container">
             <!-- DIRECT CHAT SUCCESS -->
             <div class="chat-app card card-success card-outline direct-chat direct-chat-success">
                 <!--header-->
-                <chat-header></chat-header>
+                <chat-header :contact="selectedContact"></chat-header>
                 <!-- /.card-header -->
 
                 <div class="card-body">
-                    <!-- Conversations are loaded here -->
-                    <messages-feed :messages="messages"></messages-feed>
-                    <!--/.direct-chat-messages-->
-
+                    <conversation :contact="selectedContact" :messages="messages"></conversation>
                     <!-- Contacts are loaded here -->
-                   <contact-list @contactSelected="contactSelected(contact)" :contacts="contacts" :onlineUsers="onlineUsers"></contact-list>
+                    <contact-list :contacts="contacts" :onlineUsers="onlineUsers"></contact-list>
                     <!-- /.direct-chat-pane -->
                 </div>
                 <!-- /.card-body -->
@@ -31,10 +28,9 @@
     import MessagesComposer from "./MessagesComposer";
     import ChatHeader from "./ChatHeader";
     import ContactList from "./ContactList";
-    import MessagesFeed from "./MessagesFeed";
     export default {
         name: "Chat",
-        components: {Conversation, MessagesComposer, ChatHeader, ContactList, MessagesFeed},
+        components: {Conversation, MessagesComposer, ChatHeader, ContactList},
         props:{
             user:{
                 type: Object,
@@ -46,7 +42,7 @@
                 selectedContact: null,
                 messages: [],
                 contacts: [],
-                contact:{},
+                contact:[],
                 onlineUsers: null,
             }
         },
@@ -60,12 +56,36 @@
                     console.log(error.message)
                 })
             },
-            sendMessage(){},
-            contactSelected(contact){},
+            sendMessage(message){
+                if(!this.selectedContact) return;
+                let formData = new FormData();
+                formData.append('to', this.selectedContact.id);
+                formData.append('chat', message)
+                axios.post('/chat', formData).then((response)=>{
+                    this.messages.push(response.data);
+                }).catch((error)=>{
+                    console.log(error.message)
+                })
+            },
+
+            startConversationWith(contact){
+                axios
+                .get(`/getChat/${contact.id}`)
+                .then((response) => {
+                    this.messages = response.data;
+                })
+                .catch((error)=>{})
+                this.selectedContact = contact;
+            },
         },
 
         mounted() {
-
+            Fire.$on('selected', (contact)=>{
+                this.startConversationWith(contact);
+            });
+            Fire.$on('send', (message)=>{
+                this.sendMessage(message);
+            });
         },
         created() {
             this.getContact();
@@ -75,6 +95,7 @@
 
 <style lang="scss" scoped>
     .chat-app{
-        min-height: 500px;
+        min-height: 600px;
+        max-height: 600px;
     }
 </style>

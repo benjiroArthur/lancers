@@ -54,15 +54,14 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::post('/user/job_link/edit/{id}', 'ProfileController@editLink');
 
 
-    // routes for messaging
-    Route::get('/chat', 'ChatController@index')->middleware('auth')->name('chat.index');
-    Route::get('/chat/{id}', 'ChatController@show')->middleware('auth')->name('chat.show');
-    Route::post('/chat/getChat/{id}', 'ChatController@getChat')->middleware('auth');
-
 });
 
 Route::resource('/friends', 'FriendsController');
-Route::get('/chat/contact', 'ChatController@contacts');
+Route::get('/getChat/{id}', 'ChatController@getChat');
+
+// routes for messaging
+
+Route::resource('/chat', 'ChatController')->middleware('auth');
 
 
 

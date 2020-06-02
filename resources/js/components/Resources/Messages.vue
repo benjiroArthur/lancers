@@ -55,7 +55,7 @@
         },
         methods:{
             chat(){
-                window.location.assign('/data/chat');
+                window.location.assign('/chat');
             }
         },
     }
