@@ -22,7 +22,7 @@
                                             <p>0 Recommendations</p>
                                         </div>
                                         <div class="col-8">
-                                            <div class="card-title text-dark text-bold">{{this.client.userable.email}}</div>
+                                            <div class="card-title text-dark text-bold">{{this.client.email}}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -42,16 +42,16 @@
                                     </div>
                                 </div>
 
-                                <div class="card-body text-left">
+                                <!--<div class="card-body text-left">
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-6" >
                                             <p>Country:  {{this.client.address.country | checkNull}}</p>
                                             <p>City:  {{this.client.address.city | checkNull}}</p>
                                             <p>Zip Code: {{this.client.address.zipcode | checkNull}}</p>
                                             <p>Phone number: {{this.client.address.phone_number | checkNull}}</p>
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                             <div v-show="addressEditMode === true" class="card shadow">
                                 <div class="card-header bg-none">
@@ -104,36 +104,6 @@
                     </div>
                     <!--Address Details Ends-->
 
-                    <!--Links Starts-->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card shadow">
-                                <div class="card-header bg-none">
-                                    <div class="card-title text-bold">Links to Projects Worked On</div>
-                                    <div class="card-tools text-right">
-                                        <a class="text-white text-bold text-left btn bg-lancer" @click="linksToggle($event)" href="#">Add Link</a>
-                                    </div>
-                                </div>
-
-                                <div class="card-body text-left text-dark">
-                                    <ul v-if="links.length > 0">
-                                        <li v-for="(link, i) in links" :key="i" class="nav-item">
-                                            <a :href="link.name" class="nav-link" target="_blank">{{link.name}}</a>
-                                        </li>
-                                    </ul>
-                                    <ul v-else>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="">some links here</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="">some links here too</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Links ends-->
                     <!--Bio data starts-->
                     <div class="row">
                         <div class="col-md-12">
@@ -186,7 +156,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <input v-model="profileForm.email" type="text" name="email" placeholder="Email"
+                                                    <input v-model="profileForm.email" type="email" name="email" placeholder="Email"
                                                            class="form-control" :class="{ 'is-invalid': profileForm.errors.has('email') }" readonly>
                                                     <has-error :form="profileForm" field="email"></has-error>
                                                 </div>
@@ -379,7 +349,23 @@
                         this.countries = response.data;
                     })
             },
-            updateAddress(){},
+            updateAddress(){
+                this.addressForm.post('/data/user/address')
+                    .then((response)=>{
+                        Fire.$emit('profileUpdate');
+                        this.addressEditMode = false;
+                        Swal.fire(
+                            'Update',
+                            'Address Updated Successfully',
+                            'success'
+                        );
+                    })
+                    .catch((error)=>{
+                        this.addressEditMode = true;
+                        console.log(error.message)
+                    })
+            },
+
             //load profile image for preview
             loadImage(e){
                 //

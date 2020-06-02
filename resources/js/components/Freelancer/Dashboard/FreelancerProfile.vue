@@ -488,7 +488,20 @@
 
             //update address
             updateAddress(){
-                this.addressForm.post('')
+                this.addressForm.post('/data/user/address')
+                                .then((response)=>{
+                                    Fire.$emit('profileUpdate');
+                                    this.addressEditMode = false;
+                                    Swal.fire(
+                                        'Update',
+                                        'Address Updated Successfully',
+                                        'success'
+                                    );
+                                })
+                                .catch((error)=>{
+                                    this.addressEditMode = true;
+                                    console.log(error.message)
+                                })
             },
             //update user profile
             updateProfile(){
