@@ -16,18 +16,18 @@ class ChatController extends Controller
      */
     public function index()
     {
-        $friends = Auth::user()->friends;
-       // return $friends;
-        return view('Chat.index', compact('friends'));
-        //return view('Chat.index');
+        //$friends = Auth::user()->friends;
+        // return $friends;
+        //return view('Chat.index', compact('friends'));
+       return view('Chat.index');
     }
 
 
-    public function contacts()
-    {
-        $contact = Auth::user()->friends;
-        return response()->json($contact);
-    }
+       public function contacts()
+        {
+            $contact = Auth::user()->friends;
+            return response()->json($contact);
+        }
 
     /**
      * Show the form for creating a new resource.
@@ -58,8 +58,8 @@ class ChatController extends Controller
      */
     public function show($id)
     {
-        $friends = User::find($id);
-        return view('Chat.show')->withFriend($friends);
+       /* $friends = User::find($id);
+        return view('Chat.show')->withFriend($friends);*/
     }
 
     /**

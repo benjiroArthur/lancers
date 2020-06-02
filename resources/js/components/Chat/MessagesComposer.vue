@@ -1,19 +1,39 @@
 <template>
     <div class="card-footer">
-        <form action="#" method="post">
             <div class="input-group">
-                <input type="text" name="message" placeholder="Type Message ..." class="form-control">
+                <textarea-autosize
+                    class="form-control"
+                    placeholder="Type Message ..."
+                    ref="myTextarea"
+                    v-model="message"
+                    :min-height="20"
+                    :max-height="350"
+                />
+               <!-- <textarea v-model="message" type="text" name="message" placeholder="Type Message ..." class="form-control" rows="1" aria-labelledby="Message"></textarea>-->
                 <span class="input-group-append">
-                      <button type="submit" class="btn btn-success">Send</button>
+                      <button type="button" class="btn bg-lancer" @click="send">Send</button>
                     </span>
             </div>
-        </form>
     </div>
 </template>
 
 <script>
     export default {
-        name: "MessagesComposer"
+        name: "MessagesComposer",
+        data(){
+            return{
+                message: '',
+            }
+        },
+        methods:{
+            send(){
+                if(this.message === ''){
+                    return;
+                }
+                Fire.$emit('send', this.message);
+                this.message = '';
+            }
+        },
     }
 </script>
 

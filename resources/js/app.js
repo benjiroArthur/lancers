@@ -12,7 +12,9 @@ import Slick from 'vue-slick';
 import Vuetify from 'vuetify';
 Vue.use(Vuetify);
 
+import TextareaAutosize from 'vue-textarea-autosize';
 
+Vue.use(TextareaAutosize);
 
 import {RotateSquare2} from 'vue-loading-spinner';
 

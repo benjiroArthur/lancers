@@ -1,6 +1,6 @@
 <template>
     <div class="card-header">
-        <h3 class="card-title">Direct Chat</h3>
+        <h3 class="card-title">{{selectedContact.length > 0 ? selectedContact.userable.full_name : 'Select A Contact'}}</h3>
 
         <div class="card-tools">
             <span v-show="unreadCount > 0" data-toggle="tooltip" :title="unreadCount + 'New Messages'" class="badge bg-success">unreadCount</span>
@@ -18,10 +18,17 @@
 <script>
     export default {
         name: "Header",
-        props:{
-            selectedContact:{},
-            UnreadCount: 0,
+        data(){
+           return{
+               selectedContact:{},
+               UnreadCount: 0,
+           }
         },
+        mounted() {
+            Fire.$on('contactSelected', (contact)=>{
+                this.selectedContact = contact;
+            });
+        }
     }
 </script>
 

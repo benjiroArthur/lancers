@@ -1,24 +1,23 @@
 <template>
      <div class="direct-chat-contacts">
-                            <ul class="contacts-list">
-                                <li>
-                                    <a href="#">
-                                        <img class="contacts-list-img" src="">
+            <ul v-if="contacts.length > 0" class="contacts-list">
+                <li v-for="contact in contacts" :key="contact.id" @click="contactSelected(contact)">
+                    <a href="#">
+                        <img class="contacts-list-img" :src="contact.userable.image_path">
 
-                                        <div class="contacts-list-info">
+                        <div class="contacts-list-info">
                               <span class="contacts-list-name">
-                                Count Dracula
-                                <small class="contacts-list-date float-right">2/28/2015</small>
+                                {{contact.userable.full_name}}
                               </span>
-                                            <span class="contacts-list-msg">How have you been? I was...</span>
-                                        </div>
-                                        <!-- /.contacts-list-info -->
-                                    </a>
-                                </li>
-                                <!-- End Contact Item -->
-                            </ul>
-                            <!-- /.contatcts-list -->
                         </div>
+                        <!-- /.contacts-list-info -->
+                    </a>
+                </li>
+                <!-- End Contact Item -->
+            </ul>
+                            <!-- /.contatcts-list -->
+         <p v-else>You Have No Contacts</p>
+     </div>
 </template>
 
 <script>
@@ -29,6 +28,16 @@
                 type: Array,
             },
             onlineUsers:{},
+        },
+        data(){
+            return{
+
+            }
+        },
+        methods:{
+            contactSelected(contact){
+                Fire.$emit('contactSelected', contact);
+            }
         },
     }
 </script>
