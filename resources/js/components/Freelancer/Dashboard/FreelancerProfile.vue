@@ -225,7 +225,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input v-model="profileForm.email" type="text" name="email" placeholder="Email"
+                                                <input v-model="profileForm.email" type="email" name="email" placeholder="Email"
                                                        class="form-control" :class="{ 'is-invalid': profileForm.errors.has('email') }" readonly>
                                                 <has-error :form="profileForm" field="email"></has-error>
                                             </div>
