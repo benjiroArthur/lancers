@@ -9,6 +9,7 @@ window._ = require('lodash');
 try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
+    window.laravel_echo_port= process.env.LARAVEL_ECHO_PORT;
     require('admin-lte');
     require('bootstrap');
 

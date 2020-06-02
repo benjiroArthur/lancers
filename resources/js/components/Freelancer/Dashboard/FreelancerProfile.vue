@@ -83,12 +83,13 @@
 
                             <div class="card-body text-left">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div v-if="freelancer.address !== null" class="col-6">
                                         <p>Country:  {{this.freelancer.userable.country | checkNull}}</p>
                                         <p>City:  {{this.freelancer.userable.city | checkNull}}</p>
                                         <p>Zip Code: {{this.freelancer.userable.zipcode | checkNull}}</p>
                                         <p>Phone number: {{this.freelancer.userable.phone_number | checkNull}}</p>
                                     </div>
+                                    <p v-else class="text-black text-bold h3 h-align-middle v-align-middle">Please Update Your Address Info</p>
                                 </div>
                             </div>
                         </div>
@@ -363,7 +364,7 @@
                     description: ''
                 }),
                 addressForm: new Form({
-                    country: '',
+                    country: 'Country',
                     city: '',
                     zipcode: '',
                     phone_number: '',
@@ -374,7 +375,7 @@
                     first_name: '',
                     last_name: '',
                     other_name: '',
-                    gender: '',
+                    gender: 'Gender',
                     dob: '',
                     email: '',
                 }),
@@ -579,6 +580,7 @@
         },
         mounted() {
             this.getIndex();
+            this.getCountries();
 
             Fire.$on('profileUpdate', ()=>{
                 this.getIndex();

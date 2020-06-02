@@ -42,16 +42,17 @@
                                     </div>
                                 </div>
 
-                                <!--<div class="card-body text-left">
+                                <div class="card-body text-left">
                                     <div class="row">
-                                        <div class="col-6" >
+                                        <div v-if="client.address !== null" class="col-6" >
                                             <p>Country:  {{this.client.address.country | checkNull}}</p>
                                             <p>City:  {{this.client.address.city | checkNull}}</p>
                                             <p>Zip Code: {{this.client.address.zipcode | checkNull}}</p>
                                             <p>Phone number: {{this.client.address.phone_number | checkNull}}</p>
                                         </div>
+                                        <p v-else class="text-black text-center text-bold h-align-middle h3 v-align-middle">Please Update Your Address Info</p>
                                     </div>
-                                </div>-->
+                                </div>
                             </div>
                             <div v-show="addressEditMode === true" class="card shadow">
                                 <div class="card-header bg-none">
@@ -294,12 +295,12 @@
                     first_name: '',
                     last_name: '',
                     other_name: '',
-                    gender: '',
+                    gender: 'Gender',
                     dob: '',
                     email: '',
                 }),
                 addressForm: new Form({
-                    country: '',
+                    country: 'Country',
                     city: '',
                     zipcode: '',
                     phone_number: '',
@@ -475,6 +476,7 @@
         },
         mounted() {
             this.getIndex();
+            this.getCountries();
 
             Fire.$on('profileUpdate', ()=>{
                 this.getIndex();

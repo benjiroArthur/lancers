@@ -21,7 +21,7 @@
         "laravel/ui": "^2.0",
         "laravelcollective/html": "^6.1",
         "mpociot/laravel-apidoc-generator": "^4.8",
-        "pusher/pusher-php-server": "~4.0",
+        "pusher/pusher-php-server": "^4.1",
         "spatie/laravel-permission": "^3.13"
     },
     "require-dev": {
