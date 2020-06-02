@@ -320,10 +320,6 @@
             return{
                 countries:{},
                 client:{},
-                portfolioForm: new Form({
-                    title: '',
-                    description: ''
-                }),
                 profileForm: new Form({
                     first_name: '',
                     last_name: '',
@@ -339,7 +335,6 @@
                     phone_number: '',
                     user_id: '',
                 }),
-                portfolioEditMode: false,
                 profileEditMode: false,
                 addressEditMode: false,
                 genderOptions: [
@@ -373,9 +368,7 @@
                     .get('/data/user')
                     .then((response) => {
                         this.client = response.data;
-                        this.portfolioForm.fill(this.client.userable.portfolio)
                         this.profileForm.fill(this.client.userable)
-                        this.links = this.client.userable.links
                     })
             },
             //get countries
@@ -386,22 +379,7 @@
                         this.countries = response.data;
                     })
             },
-            //update user portfolio
-            updatePortfolio(){
-                this.portfolioForm.post('/data/user/portfolio')
-                    .then((response) => {
-                        this.portfolioEditMode = false;
-                        Fire.$emit('profileUpdate');
-                        Swal.fire(
-                            'Update',
-                            'Portfolio Updated Successfully',
-                            'success'
-                        );
-                    })
-                    .catch((error) => {
-                        this.portfolioEditMode = true;
-                    })
-            },
+            updateAddress(){},
             //load profile image for preview
             loadImage(e){
                 //
@@ -486,16 +464,6 @@
                         );
                     })
                     .catch((error)=>{})
-            },
-            //toggle edit mode
-            portfolioToggle(val, event){
-                event.preventDefault();
-                if(val === 'true'){
-                    this.portfolioEditMode = true;
-                }
-                else if(val === 'false'){
-                    this.portfolioEditMode = false;
-                }
             },
             profileToggle(val, event){
                 event.preventDefault();

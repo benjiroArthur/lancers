@@ -150,4 +150,10 @@ class ProfileController extends Controller
         }
     }
 
+    //save address
+    public function address(Request $request){
+        auth()->user()->address()->create($request->all());
+        return response("success");
+    }
+
 }
