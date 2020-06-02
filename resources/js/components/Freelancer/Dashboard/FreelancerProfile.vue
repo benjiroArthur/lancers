@@ -13,9 +13,9 @@
                                         <div class="img-holder mb-2">
                                             <img :src="freelancer.userable.image_path" alt="" class="img-thumbnail">
                                         </div>
-                                        <div v-if="freelancer.address !== null">
-                                            <p>{{this.freelancer.address.country}}</p>
-                                            <p>{{this.freelancer.address.city}}</p>
+                                        <div v-if="freelancer.userable.portfolio !== null">
+                                            <p>{{this.freelancer.userable.portfolio.title}}</p>
+                                            <p>{{this.freelancer.userable.portfolio.description}}</p>
 
                                         </div>
                                         <p>Joined On {{freelancer.created_at | myDate}}</p>
@@ -487,7 +487,9 @@
             },
 
             //update address
-            updateAddress(){},
+            updateAddress(){
+                this.addressForm.post('')
+            },
             //update user profile
             updateProfile(){
                 this.profileForm.post('/data/user/profile')
