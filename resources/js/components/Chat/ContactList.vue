@@ -1,8 +1,8 @@
 <template>
      <div class="direct-chat-contacts">
             <ul v-if="contacts.length > 0" class="contacts-list">
-                <li v-for="contact in contacts" :key="contact.id" @click="contactSelected(contact)">
-                    <a href="#">
+                <li v-for="contact in contacts" :key="contact.id">
+                    <a href="#" @click="contactSelected(contact)">
                         <img class="contacts-list-img" :src="contact.userable.image_path">
 
                         <div class="contacts-list-info">
@@ -12,6 +12,7 @@
                         </div>
                         <!-- /.contacts-list-info -->
                     </a>
+                    <span class="fas fa-times-circle text-danger float-right ml-5" @click.prevent="removeFromList(contact)"></span>
                 </li>
                 <!-- End Contact Item -->
             </ul>
@@ -37,14 +38,58 @@
         methods:{
             contactSelected(contact){
                 Fire.$emit('contactSelected', contact);
-            }
+            },
+            removeFromList(contact){
+                alert('Yes');
+                /*Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You are about to remove" + contact.userable.first_name +"from your contact list!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        axios.delete('/friends/' + contact.id).then((response) => {
+                            if(response.data === "success")
+                            {
+                                Fire.$emit('tableUpdate');
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Contact Deleted Successfully',
+                                    'success'
+                                );
+
+                            }
+                            else{
+                                Swal.fire(
+                                    'Failed!',
+                                    response.data,
+                                    'warning'
+                                )
+                            }
+                        }).catch(() => {
+                            Swal.fire(
+                                'Failed!',
+                                'User Could Not Be Deleted.',
+                                'warning'
+                            )
+                        });
+                    }
+
+                });*/
+            },
         },
     }
 </script>
 
 <style lang="scss" scoped>
     .direct-chat-contacts{
-       margin-left: 100px;
+        @media (max-width: 600px) {
+            margin-left: 100px;
+        }
+       margin-left: 500px;
         max-height: 500px;
         min-height: 500px;
         overflow-y: scroll;
