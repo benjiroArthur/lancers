@@ -68,8 +68,14 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id');
     }
 
-    public function friends(){
-        return $this->friendsOfMine->merge($this->friendOf());
+    /*public function friends(){
+        return $this->friendsOfMine->merge($this->friendOf);
+    }*/
+
+    public function getFriendsAttribute(){
+        $friendsOfMine = $this->friendOfMine;
+        $friendOf = $this->friendOf;
+        return $friendsOfMine->merge($friendOf);
     }
 
 //    public function sender(){
@@ -83,4 +89,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendPasswordResetNotification($token){
        $this->notify(new PasswordResetNotification($token));
     }
+
+    /*public function getFriendsAttribute(){
+        $friendsOfMine = $this->friendsOfMine;
+        $friendOf = $this->friendOf;
+        return $friendsOfMine->merge($friendOf);
+    }*/
 }
