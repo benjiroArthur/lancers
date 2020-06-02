@@ -16,7 +16,7 @@ class FriendsController extends Controller
      */
     public function index()
     {
-        $contactList = Auth::user()->friends();
+        $contactList = Auth::user()->friends;
         $unreadIds = Chat::select(\DB::raw('`from` as sender_id, count(`from`) as messages_count'))
             ->where('to', auth()->user()->id)
             ->where('read', false)
