@@ -3,7 +3,7 @@
         <h3 class="card-title">{{selectedContact.length > 0 ? selectedContact.userable.full_name : 'Select A Contact'}}</h3>
 
         <div class="card-tools">
-            <span v-show="unreadCount > 0" data-toggle="tooltip" :title="unreadCount + 'New Messages'" class="badge bg-success">unreadCount</span>
+            <span v-show="unreadCount > 0" data-toggle="tooltip" :title="unreadCount + 'New Messages'" class="badge bg-success">{{this.unreadCount}}</span>
             <!--<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
             </button>-->
             <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Contacts"
@@ -21,8 +21,11 @@
         data(){
            return{
                selectedContact:{},
-               UnreadCount: 0,
+               unreadCount: 0,
            }
+        },
+        methods:{
+
         },
         mounted() {
             Fire.$on('contactSelected', (contact)=>{
