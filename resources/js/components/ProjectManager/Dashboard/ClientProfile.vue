@@ -6,7 +6,7 @@
                     <!--Portfolio starts-->
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card shadow">
+                            <div v-show="portfolioEditMode === false" class="card shadow">
                                 <div class="card-body text-center">
                                     <div class="row">
                                         <div class="col-4 text-left">
@@ -23,20 +23,49 @@
                                         </div>
                                         <div class="col-8">
                                             <div class="card-title text-dark text-bold">{{this.client.userable.email}}</div>
- HEAD
                                             <div class="card-tools text-right">
                                                 <a class="text-white text-bold text-left btn bg-lancer" @click="portfolioToggle('true', $event)" href="#">Edit Profile</a>
                                             </div>
-
- staged
                                         </div>
                                     </div>
                                 </div>
                             </div>
- HEAD
                             <div v-show="portfolioEditMode === true" class="card shadow">
                                 <div class="card-body">
-
+                                    <div class="row">
+                                        <div class="col-4 text-left">
+                                            <div class="img-holder mb-2">
+                                                <img :src="client.userable.image_path" alt="" class="img-thumbnail">
+                                                <span class="fas fa-camera" data-toggle="modal" data-target="#profileModal" tooltip="Edit Profile Picture"
+                                                      style="position: absolute; transform: translate(-70%, 200%); -ms-transform: translate(-70%, 200%); width:20px;"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="card-header bg-none">
+                                                <div class="card-title text-dark text-bold mb-3">{{this.client.userable.email}}</div>
+                                            </div>
+                                            <div class="card-body text-left">
+                                                <form ref="portfolioForm" @submit.prevent="updatePortfolio">
+                                                    <div class="form-group">
+                                                        <input v-model="portfolioForm.title" type="text" name="title" placeholder="Professional Title"
+                                                               class="form-control" :class="{ 'is-invalid': portfolioForm.errors.has('title') }">
+                                                        <has-error :form="portfolioForm" field="title"></has-error>
+                                                    </div>
+                                                    <div class="form-group">
+                                                    <textarea v-model="portfolioForm.description" type="text" name="description" rows="5" placeholder="Summary"
+                                                              class="form-control" :class="{ 'is-invalid': portfolioForm.errors.has('description') }"></textarea>
+                                                        <has-error :form="portfolioForm" field="description"></has-error>
+                                                    </div>
+                                                    <div class="text-right">
+                                                        <button type="button" class="btn btn-danger" @click="portfolioToggle('false', $event)" >Cancel</button>
+                                                        <button type="submit" class="btn bg-lancer text-white">Save</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!--Portfolio ends-->
@@ -53,13 +82,12 @@
                                 </div>
 
                                 <div class="card-body text-left">
- staged
                                     <div class="row">
                                         <div class="col-6">
-                                            <p>Country:  {{this.client.address.country | checkNull}}</p>
-                                            <p>City:  {{this.client.address.city | checkNull}}</p>
-                                            <p>Zip Code: {{this.client.address.zipcode | checkNull}}</p>
-                                            <p>Phone number: {{this.client.address.phone_number | checkNull}}</p>
+                                            <p>Country:  {{this.client.userable.country | checkNull}}</p>
+                                            <p>City:  {{this.client.userable.city | checkNull}}</p>
+                                            <p>Zip Code: {{this.client.userable.zipcode | checkNull}}</p>
+                                            <p>Phone number: {{this.client.userable.phone_number | checkNull}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -97,10 +125,7 @@
                                                            class="form-control" :class="{ 'is-invalid': addressForm.errors.has('phone_number') }" required>
                                                     <has-error :form="addressForm" field="phone_number"></has-error>
                                                 </div>
-
                                             </div>
-
-
                                         </div>
                                         <div class ="row">
                                             <div class="text-center">
@@ -120,7 +145,7 @@
                         <div class="col-md-12">
                             <div class="card shadow">
                                 <div class="card-header bg-none">
-                                    <div class="card-title text-bold">Links to Projects Worked On</div>
+                                    <div class="card-title text-bold">Links to Projects I Own</div>
                                     <div class="card-tools text-right">
                                         <a class="text-white text-bold text-left btn bg-lancer" @click="linksToggle($event)" href="#">Add Link</a>
                                     </div>
@@ -329,19 +354,10 @@
         name: "ClientProfile",
         data(){
             return{
-                countries:{},
                 client:{},
                 portfolioForm: new Form({
                     title: '',
                     description: ''
-                }),
-                profileForm: new Form({
-                    first_name: '',
-                    last_name: '',
-                    other_name: '',
-                    gender: '',
-                    dob: '',
-                    email: '',
                 }),
                 addressForm: new Form({
                     country: '',
@@ -350,9 +366,18 @@
                     phone_number: '',
                     user_id: '',
                 }),
+
+                profileForm: new Form({
+                    first_name: '',
+                    last_name: '',
+                    other_name: '',
+                    gender: '',
+                    dob: '',
+                    email: '',
+                }),
                 portfolioEditMode: false,
-                profileEditMode: false,
                 addressEditMode: false,
+                profileEditMode: false,
                 genderOptions: [
                     { value: 'male', text: 'Male' },
                     { value: 'female', text: 'Female' },
@@ -365,19 +390,10 @@
                     name:''
                 }),
                 links:{},
-
+                countries:{},
             }
         },
         methods:{
-            addressToggle(val, event){
-                event.preventDefault();
-                if(val === 'true'){
-                    this.addressEditMode = true;
-                }
-                else if(val === 'false'){
-                    this.addressEditMode = false;
-                }
-            },
             //get user details
             getIndex(){
                 axios
@@ -389,7 +405,6 @@
                         this.links = this.client.userable.links
                     })
             },
-            //get countries
             getCountries(){
                 axios
                     .get('https://restcountries.eu/rest/v2/all')
@@ -425,7 +440,7 @@
                 };
 
             },
-            //dave profile image
+            //save profile image
             submitImage(){
 
                 //Initialize the form data
@@ -467,6 +482,9 @@
                     });
                 $('#profileModal').modal('hide');
             },
+
+            //update address
+            updateAddress(){},
             //update user profile
             updateProfile(){
                 this.profileForm.post('/data/user/profile')
@@ -508,6 +526,17 @@
                     this.portfolioEditMode = false;
                 }
             },
+
+            addressToggle(val, event){
+                event.preventDefault();
+                if(val === 'true'){
+                    this.addressEditMode = true;
+                }
+                else if(val === 'false'){
+                    this.addressEditMode = false;
+                }
+            },
+
             profileToggle(val, event){
                 event.preventDefault();
                 if(val === 'true'){
@@ -540,6 +569,12 @@
     }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+    .top-bg-img{
+        background-image: url("/images/banner/bodybanner.jpg");
+        margin-top: -50px;
+    }
+    .profile-place{
+        padding-top: 200px;
+    }
 </style>
