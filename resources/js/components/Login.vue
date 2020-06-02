@@ -36,11 +36,7 @@
                                       Forgot Your Password?
                                   </a>
 
-
-
                               </div>
-
-
 
                             <div class="text-center mt-3">
                                 <!-- /.col -->

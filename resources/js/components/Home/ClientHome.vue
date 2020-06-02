@@ -96,7 +96,7 @@
 
                             <div class="card-body">
                                 <p>Setup Your Account</p>
-                                <a href="#"><p class="text-danger text-bold" v-if="client.profile_updated === false">Please Update Your Profile</p></a>
+                                <a href="#" @click="goToProfile" ><p class="text-danger text-bold" v-if="client.profile_updated === false">Please Update Your Profile</p></a>
                             </div>
                         </div>
                     </div>
@@ -127,6 +127,9 @@
             }
         },
         methods:{
+            goToProfile(){
+                window.location.assign('/profile');
+            },
             getIndex(){
                 axios
                     .get('/data/user')
