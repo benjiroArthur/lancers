@@ -211,11 +211,10 @@
         },*/
 
 
-HEAD
+
 
 
     }
-staged
 </script>
 
 <style lang="scss" scoped>

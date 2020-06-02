@@ -99,35 +99,42 @@
                             <div class="card-body text-center">
                                 <form ref="profileForm" @submit.prevent="updateAddress">
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class ="col-6">
                                             <div class="form-group">
                                                 <select v-model="addressForm.country" type="text" name="country"
                                                         class="form-control" :class="{ 'is-invalid': addressForm.errors.has('country') }" required>
-                                                    <option selected="selected">Country</option>
+                                                    <option selected>Country</option>
                                                     <option v-for="(country, i) in countries" :key="i">{{country.name}}</option>
                                                 </select>
                                                 <has-error :form="addressForm" field="country"></has-error>
+                                            </div>
                                             <div class="form-group">
                                                 <input v-model="addressForm.city" type="text" name="city" placeholder="City"
                                                        class="form-control" :class="{ 'is-invalid': addressForm.errors.has('city') }">
                                                 <has-error :form="addressForm" field="city"></has-error>
                                             </div>
+                                        </div>
+                                        <div class ="col-6">
                                             <div class="form-group">
                                                 <input v-model="addressForm.zipcode" type="text" name="zipcode" placeholder="Zip Code"
                                                        class="form-control" :class="{ 'is-invalid': addressForm.errors.has('zipcode') }" required>
                                                 <has-error :form="addressForm" field="zipcode"></has-error>
-                                            <div class="form-group">
-                                                <input v-model="addressForm.phone_number" type="text" name="phone_number" placeholder="Phone Number"
-                                                       class="form-control" :class="{ 'is-invalid': addressForm.errors.has('phone_number') }" required>
-                                                <has-error :form="addressForm" field="phone_number"></has-error>
                                             </div>
-                                            </div>
-                                            <div class="text-right">
-                                                <button type="button" class="btn btn-danger" @click="addressToggle('false', $event)" >Cancel</button>
-                                                <button type="submit" class="btn bg-lancer text-white">Save</button>
-                                            </div>
+                                        <div class="form-group">
+                                            <input v-model="addressForm.phone_number" type="text" name="phone_number" placeholder="Phone Number"
+                                                   class="form-control" :class="{ 'is-invalid': addressForm.errors.has('phone_number') }" required>
+                                            <has-error :form="addressForm" field="phone_number"></has-error>
                                         </div>
+
+                                        </div>
+
+
                                     </div>
+                                    <div class ="row">
+                                        <div class="text-center">
+                                            <button type="button" class="btn btn-danger" @click="addressToggle('false', $event)" >Cancel</button>
+                                            <button type="submit" class="btn bg-lancer text-white">Save</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
