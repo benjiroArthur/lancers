@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewMessage;
 use Illuminate\Http\Request;
 use App\Chat;
 use Illuminate\Support\Facades\Auth;
@@ -53,6 +54,9 @@ class ChatController extends Controller
        $data['from'] = \auth()->user()->id;
        $chat = new Chat();
        $chat = $chat->create($data);
+
+       //broadcast chat message
+        broadcast(new NewMessage($chat));
        return response()->json($chat);
     }
 
