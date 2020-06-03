@@ -104,7 +104,7 @@
                     <div class="col-md-12">
                         <div class="card shadow">
                             <div class="card-header bg-lancer text-white text-bold">
-                                <div class="card-title">
+                                <div class="card-title text-wrap">
                                     <p>Welcome Back</p>
                                     <p v-if="freelancer.userable.full_name !== null">{{this.freelancer.userable.full_name}}</p>
                                     <p>{{this.freelancer.email}}</p>

@@ -44,7 +44,7 @@
                     <div class="col-md-12">
                         <div class="card shadow">
                             <div class="card-header">
-                                <div class="card-title"></div>
+                                <div class="card-title text-wrap"></div>
                                 <div class="card-tools"></div>
                             </div>
 
