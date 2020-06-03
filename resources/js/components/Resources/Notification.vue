@@ -5,7 +5,7 @@
         </a>
 
 
-        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="notificationDropdown">
+        <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="notificationDropdown" style="width:500px">
             <v-card>
                 <v-list>
                     <v-list-item>
