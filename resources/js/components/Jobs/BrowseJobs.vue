@@ -1,10 +1,10 @@
 <template>
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
-            <div class="col-md-8">
-                <job-list></job-list>
+            <div class="col-md-10">
+                <all-projects></all-projects>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card shadow">
@@ -14,6 +14,12 @@
                                 <div class="card-tools"></div>
                             </div>
                             <div class="card-body">
+                                <nav class="nav flex-column">
+                                    <a class="nav-link active " href="#">Active</a>
+                                    <a class="nav-link" href="#">Link</a>
+                                    <a class="nav-link" href="#">Link</a>
+                                    <a class="nav-link disabled" href="#">Disabled</a>
+                                </nav>
                             </div>
                         </div>
                     </div>
@@ -36,7 +42,7 @@
 </template>
 
 <script>
-    import JobList from "./JobList";
+    import JobList from "./AllProjects";
     export default {
         name: "BrowseJobs",
         components: {JobList},

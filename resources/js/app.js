@@ -197,7 +197,11 @@ Vue.component('conversation', require('./components/Chat/Conversation.vue').defa
 Vue.component('messages-composer', require('./components/Chat/MessagesComposer').default);
 Vue.component('messages-feed', require('./components/Chat/MessagesFeed.vue').default);
 Vue.component('browse-jobs', require('./components/Jobs/BrowseJobs.vue').default);
-Vue.component('job-list', require('./components/Jobs/JobList.vue').default);
+Vue.component('all-projects', require('./components/Jobs/AllProjects.vue').default);
+Vue.component('digital-projects', require('./components/Jobs/DigitalProjects.vue').default);
+Vue.component('programming-projects', require('./components/Jobs/ProgrammingProjects.vue').default);
+Vue.component('video', require('./components/Jobs/VideoProjects.vue').default);
+Vue.component('graphics-projects', require('./components/Jobs/GraphicsProjects.vue').default);
 
 
 
