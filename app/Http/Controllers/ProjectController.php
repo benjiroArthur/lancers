@@ -31,6 +31,14 @@ class ProjectController extends Controller
         return response()->json($projects);
     }
 
+        // admin sees all projects...worked here
+    public function allProjects($id) {
+        $admin = User::findorFail($id)->userable;
+        $allprojects = $admin->projects()->all();
+
+        return response()->json($allprojects);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
