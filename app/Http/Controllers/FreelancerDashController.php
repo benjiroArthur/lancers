@@ -70,10 +70,14 @@ class FreelancerDashController extends Controller
         return response()->json($projects);
     }
 
-    public function jobs() {
-        $jobs = Project::all();
-        return response()->json($jobs);
+    // freelancers see only approved jobs...worked here
+    public function approvedJobs($id) {
+        $freelance = User::findorFail($id)->userable;
+        $approvedjobs = $freelance->projects()->where('approved', 1)->get();
+        return response()->json($approvedjobs);
     }
+
+
 
     public function applyForJobs(Request $request) {
         $this->validate($request, [

@@ -41,6 +41,14 @@ class ClientDashController extends Controller
         return response()->json($projects);
     }
 
+    // clients sees all projects personally posted...worked here
+    public function clientProjects($id) {
+        $client = User::findorFail($id)->userable;
+        $clientprojects = $client->projects;
+
+        return response()->json($clientprojects);
+    }
+
 
 
 
