@@ -104,9 +104,9 @@ class ChatController extends Controller
 
     public function getChat($id) {
         $chats = Chat::where(function ($query) use ($id) {
-            $query->where('from', '=', Auth::user()->id)->where('to', '=', $id);
+            $query->where('from',  Auth::user()->id)->where('to',  $id);
         })->orWhere(function ($query) use ($id){
-            $query->where('from', '=', $id)->where('to', '=', Auth::user()->id);
+            $query->where('from', $id)->where('to',  Auth::user()->id);
         })->get();
 
         return $chats;

@@ -58,10 +58,11 @@
             },
             sendMessage(message){
                 if(!this.selectedContact) return;
-                let formData = new FormData();
-                formData.append('to', this.selectedContact.id);
-                formData.append('chat', message)
-                axios.post('/chat', formData).then((response)=>{
+
+                axios.post('/chat', {
+                    to: this.selectedContact.id,
+                    chat: message
+                }).then((response)=>{
                     this.messages.push(response.data);
                 }).catch((error)=>{
                     console.log(error.message)

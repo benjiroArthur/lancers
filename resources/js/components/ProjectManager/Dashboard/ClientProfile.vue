@@ -45,10 +45,20 @@
                                 <div class="card-body text-left">
                                     <div class="row">
                                         <div v-if="client.address !== null" class="col-6" >
-                                            <p>Country:  {{this.client.address.country | checkNull}}</p>
-                                            <p>City:  {{this.client.address.city | checkNull}}</p>
-                                            <p>Zip Code: {{this.client.address.zipcode | checkNull}}</p>
-                                            <p>Phone number: {{this.client.address.phone_number | checkNull}}</p>
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <p>Country:  </p>
+                                                    <p>City:  </p>
+                                                    <p>Zip Code: </p>
+                                                    <p>Phone number: </p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <p>{{this.client.address.country | checkNull}}</p>
+                                                    <p>{{this.client.address.city | checkNull}}</p>
+                                                    <p>{{this.client.address.zip_code | checkNull}}</p>
+                                                    <p>{{this.client.address.phone_number | checkNull}}</p>
+                                                </div>
+                                            </div>
                                         </div>
                                         <p v-else class="text-black text-center text-bold h-align-middle h3 v-align-middle">Please Update Your Address Info</p>
                                     </div>
@@ -78,9 +88,9 @@
                                             </div>
                                             <div class ="col-6">
                                                 <div class="form-group">
-                                                    <input v-model="addressForm.zipcode" type="text" name="zipcode" placeholder="Zip Code"
-                                                           class="form-control" :class="{ 'is-invalid': addressForm.errors.has('zipcode') }" required>
-                                                    <has-error :form="addressForm" field="zipcode"></has-error>
+                                                    <input v-model="addressForm.zip_code" type="text" name="zip_code" placeholder="Zip Code"
+                                                           class="form-control" :class="{ 'is-invalid': addressForm.errors.has('zip_code') }" required>
+                                                    <has-error :form="addressForm" field="zip_code"></has-error>
                                                 </div>
                                                 <div class="form-group">
                                                     <input v-model="addressForm.phone_number" type="text" name="phone_number" placeholder="Phone Number"
@@ -92,7 +102,7 @@
 
 
                                         </div>
-                                        <div class ="row">
+                                        <div class ="row justify-content-center text-center">
                                             <div class="text-center">
                                                 <button type="button" class="btn btn-danger" @click="addressToggle('false', $event)" >Cancel</button>
                                                 <button type="submit" class="btn bg-lancer text-white">Save</button>
@@ -100,6 +110,8 @@
                                         </div>
                                     </form>
                                 </div>
+
+
                             </div>
                         </div>
                     </div>
@@ -302,7 +314,7 @@
                 addressForm: new Form({
                     country: 'Country',
                     city: '',
-                    zipcode: '',
+                    zip_code: '',
                     phone_number: '',
                     user_id: '',
                 }),
@@ -340,6 +352,7 @@
                     .then((response) => {
                         this.client = response.data;
                         this.profileForm.fill(this.client.userable)
+                        this.addressForm.fill(this.client.address);
                     })
             },
             //get countries

@@ -84,10 +84,21 @@
                             <div class="card-body text-left">
                                 <div class="row">
                                     <div v-if="freelancer.address !== null" class="col-6">
-                                        <p>Country:  {{this.freelancer.userable.country | checkNull}}</p>
-                                        <p>City:  {{this.freelancer.userable.city | checkNull}}</p>
-                                        <p>Zip Code: {{this.freelancer.userable.zipcode | checkNull}}</p>
-                                        <p>Phone number: {{this.freelancer.userable.phone_number | checkNull}}</p>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                 <p>Country:  </p>
+                                        <p>City:  </p>
+                                        <p>Zip Code: </p>
+                                        <p>Phone number: </p>
+                                            </div>
+                                            <div class="col-6">
+                                                 <p>{{this.freelancer.address.country | checkNull}}</p>
+                                        <p>{{this.freelancer.address.city | checkNull}}</p>
+                                        <p>{{this.freelancer.address.zip_code | checkNull}}</p>
+                                        <p>{{this.freelancer.address.phone_number | checkNull}}</p>
+                                            </div>
+                                        </div>
+
                                     </div>
                                     <p v-else class="text-black text-bold h3 h-align-middle v-align-middle">Please Update Your Address Info</p>
                                 </div>
@@ -117,9 +128,9 @@
                                         </div>
                                         <div class ="col-6">
                                             <div class="form-group">
-                                                <input v-model="addressForm.zipcode" type="text" name="zipcode" placeholder="Zip Code"
-                                                       class="form-control" :class="{ 'is-invalid': addressForm.errors.has('zipcode') }" required>
-                                                <has-error :form="addressForm" field="zipcode"></has-error>
+                                                <input v-model="addressForm.zip_code" type="text" name="zip_code" placeholder="Zip Code"
+                                                       class="form-control" :class="{ 'is-invalid': addressForm.errors.has('zip_code') }" required>
+                                                <has-error :form="addressForm" field="zip_code"></has-error>
                                             </div>
                                         <div class="form-group">
                                             <input v-model="addressForm.phone_number" type="text" name="phone_number" placeholder="Phone Number"
@@ -131,7 +142,7 @@
 
 
                                     </div>
-                                    <div class ="row">
+                                    <div class ="row justify-content-center text-center">
                                         <div class="text-center">
                                             <button type="button" class="btn btn-danger" @click="addressToggle('false', $event)" >Cancel</button>
                                             <button type="submit" class="btn bg-lancer text-white">Save</button>
@@ -366,7 +377,7 @@
                 addressForm: new Form({
                     country: 'Country',
                     city: '',
-                    zipcode: '',
+                    zip_code: '',
                     phone_number: '',
                     user_id: '',
                 }),
@@ -404,9 +415,10 @@
                     .get('/data/user')
                     .then((response) => {
                         this.freelancer = response.data;
-                        this.portfolioForm.fill(this.freelancer.userable.portfolio)
-                        this.profileForm.fill(this.freelancer.userable)
-                        this.links = this.freelancer.userable.links
+                        this.portfolioForm.fill(this.freelancer.userable.portfolio);
+                        this.profileForm.fill(this.freelancer.userable);
+                        this.links = this.freelancer.userable.links;
+                        this.addressForm.fill(this.freelancer.address);
                     })
             },
             getCountries(){
@@ -418,6 +430,7 @@
             },
             //update user portfolio
             updatePortfolio(){
+                this.$Progress.start();
                 this.portfolioForm.post('/data/user/portfolio')
                                     .then((response) => {
                                         this.portfolioEditMode = false;
@@ -427,6 +440,7 @@
                                             'Portfolio Updated Successfully',
                                             'success'
                                         );
+                                        this.$Progress.finish();
                                     })
                                     .catch((error) => {
                                         this.portfolioEditMode = true;
