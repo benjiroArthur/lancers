@@ -85,7 +85,7 @@
                                         <div class="col-6">
                                             <p>Country:  {{this.admin.userable.country | checkNull}}</p>
                                             <p>City:  {{this.admin.userable.city | checkNull}}</p>
-                                            <p>Zip Code: {{this.admin.userable.zipcode | checkNull}}</p>
+                                            <p>Zip Code: {{this.admin.userable.zip_code | checkNull}}</p>
                                             <p>Phone number: {{this.admin.userable.phone_number | checkNull}}</p>
                                         </div>
                                     </div>
@@ -110,8 +110,8 @@
                                                     <has-error :form="addressForm" field="city"></has-error>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input v-model="addressForm.zipcode" type="text" name="zipcode" placeholder="Zip Code"
-                                                           class="form-control" :class="{ 'is-invalid': addressForm.errors.has('zipcode') }" required>
+                                                    <input v-model="addressForm.zip_code" type="text" name="zipcode" placeholder="Zip Code"
+                                                           class="form-control" :class="{ 'is-invalid': addressForm.errors.has('zip_code') }" required>
                                                     <has-error :form="addressForm" field="zipcode"></has-error>
                                                 </div>
                                                 <div class="form-group">
@@ -324,7 +324,7 @@
                 addressForm: new Form({
                     country: '',
                     city: '',
-                    zipcode: '',
+                    zip_code: '',
                     phone_number: '',
                     user_id: '',
                 }),
