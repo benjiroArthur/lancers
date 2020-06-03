@@ -86,7 +86,7 @@
                                     <div v-if="freelancer.address !== null" class="col-6">
                                         <p>Country:  {{this.freelancer.userable.country | checkNull}}</p>
                                         <p>City:  {{this.freelancer.userable.city | checkNull}}</p>
-                                        <p>Zip Code: {{this.freelancer.userable.zipcode | checkNull}}</p>
+                                        <p>Zip Code: {{this.freelancer.userable.zip_code | checkNull}}</p>
                                         <p>Phone number: {{this.freelancer.userable.phone_number | checkNull}}</p>
                                     </div>
                                     <p v-else class="text-black text-bold h3 h-align-middle v-align-middle">Please Update Your Address Info</p>
@@ -117,8 +117,8 @@
                                         </div>
                                         <div class ="col-6">
                                             <div class="form-group">
-                                                <input v-model="addressForm.zipcode" type="text" name="zipcode" placeholder="Zip Code"
-                                                       class="form-control" :class="{ 'is-invalid': addressForm.errors.has('zipcode') }" required>
+                                                <input v-model="addressForm.zip_code" type="text" name="zipcode" placeholder="Zip Code"
+                                                       class="form-control" :class="{ 'is-invalid': addressForm.errors.has('zip_code') }" required>
                                                 <has-error :form="addressForm" field="zipcode"></has-error>
                                             </div>
                                         <div class="form-group">
@@ -366,7 +366,7 @@
                 addressForm: new Form({
                     country: 'Country',
                     city: '',
-                    zipcode: '',
+                    zip_code: '',
                     phone_number: '',
                     user_id: '',
                 }),
