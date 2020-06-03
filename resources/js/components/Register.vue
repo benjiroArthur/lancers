@@ -160,6 +160,7 @@
                     if (this.form.user_type !== null) {
                         this.$Progress.start()
                         this.form.post('/register').then((response) => {
+                            this.$Progress.finish();
                             window.location.assign('/home');
                         })
                             .catch((error) => {

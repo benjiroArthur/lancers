@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Chat;
+use App\Role;
+use App\User;
 use Illuminate\Http\Request;
 use App\Friend;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +18,21 @@ class FriendsController extends Controller
      */
     public function index()
     {
-        $contactList = Auth::user()->friends;
+        //backup
+        //$contactList = Auth::user()->friends;
+        //for test purposes
+        if(Auth::user()->role->name === 'freelancer'){
+            $role = Role::where('name', 'client')->first();
+            $contactList = User::where('role_id', $role->id)->get();
+        }
+        elseif(Auth::user()->role->name === 'client'){
+            $role = Role::where('name', 'freelancer')->first();
+            $contactList = User::where('role_id', $role->id)->get();
+        }
+        else{
+            $contactList = User::all();
+        }
+
         $unreadIds = Chat::select(\DB::raw('`from` as sender_id, count(`from`) as messages_count'))
             ->where('to', auth()->user()->id)
             ->where('read', false)

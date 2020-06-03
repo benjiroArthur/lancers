@@ -132,6 +132,7 @@
         <main class="py-4">
             @include('includes.messages')
             @yield('content')
+            <vue-progress-bar></vue-progress-bar>
         </main>
 
         <footer class="bg-lancer text-center text-white">

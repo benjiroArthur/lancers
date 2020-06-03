@@ -79,7 +79,9 @@
         },
         methods:{
             submit(){
+                this.$Progress.start();
                 this.form.post('/login').then((response)=>{
+                    this.$Progress.finish();
                     window.location.assign('/home');
                 })
             },

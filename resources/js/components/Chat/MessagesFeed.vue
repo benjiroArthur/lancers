@@ -69,7 +69,7 @@
                     &.received{
                         text-align: left;
                         .text{
-                            background: #6e6d71;
+                            background: #2d2c2c;
                             color: white;
                         }
                     }

@@ -21,8 +21,8 @@
                         <div class = "container">
                             <div class = "carousel-caption text-center">
                                 <h1>Hire the best freelancer for any job online</h1>
-                                <button type="button" class="btn btn-primary btn-lg">Hire A Freelancer</button>
-                                <button type="button" class="btn btn-primary btn-lg">Earn Money Freelancing</button>
+                                <button type="button" class="btn btn-success btn-lg">Hire A Freelancer</button>
+                                <button type="button" class="btn btn-success btn-lg">Earn Money Freelancing</button>
                             </div>
                         </div>
             </div>
