@@ -91,7 +91,7 @@
         @media (max-width: 600px) {
             margin-left: 100px;
         }
-        @media (max-width: 980px) {
+        @media (min-width: 980px) {
             margin-left: 400px;
         }
        margin-left: 700px;
