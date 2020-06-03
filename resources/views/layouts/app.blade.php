@@ -112,7 +112,7 @@
                                             </a>
                                         </li>
                                     </ul>
-                                    <a class="dropdown-item nav-item" href="{{ route('logout') }}"
+                                    <a class="dropdown-item nav-item text-center" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}

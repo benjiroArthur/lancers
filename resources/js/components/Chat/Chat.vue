@@ -87,6 +87,12 @@
             Fire.$on('send', (message)=>{
                 this.sendMessage(message);
             });
+
+            //listen to message event
+            Echo.private(`message${this.user.id}`)
+                .listen('NewMessage', (e)=>{
+                    this.getMessage();
+                })
         },
         created() {
             this.getContact();
