@@ -142,6 +142,12 @@ Vue.filter('fromdate', function(text){
     return moment(text).fromNow();
 });
 
+Vue.filter('trimtext', function(value){
+    let len = 20;
+    let val = value.slice(0, len);
+    return value.length < len ? value : val + '...'
+});
+
 
 
 
@@ -190,6 +196,10 @@ Vue.component('contact-list', require('./components/Chat/ContactList.vue').defau
 Vue.component('conversation', require('./components/Chat/Conversation.vue').default);
 Vue.component('messages-composer', require('./components/Chat/MessagesComposer').default);
 Vue.component('messages-feed', require('./components/Chat/MessagesFeed.vue').default);
+Vue.component('browse-jobs', require('./components/Jobs/BrowseJobs.vue').default);
+Vue.component('job-list', require('./components/Jobs/JobList.vue').default);
+
+
 
 Vue.component('VueSlickCarousel', VueSlickCarousel);
 Vue.component('slick', Slick);

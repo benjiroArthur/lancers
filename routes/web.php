@@ -56,10 +56,12 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
 
 
 
+
 });
 
 Route::resource('/friends', 'FriendsController');
 Route::get('/getChat/{id}', 'ChatController@getChat');
+Route::get('/browse/projects', 'PagesController@browseJobs');
 
 // routes for messaging
 
