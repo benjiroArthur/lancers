@@ -1,3 +1,6 @@
+body {
+    padding-bottom: 40px !important;
+}
 .text-lancer{
     color: #32a778;
 }
@@ -400,8 +403,12 @@ select option:hover{
 }
 
 .bodyClass{
-    min-height: 100%;
+    /*min-height: 100%;*/
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
 }
+
 .nav-item{
     list-style: none !important;
 }

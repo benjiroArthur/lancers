@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\NewMessage;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Chat;
 use Illuminate\Support\Facades\Auth;
@@ -57,6 +58,7 @@ class ChatController extends Controller
 
        //broadcast chat message
         broadcast(new NewMessage($chat))->toOthers();
+
        return response()->json($chat);
     }
 
