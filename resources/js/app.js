@@ -202,6 +202,11 @@ Vue.component('digital-projects', require('./components/Jobs/DigitalProjects.vue
 Vue.component('programming-projects', require('./components/Jobs/ProgrammingProjects.vue').default);
 Vue.component('video-project', require('./components/Jobs/VideoProjects.vue').default);
 Vue.component('graphics-projects', require('./components/Jobs/GraphicsProjects.vue').default);
+Vue.component('all-projects', require('./components/Admin/AllProjects.vue').default);
+Vue.component('freelancers-table', require('./components/Admin/AdminTables/FreelancersTable.vue').default);
+Vue.component('clients-table', require('./components/Admin/AdminTables/ClientsTable.vue').default);
+Vue.component('admins-table', require('./components/Admin/AdminTables/AdminsTable.vue').default);
+
 
 
 

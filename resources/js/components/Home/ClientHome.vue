@@ -16,13 +16,9 @@
                                 <div class="mt-5 ml-5 pr-2">
                                     <p class="text-bold">Millions of amazing freelancers are waiting to turn your dreams into reality.</p>
                                     <div class="m-3">
-                                        <a class="btn bg-light text-dark text-bold border-dark m-3">Get a software built</a>
-                                        <a class="btn bg-light text-dark text-bold border-dark m-3">Get a website built</a>
+                                        <a class="btn bg-light text-dark text-bold border-dark m-3">Post a Job</a>
                                     </div>
-                                    <div class="m-3">
-                                        <a class="btn bg-light text-dark text-bold border-dark m-3">Get a design done</a>
-                                        <a class="btn bg-light text-dark text-bold border-dark m-3">Get articles done</a>
-                                    </div>
+
 
                                 </div>
                             </div>

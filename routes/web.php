@@ -54,6 +54,10 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::post('/user/job_link/edit/{id}', 'ProfileController@editLink');
     Route::post('/user/address', 'ProfileController@address');
 
+    //Admin controller routes
+    Route::get('/admin/getClients', 'AdminController@getClients');
+    Route::get('/admin/getLancers', 'AdminController@getLancers');
+    Route::get('/admin/getAdmins', 'AdminController@getAdmins');
 
 
 

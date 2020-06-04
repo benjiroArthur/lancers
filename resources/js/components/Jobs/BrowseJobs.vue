@@ -42,10 +42,10 @@
 </template>
 
 <script>
-    import JobList from "./AllProjects";
+    import AllProjects from "./AllProjects";
     export default {
         name: "BrowseJobs",
-        components: {JobList},
+        components: {AllProjects},
         data(){
             return{
 

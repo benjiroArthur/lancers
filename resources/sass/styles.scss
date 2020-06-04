@@ -18,6 +18,20 @@
     overflow-wrap: break-word;
 }
 
+.page-item.active .page-link {
+    z-index: 3;
+    color: #ffffff;
+    background-color: #32a778 !important;
+    border-color: #32a778 !important;
+}
+
+.page-item .page-link {
+    z-index: 3;
+    color: #32a778;
+    background-color: #ffffff !important;
+    border-color: #ffffff !important;
+}
+
 
 .logotext
 {
