@@ -32,7 +32,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="bg-lancer-light bodyClass">
+<body class="bg-lancer-light">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm">
             <div class="container">
@@ -136,29 +136,30 @@
             <vue-progress-bar></vue-progress-bar>
         </main>
 
-        <footer class="bg-lancer text-center text-white">
-            <div class="container-fluid">
-                <div class="row text-white">
-                    <div class="col-md-2">
-                        <img src="{{asset('/images/lancers_logo_inverted.png')}}" width="auto" height="30" alt="" loading="lazy">
-                    </div>
-                    <div class="col-md-6">
-                        <p class="text-white">@Lancers {{date('Y')}}</p>
-                    </div>
-                    <div class="col-md-1 text-white">
-                        <p><span class="fab fa-instagram"></span>&nbsp;  Instagram</p>
-                    </div>
-                    <div class="col-md-1">
-                        <p><span class="fab fa-facebook"></span>&nbsp;  Facebook</p>
-                    </div>
-                    <div class="col-md-1">
-                        <p><span class="fab fa-twitter"></span>&nbsp;  Twitter</p>
-                    </div>
-                    <div class="col-md-1">
-                    </div>
+
+    </div>
+    <footer class="bg-lancer bodyClass text-center text-white footer mb-0">
+        <div class="container-fluid">
+            <div class="row text-white">
+                <div class="col-md-2">
+                    <img src="{{asset('/images/lancers_logo_inverted.png')}}" width="auto" height="30" alt="" loading="lazy">
+                </div>
+                <div class="col-md-6">
+                    <p class="text-white">@Lancers {{date('Y')}}</p>
+                </div>
+                <div class="col-md-1 text-white">
+                    <p><span class="fab fa-instagram"></span>&nbsp;  Instagram</p>
+                </div>
+                <div class="col-md-1">
+                    <p><span class="fab fa-facebook"></span>&nbsp;  Facebook</p>
+                </div>
+                <div class="col-md-1">
+                    <p><span class="fab fa-twitter"></span>&nbsp;  Twitter</p>
+                </div>
+                <div class="col-md-1">
                 </div>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
 </body>
 </html>

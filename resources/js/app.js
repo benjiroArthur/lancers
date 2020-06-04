@@ -271,6 +271,8 @@ const app = new Vue({
     mounted() {
         setTimeout(val => {
             this.pageLoader = false;
+
+           /* $('#app').removeAttr('v-cloak');*/
         }, 4000);
 
         /*Echo.channel('newUser').listen('NewUser', function(e){
