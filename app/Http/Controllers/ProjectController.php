@@ -18,11 +18,9 @@ class ProjectController extends Controller
     {
         $popularProject = Project::limit(15)->get();
         $recently = Project::latest()->limit(15)->get();
-        $approvedJob = Project::where('approved', 1)->get();
         $projects = [
             'popularProject' => $popularProject,
-            'recently' => $recently,
-            'approvedJobs' => $approvedJob
+            'recently' => $recently
         ];
 
         /*//$pro = Project::find(6);
@@ -46,6 +44,24 @@ class ProjectController extends Controller
         $allprojects = $admin->projects()->all();
 
         return response()->json($allprojects);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    // the delete project function for the admin
+    public function deleteProjects($id) {
+
+        if(auth()->user()->role->name === 'admin') {
+
+            DB::table('projects')->where('id', $id)->delete();
+
+            return redirect('/client/projects');
+        }
+
     }
 
     /**

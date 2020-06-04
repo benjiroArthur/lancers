@@ -54,6 +54,12 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::post('/user/job_link/edit/{id}', 'ProfileController@editLink');
     Route::post('/user/address', 'ProfileController@address');
 
+    // routes for deletion for clients
+    Route::get('/client/deleted-projects/{id}', 'ClientDashController@delete_projects');
+
+    // route for deletion for admin
+    Route::get('/admin/delete-projects/{id}', 'ProjectController@deleteProjects');
+
 
 
 

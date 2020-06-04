@@ -97,4 +97,34 @@ class ClientDashController extends Controller
 
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    // this is where delete of project happens
+    public function deleteProjects($id) {
+        DB:delete('delete from projects where id = ?', [$id]);
+
+        return redirect('/client/projects')->with('Success', 'Project Deleted');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    // here is another delete function so choose which one makes sense lol
+    public function delete_projects($id) {
+
+        if(auth()->user()->role->name === 'client') {
+
+            DB::table('projects')->where('id', $id)->delete();
+
+            return redirect('/client/projects')->with('Success', 'Project Deleted');
+        }
+
+    }
 }
