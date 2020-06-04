@@ -18,9 +18,11 @@ class ProjectController extends Controller
     {
         $popularProject = Project::limit(15)->get();
         $recently = Project::latest()->limit(15)->get();
+        $approvedJob = Project::where('approved', 1)->get();
         $projects = [
             'popularProject' => $popularProject,
-            'recently' => $recently
+            'recently' => $recently,
+            'approvedJobs' => $approvedJob
         ];
 
         /*//$pro = Project::find(6);
@@ -31,6 +33,13 @@ class ProjectController extends Controller
         return response()->json($projects);
     }
 
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
         // admin sees all projects...worked here
     public function allProjects($id) {
         $admin = User::findorFail($id)->userable;

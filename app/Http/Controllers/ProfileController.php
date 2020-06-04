@@ -150,6 +150,12 @@ class ProfileController extends Controller
         }
     }
 
+    /**
+     *
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     //save address
     public function address(Request $request){
 
