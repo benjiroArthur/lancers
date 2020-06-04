@@ -56,7 +56,7 @@ class ChatController extends Controller
        $chat = $chat->create($data);
 
        //broadcast chat message
-        broadcast(new NewMessage($chat));
+        broadcast(new NewMessage($chat))->toOthers();
        return response()->json($chat);
     }
 
