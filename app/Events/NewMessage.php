@@ -24,7 +24,7 @@ class NewMessage implements ShouldBroadcast
      */
     public function __construct(Chat $message)
     {
-        $this->$message = $message;
+        $this->message = $message;
     }
 
     /**
@@ -37,7 +37,8 @@ class NewMessage implements ShouldBroadcast
         return new PrivateChannel('messages.'.$this->message->to);
     }
 
-    public function broadcastWith(){
+    public function broadcastWith(): array
+    {
         return ["message" => $this->message];
     }
 }
