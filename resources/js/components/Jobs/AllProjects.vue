@@ -114,14 +114,7 @@
                     }
                 ],
 
-                filters: {
-                    dynamictrim() {
-                        let len = 100;
-                        let val = value.slice(0, len);
-                        return value.length < len ? value : val + '...'
-                    }
-                },
-            }
+            };
         },
     }
 </script>

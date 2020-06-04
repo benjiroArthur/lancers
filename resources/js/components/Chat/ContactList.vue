@@ -88,12 +88,10 @@
 
 <style lang="scss" scoped>
     .direct-chat-contacts{
-        @media (max-width: 600px) {
+        @media only screen and (max-width: 766px) {
             margin-left: 100px;
         }
-        @media (max-width: 980px) {
-            margin-left: 400px;
-        }
+
        margin-left: 700px;
         max-height: 800px;
         min-height: 500px;

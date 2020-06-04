@@ -78,6 +78,11 @@
                 .catch((error)=>{})
                 this.selectedContact = contact;
             },
+            hundleMessage(message){
+                if(this.selectedContact && message.from === this.selectedContact){
+                    this.messages.push(message);
+                }
+            },
         },
 
         mounted() {
@@ -91,7 +96,7 @@
             //listen to message event
             Echo.private(`message${this.user.id}`)
                 .listen('NewMessage', (e)=>{
-                    this.getMessage();
+                    this.hundleMessage(e.message);
                 })
         },
         created() {
