@@ -91,6 +91,7 @@
                             <li class="nav-item dropdown ml-2">
                                 <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <img class="img-bordered-sm img-sm rounded-circle" src="{{auth()->user()->userable->image_path}}" alt="Profile image">
+                                    <span>{{auth()->user()->userable->full_name}}</span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="navbarDropdown">
@@ -115,7 +116,7 @@
                                     <a class="dropdown-item nav-item text-center" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        Logout
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

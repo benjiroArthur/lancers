@@ -86,7 +86,7 @@
                     <div class="col-md-12">
                         <div class="card shadow">
                             <div class="card-header bg-lancer text-white text-bold">
-                                <div class="card-title text-wrap" >
+                                <div v-if="this.client !== null" class="card-title text-wrap" >
                                     <p>Welcome Back</p>
                                     <p>{{this.client.userable.full_name}}</p>
                                     <p>{{this.client.email}}</p>
