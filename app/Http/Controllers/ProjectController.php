@@ -16,8 +16,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $popularProject = Project::limit(15)->get();
-        $recently = Project::latest()->limit(15)->get();
+        $popularProject = Project::where('approved', 1)->limit(15)->get();
+        $recently = Project::where('approved', 1)->latest()->limit(15)->get();
+        $allProjects = Project::where('approved', 1)->get();
         $projects = [
             'popularProject' => $popularProject,
             'recently' => $recently
