@@ -22,36 +22,55 @@ class ClientDashController extends Controller
         return response()->json($completed);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * */
     public function progress($id) {
         $client = User::findorFail($id)->userable;
         $progress = $client->jobOffered()->with('project')->where('status', 'in progress')->latest()->get();
         return response()->json($progress);
     }
 
-
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * */
     public function yet($id) {
         $client = User::findorFail($id)->userable;
         $yet = $client->jobOffered()->with('project')->where('status', 'not started')->latest()->get();
         return response()->json($yet);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * */
     public function projects($id) {
         $client = User::findorFail($id)->userable;
         $projects = $client->jobOffered;
         return response()->json($projects);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * */
     // clients sees all projects personally posted...worked here
-    public function clientProjects($id) {
+    public function clientProjects($id, $user) {
         $client = User::findorFail($id)->userable;
-        $clientprojects = $client->projects;
-
+        if($user->role_id === $client->id) {
+            $clientprojects = $client->projects;
+        }
         return response()->json($clientprojects);
     }
 
-
-
-
+    /**
+     *
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function projectPostProject(Request $request) {
 
         $this->validate($request, [

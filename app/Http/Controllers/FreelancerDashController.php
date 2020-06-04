@@ -70,6 +70,10 @@ class FreelancerDashController extends Controller
         return response()->json($projects);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * */
     // freelancers see only approved jobs...worked here
     public function approvedJobs($id) {
         $freelance = User::findorFail($id)->userable;
@@ -77,8 +81,12 @@ class FreelancerDashController extends Controller
         return response()->json($approvedjobs);
     }
 
-
-
+    /**
+     *
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function applyForJobs(Request $request) {
         $this->validate($request, [
             'client_id' => 'required',

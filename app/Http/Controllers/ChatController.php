@@ -108,6 +108,10 @@ class ChatController extends Controller
         //
     }
 
+    /**
+     * @param int $id
+     * @return \Illuminate\Http\JsonResponse
+     * */
     public function getChat($id) {
         $chats = Chat::where(function ($query) use ($id) {
             $query->where('from',  Auth::user()->id)->where('to',  $id);
