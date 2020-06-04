@@ -12,7 +12,7 @@
                 <div class="card-body">
                     <div class="col-12 table-responsive">
                         <div class="card-body table table-responsive table-borderless p-0">
-                            <bootstrap-table :data="admins" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/>
+                            <bootstrap-table :data="allProjects" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/>
                         </div>
                         <div class="card">
                             <div class="card-header bg-lancer text-white">
@@ -49,19 +49,19 @@
 
                 },
                 myColumns: [
-                    {field: 'projects.project_title', title: 'Project'},
-                    {field: 'projects.project_cost', title: 'Cost'},
-                    {field: 'projects.description', title: 'Project Description'},
+                    {field: 'project_title', title: 'Project'},
+                    {field: 'project_cost', title: 'Cost'},
+                    {field: 'description', title: 'Project Description'},
                     {
                         field: 'action',
-                        title: '',
+                        title: 'Action',
                         align: 'center',
                         clickToSelect: false,
                         render: function (e, value, row) {
                         },
                         formatter: function (e, value, row) {
 
-                            return '<a class="btn btn-sm show" data-toggle="modal" data-target="#"><i class="fas fa-eye text-info"></i></a>'
+                            return '<a class="btn btn-sm show " data-toggle="modal" data-target="#"><i class="fas fa-check text-success"></i></a>'
                         },
                         events: {
                             'click .show': function (e, value, row) {
@@ -86,21 +86,21 @@
                                         axios.delete('/data/admin/' + row.id).then((response) => {
                                             if (response.data === "success") {
                                                 Fire.$emit('tableUpdate');
-                                                swal.fire(
+                                                Swal.fire(
                                                     'Deleted!',
                                                     'User Deleted Successfully',
                                                     'success'
                                                 );
 
                                             } else {
-                                                swal.fire(
+                                                Swal.fire(
                                                     'Failed!',
                                                     response.data,
                                                     'warning'
                                                 )
                                             }
                                         }).catch(() => {
-                                            swal.fire(
+                                            Swal.fire(
                                                 'Failed!',
                                                 'User Could Not Be Deleted.',
                                                 'warning'
@@ -113,8 +113,24 @@
                         }
                     }
                 ],
+                projects: {},
+                allProjects: {},
+
 
             };
+        },
+        methods:{
+            getProjects(){
+                axios.get('/data/project')
+                    .then((response)=>{
+                        this.projects = response.data;
+                        this.allProjects = this.projects.approvedJobs;
+                    })
+                    .catch()
+            },
+        },
+        mounted() {
+            this.getProjects();
         },
     }
 </script>

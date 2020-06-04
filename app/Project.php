@@ -17,6 +17,8 @@ class Project extends Model
         'approved' => 'boolean'
     ];
 
+    protected $with = ['client'];
+
 
     protected $appends = ['image'];
 

@@ -10,4 +10,11 @@ class PagesController extends Controller
     public function browseJobs(){
         return view('Pages.browse_jobs');
     }
+
+    //post jobs
+    public function postJobs(){
+        return view('Pages.post-jobs');
+
+
+    }
 }

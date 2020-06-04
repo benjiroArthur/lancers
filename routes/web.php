@@ -60,14 +60,20 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     // route for deletion for admin
     Route::get('/admin/delete-projects/{id}', 'ProjectController@deleteProjects');
 
+    //Admin controller routes
+    Route::get('/admin/getClients', 'AdminController@getClients');
+    Route::get('/admin/getLancers', 'AdminController@getLancers');
+    Route::get('/admin/getAdmins', 'AdminController@getAdmins');
 
 
 
 });
-
+//pages routes
 Route::resource('/friends', 'FriendsController');
 Route::get('/getChat/{id}', 'ChatController@getChat');
 Route::get('/browse/projects', 'PagesController@browseJobs');
+Route::get('/browse/post-jobs', 'PagesController@postJobs');
+
 
 // routes for messaging
 
