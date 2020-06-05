@@ -13,7 +13,7 @@ class AddStatusToProjectApplicationsTable extends Migration
      */
     public function up()
     {
-        Schema::table('project_applications', function (Blueprint $table) {
+        Schema::table('projct_applications', function (Blueprint $table) {
             $table->string('status')->nullable();
         });
     }
@@ -25,7 +25,7 @@ class AddStatusToProjectApplicationsTable extends Migration
      */
     public function down()
     {
-        Schema::table('project_applications', function (Blueprint $table) {
+        Schema::table('projct_applications', function (Blueprint $table) {
             //
         });
     }

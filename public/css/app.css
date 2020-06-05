@@ -69338,8 +69338,23 @@ readers do not read off random characters that represent icons */
   }
 }
 
-body {
-  padding-bottom: 40px !important;
+/*body {
+    padding-bottom: 40px !important;
+}*/
+
+#page-container {
+  /* position: relative;
+    min-height: 100vh;*/
+}
+
+#content-wrap {
+  position: relative;
+  min-height: 100vh;
+  /* Footer height */
+}
+
+#footer {
+  width: 100%;
 }
 
 .text-lancer {
