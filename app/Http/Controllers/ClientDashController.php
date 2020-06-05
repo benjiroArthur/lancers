@@ -121,7 +121,7 @@ class ClientDashController extends Controller
 
         if(auth()->user()->role->name === 'client') {
 
-            DB::table('projects')->where('id', $id)->delete();
+            \DB::table('projects')->where('id', $id)->delete();
 
             return redirect('/client/projects')->with('Success', 'Project Deleted');
         }

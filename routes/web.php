@@ -18,8 +18,10 @@ if (App::environment('production')) {
 }
 
 Route::get('/storage-link', function() {
-    $output = [];
-    \Artisan::call('storage:link', $output);
+    $targetFolder = $_SERVER['DOCUMENT_ROOT'].'/storage/app/public';
+    $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/public/storage';
+    symlink($targetFolder,$linkFolder);
+    echo 'Symlink completed';
 });
 
 Route::get('/', function () {
@@ -67,6 +69,7 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::get('/admin/getClients', 'AdminController@getClients');
     Route::get('/admin/getLancers', 'AdminController@getLancers');
     Route::get('/admin/getAdmins', 'AdminController@getAdmins');
+    Route::resource('/admin/user', 'UserController');
 
 
 
@@ -98,7 +101,7 @@ Route::resource('/chat', 'ChatController')->middleware('auth');
 
 
 //should be the last route
-Route::middleware('auth')->get('/dashboard', function(){
+/*Route::middleware('auth')->get('/dashboard', function(){
     if(Auth()->user()->role->name === 'freelancer'){
         return redirect('/freelancer/dashboard/all-project');
     }
@@ -106,9 +109,9 @@ Route::middleware('auth')->get('/dashboard', function(){
         return redirect('/freelancer/dashboard/all-project');
     }
 
-});
-Route::middleware('auth')->get('/freelancer/dashboard/{path}', 'DashboardController@index')->where('path', '([A-z\-/_.]+)?' );
-Route::middleware('auth')->get('/scrum/dashboard/{path}', 'DashboardController@index')->where('path', '([A-z\-/_.]+)?' );
+});*/
+//Route::middleware('auth')->get('/freelancer/dashboard/{path}', 'DashboardController@index')->where('path', '([A-z\-/_.]+)?' );
+//Route::middleware('auth')->get('/scrum/dashboard/{path}', 'DashboardController@index')->where('path', '([A-z\-/_.]+)?' );
 Route::middleware('auth')->get('{path}', function (){
     return redirect('/home');
 })->where('path', '([A-z\-/_.]+)?' );

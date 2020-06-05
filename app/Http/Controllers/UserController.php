@@ -6,6 +6,7 @@ use App\Admin;
 use App\Friend;
 use App\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -32,15 +33,15 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
     {
         // validate request
         $this->validate($request, [
             'email' => 'email|required|max:255|unique:admins|unique:users',
-            'password' => 'required|min:8'
         ]);
 
         $adminrole = Role::where('name', 'admin')->first();
@@ -53,7 +54,7 @@ class UserController extends Controller
 
         $user = $admin->user()->create([
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make('password'),
             'role_id' => $adminrole->id
         ]);
 
