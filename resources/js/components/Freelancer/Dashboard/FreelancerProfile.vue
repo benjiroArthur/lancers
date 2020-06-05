@@ -9,23 +9,26 @@
                         <div v-show="portfolioEditMode === false" class="card shadow">
                             <div class="card-body text-center">
                                 <div class="row">
-                                    <div class="col-4 text-left">
+                                    <div class="col-md-4 text-left">
                                         <div class="img-holder mb-2">
                                             <img :src="freelancer.userable.image_path" alt="" class="img-thumbnail">
                                         </div>
-                                        <div v-if="freelancer.userable.portfolio !== null">
-                                            <p>{{this.freelancer.userable.portfolio.title}}</p>
-                                            <p>{{this.freelancer.userable.portfolio.description}}</p>
-
-                                        </div>
-                                        <p>Joined On {{freelancer.created_at | myDate}}</p>
-                                        <p>0 Recommendations</p>
                                     </div>
-                                    <div class="col-8">
+                                    <div class="col-md-8">
                                         <div class="card-title text-dark text-bold">{{this.freelancer.userable.email}}</div>
                                         <div class="card-tools text-right">
                                             <a class="text-white text-bold text-left btn bg-lancer" @click="portfolioToggle('true', $event)" href="#">Edit Profile</a>
                                         </div>
+                                        <div v-if="this.portfolio != null" class="card-body text-left">
+                                            <p>{{this.portfolio.title}}</p>
+                                            <p>{{this.portfolio.description}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 text-left">
+                                        <p>Joined On {{freelancer.created_at | myDate}}</p>
+                                        <p>0 Recommendations</p>
                                     </div>
                                 </div>
                             </div>
@@ -33,14 +36,14 @@
                         <div v-show="portfolioEditMode === true" class="card shadow">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-4 text-left">
+                                    <div class="col-md-4 text-left">
                                         <div class="img-holder mb-2">
                                             <img :src="freelancer.userable.image_path" alt="" class="img-thumbnail">
                                             <span class="fas fa-camera" data-toggle="modal" data-target="#profileModal" tooltip="Edit Profile Picture"
                                                   style="position: absolute; transform: translate(-70%, 200%); -ms-transform: translate(-70%, 200%); width:20px;"></span>
                                         </div>
                                     </div>
-                                    <div class="col-8">
+                                    <div class="col-md-8">
                                         <div class="card-header bg-none">
                                             <div class="card-title text-dark text-bold mb-3">{{this.freelancer.userable.email}}</div>
                                         </div>
@@ -83,31 +86,25 @@
 
                             <div class="card-body text-left">
                                 <div class="row">
-                                    <div v-if="freelancer.address !== null" class="col-6">
- HEAD
-                                        <p>Country:  {{this.freelancer.userable.country | checkNull}}</p>
-                                        <p>City:  {{this.freelancer.userable.city | checkNull}}</p>
-                                        <p>Zip Code: {{this.freelancer.userable.zip_code | checkNull}}</p>
-                                        <p>Phone number: {{this.freelancer.userable.phone_number | checkNull}}</p>
-
+                                    <div v-if="freelancer.address !== null" class="col-md-12">
                                         <div class="row">
-                                            <div class="col-6">
-                                                 <p>Country:  </p>
+                                            <div class="col-lg-6 col-sm-4  text-wrap">
+                                         <p>Country:  </p>
                                         <p>City:  </p>
                                         <p>Zip Code: </p>
                                         <p>Phone number: </p>
                                             </div>
-                                            <div class="col-6">
-                                                 <p>{{this.freelancer.address.country | checkNull}}</p>
+                                            <div class="col-lg-6 col-sm-8 text-wrap">
+                                         <p>{{this.freelancer.address.country | checkNull}}</p>
                                         <p>{{this.freelancer.address.city | checkNull}}</p>
                                         <p>{{this.freelancer.address.zip_code | checkNull}}</p>
                                         <p>{{this.freelancer.address.phone_number | checkNull}}</p>
                                             </div>
                                         </div>
 
- staged
+
                                     </div>
-                                    <p v-else class="text-black text-bold h3 h-align-middle v-align-middle">Please Update Your Address Info</p>
+                                    <p v-else class="text-black text-bold h6 h-align-middle v-align-middle">No Information Available To Display</p>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +115,7 @@
                             <div class="card-body text-center">
                                 <form ref="profileForm" @submit.prevent="updateAddress">
                                     <div class="row">
-                                        <div class ="col-6">
+                                        <div class ="col-md-6">
                                             <div class="form-group">
                                                 <select v-model="addressForm.country" type="text" name="country"
                                                         class="form-control" :class="{ 'is-invalid': addressForm.errors.has('country') }" required>
@@ -133,17 +130,13 @@
                                                 <has-error :form="addressForm" field="city"></has-error>
                                             </div>
                                         </div>
-                                        <div class ="col-6">
+                                        <div class ="col-md-6">
                                             <div class="form-group">
- HEAD
-                                                <input v-model="addressForm.zip_code" type="text" name="zipcode" placeholder="Zip Code"
-                                                       class="form-control" :class="{ 'is-invalid': addressForm.errors.has('zip_code') }" required>
-                                                <has-error :form="addressForm" field="zipcode"></has-error>
 
                                                 <input v-model="addressForm.zip_code" type="text" name="zip_code" placeholder="Zip Code"
                                                        class="form-control" :class="{ 'is-invalid': addressForm.errors.has('zip_code') }" required>
                                                 <has-error :form="addressForm" field="zip_code"></has-error>
- staged
+
                                             </div>
                                         <div class="form-group">
                                             <input v-model="addressForm.phone_number" type="text" name="phone_number" placeholder="Phone Number"
@@ -211,12 +204,12 @@
 
                             <div class="card-body text-left">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-md-6">
                                         <p>First Name:  {{this.freelancer.userable.first_name | checkNull}}</p>
                                         <p>Other Name:  {{this.freelancer.userable.other_name | checkNull}}</p>
                                         <p>Family Name: {{this.freelancer.userable.last_name | checkNull}}</p>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-md-6">
                                         <p>Email:  {{this.freelancer.userable.email | checkNull}}</p>
                                         <p>Date Of Birth: {{this.freelancer.userable.dob | checkNull }}</p>
                                         <p>Gender: {{this.freelancer.userable.gender | checkNull}}</p>
@@ -383,6 +376,7 @@
         data(){
             return{
                 freelancer:{},
+                portfolio:{},
                 portfolioForm: new Form({
                     title: '',
                     description: ''
@@ -429,6 +423,7 @@
                     .then((response) => {
                         this.freelancer = response.data;
                         this.portfolioForm.fill(this.freelancer.userable.portfolio);
+                        this.portfolio = this.freelancer.userable.portfolio;
                         this.profileForm.fill(this.freelancer.userable);
                         this.links = this.freelancer.userable.links;
                         this.addressForm.fill(this.freelancer.address);
