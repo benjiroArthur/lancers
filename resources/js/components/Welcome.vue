@@ -127,6 +127,8 @@
         <div class = "row">
                 <div class = "col-md-4 text-center ">
                    <h2 class="text-dark"> <a class="align-center " ><i class="fas fa-images"></i> Browse Jobs</a></h2>
+                    <p>Freelancers and potential clients have the luxury to skim through lots of available jobs to see which one will best fit their skills and needs respectively.
+                        Lancers has millions of jobs ready to be executed, jump right into it!</p>
                   </div>
                 <div class = "col-md-4 text-center ">
                     <h2 class="text-dark" ><a class="align-center"><i class="fas fa-money-bill-alt"></i> Secure Payment</a></h2>
@@ -135,7 +137,8 @@
             </div>
                 <div class = "col-md-4 text-center ">
                 <h2 class="text-dark"><a class="align-center"><i class="fas fa-user-circle"></i> View Portfolios</a></h2>
-                    <p></p>
+                    <p>Lancers has the best professionals who can get your work done to the best capacity.
+                        Find professionals you can trust by browsing their samples of previous work and reading their profile reviews.</p>
             </div>
         </div>
         <div class = "row">
@@ -146,14 +149,19 @@
             </div>
             <div class = "col-md-4 text-center ">
                 <h2 class="text-dark"><a class="align-center"><i class="fas fa-comments"></i> Live Chat</a></h2>
+                <p>Tracking of jobs doesn't end the process but rather initiates you into Live Chat.
+                    You can live chat with your freelancers to get constant updates on the progress of your work as well.
+                Keep up-to-date with the progress of your work being done.</p>
             </div>
             <div class = "col-md-4 text-center ">
                 <h2 class="text-dark"><a class="align-center"><i class="fas fa-headset"></i> 24/7 Support</a></h2>
+                <p>Our support system is top-notch. We are available 24/7 to help users get their issues resolved.
+                    We have the best customer service out there. Don't hesitate to reach us for any kind of help as we are always on standby to help.</p>
             </div>
         </div>
+        <hr>
 
-
-        <h2 class="text-center mt-3 mb-3 text-bold text-dark">OUR PROJECT CATEGORIES</h2>
+        <h2 class="text-center mt-3 mb-3 text-bold text-dark">MOST POPULAR JOB CATEGORIES</h2>
         <div v-if="categories.length > 0" class="row">
 
             <div v-for="category in this.categories"  class="col-md-6 col-lg-3">
@@ -172,7 +180,7 @@
                 </v-card>
             </div>
         </div>
-        <hr>
+
 
        <!-- <h2 class="text-center mt-3 mb-3 text-bold text-dark">HOW TO GET STARTED</h2>
 
