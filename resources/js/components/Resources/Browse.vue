@@ -86,15 +86,27 @@
             return{
                 title: 'This is a title',
                 body: 'This is the whole body of the card. It includes the job done by the freelancer. Its description and other relevant details',
-                price: '$200'
+                price: '$200',
+                browsejobs: {},
             }
+
         },
         methods:{
             viewall(){
                 window.location.assign('/browse/projects')
-            }
-        },
+            },
+            getProjects(){
+                    axios
+                        .get('/data/latest-projects')
+                        .then((response) => {
+                            this.browsejobs = response.data;
+                        })
+
+                }
+            },
+
         mounted() {
+            this.getProjects();
         },
     }
 </script>

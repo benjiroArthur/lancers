@@ -50,12 +50,16 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::get('/client/in-progress/{id}', 'ClientDashController@progress');
     Route::get('/client/not-completed/{id}', 'ClientDashController@yet');
     Route::get('/client/projects/{id}', 'ClientDashController@projects');
+    Route::get('/client/client-projects/{id}', 'ClientDashController@clientProjects');
+    Route::get('/client/unapplied-projects/{id}', 'ClientDashController@unappliedFor');
+    Route::get('/latest-projects', 'ProjectController@latestProjects');
     Route::post('/user/profile', 'ProfileController@profile');
     Route::post('/user/profile_picture', 'ProfileController@profilePicture');
     Route::post('/user/portfolio', 'ProfileController@portfolio');
     Route::post('/user/job_link', 'ProfileController@addLinks');
     Route::post('/user/job_link/edit/{id}', 'ProfileController@editLink');
     Route::post('/user/address', 'ProfileController@address');
+
 
     // routes for deletion for clients
     Route::get('/client/deleted-projects/{id}', 'ClientDashController@delete_projects');
@@ -76,6 +80,7 @@ Route::resource('/friends', 'FriendsController');
 Route::get('/getChat/{id}', 'ChatController@getChat');
 Route::get('/browse/projects', 'PagesController@browseJobs');
 Route::get('/browse/post-jobs', 'PagesController@postJobs');
+
 
 
 // routes for messaging
