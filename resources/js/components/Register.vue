@@ -69,17 +69,19 @@
 
                            <!-- <b-form-select v-model="form.user_type" :options="options"></b-form-select>-->
 
+                            <!-- Group of material radios - option 2 -->
+                            <div class="form-check text-center m-3">
+                                <input v-model="form.user_type" value="client" type="radio" class="form-check-input" id="materialGroupExample2" name="groupOfMaterialRadios" checked>
+                                <label class="form-check-label font-weight-bold" for="materialGroupExample2">I Want To Hire</label>
+                            </div>
+
                             <!-- Group of material radios - option 1 -->
                             <div class="form-check text-center m-3">
                                 <input v-model="form.user_type" value="freelancer" type="radio" class="form-check-input " id="materialGroupExample1" name="groupOfMaterialRadios">
                                 <label class="form-check-label font-weight-bold" for="materialGroupExample1">I Want To Work</label>
                             </div>
 
-                            <!-- Group of material radios - option 2 -->
-                            <div class="form-check text-center m-3">
-                                <input v-model="form.user_type" value="client" type="radio" class="form-check-input" id="materialGroupExample2" name="groupOfMaterialRadios" checked>
-                                <label class="form-check-label font-weight-bold" for="materialGroupExample2">I Want To Hire</label>
-                            </div>
+
 
 
                             <div class="text-center mt-3">
@@ -114,7 +116,7 @@
                     password_confirmation: '',
                     user_type: '',
                 }),
-                nextPage: true,
+                nextPage: false,
             }
         },
 

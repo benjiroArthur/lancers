@@ -97,23 +97,23 @@
 
                                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="navbarDropdown">
                                        <ul class="text-dark text-left">
-                                           <li class="nav-item">
+                                           <li class="nav-item my-nav-link">
                                                <a href="{{url('/profile')}}" class="dropdown-item nav-link  text-dark">
                                                    <p>Profile</p>
                                                </a>
                                            </li>
-                                           <li class="nav-item">
+                                           <li class="nav-item my-nav-link">
                                                <a href="#" class="dropdown-item nav-link  text-dark">
                                                    <p>User Settings</p>
                                                </a>
                                            </li>
 
-                                           <li class="nav-item text-dark">
+                                           <li class="nav-item text-dark my-nav-link">
                                                <a href="#" class="dropdown-item nav-link  text-dark">
                                                    <p>Get Support</p>
                                                </a>
                                            </li>
-                                           <li class="nav-item text-dark">
+                                           <li class="nav-item text-dark my-nav-link">
                                                <a class="dropdown-item nav-link text-left text-dark" href="{{ route('logout') }}"
                                                   onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
