@@ -17,7 +17,10 @@ if (App::environment('production')) {
     URL::forceScheme('https');
 }
 
-
+Route::get('/storage-link', function() {
+    $output = [];
+    \Artisan::call('storage:link', $output);
+});
 
 Route::get('/', function () {
     return view('welcome');
