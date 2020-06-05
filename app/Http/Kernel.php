@@ -24,6 +24,8 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\FreelancerMiddleware::class,
         \App\Http\Middleware\PortfolioUpdateMiddleware::class,
         \App\Http\Middleware\ProfileUpdateMiddleware::class,
+        \App\Http\Middleware\ClientMiddleware::class,
+        \App\Http\Middleware\AdminMiddleware::class,
     ];
 
     /**
@@ -71,5 +73,7 @@ class Kernel extends HttpKernel
         'freelancer' => \App\Http\Middleware\FreelancerMiddleware::class,
         'portfolio' => \App\Http\Middleware\PortfolioUpdateMiddleware::class,
         'profile' => \App\Http\Middleware\ProfileUpdateMiddleware::class,
+        'client' => \App\Http\Middleware\ClientMiddleware::class,
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
     ];
 }
