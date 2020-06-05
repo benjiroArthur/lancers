@@ -194,7 +194,7 @@ Vue.component('chat', require('./components/Chat/Chat.vue').default);
 Vue.component('chat-header', require('./components/Chat/ChatHeader.vue').default);
 Vue.component('contact-list', require('./components/Chat/ContactList.vue').default);
 Vue.component('conversation', require('./components/Chat/Conversation.vue').default);
-Vue.component('messages-composer', require('./components/Chat/MessagesComposer').default);
+Vue.component('messages-composer', require('./components/Chat/MessagesComposer.vue').default);
 Vue.component('messages-feed', require('./components/Chat/MessagesFeed.vue').default);
 Vue.component('browse-jobs', require('./components/Jobs/BrowseJobs.vue').default);
 Vue.component('all-projects', require('./components/Jobs/AllProjects.vue').default);
@@ -206,6 +206,11 @@ Vue.component('all-projects', require('./components/Admin/AllProjects.vue').defa
 Vue.component('freelancers-table', require('./components/Admin/AdminTables/FreelancersTable.vue').default);
 Vue.component('clients-table', require('./components/Admin/AdminTables/ClientsTable.vue').default);
 Vue.component('admins-table', require('./components/Admin/AdminTables/AdminsTable.vue').default);
+Vue.component('post-jobs', require('./components/ProjectManager/Dashboard/PostJobs.vue').default);
+Vue.component('allprojects-table', require('./components/ProjectManager/ClientTables/AllProjectsTable').default);
+Vue.component('completed-table', require('./components/ProjectManager/ClientTables/CompletedTable.vue').default);
+Vue.component('pending-table', require('./components/ProjectManager/ClientTables/PendingTable.vue').default);
+Vue.component('unappliedjobs-table', require('./components/ProjectManager/ClientTables/UnappliedJobsTable.vue').default);
 
 
 
@@ -218,17 +223,17 @@ Vue.component('slick', Slick);
 let routes = [
     //{path:'/home', component: require('./components/Home.vue').default},
     //freelancer routes
-    /*{path:'/freelancer/dashboard/all-project', component: require('./components/Freelancer/Dashboard/AllProjects.vue').default},
-    {path:'/freelancer/dashboard/in-progress', component: require('./components/Freelancer/Dashboard/InProgress.vue').default},
-    {path:'/freelancer/dashboard/completed', component: require('./components/Freelancer/Dashboard/Completed.vue').default},
+    /*{path:'/freelancer/dashboard/all-project', component: require('./components/Freelancer/Dashboard/AllProjectsTable.vue').default},
+    {path:'/freelancer/dashboard/in-progress', component: require('./components/Freelancer/Dashboard/PendingTable.vue').default},
+    {path:'/freelancer/dashboard/completed', component: require('./components/Freelancer/Dashboard/CompletedTable.vue').default},
     {path:'/freelancer/dashboard/all-jobs', component: require('./components/Freelancer/Dashboard/AllJobs.vue').default},
     {path:'/freelancer/dashboard/submit-jobs', component: require('./components/Freelancer/Dashboard/SubmitJobs.vue').default},
     {path:'/freelancer/dashboard/profile', component: require('./components/Freelancer/Dashboard/FreelancerProfile.vue').default},*/
 
     //project manager routes
-   /* {path:'/scrum/dashboard/all-project', component: require('./components/ProjectManager/Dashboard/AllProjects.vue').default},
-    {path:'/scrum/dashboard/in-progress', component: require('./components/ProjectManager/Dashboard/InProgress.vue').default},
-    {path:'/scrum/dashboard/completed', component: require('./components/ProjectManager/Dashboard/Completed.vue').default},
+   /* {path:'/scrum/dashboard/all-project', component: require('./components/ProjectManager/Dashboard/AllProjectsTable.vue').default},
+    {path:'/scrum/dashboard/in-progress', component: require('./components/ProjectManager/Dashboard/PendingTable.vue').default},
+    {path:'/scrum/dashboard/completed', component: require('./components/ProjectManager/Dashboard/CompletedTable.vue').default},
     {path:'/scrum/dashboard/post-job', component: require('./components/ProjectManager/Dashboard/PostJobs.vue').default},
     {path:'/scrum/dashboard/payment', component: require('./components/ProjectManager/Dashboard/Payment.vue').default},
     {path:'/scrum/dashboard/profile', component: require('./components/ProjectManager/Dashboard/ClientProfile.vue').default},*/

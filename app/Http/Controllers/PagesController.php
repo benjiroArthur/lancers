@@ -13,7 +13,7 @@ class PagesController extends Controller
 
     //post jobs
     public function postJobs(){
-        return view('Pages.post-jobs');
+        return view('Pages.Client.jobs');
 
 
     }

@@ -7,6 +7,7 @@ use App\JobOffered;
 use App\User;
 use http\Client;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 
 
 class ClientDashController extends Controller
@@ -52,14 +53,27 @@ class ClientDashController extends Controller
         return response()->json($projects);
     }
 
+    //get unapplied-for jobs
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * */
+    public function unappliedFor($id) {
+        $client = User::findorFail($id)->userable;
+        $projects = Project::doesntHave('projectApplication', function ($q) use $client{
+
+        })->get();
+        return response()->json($projects);
+    }
+
     /**
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      * */
     // clients sees all projects personally posted...worked here
-    public function clientProjects($id, $user) {
+    public function clientProjects($id) {
         $client = User::findorFail($id)->userable;
-        if($user->role_id === $client->id) {
+        if(auth()->user()->role_name === 'client') {
             $clientprojects = $client->projects;
         }
         return response()->json($clientprojects);
