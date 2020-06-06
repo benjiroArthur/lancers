@@ -20,6 +20,7 @@
     export default {
         name: "PendingTable",
         components: {BootstrapTable},
+        props:{user_id},
         data() {
             return {
                 myOptions: {
@@ -99,11 +100,12 @@
                 pending: {},
 
 
+
             };
         },
         methods:{
             getAllPending(){
-                axios.get(`data/client/not-completed/${this.$parent.user_id}`)
+                axios.get(`/data/client/not-completed/${user_id}`)
                     .then((response)=>{
                         this.pending = response.data;
                     })

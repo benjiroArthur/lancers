@@ -27,9 +27,6 @@
             </div>
         </div>-->
 
-<div></div>
-
-
 
         <h2 class="text-center mt-3 mb-3 text-bold text-dark pa-5 swift-h2 mt-5">DO IT YOURSELF</h2>
 
@@ -193,19 +190,13 @@
         </div>
 
 
-        <!-- <h2 class="text-center mt-3 mb-3 text-bold text-dark">HOW TO GET STARTED</h2>
+         <h2 class="text-center mt-3 mb-3 text-bold text-dark">HOW TO GET STARTED</h2>
 
-         <div class="row img-fluid">
+         <div class="row img-fluid justify-content-center ml-1">
              <img :src="this.resource_path + '/howToGetStarted.gif'" alt="" class="img-fluid">
-         </div>-->
+         </div>
 
 
-
-        <!-- End of comments -->
-
-        <!--        <div class="test-div">-->
-
-        <!--        </div>-->
 
 
     </div>

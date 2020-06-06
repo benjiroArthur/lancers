@@ -20,6 +20,7 @@
     export default {
         name: "CompletedTable",
         components: {BootstrapTable},
+        props:{user_id},
         data() {
             return {
                 myOptions: {
@@ -101,9 +102,9 @@
 
             };
         },
-        methods:{
+        methods: {
             getCompleted(){
-                axios.get(`data/client/completed-projects/${this.$parent.user_id}`)
+                axios.get('/data/client/completed-projects/'+user_id)
                     .then((response)=>{
                         this.completed = response.data;
                     })

@@ -21,6 +21,7 @@
         export default {
             name: "UnappliedJobsTable",
             components: {BootstrapTable},
+            props:{user_id},
             data() {
                 return {
                     myOptions: {
@@ -100,11 +101,12 @@
                     unappliedjobs: {},
 
 
+
                 };
             },
             methods:{
                 getAllUnappliedJobs(){
-                    axios.get(`data/client/unapplied-projects/${this.$parent.user_id}`)
+                    axios.get(`/data/client/unapplied-projects/${user_id}`)
                         .then((response)=>{
                             this.unappliedjobs = response.data;
                         })

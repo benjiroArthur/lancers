@@ -20,6 +20,7 @@
     export default {
         name: "LancerAppliedJobsTable",
         components: {BootstrapTable},
+        props:{user_id},
         data() {
             return {
                 myOptions: {
@@ -64,11 +65,12 @@
                 allprojects: {},
 
 
+
             };
         },
         methods:{
             getAllProjects(){
-                axios.get(`data/client/client-projects/${this.$parent.user_id}`)
+                axios.get(`data/client/client-projects/${user_id}`)
                     .then((response)=>{
                         this.allprojects = response.data;
                     })

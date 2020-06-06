@@ -19,16 +19,16 @@
                     <div class="card-body">
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab-eg7-0" role="tabpanel">
-                                <allprojects-table></allprojects-table>
+                                <allprojects-table :user_id="this.user_id"></allprojects-table>
                             </div>
                             <div class="tab-pane" id="tab-eg7-1" role="tabpanel">
-                                <completed-table></completed-table>
+                                <!--<completed-table :user_id="this.user_id"></completed-table>-->
                             </div>
                             <div class="tab-pane" id="tab-eg7-2" role="tabpanel">
-                                <pending-table></pending-table>
+                                <pending-table :user_id="this.user_id"></pending-table>
                             </div>
                             <div class="tab-pane" id="tab-eg7-3" role="tabpanel">
-                                <unappliedjobs-table></unappliedjobs-table>
+                                <unappliedjobs-table :user_id="this.user_id"></unappliedjobs-table>
                             </div>
                         </div>
                     </div>
@@ -70,6 +70,7 @@
         components: {CompletedTable, PendingTable, AllProjectsTable},
         data(){
             return{
+                user_id: 22,
                 categories:{},
                 jobForm: new Form({
                     project_title:'',
@@ -101,6 +102,7 @@
             },
         },
         mounted() {
+           // this.user_id = this.$parent.userId
             this.getCat();
         },
 

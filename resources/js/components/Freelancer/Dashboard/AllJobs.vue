@@ -4,9 +4,6 @@
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-tools">
-                            <a href="#" class="btn btn-outline-success text-right"><i class="fas fa-plus-circle"></i></a>
-                        </div>
                         <ul class="nav nav-justified">
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-0" class="active nav-link text-lancer text-bold">All Projects</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-1" class="nav-link text-lancer text-bold">Completed Project</a></li>
@@ -19,16 +16,16 @@
                     <div class="card-body">
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab-eg7-0" role="tabpanel">
-                                <lancer-allprojects-table></lancer-allprojects-table>
+                                <lancer-allprojects-table :user_id="this.user_id"></lancer-allprojects-table>
                             </div>
                             <div class="tab-pane" id="tab-eg7-1" role="tabpanel">
-                                <lancer-completed-table></lancer-completed-table>
+                                <lancer-completed-table :user_id="this.user_id"></lancer-completed-table>
                             </div>
                             <div class="tab-pane" id="tab-eg7-2" role="tabpanel">
-                                <lancer-inprogress-table></lancer-inprogress-table>
+                                <lancer-inprogress-table :user_id="this.user_id"></lancer-inprogress-table>
                             </div>
                             <div class="tab-pane" id="tab-eg7-3" role="tabpanel">
-                                <lancer-appliedjobs-table></lancer-appliedjobs-table>
+                                <lancer-appliedjobs-table :user_id="this.user_id"></lancer-appliedjobs-table>
                             </div>
                         </div>
                     </div>
@@ -45,7 +42,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <!--<div class="row">
             <div class="col-md-12">
                 <div class="card shadow">
                     <div class="card-header">
@@ -56,7 +53,7 @@
                     <div class="card-body"></div>
                 </div>
             </div>
-        </div>
+        </div>-->
     </div>
 </template>
 
@@ -69,9 +66,26 @@
     export default {
         name: "AllJobs",
         components:{LancerAllProjectsTable, LancerCompletedTable, LancerInProgressTable, LancerAppliedJobsTable},
+        data(){
+            return{
+                user_id: 22,
+            }
+        },
+        mounted() {
+           // this.user_id = this.$parent.userId
+        }
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+    .nav {
+        :hover{
+            color: #32a778;
+        }
+        .active {
+            border-bottom: 2px solid #32a778;
+        }
+
+    }
 
 </style>

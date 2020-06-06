@@ -20,6 +20,7 @@
     export default {
         name: "AllTable",
         components: {BootstrapTable},
+        props:{user_id},
         data() {
             return {
                 myOptions: {
@@ -62,13 +63,15 @@
                     }
                 ],
                 allprojects: {},
+                user_id: null,
+
 
 
             };
         },
         methods:{
             getAllProjects(){
-                axios.get(`data/client/client-projects/${this.$parent.user_id}`)
+                axios.get(`/data/client/client-projects/${user_id}`)
                     .then((response)=>{
                         this.allprojects = response.data;
                     })

@@ -1,25 +1,26 @@
 <template>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="justify-content-between d-flex">
+                <h6 class="text-uppercase font-weight-bold">All Projects</h6>
+            </div>
 
-</template>
-<div class="row">
-    <div class="col-md-12">
-        <div class="justify-content-between d-flex">
-            <h6 class="text-uppercase font-weight-bold">All Projects</h6>
-        </div>
-
-        <div class="col-12 table-responsive">
-            <div class="card-body table table-responsive table-borderless p-0">
-                <bootstrap-table :data="allprojects" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/>
+            <div class="col-12 table-responsive">
+                <div class="card-body table table-responsive table-borderless p-0">
+                    <bootstrap-table :data="allprojects" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/>
+                </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
+</template>
+
 <script>
     import BootstrapTable from 'bootstrap-table/dist/bootstrap-table-vue.min';
     export default {
         name: "LancerInProgressTable",
         components: {BootstrapTable},
+        props:{user_id},
         data() {
             return {
                 myOptions: {
@@ -64,11 +65,12 @@
                 allprojects: {},
 
 
+
             };
         },
         methods:{
             getAllProjects(){
-                axios.get(`/data/freelancer/in-progress/${this.$parent.user_id}`)
+                axios.get(`/data/freelancer/in-progress/${user_id}`)
                     .then((response)=>{
                         this.allprojects = response.data;
                     })
