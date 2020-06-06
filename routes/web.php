@@ -18,8 +18,8 @@ if (App::environment('production')) {
 }
 
 Route::get('/storage-link', function() {
-    $targetFolder = $_SERVER['DOCUMENT_ROOT'].'/storage/app/public';
-    $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/public/storage';
+    $targetFolder = $_SERVER['DOCUMENT_ROOT'].'lancers/storage/app/public';
+    $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/lance/storage';
     symlink($targetFolder,$linkFolder);
     echo 'Symlink completed';
 });
