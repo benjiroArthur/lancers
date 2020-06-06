@@ -308,6 +308,11 @@
             </div>
         </div>
         <!--link modal end-->
+
+        <!--new user modal-->
+
+
+
     </div>
 </template>
 
@@ -316,6 +321,7 @@
         name: "Dashboard",
         data(){
             return{
+                dialog: false,
                 admin:{},
                 portfolioForm: new Form({
                     title: '',

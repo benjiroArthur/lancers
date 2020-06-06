@@ -7,16 +7,6 @@
                 <div class="card-body table table-responsive table-borderless p-0">
                     <bootstrap-table :data="clients" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/>
                 </div>
-                <div class="card">
-                    <div class="card-header bg-lancer text-white">
-                        Project Details
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary bg-lancer text-right">Apply</a>
-                    </div>
-                </div>
             </div>
         </div>
 

@@ -37,7 +37,7 @@ class Project extends Model
     }
 
     public function jobOffered(){
-        return $this->hasOne(Client::class);
+        return $this->hasOne(JobOffered::class);
     }
 
     public function getImageAttribute(){
@@ -48,5 +48,9 @@ class Project extends Model
         //return Carbon::now()->diffForHumans($this->created_at);
     }
 
+
+    public function projectApplication(){
+        return $this->hasMany(ProjectApplication::Class);
+    }
 
 }

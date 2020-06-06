@@ -3,26 +3,46 @@
         <div class="col-md-12">
             <div class="justify-content-between d-flex">
                <h6 class="text-uppercase font-weight-bold">Users (Admins)</h6>
-                <a href="#" class="btn btn-outline-success text-right"><i class="fas fa-user-plus"></i></a>
+                <a href="#" class="btn btn-outline-success text-right" data-toggle="modal" data-target="#addUserModal"><i class="fas fa-user-plus"></i></a>
             </div>
 
             <div class="col-12 table-responsive">
                 <div class="card-body table table-responsive table-borderless p-0">
                     <bootstrap-table :data="admins" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/>
                 </div>
-                <div class="card">
-                    <div class="card-header bg-lancer text-white">
-                        Project Details
+            </div>
+        </div>
+       <!--add user modal-->
+        <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addUserModalLabel">Add User</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary bg-lancer text-right">Apply</a>
+                    <form ref="form" @submit.prevent="addUser">
+                    <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input v-model="form.email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+<!--
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+-->
+                            </div>
+
+
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-outline-success">Save</button>
+                    </div>
+                    </form>
                 </div>
             </div>
         </div>
-
     </div>
 </template>
 
@@ -108,6 +128,9 @@
                     }
                 ],
                 admins: {},
+                form: new Form({
+                    email:'',
+                }),
 
 
             };
@@ -119,6 +142,24 @@
                         this.admins = response.data;
                     })
                     .catch()
+            },
+            addUser(){
+                this.$Progress.start();
+                axios
+                this.form.post('/data/admin/user')
+                .then((response) => {
+                    let data = response.data;
+                    this.admins.push(data);
+                    $('#addUserModal').modal('hide');
+                    Swal.fire(
+                        'Success!',
+                        'User Added Successfully',
+                        'success'
+                    );
+                })
+                .catch((error)=>{
+                    console.log(error.message);
+                })
             },
         },
         mounted() {

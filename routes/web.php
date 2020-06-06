@@ -18,8 +18,10 @@ if (App::environment('production')) {
 }
 
 Route::get('/storage-link', function() {
-    $output = [];
-    \Artisan::call('storage:link', $output);
+    $targetFolder = $_SERVER['DOCUMENT_ROOT'].'/storage/app/public';
+    $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/public/storage';
+    symlink($targetFolder,$linkFolder);
+    echo 'Symlink completed';
 });
 
 Route::get('/', function () {
@@ -50,12 +52,16 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::get('/client/in-progress/{id}', 'ClientDashController@progress');
     Route::get('/client/not-completed/{id}', 'ClientDashController@yet');
     Route::get('/client/projects/{id}', 'ClientDashController@projects');
+    Route::get('/client/client-projects/{id}', 'ClientDashController@clientProjects');
+    Route::get('/client/unapplied-projects/{id}', 'ClientDashController@unappliedFor');
+    Route::get('/latest-projects', 'ProjectController@latestProjects');
     Route::post('/user/profile', 'ProfileController@profile');
     Route::post('/user/profile_picture', 'ProfileController@profilePicture');
     Route::post('/user/portfolio', 'ProfileController@portfolio');
     Route::post('/user/job_link', 'ProfileController@addLinks');
     Route::post('/user/job_link/edit/{id}', 'ProfileController@editLink');
     Route::post('/user/address', 'ProfileController@address');
+
 
     // routes for deletion for clients
     Route::get('/client/deleted-projects/{id}', 'ClientDashController@delete_projects');
@@ -67,6 +73,7 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::get('/admin/getClients', 'AdminController@getClients');
     Route::get('/admin/getLancers', 'AdminController@getLancers');
     Route::get('/admin/getAdmins', 'AdminController@getAdmins');
+    Route::resource('/admin/user', 'UserController');
 
 
 
@@ -76,6 +83,7 @@ Route::resource('/friends', 'FriendsController');
 Route::get('/getChat/{id}', 'ChatController@getChat');
 Route::get('/browse/projects', 'PagesController@browseJobs');
 Route::get('/browse/post-jobs', 'PagesController@postJobs');
+
 
 
 // routes for messaging
@@ -98,7 +106,7 @@ Route::resource('/chat', 'ChatController')->middleware('auth');
 
 
 //should be the last route
-Route::middleware('auth')->get('/dashboard', function(){
+/*Route::middleware('auth')->get('/dashboard', function(){
     if(Auth()->user()->role->name === 'freelancer'){
         return redirect('/freelancer/dashboard/all-project');
     }
@@ -106,9 +114,9 @@ Route::middleware('auth')->get('/dashboard', function(){
         return redirect('/freelancer/dashboard/all-project');
     }
 
-});
-Route::middleware('auth')->get('/freelancer/dashboard/{path}', 'DashboardController@index')->where('path', '([A-z\-/_.]+)?' );
-Route::middleware('auth')->get('/scrum/dashboard/{path}', 'DashboardController@index')->where('path', '([A-z\-/_.]+)?' );
+});*/
+//Route::middleware('auth')->get('/freelancer/dashboard/{path}', 'DashboardController@index')->where('path', '([A-z\-/_.]+)?' );
+//Route::middleware('auth')->get('/scrum/dashboard/{path}', 'DashboardController@index')->where('path', '([A-z\-/_.]+)?' );
 Route::middleware('auth')->get('{path}', function (){
     return redirect('/home');
 })->where('path', '([A-z\-/_.]+)?' );

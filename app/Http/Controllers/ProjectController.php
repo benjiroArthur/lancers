@@ -129,4 +129,13 @@ class ProjectController extends Controller
     {
         //
     }
+
+    //get unapplied-for jobs
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     * */
+    public function latestProjects() {
+        $projects = \App\Project::whereDoesntHave('jobOffered')->get();
+        return response()->json($projects);
+    }
 }
