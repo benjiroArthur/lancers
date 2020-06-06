@@ -29,7 +29,6 @@ class AdminController extends Controller
     public function getLancers(){
         $lancers = Freelancer::all();
         return response()->json($lancers);
-
     }
 
     /**
