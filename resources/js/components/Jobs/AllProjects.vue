@@ -14,16 +14,7 @@
                         <div class="card-body table table-responsive table-borderless p-0">
                             <bootstrap-table :data="allProjects" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/>
                         </div>
-                        <div class="card">
-                            <div class="card-header bg-lancer text-white">
-                                Project Details
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Special title treatment</h5>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                <a href="#" class="btn btn-primary bg-lancer text-right">Apply</a>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -52,6 +43,7 @@
                     {field: 'project_title', title: 'Project'},
                     {field: 'project_cost', title: 'Cost'},
                     {field: 'description', title: 'Project Description'},
+                    {field: 'duration', title: 'Project Duration'},
                     {
                         field: 'action',
                         title: 'Action',
@@ -65,50 +57,15 @@
                         },
                         events: {
                             'click .show': function (e, value, row) {
-                                Fire.$emit('viewSingleAdmin', row);
+                                Fire.$emit('viewSingleJob', row);
 
                             },
                             'click .edit': function (e, value, row) {
-                                return window.location.assign('/admin/show/' + row.id)
+
 
                             },
                             'click .destroy': function (e, value, row) {
-                                swal.fire({
-                                    title: 'Are you sure?',
-                                    text: "You won't be able to revert this!",
-                                    icon: 'warning',
-                                    showCancelButton: true,
-                                    confirmButtonColor: '#3085d6',
-                                    cancelButtonColor: '#d33',
-                                    confirmButtonText: 'Yes, delete it!'
-                                }).then((result) => {
-                                    if (result.value) {
-                                        axios.delete('/data/admin/' + row.id).then((response) => {
-                                            if (response.data === "success") {
-                                                Fire.$emit('tableUpdate');
-                                                Swal.fire(
-                                                    'Deleted!',
-                                                    'User Deleted Successfully',
-                                                    'success'
-                                                );
 
-                                            } else {
-                                                Swal.fire(
-                                                    'Failed!',
-                                                    response.data,
-                                                    'warning'
-                                                )
-                                            }
-                                        }).catch(() => {
-                                            Swal.fire(
-                                                'Failed!',
-                                                'User Could Not Be Deleted.',
-                                                'warning'
-                                            )
-                                        });
-                                    }
-
-                                });
                             },
                         }
                     }
@@ -120,13 +77,63 @@
             };
         },
         methods:{
-            getProjects(){
+            /*getProjects(){
                 axios.get('/data/project')
                     .then((response)=>{
                         this.projects = response.data;
                         this.allProjects = this.projects.approvedJobs;
                     })
                     .catch()
+            },*/
+            getProjects(){
+                axios
+                    .get('/data/available-projects')
+                    .then((response) => {
+                        this.allProjects = response.data;
+                    })
+
+            },
+            viewJob(job){
+                this.job = job;
+                $('#viewJobModal').modal('show');
+            },
+            apply(){
+                $('#viewJobModal').modal('hide');
+                let id = this.job.id;
+                Swal.fire({
+                    title: 'Confirm Job Application for '+ id,
+                    text: "You are about to apply for this job",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#32a778',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Apply!'
+                }).then((result) => {
+                    if (result.value) {
+                        axios.post('/data/freelancer/apply-job/' + id).then((response) => {
+                            if(response.data === "success")
+                            {
+                                /*Fire.$emit('tableUpdate');*/
+                                Swal.fire(
+                                    'Success!',
+                                    'Job Application Successful',
+                                    'success'
+                                );
+
+                            }
+                            else{
+                                Swal.fire(
+                                    'Failed!',
+                                    response.data,
+                                    'warning'
+                                )
+                            }
+                        }).catch((error) => {
+                            console.log(error.message)
+                        });
+                    }
+
+                });
             },
         },
         mounted() {
