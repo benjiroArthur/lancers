@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileUpdateMiddleware
 {
@@ -15,6 +16,14 @@ class ProfileUpdateMiddleware
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        //return $next($request);
+
+            if(Auth::check() && Auth::user()->profile_updated === 0){
+                return redirect('/profile');
+            }
+           return $next($request);
+
+
+        //return redirect()->back();
     }
 }

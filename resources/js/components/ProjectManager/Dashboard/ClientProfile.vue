@@ -102,19 +102,22 @@
                                                     <has-error :form="addressForm" field="country"></has-error>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input v-model="addressForm.city" type="text" name="city" placeholder="City"
-                                                           class="form-control" :class="{ 'is-invalid': addressForm.errors.has('city') }">
+                                                    <input v-model="addressForm.city" type="text" name="city" placeholder="City" pattern="[a-zA-Z]*"
+                                                           class="form-control" :class="{ 'is-invalid': addressForm.errors.has('city') }"
+                                                           oninvalid="setCustomeValidity('Characters Only')">
                                                     <has-error :form="addressForm" field="city"></has-error>
                                                 </div>
                                             </div>
                                             <div class ="col-md-6">
                                                 <div class="form-group">
                                                     <input v-model="addressForm.zip_code" type="text" name="zip_code" placeholder="Zip Code"
+                                                           pattern="[0-9]*" maxlength="5"
                                                            class="form-control" :class="{ 'is-invalid': addressForm.errors.has('zip_code') }" required>
                                                     <has-error :form="addressForm" field="zip_code"></has-error>
                                                 </div>
                                                 <div class="form-group">
                                                     <input v-model="addressForm.phone_number" type="text" name="phone_number" placeholder="Phone Number"
+                                                           pattern="[0-9]*" maxlength="15"
                                                            class="form-control" :class="{ 'is-invalid': addressForm.errors.has('phone_number') }" required>
                                                     <has-error :form="addressForm" field="phone_number"></has-error>
                                                 </div>
@@ -170,20 +173,23 @@
                                 </div>
                                 <div class="card-body text-center">
                                     <form ref="profileForm" @submit.prevent="updateProfile">
-                                        <div class="row">
+                                        <div class="row text-center">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <input v-model="profileForm.first_name" type="text" name="first_name" placeholder="First Name"
+                                                           pattern="[a-zA-Z]*" oninvalid="setCustomeValidity('Characters Only')"
                                                            class="form-control" :class="{ 'is-invalid': profileForm.errors.has('first_name') }" required>
                                                     <has-error :form="profileForm" field="first_name"></has-error>
                                                 </div>
                                                 <div class="form-group">
                                                     <input v-model="profileForm.other_name" type="text" name="other_name" placeholder="Other Names"
+                                                           pattern="[a-zA-Z]*" oninvalid="setCustomeValidity('Characters Only')"
                                                            class="form-control" :class="{ 'is-invalid': profileForm.errors.has('other_name') }">
                                                     <has-error :form="profileForm" field="other_name"></has-error>
                                                 </div>
                                                 <div class="form-group">
                                                     <input v-model="profileForm.last_name" type="text" name="last_name" placeholder="Family Name"
+                                                           pattern="[a-zA-Z]*" oninvalid="setCustomeValidity('Characters Only')"
                                                            class="form-control" :class="{ 'is-invalid': profileForm.errors.has('last_name') }" required>
                                                     <has-error :form="profileForm" field="last_name"></has-error>
                                                 </div>
@@ -199,12 +205,23 @@
                                                            class="form-control" :class="{ 'is-invalid': profileForm.errors.has('dob') }">
                                                     <has-error :form="profileForm" field="dob"></has-error>
                                                 </div>
-                                                <div class="form-group">
-                                                    <b-form-select v-model="profileForm.gender" :options="genderOptions" aria-placeholder="Gender">
-                                                    </b-form-select>
+                                                <div class="form-group-inline">
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        <input v-model="profileForm.gender" value="male"  type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
+                                                        <label class="custom-control-label" for="defaultInline1">Male</label>
+                                                    </div>
+
+                                                    <!-- Default inline 2-->
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        <input v-model="profileForm.gender" value="female"  type="radio" class="custom-control-input" id="defaultInline2" name="inlineDefaultRadiosExample">
+                                                        <label class="custom-control-label" for="defaultInline2">Female</label>
+                                                    </div>
                                                     <has-error :form="profileForm" field="gender"></has-error>
                                                 </div>
-                                                <div class="text-right">
+
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="text-center">
                                                     <button type="button" class="btn btn-danger" @click="profileToggle('false', $event)" >Cancel</button>
                                                     <button type="submit" class="btn bg-lancer text-white">Save</button>
                                                 </div>
@@ -365,6 +382,7 @@
                 }
                 else if(val === 'false'){
                     this.addressEditMode = false;
+                    this.addressForm.fill(this.client.address);
                 }
             },
             //get user details
@@ -463,6 +481,7 @@
                     this.portfolioEditMode = true;
                 }
                 else if(val === 'false'){
+                    this.profileForm.fill(this.client.userable)
                     this.portfolioEditMode = false;
                 }
             },

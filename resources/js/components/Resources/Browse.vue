@@ -97,7 +97,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-outline-success" @click="apply()">Apply For this Job {{this.job.id}}</button>
+                            <button type="button" class="btn btn-outline-success" @click="apply()">Apply For this Job </button>
                         </div>
 
                 </div>
@@ -139,7 +139,7 @@
                 $('#viewJobModal').modal('hide');
                 let id = this.job.id;
                 Swal.fire({
-                    title: 'Confirm Job Application for '+ id,
+                    title: 'Confirm Job Application',
                     text: "You are about to apply for this job",
                     icon: 'warning',
                     showCancelButton: true,

@@ -6,7 +6,7 @@
         </VueSlickCarousel>
 
 
-        <div id = "myCarousel" class = "carousel slide mb-5" data-action="carousel">
+        <!--<div id = "myCarousel" class = "carousel slide mb-5" data-action="carousel">
             <ol class = "carousel-indicators">
                 <li data-target = "#myCarousel" data-slide-to = "0" class="active"></li>
                 <li data-target = "#myCarousel" data-slide-to = "1"></li>
@@ -20,13 +20,12 @@
                 </div>
                 <div class = "container">
                     <div class = "carousel-caption text-center">
-                        <h1>Hire the best freelancer for any job online</h1>
-                        <button type="button" class="btn btn-success btn-lg">Hire A Freelancer</button>
-                        <button type="button" class="btn btn-success btn-lg">Earn Money Freelancing</button>
+                        <button type="button" class="btn btn-success btn-sm">Hire A Freelancer</button>
+                        <button type="button" class="btn btn-success btn-sm">Earn Money Freelancing</button>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
 
 <div></div>
 

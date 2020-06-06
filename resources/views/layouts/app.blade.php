@@ -55,8 +55,15 @@
                                        Dashboard
                                    </a>
                                </li>
+
                                <browse></browse>
-                               <my-project></my-project>
+                              @if(auth()->user()->role->name !== 'admin')
+                                   <li class="nav-item home-navs">
+                                       <a href="{{route('browse-post-job')}}" class="nav-link text-dark">
+                                           <i class="fas fa-tv text-dark h4"></i> My Project
+                                       </a>
+                                   </li>
+                               @endif
                                <messages></messages>
                                <update></update>
                            @endauth

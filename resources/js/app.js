@@ -180,6 +180,7 @@ Vue.component('contact-us', require('./components/ContactUs.vue').default);
 Vue.component('update', require('./components/Resources/Notification.vue').default);
 Vue.component('browse', require('./components/Resources/Browse.vue').default);
 Vue.component('messages', require('./components/Resources/Messages.vue').default);
+
 Vue.component('my-project', require('./components/Resources/MyProject.vue').default);
 Vue.component('login', require('./components/Login.vue').default);
 Vue.component('register', require('./components/Register.vue').default);
@@ -207,10 +208,16 @@ Vue.component('freelancers-table', require('./components/Admin/AdminTables/Freel
 Vue.component('clients-table', require('./components/Admin/AdminTables/ClientsTable.vue').default);
 Vue.component('admins-table', require('./components/Admin/AdminTables/AdminsTable.vue').default);
 Vue.component('post-jobs', require('./components/ProjectManager/Dashboard/PostJobs.vue').default);
+Vue.component('freelancer-jobs', require('./components/Freelancer/Dashboard/AllJobs.vue').default);
 Vue.component('allprojects-table', require('./components/ProjectManager/ClientTables/AllProjectsTable').default);
 Vue.component('completed-table', require('./components/ProjectManager/ClientTables/CompletedTable.vue').default);
 Vue.component('pending-table', require('./components/ProjectManager/ClientTables/PendingTable.vue').default);
 Vue.component('unappliedjobs-table', require('./components/ProjectManager/ClientTables/UnappliedJobsTable.vue').default);
+
+Vue.component('lancer-allprojects-table', require('./components/Freelancer/FreelancerTables/LancerAllProjectsTable').default);
+Vue.component('lancer-completed-table', require('./components/Freelancer/FreelancerTables/LancerCompletedTable.vue').default);
+Vue.component('lancer-inprogress-table', require('./components/Freelancer/FreelancerTables/LancerInProgressTable.vue').default);
+Vue.component('lancer-appliedjobs-table', require('./components/Freelancer/FreelancerTables/LancerAppliedJobsTable.vue').default);
 
 
 
@@ -223,7 +230,7 @@ Vue.component('slick', Slick);
 let routes = [
     //{path:'/home', component: require('./components/Home.vue').default},
     //freelancer routes
-    /*{path:'/freelancer/dashboard/all-project', component: require('./components/Freelancer/Dashboard/AllProjectsTable.vue').default},
+    /*{path:'/freelancer/dashboard/all-project', component: require('./components/Freelancer/Dashboard/LancerAllProjectsTable.vue').default},
     {path:'/freelancer/dashboard/in-progress', component: require('./components/Freelancer/Dashboard/PendingTable.vue').default},
     {path:'/freelancer/dashboard/completed', component: require('./components/Freelancer/Dashboard/CompletedTable.vue').default},
     {path:'/freelancer/dashboard/all-jobs', component: require('./components/Freelancer/Dashboard/AllJobs.vue').default},
@@ -231,7 +238,7 @@ let routes = [
     {path:'/freelancer/dashboard/profile', component: require('./components/Freelancer/Dashboard/FreelancerProfile.vue').default},*/
 
     //project manager routes
-   /* {path:'/scrum/dashboard/all-project', component: require('./components/ProjectManager/Dashboard/AllProjectsTable.vue').default},
+   /* {path:'/scrum/dashboard/all-project', component: require('./components/ProjectManager/Dashboard/LancerAllProjectsTable.vue').default},
     {path:'/scrum/dashboard/in-progress', component: require('./components/ProjectManager/Dashboard/PendingTable.vue').default},
     {path:'/scrum/dashboard/completed', component: require('./components/ProjectManager/Dashboard/CompletedTable.vue').default},
     {path:'/scrum/dashboard/post-job', component: require('./components/ProjectManager/Dashboard/PostJobs.vue').default},
