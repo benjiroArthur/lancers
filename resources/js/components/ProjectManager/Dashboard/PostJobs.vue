@@ -66,8 +66,43 @@
     import AllProjectsTable from "../ClientTables/AllProjectsTable";
 
     export default {
-        name: "AdminHome",
+        name: "ClientPostJobs",
         components: {CompletedTable, PendingTable, AllProjectsTable},
+        data(){
+            return{
+                categories:{},
+                jobForm: new Form({
+                    project_title:'',
+                    job_type_id:'',
+                    description:'',
+                    project_cost:'',
+                    duration:'',
+                }),
+            }
+        },
+        methods:{
+            getCat(){
+                axios.get('/data/job-category')
+                    .then((response)=>{
+                        this.categories = response.data;
+                    }).catch((error)=>{
+                        console.log(error.message);
+                })
+            },
+            postJob(){
+              this.jobForm.post().then((response)=>{
+                  Fire.$emit('jobPosted');
+                  Swal.fire(
+                      'Success',
+                      'Job Posted Successfully',
+                      'success'
+                  );
+              })
+            },
+        },
+        mounted() {
+            this.getCat();
+        },
 
     };
 

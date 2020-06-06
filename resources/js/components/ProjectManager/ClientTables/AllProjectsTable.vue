@@ -32,9 +32,9 @@
 
                 },
                 myColumns: [
-                    {field: 'full_name', title: 'Name'},
-                    {field: 'email', title: 'E-mail'},
-                    {field: 'address.phone_number', title: 'Mobile Number'},
+                    {field: 'project_title', title: 'Project Title'},
+                    {field: 'project_cost', title: 'Project Cost'},
+                    {field: 'description', title: 'Project Description'},
                     {
                         field: 'action',
                         title: 'Action',
@@ -48,50 +48,15 @@
                         },
                         events: {
                             'click .show': function (e, value, row) {
-                                Fire.$emit('viewSingleAdmin', row);
+                                Fire.$emit('viewSingleProject', row);
 
                             },
                             'click .edit': function (e, value, row) {
-                                return window.location.assign('/admin/show/' + row.id)
+
 
                             },
                             'click .destroy': function (e, value, row) {
-                                swal.fire({
-                                    title: 'Are you sure?',
-                                    text: "You won't be able to revert this!",
-                                    icon: 'warning',
-                                    showCancelButton: true,
-                                    confirmButtonColor: '#3085d6',
-                                    cancelButtonColor: '#d33',
-                                    confirmButtonText: 'Yes, delete it!'
-                                }).then((result) => {
-                                    if (result.value) {
-                                        axios.delete('/data/admin/' + row.id).then((response) => {
-                                            if (response.data === "success") {
-                                                Fire.$emit('tableUpdate');
-                                                Swal.fire(
-                                                    'Deleted!',
-                                                    'User Deleted Successfully',
-                                                    'success'
-                                                );
 
-                                            } else {
-                                                Swal.fire(
-                                                    'Failed!',
-                                                    response.data,
-                                                    'warning'
-                                                )
-                                            }
-                                        }).catch(() => {
-                                            Swal.fire(
-                                                'Failed!',
-                                                'User Could Not Be Deleted.',
-                                                'warning'
-                                            )
-                                        });
-                                    }
-
-                                });
                             },
                         }
                     }
