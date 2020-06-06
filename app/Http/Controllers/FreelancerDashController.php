@@ -89,20 +89,26 @@ class FreelancerDashController extends Controller
     /**
      *
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param   $id
+     * @return \Illuminate\Http\Response
      */
-    public function applyForJobs(Request $request) {
-        $this->validate($request, [
-            'client_id' => 'required',
-        ]);
+    public function applyForJobs($id) {
+        $user = auth()->user();
+        if($user->profile_updated === 1){
+            $jobApplication = new ProjectApplication();
+            $data = [
+                'project_id' => $id,
+                'freelancer_id' => $user->userable->id
+            ];
+            $jobApplication->create($data);
+            return response('success');
+        }
+        else{
+            return response('You Cannot Apply For A Job, Please Update Your profile');
+        }
 
-        $jobapplication = new ProjectApplication();
-        $data = $request->all();
-        $data['freelancer_id'] = auth()->user()->userable->id;
 
-        $jobapplication = $jobapplication->create($data);
-        return response()->json($jobapplication);
+
 
 
     }

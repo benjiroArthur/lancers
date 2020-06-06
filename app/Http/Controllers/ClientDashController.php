@@ -60,8 +60,8 @@ class ClientDashController extends Controller
      * */
     public function unappliedFor($id) {
         $client = User::findorFail($id)->userable;
-        $projects = Project::doesntHave('projectApplication', function ($q) use $client{
-
+        $projects = Project::whereDoesntHave('projectApplication', function ($q) use ($client){
+            $q->where('client_id', $client->id);
         })->get();
         return response()->json($projects);
     }
