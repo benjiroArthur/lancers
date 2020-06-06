@@ -67,12 +67,27 @@
                                 <img :src="this.$parent.resource_path+'/lancers_logo.png'" width="auto" height="50" alt="" loading="lazy">
                             </div>
 
-                            <b-form-select v-model="form.user_type" :options="options"></b-form-select>
+                           <!-- <b-form-select v-model="form.user_type" :options="options"></b-form-select>-->
+
+                            <!-- Group of material radios - option 2 -->
+                            <div class="form-check text-center m-3">
+                                <input v-model="form.user_type" value="client" type="radio" class="form-check-input" id="materialGroupExample2" name="groupOfMaterialRadios" checked>
+                                <label class="form-check-label font-weight-bold" for="materialGroupExample2">I Want To Hire</label>
+                            </div>
+
+                            <!-- Group of material radios - option 1 -->
+                            <div class="form-check text-center m-3">
+                                <input v-model="form.user_type" value="freelancer" type="radio" class="form-check-input " id="materialGroupExample1" name="groupOfMaterialRadios">
+                                <label class="form-check-label font-weight-bold" for="materialGroupExample1">I Want To Work</label>
+                            </div>
+
+
+
 
                             <div class="text-center mt-3">
-                                <button type="submit" @click="submit" class="btn btn-success bg-lancer btn-block">Submit</button>
-
+                                <button type="submit" @click="submit" class="btn btn-success bg-lancer btn-block">Sign Up</button>
                             </div>
+
                         </div>
 
 
@@ -85,13 +100,11 @@
 </template>
 
 <script>
-    import {required, minLength, maxLength, between, sameAs, email} from 'vuelidate/lib/validators'
+
     export default {
         name: "Register",
         data(){
             return{
-                show:false,
-                showConfirm:false,
                 options: [
                     { value: null, text: 'Select Your User Type' },
                     { value: 'freelancer', text: 'I Want To Work' },
@@ -101,50 +114,12 @@
                     email: '',
                     password: '',
                     password_confirmation: '',
-                    user_type: 'What Do You Want To Do',
+                    user_type: '',
                 }),
                 nextPage: false,
             }
         },
-        /*validations: {
-            form: {
-                password: {
-                    required,
-                    minLength: minLength(8),
-                    hasLetters(value) {
-                        if (value === '') return true;
 
-                        let text_reg = '/([a-z].*[A-Z])|([A-Z].*[a-z])/';
-                        return new Promise((resolve) => {
-                            setTimeout(() => {
-                                resolve(text_reg.test(value))
-                            }, 350 + Math.random() * 300);
-                        });
-                    },
-                    hasNumbers(value) {
-                        if (value === '') return true;
-                        let text_reg = '/([0-9])/';
-                        return new Promise((resolve) => {
-                            setTimeout(() => {
-                                resolve(text_reg.test(value))
-                            }, 350 + Math.random() * 300);
-                        });
-                    },
-                    hasChar(value) {
-                        if (value === '') return true;
-                        let text_reg = '/(.*[!,%,&,@,#,$,^,*,?,_,~].*[!,%,&,@,#,$,^,*,?,_,~])/';
-                        return new Promise((resolve) => {
-                            setTimeout(() => {
-                                resolve(text_reg.test(value))
-                            }, 350 + Math.random() * 300);
-                        });
-                    }
-
-
-                },
-                password_confirmation: {},
-            },
-        },*/
             methods: {
                 next() {
                     this.nextPage = true;
@@ -165,6 +140,7 @@
                             })
                     }
 
+
                 },
                 signIn() {
                     window.location.assign('/login');
@@ -174,40 +150,7 @@
                 console.log('Component mounted.')
 
             },
-            /*computed:{
-            scorePassword(){
-                let score = 0;
-                if(this.form.password === '')return score;
 
-                let letters = {};
-                for(let i = 0; i < this.form.password.length; i++){
-                    letters[this.form.password[i]] = (letters[this.form.password[i]] || 0) + 1;
-                    score += 5.0 / letters[this.form.password[i]];
-                }
-
-                let variations = {
-                    digits:/\d/.test(this.form.password),
-                    lower:/[a-z]/.test(this.form.password),
-                    upper:/[A-Z]/.test(this.form.password),
-                    special:/\W/.test(this.form.password)
-                };
-                let variationsCount = 0;
-                for(let check in variations){
-                    variationsCount += (variations[check] === true) ? 1 : 0;
-                }
-                score += (variationsCount - 1) * 10;
-
-                return parseInt(score);
-            },
-            strengthLevel(){
-                let pass = this.scorePassword;
-                if(pass === 0) return 0;
-                if(pass < 25) return 1;
-                if(pass < 50) return 2;
-                if(pass < 75) return 3;
-                if(pass >= 75) return 4;
-            },
-        },*/
 
 
 
@@ -217,6 +160,39 @@
 </script>
 
 <style lang="scss" scoped>
+    .my-user-type{
+        input[type=radio]
+        {
+            /* Hide original inputs */
+            visibility: hidden;
+            //position: absolute;
+        }
+        input[type=radio] + label:before{
+            background-color: red;
+            color: black;
+            height:30px;
+            width:100px;
+            //margin-right: 2px;
+            //content: " ";
+            display:inline-block;
+            vertical-align: baseline;
+            //border:1px solid #777;
+        }
+        input[type=radio]:checked + label:before{
+            background: #32a778;
+            color: white;
+        }
+
+        /* CUSTOM RADIO AND CHECKBOX STYLES */
+       /* input[type=radio] + label:before{
+            border-radius:50%;
+        }
+        input[type=checkbox] + label:before{
+            border-radius:2px;
+        }*/
+    }
+
+
     .clickable{
         cursor: pointer;
         &:hover{

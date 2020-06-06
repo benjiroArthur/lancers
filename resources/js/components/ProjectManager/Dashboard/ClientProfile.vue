@@ -6,24 +6,44 @@
                     <!--Portfolio starts-->
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card shadow">
+                            <div v-show="portfolioEditMode === false" class="card shadow">
                                 <div class="card-body text-center">
                                     <div class="row">
-                                        <div class="col-4 text-left">
+                                        <div class="col-md-4 text-left">
                                             <div class="img-holder mb-2">
                                                 <img :src="client.userable.image_path" alt="" class="img-thumbnail">
                                             </div>
-                                            <div v-if="client.address !== null">
-                                                <p>{{this.client.address.country}}</p>
-                                                <p>{{this.client.address.city}}</p>
-
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-title text-dark text-bold">{{this.client.userable.email}}</div>
+                                            <div class="card-tools text-right">
+                                                <a class="text-white text-bold text-left btn bg-lancer" @click="portfolioToggle('true', $event)" href="#"><span class="fas fa-edit"></span></a>
                                             </div>
+                                            <div v-if="this.portfolio != null" class="card-body text-left">
+                                                <p>{{this.portfolio.title}}</p>
+                                                <p>{{this.portfolio.description}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 text-left">
                                             <p>Joined On {{client.created_at | myDate}}</p>
                                             <p>0 Recommendations</p>
                                         </div>
-                                        <div class="col-8">
-                                            <div class="card-title text-dark text-bold">{{this.client.email}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-show="portfolioEditMode === true" class="card shadow">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12 text-left">
+                                            <div class="img-holder mb-2">
+                                                <img :src="client.userable.image_path" alt="" class="img-thumbnail">
+                                                <span class="fas fa-camera" data-toggle="modal" data-target="#profileModal" tooltip="Edit Profile Picture"
+                                                      style="position: absolute; transform: translate(-70%, 200%); -ms-transform: translate(-70%, 200%); width:20px;"></span>
+                                            </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -44,30 +64,24 @@
 
                                 <div class="card-body text-left">
                                     <div class="row">
-                                        <div v-if="client.address !== null" class="col-6" >
- HEAD
-                                            <p>Country:  {{this.client.address.country | checkNull}}</p>
-                                            <p>City:  {{this.client.address.city | checkNull}}</p>
-                                            <p>Zip Code: {{this.client.address.zip_code | checkNull}}</p>
-                                            <p>Phone number: {{this.client.address.phone_number | checkNull}}</p>
+                                        <div v-if="client.address !== null" class="col-md-6" >
 
                                             <div class="row">
-                                                <div class="col-6">
+                                                <div class="col-md-6 col-lg-6 col-sm-4">
                                                     <p>Country:  </p>
                                                     <p>City:  </p>
                                                     <p>Zip Code: </p>
                                                     <p>Phone number: </p>
                                                 </div>
-                                                <div class="col-6">
+                                                <div class="col-md-6 col-lg-6 col-sm-8">
                                                     <p>{{this.client.address.country | checkNull}}</p>
                                                     <p>{{this.client.address.city | checkNull}}</p>
                                                     <p>{{this.client.address.zip_code | checkNull}}</p>
                                                     <p>{{this.client.address.phone_number | checkNull}}</p>
                                                 </div>
                                             </div>
- staged
                                         </div>
-                                        <p v-else class="text-black text-center text-bold h-align-middle h3 v-align-middle">Please Update Your Address Info</p>
+                                        <p v-else class="text-black text-center text-bold h-align-middle h6 v-align-middle">No Information Available To Display</p>
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +92,7 @@
                                 <div class="card-body text-center">
                                     <form ref="profileForm" @submit.prevent="updateAddress">
                                         <div class="row">
-                                            <div class ="col-6">
+                                            <div class ="col-md-6">
                                                 <div class="form-group">
                                                     <select v-model="addressForm.country" type="text" name="country"
                                                             class="form-control" :class="{ 'is-invalid': addressForm.errors.has('country') }" required>
@@ -93,17 +107,11 @@
                                                     <has-error :form="addressForm" field="city"></has-error>
                                                 </div>
                                             </div>
-                                            <div class ="col-6">
+                                            <div class ="col-md-6">
                                                 <div class="form-group">
- HEAD
-                                                    <input v-model="addressForm.zip_code" type="text" name="zipcode" placeholder="Zip Code"
-                                                           class="form-control" :class="{ 'is-invalid': addressForm.errors.has('zip_code') }" required>
-                                                    <has-error :form="addressForm" field="zipcode"></has-error>
-
                                                     <input v-model="addressForm.zip_code" type="text" name="zip_code" placeholder="Zip Code"
                                                            class="form-control" :class="{ 'is-invalid': addressForm.errors.has('zip_code') }" required>
                                                     <has-error :form="addressForm" field="zip_code"></has-error>
- staged
                                                 </div>
                                                 <div class="form-group">
                                                     <input v-model="addressForm.phone_number" type="text" name="phone_number" placeholder="Phone Number"
@@ -143,12 +151,12 @@
 
                                 <div class="card-body text-left">
                                     <div class="row">
-                                        <div class="col-6">
+                                        <div class="col-md-6">
                                             <p>First Name:  {{this.client.userable.first_name | checkNull}}</p>
                                             <p>Other Name:  {{this.client.userable.other_name | checkNull}}</p>
                                             <p>Family Name: {{this.client.userable.last_name | checkNull}}</p>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-md-6">
                                             <p>Email:  {{this.client.userable.email | checkNull}}</p>
                                             <p>Date Of Birth: {{this.client.userable.dob | checkNull }}</p>
                                             <p>Gender: {{this.client.userable.gender | checkNull}}</p>
@@ -215,7 +223,7 @@
                         <div class="col-md-12">
                             <div class="card shadow">
                                 <div class="card-header bg-lancer text-white text-bold">
-                                    <div class="card-title">
+                                    <div class="card-title text-wrap">
                                         <p>Welcome Back</p>
                                         <p>{{this.client.userable.full_name}}</p>
                                         <p>{{this.client.email}}</p>
@@ -316,6 +324,7 @@
             return{
                 countries:{},
                 client:{},
+                portfolioEditMode: false,
                 profileForm: new Form({
                     first_name: '',
                     last_name: '',
@@ -446,6 +455,16 @@
 
                     });
                 $('#profileModal').modal('hide');
+            },
+            //toggle edit mode
+            portfolioToggle(val, event){
+                event.preventDefault();
+                if(val === 'true'){
+                    this.portfolioEditMode = true;
+                }
+                else if(val === 'false'){
+                    this.portfolioEditMode = false;
+                }
             },
             //update user profile
             updateProfile(){

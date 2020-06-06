@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Admin;
 use App\Friend;
+use App\Role;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -31,48 +33,34 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
         // validate request
         $this->validate($request, [
-            'last_name' => 'string|required|max:255',
-            'first_name' => 'string|required|max:255',
             'email' => 'email|required|max:255|unique:admins|unique:users',
             'password' => 'required|min:8'
         ]);
 
-        $role = Role::where('name', 'admin')->first();
-        $allAdmins = User::where('role_id', $role->id)->get();
+        $adminrole = Role::where('name', 'admin')->first();
+
 
         $admin = Admin::create([
-            'last_name' => $request->last_name,
-            'first_name' => $request->first_name,
-            'other_name' => $request->other_name,
             'email' => $request->email,
         ]);
 
-        $userrole = Role::where('name', $request->role)->first();
-        $users = $admin->user()->create([
+
+        $user = $admin->user()->create([
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role_id' => $userrole->id
+            'role_id' => $adminrole->id
         ]);
 
-        $user = User::findorFail($users->id);
-        foreach ($allAdmins as $singleAdmin) {
-            $data = [
-                'user_id' => $singleAdmin,
-                'friend_id' => $user->id,
-            ];
 
-            $friend = new Friend();
-            $friend->create($data);
-        }
-
-        broadcast(new NewUser($user))->toOthers();
-        return response(['message' => 'User Created Successfully']);
+        //broadcast(new NewUser($user))->toOthers();
+        //return response(['message' => 'User Created Successfully']);
+        return response()->json($user);
     }
 
     /**
