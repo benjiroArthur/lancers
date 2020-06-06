@@ -41,6 +41,7 @@
                 },
                 myColumns: [
                     {field: 'project_title', title: 'Project'},
+                    {field: 'job_type.name', title: 'Category'},
                     {field: 'project_cost', title: 'Cost'},
                     {field: 'description', title: 'Project Description'},
                     {field: 'duration', title: 'Project Duration'},

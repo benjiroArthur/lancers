@@ -135,11 +135,11 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * */
     public function latestProjects() {
-        $projects = \App\Project::with('')->whereDoesntHave('jobOffered')->latest()->limit(3)->get();
+        $projects = \App\Project::with('jobType')->whereDoesntHave('jobOffered')->latest()->limit(3)->get();
         return response()->json($projects);
     }
     public function availableProjects(){
-        $projects = \App\Project::with('')->whereDoesntHave('jobOffered')->latest()->get();
+        $projects = \App\Project::with('jobType')->whereDoesntHave('jobOffered')->latest()->get();
         return response()->json($projects);
     }
 
