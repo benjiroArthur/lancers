@@ -8,7 +8,7 @@
                             <div class="card-header">
                                 <div class="card-title text-bold">Recent Projects</div>
                                 <div class="card-tools">
-                                    <a class="text-lancer" href="#">View All <span class="fas fa-arrow-right"></span></a>
+                                    <a class="text-lancer" @click="postjobs" href="#">View All <span class="fas fa-arrow-right"></span></a>
                                 </div>
                             </div>
 

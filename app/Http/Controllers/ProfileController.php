@@ -164,7 +164,7 @@ class ProfileController extends Controller
         auth()->user()->address()->create($request->all());
         return response("success");
         }else{
-            auth()->address()->update($address);
+            auth()->user()->address()->update($request->all());
             return ("success");
         }
     }

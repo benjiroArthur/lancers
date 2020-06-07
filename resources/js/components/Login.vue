@@ -81,6 +81,11 @@
             submit(){
                 this.$Progress.start();
                 this.form.post('/login').then((response)=>{
+                    Swal.fire(
+                         'Login Success',
+                        'Please Wait',
+                        'success'
+                            );
                     this.$Progress.finish();
                     window.location.assign('/home');
                 })
