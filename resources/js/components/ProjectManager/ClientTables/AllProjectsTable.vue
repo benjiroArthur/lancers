@@ -20,7 +20,9 @@
     export default {
         name: "AllTable",
         components: {BootstrapTable},
-        props:{user_id},
+        props: {
+            allprojects:{},
+        },
         data() {
             return {
                 myOptions: {
@@ -45,7 +47,9 @@
                         },
                         formatter: function (e, value, row) {
 
-                            return '<a class="btn btn-sm show " data-toggle="modal" data-target="#">Apply</a>'
+                            return ' <a class="btn btn-sm show " data-toggle="modal" data-target="#"><i class="fas fa-check text-success"></i></a> ' +
+                                ' <a class="btn btn-sm edit " data-toggle="modal" data-target="#"><i class="fas fa-edit text-warning"></i></a> ' +
+                                ' <a class="btn btn-sm delete " data-toggle="modal" data-target="#"><i class="fas fa-trash text-danger"></i></a> '
                         },
                         events: {
                             'click .show': function (e, value, row) {
@@ -57,29 +61,51 @@
 
                             },
                             'click .destroy': function (e, value, row) {
+                                Swal.fire({
+                                    title: 'Are you sure?',
+                                    text: "You won't be able to revert this!",
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Yes, delete it!'
+                                }).then((result) => {
+                                    if (result.value) {
+                                        axios.delete('/data/client/delete-project' + row.id).then((response) => {
+                                            if (response.data === "success") {
+                                                Fire.$emit('tableUpdate');
+                                                Swal.fire(
+                                                    'Deleted!',
+                                                    'Project Deleted Successfully',
+                                                    'success'
+                                                );
 
+                                            } else {
+                                                Swal.fire(
+                                                    'Failed!',
+                                                    response.data,
+                                                    'warning'
+                                                )
+                                            }
+                                        }).catch(() => {
+                                            Swal.fire(
+                                                'Failed!',
+                                                'User Could Not Be Deleted.',
+                                                'warning'
+                                            )
+                                        });
+                                    }
+
+                                });
                             },
                         }
                     }
                 ],
-                allprojects: {},
-                user_id: null,
-
-
 
             };
         },
-        methods:{
-            getAllProjects(){
-                axios.get(`/data/client/client-projects/${user_id}`)
-                    .then((response)=>{
-                        this.allprojects = response.data;
-                    })
-                    .catch()
-            },
-        },
+        methods: {},
         mounted() {
-            this.getAllProjects();
         },
     }
 </script>

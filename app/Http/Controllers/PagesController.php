@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Auth;
 
 class PagesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
     //browse jobs
     public function browseJobs(){
         return view('Pages.browse_jobs');

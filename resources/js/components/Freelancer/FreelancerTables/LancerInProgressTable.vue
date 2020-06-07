@@ -1,13 +1,13 @@
 <template>
     <div class="row">
         <div class="col-md-12">
-            <div class="justify-content-between d-flex">
+            <!--<div class="justify-content-between d-flex">
                 <h6 class="text-uppercase font-weight-bold">All Projects</h6>
-            </div>
+            </div>-->
 
             <div class="col-12 table-responsive">
                 <div class="card-body table table-responsive table-borderless p-0">
-                    <bootstrap-table :data="allprojects" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/>
+                    <bootstrap-table :data="inProgressProjects" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/>
                 </div>
             </div>
         </div>
@@ -20,7 +20,9 @@
     export default {
         name: "LancerInProgressTable",
         components: {BootstrapTable},
-        props:{user_id},
+        props:{
+            inProgressProjects:{},
+        },
         data() {
             return {
                 myOptions: {
@@ -62,20 +64,10 @@
                         }
                     }
                 ],
-                allprojects: {},
-
-
-
             };
         },
-        methods:{
-            getAllProjects(){
-                axios.get(`/data/freelancer/in-progress/${user_id}`)
-                    .then((response)=>{
-                        this.allprojects = response.data;
-                    })
-                    .catch()
-            },
+        methods: {
+
         },
         mounted() {
             this.getAllProjects();

@@ -76,7 +76,7 @@
                         },
                         formatter: function (e, value, row) {
 
-                            return '<a class="btn btn-sm show " data-toggle="modal" href="#" data-target="#">Apply</a>'
+                            return '<a class="btn btn-sm show bg-lancer text-white" data-toggle="modal" href="#" data-target="#">Apply</a>'
                         },
                         events: {
                             'click .show': function (e, value, row) {

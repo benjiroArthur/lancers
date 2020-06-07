@@ -20,7 +20,9 @@
     export default {
         name: "CompletedTable",
         components: {BootstrapTable},
-        props:{user_id},
+        props:{
+            completed:{},
+        },
         data() {
             return {
                 myOptions: {
@@ -33,9 +35,9 @@
 
                 },
                 myColumns: [
-                    {field: 'full_name', title: 'Name'},
-                    {field: 'email', title: 'E-mail'},
-                    {field: 'address.phone_number', title: 'Mobile Number'},
+                    {field: 'project.project_title', title: 'Project Title'},
+                    {field: 'project.project_cost', title: 'Project Cost'},
+                    {field: 'project.description', title: 'Project Description'},
                     {
                         field: 'action',
                         title: 'Action',
@@ -45,7 +47,8 @@
                         },
                         formatter: function (e, value, row) {
 
-                            return '<a class="btn btn-sm show " data-toggle="modal" data-target="#"><i class="fas fa-check text-success"></i></a>'
+                            return ' <a class="btn btn-sm show " data-toggle="modal" data-target="#"><i class="fas fa-check text-success"></i></a> ' +
+                                ' <a class="btn btn-sm edit " data-toggle="modal" data-target="#"><i class="fas fa-edit text-warning"></i></a> '
                         },
                         events: {
                             'click .show': function (e, value, row) {
@@ -53,11 +56,11 @@
 
                             },
                             'click .edit': function (e, value, row) {
-                                return window.location.assign('/admin/show/' + row.id)
+
 
                             },
                             'click .destroy': function (e, value, row) {
-                                swal.fire({
+                                Swal.fire({
                                     title: 'Are you sure?',
                                     text: "You won't be able to revert this!",
                                     icon: 'warning',
@@ -72,7 +75,7 @@
                                                 Fire.$emit('tableUpdate');
                                                 Swal.fire(
                                                     'Deleted!',
-                                                    'User Deleted Successfully',
+                                                    'Project Deleted Successfully',
                                                     'success'
                                                 );
 
@@ -97,22 +100,16 @@
                         }
                     }
                 ],
-                completed: {},
+
 
 
             };
         },
         methods: {
-            getCompleted(){
-                axios.get('/data/client/completed-projects/'+user_id)
-                    .then((response)=>{
-                        this.completed = response.data;
-                    })
-                    .catch()
-            },
+
         },
         mounted() {
-            this.getCompleted();
+
         },
     }
 </script>

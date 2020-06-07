@@ -213,6 +213,7 @@ Vue.component('allprojects-table', require('./components/ProjectManager/ClientTa
 Vue.component('completed-table', require('./components/ProjectManager/ClientTables/CompletedTable.vue').default);
 Vue.component('pending-table', require('./components/ProjectManager/ClientTables/PendingTable.vue').default);
 Vue.component('unappliedjobs-table', require('./components/ProjectManager/ClientTables/UnappliedJobsTable.vue').default);
+Vue.component('client-inprogress-table', require('./components/ProjectManager/ClientTables/ClientInProgressTable.vue').default);
 
 Vue.component('lancer-allprojects-table', require('./components/Freelancer/FreelancerTables/LancerAllProjectsTable').default);
 Vue.component('lancer-completed-table', require('./components/Freelancer/FreelancerTables/LancerCompletedTable.vue').default);

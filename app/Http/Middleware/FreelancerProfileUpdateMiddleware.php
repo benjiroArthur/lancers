@@ -16,9 +16,6 @@ class FreelancerProfileUpdateMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check() && !(Auth::user()->userable()->has('portfolio')) ){
-            return redirect('/profile');
-        }
         return $next($request);
     }
 }

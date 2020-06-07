@@ -1,13 +1,13 @@
 <template>
     <div class="row">
         <div class="col-md-12">
-            <div class="justify-content-between d-flex">
+            <!--<div class="justify-content-between d-flex">
                 <h6 class="text-uppercase font-weight-bold">All Projects</h6>
-            </div>
+            </div>-->
 
             <div class="col-12 table-responsive">
                 <div class="card-body table table-responsive table-borderless p-0">
-                    <bootstrap-table :data="allprojects" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/>
+                    <bootstrap-table :data="allProjects" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/>
                 </div>
             </div>
         </div>
@@ -20,7 +20,9 @@
     export default {
         name: "LancerAllProjectsTable",
         components: {BootstrapTable},
-        props:{user_id},
+        props:{
+            allProjects: {},
+        },
         data() {
             return {
                 myOptions: {
@@ -33,9 +35,10 @@
 
                 },
                 myColumns: [
-                    {field: 'project_title', title: 'Project Title'},
-                    {field: 'project_cost', title: 'Project Cost'},
-                    {field: 'description', title: 'Project Description'},
+                    {field: 'project.project_title', title: 'Project Title'},
+                    {field: 'project.project_cost', title: 'Project Cost ($)'},
+                    {field: 'project.description', title: 'Project Description'},
+                    {field: 'status', title: 'Project Status'},
                     {
                         field: 'action',
                         title: 'Action',
@@ -45,11 +48,12 @@
                         },
                         formatter: function (e, value, row) {
 
-                            return '<a class="btn btn-sm show " data-toggle="modal" data-target="#">Apply</a>'
+                                return '<a class="btn btn-sm show bg-lancer text-white" data-toggle="modal" data-target="#">Decline</a>'
+
                         },
                         events: {
                             'click .show': function (e, value, row) {
-                                Fire.$emit('viewSingleProject', row);
+                                Fire.$emit('declineProject', row);
 
                             },
                             'click .edit': function (e, value, row) {
@@ -62,20 +66,13 @@
                         }
                     }
                 ],
-                allprojects: {},
+
             };
         },
         methods:{
-            getAllProjects(){
-                axios.get(`/data/freelancer/job-offered/${user_id}`)
-                    .then((response)=>{
-                        this.allprojects = response.data;
-                    })
-                    .catch()
-            },
+
         },
         mounted() {
-            this.getAllProjects();
         },
     }
 </script>

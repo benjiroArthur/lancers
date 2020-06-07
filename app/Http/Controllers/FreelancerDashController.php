@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class FreelancerDashController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified', 'freelancer']);
+    }
     // lists all completed projects
     /**
      * @param $id
@@ -107,10 +111,13 @@ class FreelancerDashController extends Controller
             return response('You Cannot Apply For A Job, Please Update Your profile');
         }
 
+    }
+    public function jobApplied(){
+        $user = auth()->user();
+        $projects = ProjectApplication::with('project')->where('status', null)
+                                            ->where('freelancer_id', $user->userable->id)->get();
 
-
-
-
+        return response()->json($projects);
     }
 
     public function profile() {

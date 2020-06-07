@@ -8,7 +8,7 @@
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-0" class="active nav-link text-lancer text-bold">All Projects</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-1" class="nav-link text-lancer text-bold">Completed Project</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-2" class="nav-link text-lancer text-bold">Projects In Progress</a></li>
-                            <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-3" class="nav-link text-lancer text-bold">Jobs Unapplied For</a></li>
+                            <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-3" class="nav-link text-lancer text-bold">Jobs Applied For</a></li>
                             <!--<li class="nav-item"><a data-toggle="tab" href="#tab-eg7-3" class="nav-link">Payments</a></li>-->
                         </ul>
 
@@ -16,16 +16,16 @@
                     <div class="card-body">
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab-eg7-0" role="tabpanel">
-                                <lancer-allprojects-table :user_id="this.user_id"></lancer-allprojects-table>
+                                <lancer-allprojects-table :allProjects="this.allProjects"></lancer-allprojects-table>
                             </div>
                             <div class="tab-pane" id="tab-eg7-1" role="tabpanel">
-                                <lancer-completed-table :user_id="this.user_id"></lancer-completed-table>
+                                <lancer-completed-table :completedProjects="this.completedProjects"></lancer-completed-table>
                             </div>
                             <div class="tab-pane" id="tab-eg7-2" role="tabpanel">
-                                <lancer-inprogress-table :user_id="this.user_id"></lancer-inprogress-table>
+                                <lancer-inprogress-table :inProgressProjects="this.inProgressProjects"></lancer-inprogress-table>
                             </div>
                             <div class="tab-pane" id="tab-eg7-3" role="tabpanel">
-                                <lancer-appliedjobs-table :user_id="this.user_id"></lancer-appliedjobs-table>
+                                <lancer-appliedjobs-table :appliedProjects="this.appliedProjects"></lancer-appliedjobs-table>
                             </div>
                         </div>
                     </div>
@@ -68,11 +68,47 @@
         components:{LancerAllProjectsTable, LancerCompletedTable, LancerInProgressTable, LancerAppliedJobsTable},
         data(){
             return{
-                user_id: 22,
+                inProgressProjects: {},
+                completedProjects: {},
+                appliedProjects: {},
+                allProjects: {},
             }
         },
+        methods: {
+            getInProgressProjects(){
+                axios.get(`/data/freelancer/in-progress/${this.$parent.userId}`)
+                    .then((response)=>{
+                        this.inProgressProjects = response.data;
+                    })
+                    .catch()
+            },
+            getCompletedProjects(){
+                axios.get(`/data/freelancer/completed-projects/${this.$parent.userId}`)
+                    .then((response)=>{
+                        this.allprojects = response.data;
+                    })
+                    .catch()
+            },
+            getAppliedProjects(){
+                axios.get(`/data/freelancer/applied/${this.$parent.userId}`)
+                    .then((response)=>{
+                        this.appliedProjects = response.data;
+                    })
+                    .catch()
+            },
+            getAllProjects(){
+                axios.get(`/data/freelancer/job-offered/${this.$parent.userId}`)
+                    .then((response)=>{
+                        this.allProjects = response.data;
+                    })
+                    .catch()
+            },
+        },
         mounted() {
-           // this.user_id = this.$parent.userId
+            this. getInProgressProjects();
+            this.getCompletedProjects();
+            this.getAppliedProjects();
+            this.getAllProjects();
         }
     }
 </script>
