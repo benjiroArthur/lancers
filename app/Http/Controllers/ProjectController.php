@@ -63,7 +63,7 @@ class ProjectController extends Controller
 
             DB::table('projects')->where('id', $id)->delete();
 
-            return redirect('/client/projects');
+            return response('success');
         }
 
     }
