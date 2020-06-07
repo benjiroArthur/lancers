@@ -12,7 +12,7 @@ class FreelancerDashController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'verified', 'freelancer']);
+        $this->middleware(['auth', 'verified', 'freelancer', 'profile', 'address', 'portfolio']);
     }
     // lists all completed projects
     /**
@@ -98,7 +98,7 @@ class FreelancerDashController extends Controller
      */
     public function applyForJobs($id) {
         $user = auth()->user();
-        if($user->profile_updated === 1){
+        if($user->profile_updated === true){
             $jobApplication = new ProjectApplication();
             $data = [
                 'project_id' => $id,
