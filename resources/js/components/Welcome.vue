@@ -6,7 +6,7 @@
         </VueSlickCarousel>
 
 
-        <div id = "myCarousel" class = "carousel slide mb-5" data-action="carousel">
+        <!--<div id = "myCarousel" class = "carousel slide mb-5" data-action="carousel">
             <ol class = "carousel-indicators">
                 <li data-target = "#myCarousel" data-slide-to = "0" class="active"></li>
                 <li data-target = "#myCarousel" data-slide-to = "1"></li>
@@ -20,16 +20,12 @@
                 </div>
                 <div class = "container">
                     <div class = "carousel-caption text-center">
-                        <h1>Hire the best freelancer for any job online</h1>
-                        <button type="button" class="btn btn-success btn-lg">Hire A Freelancer</button>
-                        <button type="button" class="btn btn-success btn-lg">Earn Money Freelancing</button>
+                        <button type="button" class="btn btn-success btn-sm">Hire A Freelancer</button>
+                        <button type="button" class="btn btn-success btn-sm">Earn Money Freelancing</button>
                     </div>
                 </div>
             </div>
-        </div>
-
-<div></div>
-
+        </div>-->
 
 
         <h2 class="text-center mt-3 mb-3 text-bold text-dark pa-5 swift-h2 mt-5">DO IT YOURSELF</h2>
@@ -194,19 +190,13 @@
         </div>
 
 
-        <!-- <h2 class="text-center mt-3 mb-3 text-bold text-dark">HOW TO GET STARTED</h2>
+         <h2 class="text-center mt-3 mb-3 text-bold text-dark">HOW TO GET STARTED</h2>
 
-         <div class="row img-fluid">
+         <div class="row img-fluid justify-content-center ml-1">
              <img :src="this.resource_path + '/howToGetStarted.gif'" alt="" class="img-fluid">
-         </div>-->
+         </div>
 
 
-
-        <!-- End of comments -->
-
-        <!--        <div class="test-div">-->
-
-        <!--        </div>-->
 
 
     </div>

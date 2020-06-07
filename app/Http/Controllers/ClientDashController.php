@@ -12,6 +12,10 @@ use Illuminate\Database\Eloquent\Builder;
 
 class ClientDashController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified', 'client']);
+    }
 
     /**
      * @param $id
@@ -60,9 +64,7 @@ class ClientDashController extends Controller
      * */
     public function unappliedFor($id) {
         $client = User::findorFail($id)->userable;
-        $projects = Project::whereDoesntHave('projectApplication', function ($q) use ($client){
-            $q->where('client_id', $client->id);
-        })->get();
+        $projects = Project::whereDoesntHave('projectApplication')->where('client_id', $client->id)->get();
         return response()->json($projects);
     }
 
@@ -73,10 +75,10 @@ class ClientDashController extends Controller
     // clients sees all projects personally posted...worked here
     public function clientProjects($id) {
         $client = User::findorFail($id)->userable;
-        if(auth()->user()->role_name === 'client') {
-            $clientprojects = $client->projects;
-        }
-        return response()->json($clientprojects);
+            $clientProjects = $client->projects;
+            return response()->json($clientProjects);
+
+
     }
 
     /**
@@ -119,9 +121,14 @@ class ClientDashController extends Controller
      */
     // this is where delete of project happens
     public function deleteProjects($id) {
-        DB:delete('delete from projects where id = ?', [$id]);
+      $project = Project::find($id);
+      if($project->client_id === auth()-user()->userable->id){
+          $project->delete();
+          return response('success');
+      }
 
-        return redirect('/client/projects')->with('Success', 'Project Deleted');
+          return response('unauthorised access');
+
     }
 
     /**

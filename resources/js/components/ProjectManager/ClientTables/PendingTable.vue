@@ -20,6 +20,9 @@
     export default {
         name: "PendingTable",
         components: {BootstrapTable},
+        props:{
+            pending:{},
+        },
         data() {
             return {
                 myOptions: {
@@ -32,9 +35,9 @@
 
                 },
                 myColumns: [
-                    {field: 'full_name', title: 'Name'},
-                    {field: 'email', title: 'E-mail'},
-                    {field: 'address.phone_number', title: 'Mobile Number'},
+                    {field: 'project.project_title', title: 'Project Title'},
+                    {field: 'project.project_cost', title: 'Project Cost'},
+                    {field: 'project.description', title: 'Project Description'},
                     {
                         field: 'action',
                         title: 'Action',
@@ -44,7 +47,9 @@
                         },
                         formatter: function (e, value, row) {
 
-                            return '<a class="btn btn-sm show " data-toggle="modal" data-target="#"><i class="fas fa-check text-success"></i></a>'
+                            return ' <a class="btn btn-sm show " data-toggle="modal" data-target="#"><i class="fas fa-check text-success"></i></a> ' +
+                                ' <a class="btn btn-sm edit " data-toggle="modal" data-target="#"><i class="fas fa-edit text-warning"></i></a> ' +
+                                ' <a class="btn btn-sm delete " data-toggle="modal" data-target="#"><i class="fas fa-trash text-danger"></i></a> '
                         },
                         events: {
                             'click .show': function (e, value, row) {
@@ -52,7 +57,6 @@
 
                             },
                             'click .edit': function (e, value, row) {
-                                return window.location.assign('/admin/show/' + row.id)
 
                             },
                             'click .destroy': function (e, value, row) {
@@ -66,7 +70,7 @@
                                     confirmButtonText: 'Yes, delete it!'
                                 }).then((result) => {
                                     if (result.value) {
-                                        axios.delete('/data/admin/' + row.id).then((response) => {
+                                        axios.delete('' + row.id).then((response) => {
                                             if (response.data === "success") {
                                                 Fire.$emit('tableUpdate');
                                                 Swal.fire(
@@ -96,22 +100,17 @@
                         }
                     }
                 ],
-                pending: {},
+
+
 
 
             };
         },
         methods:{
-            getAllPending(){
-                axios.get(`data/client/not-completed/${this.$parent.user_id}`)
-                    .then((response)=>{
-                        this.pending = response.data;
-                    })
-                    .catch()
-            },
+
         },
         mounted() {
-            this.getAllPending();
+
         },
     }
 </script>

@@ -3,23 +3,45 @@
         <div class="col-md-12">
             <div class="card shadow">
                 <div class="card-header">
-                    <div class="card-title text-bold">Projects</div>
-                    <div class="card-tools">
-                        <a class="text-lancer" href="#">View All <span class="fas fa-arrow-right"></span></a>
-                    </div>
+                    <div class="card-title text-bold">Available Jobs</div>
                 </div>
 
                 <div class="card-body">
                     <div class="col-12 table-responsive">
-                        <div class="card-body table table-responsive table-borderless p-0">
-                            <bootstrap-table :data="allProjects" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/>
+                        <div class="card-body table table-responsive table-borderless table-striped  p-0">
+                            <bootstrap-table :data="allProjects" :options="myOptions" :columns="myColumns" sticky-header responsive borderless />
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
+        <!--view Job Modal-->
+        <div class="modal fade" id="viewJobModal" tabindex="-1" role="dialog" aria-labelledby="viewJobModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="viewJobModalLabel">Project Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
 
+                    <div class="modal-body">
+                        <div class="row justify-content-between d-flex border-bottom m-2">
+                            <h5>{{this.job.project_title}}</h5>
+                            <h6>$ {{this.job.project_cost}}</h6>
+                        </div>
+                        <p>{{this.job.description}}</p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-outline-success" @click="apply()">Apply For this Job {{this.job.id}}</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -37,14 +59,14 @@
                     clickToSelect: true,
                     selectItemName: 'id',
                     index: true,
+                    perPage: 5,
 
                 },
                 myColumns: [
-                    {field: 'project_title', title: 'Project'},
+                    {field: 'project_title', title: 'Project Title'},
                     {field: 'job_type.name', title: 'Category'},
-                    {field: 'project_cost', title: 'Cost'},
+                    {field: 'project_cost', title: 'Cost ($)'},
                     {field: 'description', title: 'Project Description'},
-                    {field: 'duration', title: 'Project Duration'},
                     {
                         field: 'action',
                         title: 'Action',
@@ -54,7 +76,7 @@
                         },
                         formatter: function (e, value, row) {
 
-                            return '<a class="btn btn-sm show " data-toggle="modal" data-target="#"><i class="fas fa-check text-success"></i></a>'
+                            return '<a class="btn btn-sm show bg-lancer text-white" data-toggle="modal" href="#" data-target="#">Apply</a>'
                         },
                         events: {
                             'click .show': function (e, value, row) {
@@ -73,19 +95,13 @@
                 ],
                 projects: {},
                 allProjects: {},
+                job:{},
 
 
             };
         },
         methods:{
-            /*getProjects(){
-                axios.get('/data/project')
-                    .then((response)=>{
-                        this.projects = response.data;
-                        this.allProjects = this.projects.approvedJobs;
-                    })
-                    .catch()
-            },*/
+
             getProjects(){
                 axios
                     .get('/data/available-projects')
@@ -139,6 +155,10 @@
         },
         mounted() {
             this.getProjects();
+            Fire.$on('viewSingleJob', (row)=>{
+                this.job = row;
+                this.apply();
+            });
         },
     }
 </script>
