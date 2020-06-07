@@ -9,9 +9,20 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="resource_path" content="{{ $resource_path }}">
 
+    @auth
+        <meta name="user-id" content="{{ Auth::user()->id }}">
+        <meta name="status" content="{{ Auth::user()->active }}">
+        <meta name="pro-update" content="{{ Auth::user()->profile_updated }}">
+    @else
+        <meta name="user-id" content="0">
+        <meta name="status" content="0">
+        <meta name="pro-update" content="2">
+    @endauth
+
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
+    {{--<script src="{{ asset('js/jquery.min.js') }}" type="text/javascript"></script>--}}
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -23,91 +34,134 @@
 </head>
 <body class="bg-lancer-light">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-lancer shadow-sm">
-            <div class="container">
-                <a class="navbar-brand text-white" href="{{ url('/') }}">
-                    {{ config('app.name', 'Lancer') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+           <nav class="navbar navbar-expand-md navbar-light bg-light shadow-sm">
+               <div class="container">
+                   <a class="navbar-brand text-white" href="{{ url('/') }}">
+                       {{-- {{ config('app.name', 'Lancer') }}--}}
+                       <img src="{{asset('/images/lancers_logo.png')}}" width="auto" height="30" alt="" loading="lazy">
+                   </a>
+                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                       <span class="navbar-toggler-icon"></span>
+                   </button>
 
-                    </ul>
+                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                       <!-- Left Side Of Navbar -->
+                       <ul class="navbar-nav mr-auto">
+                           @auth
+                               <li class="nav-item home-navs">
+                                   <a href="{{route('home')}}" class="nav-link text-dark">
+                                       <i class="fas fa-tachometer-alt text-dark h4"></i>
+                                       Dashboard
+                                   </a>
+                               </li>
+                               <browse></browse>
+                               <my-project></my-project>
+                               <messages></messages>
+                               <update></update>
+                           @endauth
+                       </ul>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+                       <!-- Right Side Of Navbar -->
+                       <ul class="navbar-nav ml-auto">
+                           <!-- Authentication Links -->
+                           @guest
+                               <li class="nav-item">
+                                   <a class="nav-link text-dark text-bold" href="{{ route('login') }}">{{ __('Login') }}</a>
+                               </li>
+                               @if (Route::has('register'))
+                                   <li class="nav-item">
+                                       <a class="nav-link text-dark text-bold" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                   </li>
+                               @endif
+                           @else
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+
+
+                               {{-- <form action="#" class="d-none d-sm-block ml-4">
+                                    <div class="input-group search-box">
+                                        <input type="text" class="form-control lancer-search" placeholder="Search…">
+                                        <div class="input-group-prepend">
+                                          <span class="input-group-text text-lancer-dark">
+                                            <i class="mdi mdi mdi-magnify text-lancer-dark"></i>
+                                          </span>
+                                        </div>
+                                    </div>
+                                </form>--}}
+
+                               <li class="nav-item dropdown ml-2">
+                                   <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                       <img class="img-bordered-sm img-sm rounded-circle" src="{{auth()->user()->userable->image_path}}" alt="Profile image">
+                                       <span>{{auth()->user()->userable->full_name}}</span>
+                                   </a>
+
+                                   <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="navbarDropdown">
+                                       <ul class="text-dark text-left">
+                                           <li class="nav-item my-nav-link">
+                                               <a href="{{url('/profile')}}" class="dropdown-item nav-link  text-dark">
+                                                   <p>Profile</p>
+                                               </a>
+                                           </li>
+                                           <li class="nav-item my-nav-link">
+                                               <a href="#" class="dropdown-item nav-link  text-dark">
+                                                   <p>User Settings</p>
+                                               </a>
+                                           </li>
+
+                                           <li class="nav-item text-dark my-nav-link">
+                                               <a href="#" class="dropdown-item nav-link  text-dark">
+                                                   <p>Get Support</p>
+                                               </a>
+                                           </li>
+                                           <li class="nav-item text-dark my-nav-link">
+                                               <a class="dropdown-item nav-link text-left text-dark" href="{{ route('logout') }}"
+                                                  onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                                   <p> Logout</p>
+                                               </a>
+                                           </li>
+                                       </ul>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+                                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                           @csrf
+                                       </form>
+                                   </div>
+                               </li>
+                           @endguest
+                       </ul>
+                   </div>
+               </div>
+           </nav>
 
-        <footer class="bg-lancer p-4">
-            <div class="container-fluid ml-4 mr-3 mt-3 mb-3">
-                <div class="row mt-3 mb-3">
-                    <div class="col-md-2">
-                        <p></p>
-                        <p class="text-bold h3 text-white">Lancers</p>
-                        <p class="text-white">@Lancers {{date('Y')}}</p>
-                    </div>
-                    <div class="col-md-2 text-white">
-                        <p>About Us</p>
-                        <p>Contact Us</p>
-                        <p>Terms & Conditions</p>
-                    </div>
-                    <div class="col-md-2 text-white">
-                        <p><span class="fab fa-facebook"></span>&nbsp;  Facebook</p>
-                        <p><span class="fab fa-twitter"></span>&nbsp;  Twitter</p>
-                        <p><span class="fab fa-instagram"></span>&nbsp;  Instagram</p>
-                    </div>
-                    <div class="col-md-2">
-                        <contact-us></contact-us>
-                    </div>
-                    <div class="col-md-1 text-white"></div>
-                    <div class="col-md-3 text-white">
-                        <p>SSNIT House, Ama Atta Akroma Rd.</p>
-                        <p>+233 244556677</p>
-                        <p>lancers@mail.com</p>
-                    </div>
-                </div>
-            </div>
-        </footer>
+           <main class="py-4" id="content-wrap">
+               @include('includes.messages')
+               @yield('content')
+               <vue-progress-bar></vue-progress-bar>
+           </main>
+           <footer class="bg-lancer text-center text-white mb-0" id="footer">
+               <div class="container-fluid">
+                   <div class="row text-white">
+                       <div class="col-md-2 col-lg-2 col-sm-12">
+                           <img src="{{asset('/images/lancers_logo_inverted.png')}}" width="auto" height="30" alt="" loading="lazy">
+                       </div>
+                       <div class="col-md-3 col-lg-6 col-sm-12">
+                           <p class="text-white">@Lancers {{date('Y')}}</p>
+                       </div>
+                       <div class="col-lg-1 col-md-2 col-sm-12 text-white">
+                           <p><span class="fab fa-instagram"></span>&nbsp;  Instagram</p>
+                       </div>
+                       <div class="col-lg-1 col-md-2 col-sm-12">
+                           <p><span class="fab fa-facebook"></span>&nbsp;  Facebook</p>
+                       </div>
+                       <div class="col-lg-1 col-md-2 col-sm-12">
+                           <p><span class="fab fa-twitter"></span>&nbsp;  Twitter</p>
+                       </div>
+                       <div class="col-lg-1 col-md-1 col-sm-12">
+                       </div>
+                   </div>
+               </div>
+           </footer>
     </div>
 </body>
 </html>

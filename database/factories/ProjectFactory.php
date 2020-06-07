@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Project::class, function (Faker $faker) {
     return [
-        'job_id' => App\Job::all()->random()->id,
+        'job_id' => App\JobType::all()->random()->id,
         'client_id' => App\Client::all()->random()->id,
         'project_title' => $faker->sentence(3, true),
         'description' => $faker->sentence,

@@ -63,6 +63,24 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
         ],
+        'profile-picture' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/images/users'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+        'job-category' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/images/job_category'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+        'project-files' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/project_files'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
 
     ],
 

@@ -1,84 +1,66 @@
 <template>
-    <div class="container-fluid">
-        <div class="jumbotron jumbotron-fluid welcome-jumbo">
-            <div class="container justify-content-center">
-                <h2 class="display-4 text-center text-dark">Welcome To Lancers</h2>
-                <p class="lead text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid architecto, ducimus eius id iure odit rem ut voluptatem! Esse est excepturi facere illo perferendis quia reprehenderit sunt unde! Quibusdam, soluta.</p>
-                <div class="row justify-content-center">
-                    <button class="btn btn-success text-white bg-lancer-dark m-2">Become a Freelancer</button>
-                    <button class="btn btn-success text-white bg-lancer-dark m-2">Become a Project Manager</button>
-                </div>
-            </div>
-        </div>
-
-
-        <h2 class="text-center mt-3 mb-3 text-bold text-dark">OUR PROJECT CATEGORIES</h2>
-        <div v-if="popular_projects.length > 0" class="row">
-
-            <div v-for="popular_project in this.popular_projects"  class="col-md-6 col-lg-2">
-
-                <v-card class="cat-card p-2 shadow">
-                    <v-card-title primary-title class="m-3 text-center">
-                        <div>
-                            <h4 class="headline mb-2 text-bold">{{popular_project.project_title}}</h4>
-                            <p> {{ popular_project.description | descFilter }} </p>
-                        </div>
-                    </v-card-title>
-                    <v-img class="m-3"
-                           :src="popular_project.image"
-                           alt="image"
-                    ></v-img>
-
-                </v-card>
-            </div>
-        </div>
-
-        <h2 class="text-center mt-3 mb-3 text-bold text-dark">HOW TO GET STARTED</h2>
-
-        <div class="row justify-content-center">
-           <div class="col-md-10 img-holder">
-               <img :src="this.resource_path + '/howToGetStarted.gif'" alt="" class="img-fluid">
-           </div>
-        </div>
-
-        <h2 class="text-center mt-3 mb-3 text-bold text-dark">DO IT YOURSELF</h2>
-
+    <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                <div class="card text-center">
-                    <div class="card-title mt-3 mb-2">Lifestyle</div>
-                    <div class="card-body">
-                        <div class="card-text mb-2">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores dolorum ex explicabo ipsam, libero molestias mollitia nesciunt obcaecati
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card shadow">
+                            <div class="card-header">
+                                <div class="card-title"></div>
+                                <div class="card-tools"></div>
+                            </div>
+
+                            <div class="card-body"></div>
                         </div>
-                        <div class="card-image m-3 img-fluid">
-                            <img src="" alt="Image">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card shadow">
+                            <div class="card-header">
+                                <div class="card-title"></div>
+                                <div class="card-tools"></div>
+                            </div>
+
+                            <div class="card-body"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card shadow">
+                            <div class="card-header">
+                                <div class="card-title"></div>
+                                <div class="card-tools"></div>
+                            </div>
+
+                            <div class="card-body"></div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card text-center">
-                    <div class="card-title mt-3 mb-2">Lifestyle</div>
-                    <div class="card-body">
-                        <div class="card-text mb-2">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores dolorum ex explicabo ipsam, libero molestias mollitia nesciunt obcaecati
-                        </div>
-                        <div class="card-image m-3 img-fluid">
-                            <img src="" alt="Image">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card shadow">
+                            <div class="card-header">
+                                <div class="card-title"></div>
+                                <div class="card-tools"></div>
+                            </div>
+
+                            <div class="card-body"></div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card text-center">
-                    <div class="card-title mt-3 mb-2">Lifestyle</div>
-                    <div class="card-body">
-                        <div class="card-text mb-2">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores dolorum ex explicabo ipsam, libero molestias mollitia nesciunt obcaecati
-                        </div>
-                        <div class="card-image m-3 img-fluid">
-                            <img src="" alt="Image">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card shadow">
+                            <div class="card-header">
+                                <div class="card-title"></div>
+                                <div class="card-tools"></div>
+                            </div>
+
+                            <div class="card-body"></div>
                         </div>
                     </div>
                 </div>
@@ -92,12 +74,27 @@
         name: "Home",
         data(){
             return{
+                show: false,
                 projects: {},
-                popular_projects: {},
-                recent_projects: {},
+                popular_projects: [],
+                recent_projects: [],
                 resource_path: '',
+                items: [
+                    {
+                        src: '/banner/banner1.jpg'
+                    },
+                    {
+                        src: '/banner/banner2.jpg'
+                    },
+                    {
+                        src: '/banner/banner3.jpg'
+                    },
+                    {
+                        src: '/banner/banner4.jpg'
+                    }
+                ],
                 settings: {
-                    dots: true,
+                    dots: false,
                     autoplay: true,
                     slidesToShow: 2,
                     arrow: true,
@@ -105,6 +102,43 @@
                     infinite: true,
                     centerMode: true,
                     centerPadding: "20px",
+                },
+                options: {
+                    dots: false,
+                    autoplay: true,
+                    slidesToShow: 5,
+                    arrow: true,
+                    dotsClass: "slick-dots",
+                    infinite: true,
+                    centerMode: true,
+                    centerPadding: "20px",
+                    responsive: [
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                slidesToShow: 3,
+                                slidesToScroll: 3,
+                                infinite: true,
+                                dots: true
+                            }
+                        },
+                        {
+                            breakpoint: 600,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 2
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1,
+                                centerMode: true,
+                            }
+                        }
+
+                    ]
                 },
             }
         },
@@ -118,17 +152,39 @@
                         this.recent_projects = this.projects.recently;
                     })
                     .catch()
-            }
+            },
+
+            next() {
+                this.$refs.slick.next();
+            },
+
+            prev() {
+                this.$refs.slick.prev();
+            },
+
+            reInit() {
+                // Helpful if you have to deal with v-for to update dynamic lists
+                this.$nextTick(() => {
+                    this.$refs.slick.reSlick();
+                });
+            },
         },
         filters:{
             descFilter(value){
-                let val = value.slice(0, 50);
-                return value.length < 50 ? value : val + '...'
+                let len = 20;
+                let val = value.slice(0, len);
+                return value.length < len ? value : val + '...'
+            },
+
+            titleFilter(value){
+                let len = 20;
+                let val = value.slice(0, len);
+                return value.length < len ? value : val + '...'
             }
         },
         mounted() {
             this.resource_path = this.$parent.resource_path;
-            this.getProject();
+            //this.getProject();
         }
     }
 </script>
@@ -142,7 +198,8 @@
     font-family: "Roboto", sans-serif;
     }
     .welcome-jumbo{
-        background: url("/images/welcome_banner.jpg") no-repeat center fixed;
+       /* background: url("/images/welcome_banner.jpg") no-repeat center fixed;*/
         background-size: cover;
+
     }
 </style>

@@ -11,13 +11,33 @@ class Client extends Model
         'first_name', 'last_name', 'other_name', 'gender', 'dob', 'profile_picture', 'email'
     ];
 
+    //appends
+    protected $appends = ['full_name', 'image_path'];
+
     //relationships
     public function user(){
-        return $this->morphOne('App\User', 'userable');
+        return $this->morphOne(User::class, 'userable');
     }
 
-    public function project(){
-        return $this->hasMany('App\Project');
+    public function projects(){
+        return $this->hasMany(Project::class);
+    }
+    public function jobOffered(){
+        return $this->hasManyThrough(JobOffered::class, Project::class);
+    }
+
+    public function getFullNameAttribute(){
+        if($this->other_name !== null){
+            return $this->first_name.' '.$this->other_name.' '.$this->last_name;
+        }
+        return $this->first_name.' '.$this->last_name;
+    }
+
+    public function getImagePathAttribute(){
+        if ($this->profile_picture === 'noimage.jpg'){
+            return asset('images/'.$this->profile_picture);
+        }
+        return asset('storage/images/users/'.$this->profile_picture);
     }
 
 }

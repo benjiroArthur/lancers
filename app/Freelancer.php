@@ -10,23 +10,46 @@ class Freelancer extends Model
     protected $fillable = [
         'first_name', 'last_name', 'other_name', 'gender', 'dob', 'profile_picture', 'email'
     ];
+    protected $appends = ['full_name', 'image_path'];
+    protected $with = ['portfolio', 'links'];
 
     public function user(){
-        return $this->morphOne('App\User', 'userable');
+        return $this->morphOne(User::class, 'userable');
+    }
+
+    public function getFullNameAttribute(){
+        if($this->other_name !== null){
+            return $this->first_name.' '.$this->other_name.' '.$this->last_name;
+        }
+        return $this->first_name.' '.$this->last_name;
     }
 
     public function project_apply(){
-        return $this->hasMany('App\ProjectApplication');
+        return $this->hasMany(ProjectApplication::class);
     }
-    public function job_offered(){
-        return $this->hasMany('App\JobOffered');
+    public function jobOffered(){
+        return $this->hasMany(JobOffered::class);
     }
-    public function job_profile(){
-        return $this->hasMany('App\JobProfile');
+    public function jobProfile(){
+        return $this->hasMany(JobProfile::class);
     }
     public function job_history(){
-        return $this->hasMany('App\JobHistory');
+        return $this->hasMany(JobHistory::class);
     }
 
+    public function getImagePathAttribute(){
+        if ($this->profile_picture === 'noimage.jpg'){
+            return asset('images/'.$this->profile_picture);
+        }
+        return asset('storage/images/users/'.$this->profile_picture);
+    }
+
+    public function portfolio(){
+        return $this->hasOne(Portfolio::class);
+    }
+
+    public function links(){
+        return $this->hasMany(Link::class);
+    }
 
 }

@@ -1,245 +1,192 @@
 <template>
-    <mdb-container>
-        <mdb-row>
-            <mdb-col md="6" class="mb-4">
-                <mdb-card :class="['gradient-card', gradient1 && 'show']" @click.native="gradient1 = true" v-on-clickaway="away1">
-                    <div class="d-flex d-inline-flex">
-                        <div class="card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg)">
-                            <a>
-                                <mdb-mask waves class="text-white d-flex h-100 blue-gradient-rgba">
-                                    <div class="first-content align-self-center p-3" v-if="!gradient1">
-                                        <h3 class="card-title font-weight-bold">Today's sales</h3>
-                                        <p class="lead mb-0">Click on this card to see details</p>
-                                    </div>
-                                    <div class="second-content align-self-center mx-auto text-center" v-if="gradient1">
-                                        <mdb-icon icon="money-bill" size="3x" />
-                                    </div>
-                                </mdb-mask>
-                            </a>
-                        </div>
-                        <!-- Data -->
-                        <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave" @leave="leave">
-                            <div class="third-content collapse-item mt-4 mb-2 mr-4 text-right justify-content-end ml-auto" v-if="gradient1">
-                                <p class="text-uppercase text-muted">Today's sales</p>
-                                <h4 class="font-weight-bold">2000$</h4>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 col-sm-3 justify-content-center">
+                <circle-counter
+                    size="10rem"
+                    :text="AllProjectNum.toString()"
+                    :dashCount=AllProjectNum+1
+                    :activeCount=AllProjectNum
+                    :strokeWidth=25
+                    :activeWidth=20
+                    stroke="#65f1b9"
+                    activeStroke="black"
+                    :dashSpacing=0
+                    :rotate="-90"
+                    :reverse=false
+                >
+                </circle-counter>
+                <p class="text-dark h3 mt-3">All Projects</p>
+            </div>
+            <div class="col-md-3 col-sm-3 justify-content-center">
+                <circle-counter
+                    size="10rem"
+                    :text="NotStartedNum.toString()"
+                    :dashCount=AllProjectNum
+                    :activeCount=NotStartedNum
+                    :strokeWidth=25
+                    :activeWidth=20
+                    stroke="#65f1b9"
+                    activeStroke="red"
+                    :dashSpacing=0
+                    :rotate="-90"
+                    :reverse=false
+                >
+                </circle-counter>
+                <p class="text-danger h3 mt-3">Pending</p>
+            </div>
+            <div class="col-md-3 col-sm-3 justify-content-center">
+                <circle-counter
+                    size="10rem"
+                    :text="InProgressNum.toString()"
+                    :dashCount=AllProjectNum
+                    :activeCount=InProgressNum
+                    :strokeWidth=25
+                    :activeWidth=20
+                    stroke="#65f1b9"
+                    activeStroke="orange"
+                    :dashSpacing=0
+                    :rotate="-90"
+                    :reverse=false
+                >
+                </circle-counter>
+                <p class="orange h3 mt-3">In Progress</p>
+            </div>
+            <div class="col-md-3 col-sm-3 justify-content-center">
+                <circle-counter
+                    size="10rem"
+                    :text="CompletedNum.toString()"
+                    :dashCount=AllProjectNum
+                    :activeCount=CompletedNum
+                    :strokeWidth=25
+                    :activeWidth=20
+                    stroke="#65f1b9"
+                    activeStroke="#024a2d"
+                    :dashSpacing=0
+                    :rotate="-90"
+                    :reverse=false
+                >
+                </circle-counter>
+                <p class="text-lancer-dark h3 mt-3">Completed</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card shadow pro-card">
+                    <div v-if="AllProject.length > 0" class="row p-2">
+                        <div v-for="(job, i) in AllProject" class="col-md-3" :key="i">
+                            <div class="card shadow-lg m-2" :class="singlePro(job.status)" >
+                                <p>{{job.project.project_title}}</p>
+                                <p></p>
                             </div>
-                        </transition>
-                    </div>
-                    <!-- Content -->
-                    <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave" @leave="leave">
-                        <mdb-card-body class="collapse-item" v-if="gradient1">
-                            <mdb-progress color="primary" :value="25" />
-                            <p class="text-muted">Better than last week (25%)</p>
-                            <h4 class="text-uppercase font-weight-bold my-4">Details</h4>
-                            <p class="text-muted" align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam vel dolores qui, necessitatibus aut eaque magni mollitia tenetur molestiae sit quae quos quaerat amet exercitationem atque animi odio.</p>
-                        </mdb-card-body>
-                    </transition>
-                </mdb-card>
-            </mdb-col>
-            <mdb-col md="6" class="mb-4">
-                <mdb-card :class="['gradient-card', gradient2 && 'show']" @click.native="gradient2 = true" v-on-clickaway="away2">
-                    <div class="d-flex d-inline-flex">
-                        <div class="card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg)">
-                            <a>
-                                <mdb-mask waves class="text-white d-flex h-100 purple-gradient-rgba">
-                                    <div class="first-content align-self-center p-3" v-if="!gradient2">
-                                        <h3 class="card-title font-weight-bold">Subscriptions</h3>
-                                        <p class="lead mb-0">Click on this card to see details</p>
-                                    </div>
-                                    <div class="second-content align-self-center mx-auto text-center" v-if="gradient2">
-                                        <mdb-icon icon="chart-line" size="3x" />
-                                    </div>
-                                </mdb-mask>
-                            </a>
                         </div>
-                        <!-- Data -->
-                        <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave" @leave="leave">
-                            <div class="third-content collapse-item mt-4 mb-2 mr-4 text-right justify-content-end ml-auto" v-if="gradient2">
-                                <p class="text-uppercase text-muted">Subscriptions</p>
-                                <h4 class="font-weight-bold">200</h4>
-                            </div>
-                        </transition>
                     </div>
-                    <!-- Content -->
-                    <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave" @leave="leave">
-                        <mdb-card-body class="collapse-item" v-if="gradient2">
-                            <mdb-progress color="purple" :value="25" />
-                            <p class="text-muted">Worse than last week (25%)</p>
-                            <h4 class="text-uppercase font-weight-bold my-4">Details</h4>
-                            <p class="text-muted" align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam vel dolores qui, necessitatibus aut eaque magni mollitia tenetur molestiae sit quae quos quaerat amet exercitationem atque animi odio.</p>
-                        </mdb-card-body>
-                    </transition>
-                </mdb-card>
-            </mdb-col>
-        </mdb-row>
-        <mdb-row>
-            <mdb-col md="6" class="mb-4">
-                <mdb-card :class="['gradient-card', gradient3 && 'show']" @click.native="gradient3 = true" v-on-clickaway="away3">
-                    <div class="d-flex d-inline-flex">
-                        <div class="card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg)">
-                            <a>
-                                <mdb-mask waves class="text-white d-flex h-100 peach-gradient-rgba">
-                                    <div class="first-content align-self-center p-3" v-if="!gradient3">
-                                        <h3 class="card-title font-weight-bold">Traffic</h3>
-                                        <p class="lead mb-0">Click on this card to see details</p>
-                                    </div>
-                                    <div class="second-content align-self-center mx-auto text-center" v-if="gradient3">
-                                        <mdb-icon icon="chart-pie" size="3x" />
-                                    </div>
-                                </mdb-mask>
-                            </a>
-                        </div>
-                        <!-- Data -->
-                        <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave" @leave="leave">
-                            <div class="third-content collapse-item mt-4 mb-2 mr-4 text-right justify-content-end ml-auto" v-if="gradient3">
-                                <p class="text-uppercase text-muted">Traffic</p>
-                                <h4 class="font-weight-bold">20000</h4>
-                            </div>
-                        </transition>
-                    </div>
-                    <!-- Content -->
-                    <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave" @leave="leave">
-                        <mdb-card-body class="collapse-item" v-if="gradient3">
-                            <mdb-progress color="amber" :value="75" />
-                            <p class="text-muted">Worse than last week (75%)</p>
-                            <h4 class="text-uppercase font-weight-bold my-4">Details</h4>
-                            <p class="text-muted" align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam vel dolores qui, necessitatibus aut eaque magni mollitia tenetur molestiae sit quae quos quaerat amet exercitationem atque animi odio.</p>
-                        </mdb-card-body>
-                    </transition>
-                </mdb-card>
-            </mdb-col>
-            <mdb-col md="6" class="mb-4">
-                <mdb-card :class="['gradient-card', gradient4 && 'show']" @click.native="gradient4 = true" v-on-clickaway="away4">
-                    <div class="d-flex d-inline-flex">
-                        <div class="card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg)">
-                            <a>
-                                <mdb-mask waves class="text-white d-flex h-100 aqua-gradient-rgba">
-                                    <div class="first-content align-self-center p-3" v-if="!gradient4">
-                                        <h3 class="card-title font-weight-bold">Organic traffic</h3>
-                                        <p class="lead mb-0">Click on this card to see details</p>
-                                    </div>
-                                    <div class="second-content align-self-center mx-auto text-center" v-if="gradient4">
-                                        <mdb-icon icon="chart-bar" size="3x" />
-                                    </div>
-                                </mdb-mask>
-                            </a>
-                        </div>
-                        <!-- Data -->
-                        <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave" @leave="leave">
-                            <div class="third-content collapse-item mt-4 mb-2 mr-4 text-right justify-content-end ml-auto" v-if="gradient4">
-                                <p class="text-uppercase text-muted">Organic traffic</p>
-                                <h4 class="font-weight-bold">2000</h4>
-                            </div>
-                        </transition>
-                    </div>
-                    <!-- Content -->
-                    <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave" @leave="leave">
-                        <mdb-card-body class="collapse-item" v-if="gradient4">
-                            <mdb-progress color="cyan" :value="50" />
-                            <p class="text-muted">Better than last week (50%)</p>
-                            <h4 class="text-uppercase font-weight-bold my-4">Details</h4>
-                            <p class="text-muted" align="justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam vel dolores qui, necessitatibus aut eaque magni mollitia tenetur molestiae sit quae quos quaerat amet exercitationem atque animi odio.</p>
-                        </mdb-card-body>
-                    </transition>
-                </mdb-card>
-            </mdb-col>
-        </mdb-row>
-    </mdb-container>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </template>
 
 <script>
-    import { mdbContainer, mdbRow, mdbCol, mdbCard, mdbCardImage, mdbCardBody, mdbCardTitle, mdbCardText, mdbIcon, mdbView, mdbMask, mdbBtn, mdbTooltip, mdbProgress } from 'mdbvue';
-    import { mixin as clickaway } from 'vue-clickaway';
-
+    import circleCounter from 'vue-circle-counter';
     export default {
-        name: 'AllProjects',
-        components: {
-            mdbContainer,
-            mdbRow,
-            mdbCol,
-            mdbCard,
-            mdbCardImage,
-            mdbCardBody,
-            mdbCardTitle,
-            mdbCardText,
-            mdbIcon,
-            mdbView,
-            mdbMask,
-            mdbBtn,
-            mdbTooltip,
-            mdbProgress
-        },
-        data() {
-            return {
-                gradient1: false,
-                gradient2: false,
-                gradient3: false,
-                gradient4: false
-            };
-        },
-        methods: {
-            beforeEnter(el) {
-                el.style.height = '0';
-                el.style.opacity = '0';
-            },
-            enter(el) {
-                el.style.height = el.scrollHeight + 'px';
-                el.style.opacity = '1';
-            },
-            beforeLeave(el) {
-                el.style.height = el.scrollHeight + 'px';
-                el.style.opacity = '1';
-            },
-            leave(el) {
-                el.style.height = '0';
-                el.style.opacity = '0';
-            },
-            away1() {
-                this.gradient1 = false;
-            },
-            away2() {
-                this.gradient2 = false;
-            },
-            away3() {
-                this.gradient3 = false;
-            },
-            away4() {
-                this.gradient4 = false;
-            }
-        },
-        mixins: [clickaway]
-    }
+        name: "AllProjects",
+        components: {circleCounter},
+        data(){
+            return{
+                AllProject: {},
+                AllProjectNum: 0,
+                InProgress: {},
+                InProgressNum: 0,
+                NotStarted: {},
+                NotStartedNum: 0,
+                Completed: {},
+                CompletedNum: 0,
+                user:{},
 
+            }
+
+        },
+        methods:{
+            getAllProject(){
+                axios
+                    .get('/data/freelancer/job-offered/'+this.$parent.userId)
+                    .then((response)=>{
+                        this.AllProject = response.data;
+                        this.AllProjectNum = this.AllProject.length;
+                    })
+                    .catch()
+            },
+            getInProgress(){
+                axios
+                    .get('/data/freelancer/in-progress/'+this.$parent.userId)
+                    .then((response)=>{
+                        this.InProgress = response.data;
+                        this.InProgressNum = this.InProgress.length;
+                    })
+                    .catch()
+            },
+            getNotStarted(){
+                axios
+                    .get('/data/freelancer/not-started/'+this.$parent.userId)
+                    .then((response)=>{
+                        this.NotStarted = response.data;
+                        this.NotStartedNum = this.NotStarted.length;
+                    })
+                    .catch()
+            },
+            getCompleted(){
+                axios
+                    .get('/data/freelancer/completed-projects/'+this.$parent.userId)
+                    .then((response)=>{
+                        this.Completed = response.data;
+                        this.CompletedNum = this.Completed.length;
+                    })
+                    .catch()
+            },
+            getUser(){
+                axios
+                    .get('/data/user')
+                    .then((response)=>{
+                        this.user = response.data;
+                    })
+                    .catch()
+            },
+
+            singlePro(param){
+                if(param === 'in progress'){
+                    return 'my-c-orange'
+                }
+                else if(param === 'not started'){
+                    return 'my-c-red'
+                }
+                else if(param === 'completed'){
+                    return 'my-c-green'
+                }
+            },
+        },
+        mounted() {
+            this.getAllProject();
+            this.getInProgress();
+            this.getNotStarted();
+            this.getCompleted();
+            this.getUser();
+        }
+    }
 </script>
 
-<style scoped>
-    h4 {
-        font-weight: bold;
+<style lang="scss" scoped>
+    .pro-card{
+        min-height: 25rem;
     }
-    .collapse {
-        transition: height 0.3s;
+    .my-c-red{
+        border: 2px solid red;
     }
-    .collapse-item {
-        transition: all 0.5s;
+    .my-c-orange{
+        border: 2px solid #f3892d;
     }
-    .gradient-card {
-        transition: 0.5s ease-in-out;
-    }
-    .gradient-card.show {
-        margin-top: 20px;
-    }
-    .gradient-card .card-image {
-        display: inline-block;
-        width: 100%;
-        transition: 0.5s ease-in-out;
-    }
-    .gradient-card.show .card-image {
-        width: 112px;
-        height: 112px;
-        margin-left: 20px;
-        margin-top: -20px;
-    }
-    .gradient-card .card-body {
-        padding: 0 1.25rem;
+    .my-c-green{
+        border: 2px solid green;
     }
 </style>

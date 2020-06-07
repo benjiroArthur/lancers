@@ -42,7 +42,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     //return with
-    protected $with = ['userable'];
+    protected $with = ['userable', 'address'];
 
     //relationships
     public function role(){
@@ -61,15 +61,21 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function friendOfMine(){
-        return $this->belongsToMany('App\User', 'friends', 'user_id', 'friend_id');
+        return $this->belongsToMany(User::class, 'friends', 'user_id', 'friend_id');
     }
 
     public function friendOf(){
-        return $this->belongsToMany('App\User', 'friends', 'friend_id', 'user_id');
+        return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id');
     }
 
-    public function friends(){
-        return $this->friendOfMine()->merge($this->friendOf());
+    /*public function friends(){
+        return $this->friendsOfMine->merge($this->friendOf);
+    }*/
+
+    public function getFriendsAttribute(){
+        $friendsOfMine = $this->friendOfMine;
+        $friendOf = $this->friendOf;
+        return $friendsOfMine->merge($friendOf);
     }
 
 //    public function sender(){
@@ -83,4 +89,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendPasswordResetNotification($token){
        $this->notify(new PasswordResetNotification($token));
     }
+
+    /*public function getFriendsAttribute(){
+        $friendsOfMine = $this->friendsOfMine;
+        $friendOf = $this->friendOf;
+        return $friendsOfMine->merge($friendOf);
+    }*/
 }

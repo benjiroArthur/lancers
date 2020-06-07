@@ -42,15 +42,21 @@ class PasswordResetNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        /*$url = url(config('app.url').route('api.password.reset', [
+        $url = url(route('password.reset', [
+                'token' => $this->token,
+                'email' => $notifiable->getEmailForPasswordReset(),
+            ], false));
+
+       /* $url = url(config('app.url').route('password.reset', [
                 'token' => $this->token,
                 'email' => $notifiable->getEmailForPasswordReset(),
             ], false));*/
-        $url = "http://LancersFrontEnd/reset-password-form/?token=".$this->token;
+        //$url = "http://LancersFrontEnd/reset-password-form/?token=".$this->token;
 
 
         return (new MailMessage)
             ->subject(Lang::get('Reset Password Notification'))
+            ->greeting('Hello!' .$notifiable->getEmailForPasswordReset())
             ->line(Lang::get('You are receiving this email because we received a password reset request for your account.'))
             ->action(Lang::get('Reset Password'), $url)
             ->line(Lang::get('This password reset link will expire in :count minutes.', ['count' => config('auth.passwords.'.config('auth.defaults.passwords').'.expire')]))

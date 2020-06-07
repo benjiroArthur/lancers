@@ -21,6 +21,11 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        \App\Http\Middleware\FreelancerMiddleware::class,
+        \App\Http\Middleware\PortfolioUpdateMiddleware::class,
+        \App\Http\Middleware\ProfileUpdateMiddleware::class,
+        \App\Http\Middleware\ClientMiddleware::class,
+        \App\Http\Middleware\AdminMiddleware::class,
     ];
 
     /**
@@ -61,8 +66,14 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
-        'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
+       'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
+       //'signed' => \App\Http\Middleware\ValidateHttpsSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'freelancer' => \App\Http\Middleware\FreelancerMiddleware::class,
+        'portfolio' => \App\Http\Middleware\PortfolioUpdateMiddleware::class,
+        'profile' => \App\Http\Middleware\ProfileUpdateMiddleware::class,
+        'client' => \App\Http\Middleware\ClientMiddleware::class,
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
     ];
 }

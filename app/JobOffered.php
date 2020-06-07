@@ -12,10 +12,10 @@ class JobOffered extends Model
     //relationship
 
     public function project(){
-        return $this->belongsTo('App\Project');
+        return $this->belongsTo(Project::class, 'project_id');
     }
      public function freelancer(){
-        return $this->belongsTo('App\Freelancer');
+        return $this->belongsTo(Freelancer::class, 'freelancer_id');
     }
 
 

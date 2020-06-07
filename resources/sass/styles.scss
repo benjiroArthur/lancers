@@ -1,3 +1,21 @@
+/*body {
+    padding-bottom: 40px !important;
+}*/
+#page-container{
+   /* position: relative;
+    min-height: 100vh;*/
+}
+#content-wrap {
+    position: relative;
+    min-height: 100vh;   /* Footer height */
+}
+
+#footer {
+    //position: absolute;
+    //bottom: 0;
+    width: 100%;
+    //min-height: 5rem;            /* Footer height */
+}
 .text-lancer{
     color: #32a778;
 }
@@ -12,6 +30,24 @@
 }
 .bg-lancer-light{
     background-color: #dff6ee;
+}
+
+.text-wrap{
+    overflow-wrap: break-word;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #ffffff;
+    background-color: #32a778 !important;
+    border-color: #32a778 !important;
+}
+
+.page-item .page-link {
+    z-index: 3;
+    color: #32a778;
+    background-color: #ffffff !important;
+    border-color: #ffffff !important;
 }
 
 
@@ -355,24 +391,12 @@ select option:hover{
 }
 
 
-.stack-top{
+/*.stack-top{
     z-index: 9;
-}
-.main-sidebar{
-    margin: 0 !important;
-    &.nav-link{
-        font-size: 14px !important;
-    }
-    &.router-link-exact-active{
-        background-color: #65f1b9 !important;
-        color: #012617 !important;
-        &.nav-link{
-            color: #012617 !important;
-        }
-    }
-    &.nav-link:hover{
-        color: #65f1b9 !important;
-    }
+}*/
+.b-white{
+    border: 1px solid white !important;
+    background: transparent !important;
 }
 
 .home-navs{
@@ -401,8 +425,30 @@ select option:hover{
         background: transparent;
 }
 
+.router-link-exact-active {
+
+    border: none;
+    border-bottom: 2px solid #32a778;
+}
+
+.bodyClass{
+    /*min-height: 100%;*/
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+
+.nav-item{
+    list-style: none !important;
+}
 
 
+.my-nav-link:hover {
+    background-color: #a7eacf;
+}
 
+.swift-h2{
+    font-family: "Open Sans", sans-serif;
+}
 
 

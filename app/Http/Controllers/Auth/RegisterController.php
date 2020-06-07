@@ -50,8 +50,10 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
             'email' => 'required|string|email|max:255|unique:users|unique:clients|unique:freelancers',
             'password' => 'required|string|min:8|confirmed',
@@ -67,6 +69,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        return $data;
         $data2['email'] = $data['email'];
         $role = Role::where('name', $data['user_type'])->firstOrFail();
         if($data['user_type'] === 'client'){
