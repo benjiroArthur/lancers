@@ -118,7 +118,7 @@
                 $('#viewJobModal').modal('hide');
                 let id = this.job.id;
                 Swal.fire({
-                    title: 'Confirm Job Application for '+ id,
+                    title: 'Confirm Job Application',
                     text: "You are about to apply for this job",
                     icon: 'warning',
                     showCancelButton: true,

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\JobCategory;
+use App\JobType;
 use Illuminate\Http\Request;
 
 class JobCategoryController extends Controller

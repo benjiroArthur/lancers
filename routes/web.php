@@ -57,6 +57,10 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::get('/client/client-projects/{id}', 'ClientDashController@clientProjects');
     Route::get('/client/unapplied-projects/{id}', 'ClientDashController@unappliedFor');
     Route::get('/client/delete-project/{id}', 'ClientDashController@deleteProjects');
+    Route::get('/client/applications/{id}', 'ClientDashController@jobApplication');
+    Route::get('/client/latest-project', 'ClientDashController@getLatestProject');
+    Route::post('/client/post-project', 'ClientDashController@projectPostProject');
+    Route::get('/job-type', 'ClientDashController@getJobTypes');
     Route::get('/latest-projects', 'ProjectController@latestProjects');
     Route::get('/available-projects', 'ProjectController@availableProjects');
     Route::post('/user/profile', 'ProfileController@profile');

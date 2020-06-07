@@ -120,6 +120,7 @@
         data(){
             return{
                 client:{},
+                latestProject:{},
             }
         },
         methods:{
@@ -135,10 +136,19 @@
                     .then((response) => {
                         this.client = response.data;
                     })
-            }
+            },
+            getLatestProject(){
+                axios.get('/data/client/latest-project').then((response)=>{
+                    this.latestProject = response.data;
+                })
+            },
         },
         mounted() {
             this.getIndex();
+            this.getLatestProject();
+            Fire.$on('jobPosted', ()=>{
+                this.getLatestProject();
+            })
         }
     }
 </script>
