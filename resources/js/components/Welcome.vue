@@ -196,11 +196,10 @@
              <img :src="this.resource_path + '/howToGetStarted.gif'" alt="" class="img-fluid">
          </div>
 
-
-
-
     </div>
 </template>
+
+
 
 
 <script>
@@ -250,6 +249,7 @@
             this.resource_path = this.$parent.resource_path;
             this.getCat();
         }
+
     }
 </script>
 
@@ -263,13 +263,6 @@
             font-size: 14px;
         }
         font-family: "Roboto", sans-serif;
-    }
-
-    hr {
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        border: 0;
-        border-top: 1px solid rgba(0, 0, 0, 0.1);
     }
 
 </style>
