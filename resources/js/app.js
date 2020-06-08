@@ -43,6 +43,8 @@ require('bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-c
 require('bootstrap-table/dist/extensions/filter-control/bootstrap-table-filter-control.min.js');
 
 
+import 'owl.carousel/dist/assets/owl.carousel.css';
+import 'owl.carousel';
 
 import * as VueGoogleMaps from 'vue2-google-maps';
 
@@ -219,6 +221,7 @@ Vue.component('lancer-allprojects-table', require('./components/Freelancer/Freel
 Vue.component('lancer-completed-table', require('./components/Freelancer/FreelancerTables/LancerCompletedTable.vue').default);
 Vue.component('lancer-inprogress-table', require('./components/Freelancer/FreelancerTables/LancerInProgressTable.vue').default);
 Vue.component('lancer-appliedjobs-table', require('./components/Freelancer/FreelancerTables/LancerAppliedJobsTable.vue').default);
+
 
 
 
