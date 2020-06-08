@@ -11,7 +11,7 @@ class   ClientsTableSeeder extends Seeder
      */
     public function run()
     {
-        $users = factory(App\Client::class, 10)
+        $users = factory(App\Client::class, 2)
             ->create()
             ->each(function ($user) {
                 $user->user()->create([
