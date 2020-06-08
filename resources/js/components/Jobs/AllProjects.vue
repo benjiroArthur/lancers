@@ -76,7 +76,7 @@
                         },
                         formatter: function (e, value, row) {
 
-                            return '<a class="btn btn-sm show " data-toggle="modal" href="#" data-target="#">Apply</a>'
+                            return '<a class="btn btn-sm show bg-lancer text-white" data-toggle="modal" href="#" data-target="#">Apply</a>'
                         },
                         events: {
                             'click .show': function (e, value, row) {
@@ -118,7 +118,7 @@
                 $('#viewJobModal').modal('hide');
                 let id = this.job.id;
                 Swal.fire({
-                    title: 'Confirm Job Application for '+ id,
+                    title: 'Confirm Job Application',
                     text: "You are about to apply for this job",
                     icon: 'warning',
                     showCancelButton: true,

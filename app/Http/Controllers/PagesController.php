@@ -7,6 +7,18 @@ use Illuminate\Support\Facades\Auth;
 
 class PagesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+
+        if(Auth::check() && auth::user()->role->name === 'client'){
+            $this->middleware(['profile', 'address']);
+        }
+        else if(Auth::check() && auth::user()->role->name === 'freelancer'){
+            $this->middleware(['profile', 'address', 'portfolio']);
+        }
+
+    }
     //browse jobs
     public function browseJobs(){
         return view('Pages.browse_jobs');

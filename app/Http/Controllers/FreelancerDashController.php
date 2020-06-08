@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class FreelancerDashController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified', 'freelancer', 'profile', 'address', 'portfolio']);
+    }
     // lists all completed projects
     /**
      * @param $id
@@ -94,23 +98,33 @@ class FreelancerDashController extends Controller
      */
     public function applyForJobs($id) {
         $user = auth()->user();
-        if($user->profile_updated === 1){
-            $jobApplication = new ProjectApplication();
-            $data = [
-                'project_id' => $id,
-                'freelancer_id' => $user->userable->id
-            ];
-            $jobApplication->create($data);
-            return response('success');
+        if($user->profile_updated === true){
+            $jobApp = ProjectApplication::where('project_id', $id)->where('freelancer_id', $user->userable->id)->first();
+
+           if($jobApp === null){
+               $jobApplication = new ProjectApplication();
+               $data = [
+                   'project_id' => $id,
+                   'freelancer_id' => $user->userable->id
+               ];
+               $jobApplication->create($data);
+               return response('success');
+           }
+           else{
+               return response('You Have Already Applied For This Job');
+           }
         }
         else{
             return response('You Cannot Apply For A Job, Please Update Your profile');
         }
 
+    }
+    public function jobApplied(){
+        $user = auth()->user();
+        $projects = ProjectApplication::with('project')->where('status', null)
+                                            ->where('freelancer_id', $user->userable->id)->get();
 
-
-
-
+        return response()->json($projects);
     }
 
     public function profile() {

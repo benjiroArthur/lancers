@@ -12,9 +12,9 @@ class ProjectApplication extends Model
     //relationships
 
     public function project(){
-        return $this->belongsTo('App\Project');
+        return $this->belongsTo(Project::class);
     }
     public function freelancer(){
-        return $this->belongsTo('App\Freelancer');
+        return $this->belongsTo(Freelancer::class);
     }
 }

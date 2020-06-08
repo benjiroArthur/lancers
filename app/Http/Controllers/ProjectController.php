@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified'])->except('index');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -59,7 +63,7 @@ class ProjectController extends Controller
 
             DB::table('projects')->where('id', $id)->delete();
 
-            return redirect('/client/projects');
+            return response('success');
         }
 
     }

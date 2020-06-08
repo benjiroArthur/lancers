@@ -5,47 +5,45 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="card-tools">
-                            <a href="#" class="btn btn-outline-success text-right"><i class="fas fa-plus-circle"></i></a>
+                            <a href="#" class="btn btn-outline-success text-center test-lancer" title="Post A Job" @click.prevent="initiatePost">Post Job</a>
                         </div>
                         <ul class="nav nav-justified">
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-0" class="active nav-link text-lancer text-bold">All Projects</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-1" class="nav-link text-lancer text-bold">Completed Project</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-2" class="nav-link text-lancer text-bold">Pending Projects</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-3" class="nav-link text-lancer text-bold">Jobs Unapplied For</a></li>
-                            <!--<li class="nav-item"><a data-toggle="tab" href="#tab-eg7-3" class="nav-link">Payments</a></li>-->
+                            <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-4" class="nav-link text-lancer text-bold">In Progress</a></li>
                         </ul>
 
                     </div>
                     <div class="card-body">
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab-eg7-0" role="tabpanel">
-                                <allprojects-table></allprojects-table>
+                                <allprojects-table :allprojects="this.allprojects"></allprojects-table>
                             </div>
                             <div class="tab-pane" id="tab-eg7-1" role="tabpanel">
-                                <completed-table></completed-table>
+                                <completed-table :completed="this.completed"></completed-table>
                             </div>
                             <div class="tab-pane" id="tab-eg7-2" role="tabpanel">
-                                <pending-table></pending-table>
+                                <pending-table :pending="this.pending"></pending-table>
                             </div>
                             <div class="tab-pane" id="tab-eg7-3" role="tabpanel">
-                                <unappliedjobs-table></unappliedjobs-table>
+                                <unappliedjobs-table :unappliedjobs="this.unappliedjobs"></unappliedjobs-table>
+                            </div>
+                            <div class="tab-pane" id="tab-eg7-4" role="tabpanel">
+                                <client-inprogress-table :inProgress="this.inProgress"></client-inprogress-table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="card shadow">
-                    <div class="card-header">
-                        <div class="card-title"></div>
-                        <div class="card-tools"></div>
-                    </div>
-
-                    <div class="card-body"></div>
+                <div class="card">
+                    <project-application-table :applications="this.applications"></project-application-table>
                 </div>
             </div>
         </div>
-        <div class="row">
+        <!--<div class="row">
             <div class="col-md-12">
                 <div class="card shadow">
                     <div class="card-header">
@@ -56,6 +54,53 @@
                     <div class="card-body"></div>
                 </div>
             </div>
+        </div>-->
+        <!--post job modal-->
+        <div class="modal fade" id="postJobModal" tabindex="-1" role="dialog" aria-labelledby="postJobModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="postJobModalLabel">Post A Job</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form ref="form" @submit.prevent="postJob">
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="project_title">Project Title</label>
+                                <input v-model="jobForm.project_title" type="text" class="form-control" id="project_title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="job_type_id">Category</label>
+                                <select v-model="jobForm.job_type_id" class="form-control" id="job_type_id" required>
+                                    <option selected value="Select One" disabled>Select One</option>
+                                    <option v-for="(job, i) in jobType" :key="i" :value="job.id">{{job.name}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea v-model="jobForm.description" type="text" class="form-control" id="description" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="project_cost">Estimated Cost</label>
+                                <input v-model="jobForm.project_cost" type="text" class="form-control" id="project_cost" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="duration">Duration <span class="text-danger">*In Weeks</span></label>
+                                <input v-model="jobForm.duration" type="text" class="form-control" id="duration" required>
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-outline-success">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -64,44 +109,118 @@
     import CompletedTable from "../ClientTables/CompletedTable";
     import PendingTable from "../ClientTables/PendingTable";
     import AllProjectsTable from "../ClientTables/AllProjectsTable";
+    import ClientInProgressTable from "../ClientTables/ClientInProgressTable";
+    import ProjectApplicationTable from "../ClientTables/ProjectApplicationTable";
 
     export default {
         name: "ClientPostJobs",
-        components: {CompletedTable, PendingTable, AllProjectsTable},
+        components: {ProjectApplicationTable, CompletedTable, PendingTable, AllProjectsTable, ClientInProgressTable},
         data(){
             return{
                 categories:{},
+                jobType:{},
                 jobForm: new Form({
                     project_title:'',
-                    job_type_id:'',
+                    job_type_id:'Select One',
                     description:'',
                     project_cost:'',
                     duration:'',
                 }),
+                unappliedjobs: {},
+                pending: {},
+                completed: {},
+                allprojects: {},
+                inProgress: {},
+                applications: {},
             }
         },
-        methods:{
+        methods: {
             getCat(){
-                axios.get('/data/job-category')
+                axios.get('/data/job-type')
                     .then((response)=>{
-                        this.categories = response.data;
+                        this.jobType = response.data;
                     }).catch((error)=>{
                         console.log(error.message);
                 })
             },
+            initiatePost(){
+                $('#postJobModal').modal('show');
+            },
             postJob(){
-              this.jobForm.post().then((response)=>{
+                if(this.jobForm.job_type_id === 'Select One') return;
+                $('#postJobModal').modal('hide');
+                this.$Progress.start();
+              this.jobForm.post('/data/client/post-project').then((response)=>{
                   Fire.$emit('jobPosted');
                   Swal.fire(
                       'Success',
                       'Job Posted Successfully',
                       'success'
                   );
+                  this.$Progress.finish();
               })
+            },
+            getAllUnappliedJobs(){
+                axios.get(`/data/client/unapplied-projects/${this.$parent.userId}`)
+                    .then((response)=>{
+                        this.unappliedjobs = response.data;
+                    })
+                    .catch()
+            },
+            getAllPending(){
+                axios.get(`/data/client/not-completed/${this.$parent.userId}`)
+                    .then((response)=>{
+                        this.pending = response.data;
+                    })
+                    .catch()
+            },
+            getCompleted(){
+                axios.get(`/data/client/completed-projects/${this.$parent.userId}`)
+                    .then((response)=>{
+                        this.completed = response.data;
+                    })
+                    .catch()
+            },
+            getInProgress(){
+                axios.get(`/data/client/in-progress/${this.$parent.userId}`)
+                    .then((response)=>{
+                        this.inProgress = response.data;
+                    })
+                    .catch()
+            },
+            getAllProjects(){
+                axios.get(`/data/client/client-projects/${this.$parent.userId}`)
+                    .then((response)=>{
+                        this.allprojects = response.data;
+                    })
+                    .catch((error)=>{
+                        console.log(error.message)
+                    })
+            },
+            getApplication(){
+                axios.get(`/data/client/applications/${this.$parent.userId}`)
+                    .then((response)=>{
+                        this.applications = response.data;
+                    })
+                    .catch()
             },
         },
         mounted() {
+           // this.user_id = this.$parent.userId
             this.getCat();
+            this.getAllUnappliedJobs();
+            this.getAllPending();
+            this.getCompleted();
+            this.getAllProjects();
+            this.getApplication();
+
+            Fire.$on('jobPosted', ()=>{
+                this.getAllUnappliedJobs();
+                this.getAllPending();
+                this.getCompleted();
+                this.getAllProjects();
+                this.getApplication();
+            });
         },
 
     };

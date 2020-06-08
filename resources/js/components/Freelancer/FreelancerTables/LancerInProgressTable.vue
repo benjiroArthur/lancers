@@ -1,25 +1,28 @@
 <template>
+    <div class="row">
+        <div class="col-md-12">
+            <!--<div class="justify-content-between d-flex">
+                <h6 class="text-uppercase font-weight-bold">All Projects</h6>
+            </div>-->
 
-</template>
-<div class="row">
-    <div class="col-md-12">
-        <div class="justify-content-between d-flex">
-            <h6 class="text-uppercase font-weight-bold">All Projects</h6>
-        </div>
-
-        <div class="col-12 table-responsive">
-            <div class="card-body table table-responsive table-borderless p-0">
-                <bootstrap-table :data="allprojects" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/>
+            <div class="col-12 table-responsive">
+                <div class="card-body table table-responsive table-borderless p-0">
+                    <bootstrap-table :data="inProgressProjects" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/>
+                </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
+</template>
+
 <script>
     import BootstrapTable from 'bootstrap-table/dist/bootstrap-table-vue.min';
     export default {
         name: "LancerInProgressTable",
         components: {BootstrapTable},
+        props:{
+            inProgressProjects:{},
+        },
         data() {
             return {
                 myOptions: {
@@ -32,9 +35,9 @@
 
                 },
                 myColumns: [
-                    {field: 'project_title', title: 'Project Title'},
-                    {field: 'project_cost', title: 'Project Cost'},
-                    {field: 'description', title: 'Project Description'},
+                    {field: 'project.project_title', title: 'Project Title'},
+                    {field: 'project.project_cost', title: 'Project Cost'},
+                    {field: 'project.description', title: 'Project Description'},
                     {
                         field: 'action',
                         title: 'Action',
@@ -44,7 +47,7 @@
                         },
                         formatter: function (e, value, row) {
 
-                            return '<a class="btn btn-sm show " data-toggle="modal" data-target="#">Apply</a>'
+                            return '<a class="btn btn-sm show " data-toggle="modal" data-target="#"><i class="fas fa-eye text-lancer"></i></a>'
                         },
                         events: {
                             'click .show': function (e, value, row) {
@@ -61,19 +64,10 @@
                         }
                     }
                 ],
-                allprojects: {},
-
-
             };
         },
-        methods:{
-            getAllProjects(){
-                axios.get(`/data/freelancer/in-progress/${this.$parent.user_id}`)
-                    .then((response)=>{
-                        this.allprojects = response.data;
-                    })
-                    .catch()
-            },
+        methods: {
+
         },
         mounted() {
             this.getAllProjects();
