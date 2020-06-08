@@ -12,9 +12,27 @@
                                 </div>
                             </div>
 
-                            <div class="card-body text-center">
-                                <div class="mt-5 ml-5 pr-2">
-                                    <p class="text-bold">Millions of amazing freelancers are waiting to turn your dreams into reality.</p>
+                            <div class="card-body">
+                                <div class="mt-2 ml-5 pr-2">
+                                    <div v-if="latestProject.length > 0">
+                                        <div v-for="(project, i) in latestProject" :key="i" class="col-12">
+                                            <div class="card m-0">
+                                                <div class="card-body m-0 p-1">
+                                                    <div class="row">
+                                                        <div class="col-9">
+                                                            <h6 class="m-0">{{project.project_title}}</h6>
+                                                            <small class="p00 m-0">{{project.description}}</small><br>
+                                                        </div>
+                                                        <div class="col-3 text-right">
+                                                            <small class="p00 m-0">$ {{project.project_cost}}.00</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <p v-else class="text-bold">Millions of amazing freelancers are waiting to turn your dreams into reality.</p>
                                     <div class="m-3">
                                         <a class="btn btn-outline-success text-dark text-bold border-dark m-3" href="#" @click="postjobs">Post a Job</a>
                                     </div>

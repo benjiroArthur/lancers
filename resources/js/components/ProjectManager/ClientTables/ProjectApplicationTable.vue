@@ -1,13 +1,16 @@
 <template>
     <div class="card-body table table-responsive table-borderless table-striped  p-0">
-        <bootstrap-table :data="allProjects" :options="myOptions" :columns="myColumns" sticky-header responsive borderless />
+        <bootstrap-table :data="applications" :options="myOptions" :columns="myColumns" sticky-header responsive borderless />
     </div>
 </template>
 
 <script>
     import BootstrapTable from 'bootstrap-table/dist/bootstrap-table-vue.min';
     export default {
-        name: "JobApplicationTable",
+        name: "ProjectApplicationTable",
+        props:{
+            applications:{},
+        },
         components: {BootstrapTable},
         data() {
             return {

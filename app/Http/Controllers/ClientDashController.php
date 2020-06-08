@@ -76,7 +76,8 @@ class ClientDashController extends Controller
      * */
     public function jobApplication($id) {
         $client = User::find($id)->userable;
-        $projects = $client->projectApplication()->where('status', null)->with('freelancer', 'project')->get()->groupBy('project_id');
+       // $projects = $client->projectApplication()->with('freelancer', 'project')->get()->groupBy('project_id');
+        $projects = $client->projectApplication()->with('freelancer', 'project')->get();
         return response()->json($projects);
     }
 
@@ -142,7 +143,7 @@ class ClientDashController extends Controller
     // here is another delete function so choose which one makes sense lol
     public function getLatestProject() {
         $client = auth()->user()->userable;
-        $project = $client->project()->latest()->limit(3)->get();
+        $project = $client->projects()->latest()->limit(3)->get();
         return response()->json($project);
     }
 

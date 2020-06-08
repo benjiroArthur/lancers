@@ -39,7 +39,7 @@
             </div>
             <div class="col-md-3">
                 <div class="card">
-                    <job-application-table :applications="this.applications"></job-application-table>
+                    <project-application-table :applications="this.applications"></project-application-table>
                 </div>
             </div>
         </div>
@@ -110,11 +110,11 @@
     import PendingTable from "../ClientTables/PendingTable";
     import AllProjectsTable from "../ClientTables/AllProjectsTable";
     import ClientInProgressTable from "../ClientTables/ClientInProgressTable";
-    import JobApplicationTable from "../ClientTables/JobApplicationTable";
+    import ProjectApplicationTable from "../ClientTables/ProjectApplicationTable";
 
     export default {
         name: "ClientPostJobs",
-        components: {JobApplicationTable, CompletedTable, PendingTable, AllProjectsTable, ClientInProgressTable},
+        components: {ProjectApplicationTable, CompletedTable, PendingTable, AllProjectsTable, ClientInProgressTable},
         data(){
             return{
                 categories:{},
@@ -193,7 +193,9 @@
                     .then((response)=>{
                         this.allprojects = response.data;
                     })
-                    .catch()
+                    .catch((error)=>{
+                        console.log(error.message)
+                    })
             },
             getApplication(){
                 axios.get(`/data/client/applications/${this.$parent.userId}`)
