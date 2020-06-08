@@ -79,7 +79,7 @@
                     <notification></notification>
                     <li class="nav-item dropdown ml-2">
                         <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <img class="img-bordered-sm img-sm rounded-circle" src="{{asset('storage/images/users/noimage.jpg')}}" alt="Profile image">
+                            <img class="img-bordered-sm img-sm rounded-circle" src="{{asset('storage/images/users/progtech.jpg')}}" alt="Profile image">
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="navbarDropdown">

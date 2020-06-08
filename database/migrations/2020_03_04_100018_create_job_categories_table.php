@@ -17,7 +17,7 @@ class CreateJobCategoriesTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->string('cover_image')->default('noimage.jpg');
+            $table->string('cover_image')->default('progtech.jpg');
             $table->timestamps();
         });
     }
