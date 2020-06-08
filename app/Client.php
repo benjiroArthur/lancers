@@ -27,7 +27,7 @@ class Client extends Model
     }
 
     public function projectApplication(){
-        return $this->hasManyThrough(JobOffered::class, Project::class);
+        return $this->hasManyThrough(ProjectApplication::class, Project::class);
     }
 
     public function getFullNameAttribute(){

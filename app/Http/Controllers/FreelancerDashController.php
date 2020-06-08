@@ -105,7 +105,9 @@ class FreelancerDashController extends Controller
                $jobApplication = new ProjectApplication();
                $data = [
                    'project_id' => $id,
-                   'freelancer_id' => $user->userable->id
+                   'freelancer_id' => $user->userable->id,
+                   'status' => 'applied'
+
                ];
                $jobApplication->create($data);
                return response('success');

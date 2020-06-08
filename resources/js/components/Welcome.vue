@@ -6,6 +6,7 @@
         </VueSlickCarousel>
 
 
+
         <!--<div id = "myCarousel" class = "carousel slide mb-5" data-action="carousel">
             <ol class = "carousel-indicators">
                 <li data-target = "#myCarousel" data-slide-to = "0" class="active"></li>

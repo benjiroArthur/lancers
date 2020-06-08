@@ -77,7 +77,7 @@ class ClientDashController extends Controller
     public function jobApplication($id) {
         $client = User::find($id)->userable;
        // $projects = $client->projectApplication()->with('freelancer', 'project')->get()->groupBy('project_id');
-        $projects = $client->projectApplication()->with('freelancer', 'project')->get();
+       $projects = $client->projectApplication()->where('status', 'applied')->with('freelancer', 'project')->get();
         return response()->json($projects);
     }
 

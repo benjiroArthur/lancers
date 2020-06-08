@@ -11,7 +11,8 @@
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-0" class="active nav-link text-lancer text-bold">All Projects</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-1" class="nav-link text-lancer text-bold">Completed Project</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-2" class="nav-link text-lancer text-bold">Pending Projects</a></li>
-                            <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-3" class="nav-link text-lancer text-bold">Jobs Unapplied For</a></li>
+                            <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-3" class="nav-link text-lancer text-bold">Applied Jobs</a></li>
+                            <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-4" class="nav-link text-lancer text-bold">Jobs Unapplied For</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-4" class="nav-link text-lancer text-bold">In Progress</a></li>
                         </ul>
 
@@ -27,10 +28,13 @@
                             <div class="tab-pane" id="tab-eg7-2" role="tabpanel">
                                 <pending-table :pending="this.pending"></pending-table>
                             </div>
-                            <div class="tab-pane" id="tab-eg7-3" role="tabpanel">
-                                <unappliedjobs-table :unappliedjobs="this.unappliedjobs"></unappliedjobs-table>
+                            <div class="tab-pane active" id="tab-eg7-3" role="tabpanel">
+                                <allprojects-table :allprojects="this.allprojects"></allprojects-table>
                             </div>
                             <div class="tab-pane" id="tab-eg7-4" role="tabpanel">
+                                <unappliedjobs-table :unappliedjobs="this.unappliedjobs"></unappliedjobs-table>
+                            </div>
+                            <div class="tab-pane" id="tab-eg7-5" role="tabpanel">
                                 <client-inprogress-table :inProgress="this.inProgress"></client-inprogress-table>
                             </div>
                         </div>
@@ -111,10 +115,11 @@
     import AllProjectsTable from "../ClientTables/AllProjectsTable";
     import ClientInProgressTable from "../ClientTables/ClientInProgressTable";
     import ProjectApplicationTable from "../ClientTables/ProjectApplicationTable";
+    import AppliedTable from "../ClientTables/AppliedTable";
 
     export default {
         name: "ClientPostJobs",
-        components: {ProjectApplicationTable, CompletedTable, PendingTable, AllProjectsTable, ClientInProgressTable},
+        components: {ProjectApplicationTable, CompletedTable, PendingTable, AllProjectsTable, ClientInProgressTable, AppliedTable},
         data(){
             return{
                 categories:{},
@@ -125,8 +130,10 @@
                     description:'',
                     project_cost:'',
                     duration:'',
+                    projectDetails:{},
                 }),
                 unappliedjobs: {},
+                viewProjects: {},
                 pending: {},
                 completed: {},
                 allprojects: {},
@@ -204,6 +211,12 @@
                     })
                     .catch()
             },
+
+            getviewProjects(row){
+                $projectDetails = row;
+                $('#view-details').modal('show');
+
+            },
         },
         mounted() {
            // this.user_id = this.$parent.userId
@@ -213,6 +226,7 @@
             this.getCompleted();
             this.getAllProjects();
             this.getApplication();
+            this.getviewProjects();
 
             Fire.$on('jobPosted', ()=>{
                 this.getAllUnappliedJobs();
@@ -221,6 +235,8 @@
                 this.getAllProjects();
                 this.getApplication();
             });
+
+            Fire.$on('viewProjects', (row)=>{this.getviewProjects()});
         },
 
     };
