@@ -17,6 +17,7 @@ class CreateJobOfferedsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('project_id');
             $table->unsignedBigInteger('freelancer_id');
+            $table->string('status')->default('not started');
             $table->timestamps();
         });
     }

@@ -15,12 +15,13 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('job_id');
+            $table->text('project_title');
+            $table->unsignedBigInteger('job_type_id');
             $table->unsignedBigInteger('client_id');
             $table->longText('description');
             $table->double('project_cost');
+            $table->string('status')->nullable('unapplied');
             $table->string('duration');
-            $table->boolean('approved')->default(0);
             $table->timestamps();
         });
     }

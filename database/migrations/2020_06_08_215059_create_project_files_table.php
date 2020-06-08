@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateProfilePictureInFreelancersTable extends Migration
+class CreateProjectFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class UpdateProfilePictureInFreelancersTable extends Migration
      */
     public function up()
     {
-        Schema::table('freelancers', function (Blueprint $table) {
-            $table->string('profile_picture')->default('noimage.jpg')->change();
+        Schema::create('project_files', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->unsignedBigInteger('project_id');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class UpdateProfilePictureInFreelancersTable extends Migration
      */
     public function down()
     {
-        Schema::table('freelancers', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('project_files');
     }
 }

@@ -21,7 +21,7 @@ class CreateFreelancersTable extends Migration
             $table->string('other_name')->nullable();
             $table->string('gender')->nullable();
             $table->date('dob')->nullable();
-            $table->string('profile_picture')->default('noinmage.jpg');
+            $table->string('profile_picture')->default('noimage.jpg');
             $table->timestamps();
         });
     }

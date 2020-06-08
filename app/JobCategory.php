@@ -21,6 +21,6 @@ class JobCategory extends Model
         return $this->hasManyThrough(Project::class, JobType::class);
     }
     public function getImagePathAttribute(){
-        return asset('storage/images/job_category/'.$this->cover_image);
+        return asset('images/job_category/'.$this->cover_image);
     }
 }

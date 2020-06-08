@@ -16,6 +16,8 @@ class CreateJobCategoriesTable extends Migration
         Schema::create('job_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->text('description')->nullable();
+            $table->string('cover_image')->default('progtech.jpg');
             $table->timestamps();
         });
     }

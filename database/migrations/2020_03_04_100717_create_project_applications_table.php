@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddStatusToProjectApplicationsTable extends Migration
+class CreateProjectApplicationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddStatusToProjectApplicationsTable extends Migration
      */
     public function up()
     {
-        Schema::table('projct_applications', function (Blueprint $table) {
+        Schema::create('project_applications', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('project_id');
+            $table->unsignedBigInteger('freelancer_id');
             $table->string('status')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class AddStatusToProjectApplicationsTable extends Migration
      */
     public function down()
     {
-        Schema::table('projct_applications', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('projct_applications');
     }
 }
