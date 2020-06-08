@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProjectApplication extends Model
 {
     //fillables
-    protected $fillable = ['project_id', 'freelancer_id'];
+    protected $fillable = ['project_id', 'freelancer_id', 'status'];
 
     //relationships
 

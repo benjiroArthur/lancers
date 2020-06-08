@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\JobType;
 use App\Project;
 use App\JobOffered;
 use App\User;
@@ -14,7 +15,7 @@ class ClientDashController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'verified', 'client']);
+        $this->middleware(['auth', 'verified', 'profile', 'address'])->except('getJobTypes');
     }
 
     /**
@@ -32,7 +33,7 @@ class ClientDashController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * */
     public function progress($id) {
-        $client = User::findorFail($id)->userable;
+        $client = User::findOrFail($id)->userable;
         $progress = $client->jobOffered()->with('project')->where('status', 'in progress')->latest()->get();
         return response()->json($progress);
     }
@@ -42,7 +43,7 @@ class ClientDashController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * */
     public function yet($id) {
-        $client = User::findorFail($id)->userable;
+        $client = User::findOrFail($id)->userable;
         $yet = $client->jobOffered()->with('project')->where('status', 'not started')->latest()->get();
         return response()->json($yet);
     }
@@ -52,7 +53,7 @@ class ClientDashController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * */
     public function projects($id) {
-        $client = User::findorFail($id)->userable;
+        $client = User::findOrFail($id)->userable;
         $projects = $client->jobOffered;
         return response()->json($projects);
     }
@@ -63,8 +64,20 @@ class ClientDashController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * */
     public function unappliedFor($id) {
-        $client = User::findorFail($id)->userable;
+        $client = User::findOrFail($id)->userable;
         $projects = Project::whereDoesntHave('projectApplication')->where('client_id', $client->id)->get();
+        return response()->json($projects);
+    }
+
+    //get all job applications
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * */
+    public function jobApplication($id) {
+        $client = User::find($id)->userable;
+       // $projects = $client->projectApplication()->with('freelancer', 'project')->get()->groupBy('project_id');
+       $projects = $client->projectApplication()->where('status', 'applied')->with('freelancer', 'project')->get();
         return response()->json($projects);
     }
 
@@ -74,11 +87,9 @@ class ClientDashController extends Controller
      * */
     // clients sees all projects personally posted...worked here
     public function clientProjects($id) {
-        $client = User::findorFail($id)->userable;
-            $clientProjects = $client->projects;
+        $client = User::find($id)->userable;
+            $clientProjects = $client->projects()->latest()->get();
             return response()->json($clientProjects);
-
-
     }
 
     /**
@@ -90,7 +101,7 @@ class ClientDashController extends Controller
     public function projectPostProject(Request $request) {
 
         $this->validate($request, [
-            'job_id' => 'required',
+            'job_type_id' => 'required',
             'project_title' => 'required',
             'description' => 'required',
             'project_cost' => 'required',
@@ -99,14 +110,6 @@ class ClientDashController extends Controller
         $project = new Project();
         $data = $request->all();
         $data['client_id'] = auth()->user()->userable->id;
-        /*
-         * when the above line is not needed
-         * or we don't need to add extra info to the request coming from the user
-         *
-         * ignore the $data and just do this:
-         * $project = new Project();
-         * $project = $project->create($request->all());
-         * */
         $project = $project->create($data);
 
         return response()->json($project);
@@ -134,18 +137,24 @@ class ClientDashController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     // here is another delete function so choose which one makes sense lol
-    public function delete_projects($id) {
+    public function getLatestProject() {
+        $client = auth()->user()->userable;
+        $project = $client->projects()->latest()->limit(3)->get();
+        return response()->json($project);
+    }
 
-        if(auth()->user()->role->name === 'client') {
-
-            \DB::table('projects')->where('id', $id)->delete();
-
-            return redirect('/client/projects')->with('Success', 'Project Deleted');
-        }
-
+    /**
+     * Display the specified resource.
+     *
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getJobTypes(){
+        $jobType = JobType::all();
+        return response()->json($jobType);
     }
 }

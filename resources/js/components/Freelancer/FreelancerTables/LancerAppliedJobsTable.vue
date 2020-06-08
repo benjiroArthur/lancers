@@ -35,9 +35,9 @@
 
                 },
                 myColumns: [
-                    {field: 'project_title', title: 'Project Title'},
-                    {field: 'project_cost', title: 'Project Cost'},
-                    {field: 'description', title: 'Project Description'},
+                    {field: 'project.project_title', title: 'Project Title'},
+                    {field: 'project.project_cost', title: 'Project Cost'},
+                    {field: 'project.description', title: 'Project Description'},
                     {
                         field: 'action',
                         title: 'Action',
@@ -47,7 +47,7 @@
                         },
                         formatter: function (e, value, row) {
 
-                            return '<a class="btn btn-sm show " data-toggle="modal" data-target="#">Apply</a>'
+                            return '<a class="btn btn-sm delete " data-toggle="modal" data-target="#">Decline</a>'
                         },
                         events: {
                             'click .show': function (e, value, row) {

@@ -99,13 +99,22 @@ class FreelancerDashController extends Controller
     public function applyForJobs($id) {
         $user = auth()->user();
         if($user->profile_updated === true){
-            $jobApplication = new ProjectApplication();
-            $data = [
-                'project_id' => $id,
-                'freelancer_id' => $user->userable->id
-            ];
-            $jobApplication->create($data);
-            return response('success');
+            $jobApp = ProjectApplication::where('project_id', $id)->where('freelancer_id', $user->userable->id)->first();
+
+           if($jobApp === null){
+               $jobApplication = new ProjectApplication();
+               $data = [
+                   'project_id' => $id,
+                   'freelancer_id' => $user->userable->id,
+                   'status' => 'applied'
+
+               ];
+               $jobApplication->create($data);
+               return response('success');
+           }
+           else{
+               return response('You Have Already Applied For This Job');
+           }
         }
         else{
             return response('You Cannot Apply For A Job, Please Update Your profile');

@@ -47,13 +47,13 @@
                         },
                         formatter: function (e, value, row) {
 
-                            return ' <a class="btn btn-sm show " data-toggle="modal" data-target="#"><i class="fas fa-check text-success"></i></a> ' +
-                                ' <a class="btn btn-sm edit " data-toggle="modal" data-target="#"><i class="fas fa-edit text-warning"></i></a> ' +
-                                ' <a class="btn btn-sm delete " data-toggle="modal" data-target="#"><i class="fas fa-trash text-danger"></i></a> '
+                            return ' <a class="btn btn-sm show " data-toggle="modal" data-target="#" id="view-details"><i class="fas fa-check text-success"></i></a> ' +
+                                    ' <a class="btn btn-sm edit " data-toggle="modal" data-target="#"><i class="fas fa-edit text-warning"></i></a> ' +
+                                    ' <a class="btn btn-sm delete " data-toggle="modal" data-target="#"><i class="fas fa-trash text-danger"></i></a> '
                         },
                         events: {
                             'click .show': function (e, value, row) {
-                                Fire.$emit('viewSingleAdmin', row);
+                                Fire.$emit('ProjectDetails', row);
 
                             },
                             'click .edit': function (e, value, row) {
@@ -110,7 +110,7 @@
 
         },
         mounted() {
-
+            Fire.$on('ProjectDetails', row);
         },
     }
 </script>

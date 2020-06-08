@@ -34,7 +34,7 @@
                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                        A exercitationem labore nesciunt sequi velit. Aliquid minima
                                        necessitatibus recusandae! Alias autem corporis eos error labore libero odio quam quis vero voluptatem!</p>
-                                   <a class="btn bg-lancer text-white">Browse Projects</a>
+                                   <a class="btn bg-lancer text-white" href="#" @click.prevent="browseJobs">Browse Projects</a>
                                </div>
                             </div>
                         </div>
@@ -151,6 +151,9 @@
         methods:{
             goToProfile(){
                 window.location.assign('/profile')
+            },
+            browseJobs(){
+                window.location.assign('/browse/projects')
             },
             getIndex(){
                 axios

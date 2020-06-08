@@ -28,6 +28,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/*Route::get('/test', function () {
+    return view('test');
+});*/
 Route::get('/data/isUnique', 'IsUniqueController@email');
 Route::middleware('auth')->get('/data/user', function () {
     return response()->json(Auth::user());
@@ -40,8 +43,11 @@ Route::get('/profile', 'ProfileController@index')->name('profile');
 
 Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::resource('/job-category', 'JobCategoryController');
-    Route::resource('/project', 'ProjectController');
 
+    Route::get('/completed-projects', 'FreelancerDashController@completed');
+    Route::get('/in-progress', 'FreelancerDasController@progress');
+    Route::get('/not-completed', 'FreelancerDashController@yet');
+    Route::get('/job-offered', 'FreelancerDashController@all');
     Route::get('/freelancer/completed-projects/{id}', 'FreelancerDashController@completed');
     Route::get('/freelancer/in-progress/{id}', 'FreelancerDashController@progress');
     Route::get('/freelancer/not-started/{id}', 'FreelancerDashController@yet');
@@ -56,7 +62,12 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::get('/client/projects/{id}', 'ClientDashController@projects');
     Route::get('/client/client-projects/{id}', 'ClientDashController@clientProjects');
     Route::get('/client/unapplied-projects/{id}', 'ClientDashController@unappliedFor');
+    Route::get('/client/applied-projects/{id}', 'ClientDashController@clientProjects');
     Route::get('/client/delete-project/{id}', 'ClientDashController@deleteProjects');
+    Route::get('/client/applications/{id}', 'ClientDashController@jobApplication');
+    Route::get('/client/latest-project', 'ClientDashController@getLatestProject');
+    Route::post('/client/post-project', 'ClientDashController@projectPostProject');
+    Route::get('/job-type', 'ClientDashController@getJobTypes');
     Route::get('/latest-projects', 'ProjectController@latestProjects');
     Route::get('/available-projects', 'ProjectController@availableProjects');
     Route::post('/user/profile', 'ProfileController@profile');
