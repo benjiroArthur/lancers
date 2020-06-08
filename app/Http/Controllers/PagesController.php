@@ -9,13 +9,10 @@ class PagesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'verified']);
+        $this->middleware(['auth', 'verified', 'profile', 'address',]);
 
-        if(Auth::check() && auth::user()->role->name === 'client'){
-            $this->middleware(['profile', 'address']);
-        }
-        else if(Auth::check() && auth::user()->role->name === 'freelancer'){
-            $this->middleware(['profile', 'address', 'portfolio']);
+         if(Auth::check() && auth::user()->role->name === 'freelancer'){
+            $this->middleware(['portfolio']);
         }
 
     }

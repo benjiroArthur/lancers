@@ -17,7 +17,7 @@ class PortfolioUpdateMiddleware
     public function handle($request, Closure $next)
     {
         if(Auth::check() && !(Auth::user()->userable()->has('portfolio')) ){
-            return redirect('/profile');
+            return redirect('/profile')->with('error', 'Please Update Your Portfolio');
         }
         return $next($request);
     }

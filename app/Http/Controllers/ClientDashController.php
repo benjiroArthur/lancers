@@ -15,7 +15,7 @@ class ClientDashController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'verified', 'profile', 'address'])->except('getJobTypes');
+        $this->middleware(['auth', 'verified'])->except('getJobTypes');
     }
 
     /**
@@ -95,8 +95,9 @@ class ClientDashController extends Controller
     /**
      *
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function projectPostProject(Request $request) {
 
@@ -111,6 +112,31 @@ class ClientDashController extends Controller
         $data = $request->all();
         $data['client_id'] = auth()->user()->userable->id;
         $project = $project->create($data);
+
+        return response()->json($project);
+
+    }
+
+    /**
+     *
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function addProjectFiles(Request $request, $id) {
+
+        $this->validate($request, [
+            'file' => 'required|mimes:zip,rar'
+        ]);
+        $file = $request->file('file');
+        $extension = $file->getClientOriginalExtension();
+        $fileName = time().'.'.$extension;
+        $project = Project::find($id);
+
+
+
 
         return response()->json($project);
 

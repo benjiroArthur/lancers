@@ -19,7 +19,7 @@ class ProfileUpdateMiddleware
         //return $next($request);
 
             if(Auth::check() && Auth::user()->profile_updated === false){
-                return redirect('/profile');
+                return redirect('/profile')->with('error', 'Please Update Your Profile');
             }
            return $next($request);
 

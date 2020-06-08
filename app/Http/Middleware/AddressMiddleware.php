@@ -17,7 +17,7 @@ class AddressMiddleware
     public function handle($request, Closure $next)
     {
         if(Auth::check() && !(Auth::user()->has('address'))){
-            return redirect('/profile');
+            return redirect('/profile')->with('error', 'Please Update Your Address');
         }
         return $next($request);
     }
