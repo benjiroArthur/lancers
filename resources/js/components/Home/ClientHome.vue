@@ -34,7 +34,7 @@
                                     </div>
                                     <p v-else class="text-bold">Millions of amazing freelancers are waiting to turn your dreams into reality.</p>
                                     <div class="m-3">
-                                        <a class="btn btn-outline-success text-dark text-bold border-dark m-3" href="#" @click="postjobs">Post a Job</a>
+                                        <a class="btn btn-outline-success text-dark text-bold border-dark m-3 text-center" href="#" @click="postjobs">Post a Job</a>
                                     </div>
 
 
@@ -119,7 +119,7 @@
                     <div class="col-md-12">
                         <div class="card shadow">
                             <div class="card-header">
-                                <div class="card-title"></div>
+                                <div class="card-title">Advertisement</div>
                                 <div class="card-tools"></div>
                             </div>
 

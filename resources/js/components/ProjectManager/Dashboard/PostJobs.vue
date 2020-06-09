@@ -161,10 +161,12 @@
                 </div>
             </div>
         </div>
+        <invoice :resourcePath="this.$parent.resource_path"></invoice>
     </div>
 </template>
 
 <script>
+    import Invoice from "../../Resources/Invoice";
     import CompletedTable from "../ClientTables/CompletedTable";
     import PendingTable from "../ClientTables/PendingTable";
     import AllProjectsTable from "../ClientTables/AllProjectsTable";
@@ -175,7 +177,7 @@
 
     export default {
         name: "ClientPostJobs",
-        components: {ProjectApplicationTable, CompletedTable, PendingTable, AllProjectsTable, ClientInProgressTable, AppliedTable, BootstrapTable},
+        components: {ProjectApplicationTable, CompletedTable, PendingTable, AllProjectsTable, ClientInProgressTable, AppliedTable, Invoice, BootstrapTable},
         data(){
             return{
                 freelancer:{},

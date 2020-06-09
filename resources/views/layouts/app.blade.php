@@ -98,34 +98,27 @@
 
                                <li class="nav-item dropdown ml-2">
                                    <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                       <img class="img-bordered-sm img-sm rounded-circle" src="{{auth()->user()->userable->image_path}}" alt="Profile image">
+                                       <img class="img-bordered-sm img-sm rounded-circle mr-2" src="{{auth()->user()->userable->image_path}}" alt="Profile image">
                                        <span>{{auth()->user()->userable->full_name}}</span>
                                    </a>
 
                                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="navbarDropdown">
                                        <ul class="text-dark text-left">
                                            <li class="nav-item my-nav-link">
-                                               <a href="{{url('/profile')}}" class="dropdown-item nav-link  text-dark">
-                                                   <p>Profile</p>
-                                               </a>
+                                               <a href="{{url('/profile')}}" class="dropdown-item nav-link  text-dark"><i class="fas fa-user"></i> Profile</a>
                                            </li>
                                            <li class="nav-item my-nav-link">
-                                               <a href="#" class="dropdown-item nav-link  text-dark">
-                                                   <p>User Settings</p>
-                                               </a>
+                                               <a href="#" class="dropdown-item nav-link  text-dark"><i class="fas fa-user-cog"></i> User Settings</a>
                                            </li>
 
                                            <li class="nav-item text-dark my-nav-link">
-                                               <a href="#" class="dropdown-item nav-link  text-dark">
-                                                   <p>Get Support</p>
-                                               </a>
+                                               <a href="#" class="dropdown-item nav-link  text-dark"><i class="fas fa-headset"></i> Get Support</a>
                                            </li>
                                            <li class="nav-item text-dark my-nav-link">
                                                <a class="dropdown-item nav-link text-left text-dark" href="{{ route('logout') }}"
                                                   onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                                   <p> Logout</p>
-                                               </a>
+                                                   <i class="fas fa-sign-out-alt"></i> Logout</a>
                                            </li>
                                        </ul>
 
