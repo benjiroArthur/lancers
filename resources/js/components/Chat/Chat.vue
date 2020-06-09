@@ -94,7 +94,7 @@
             });
 
             //listen to message event
-            Echo.private(`message${this.user.id}`)
+            Echo.private(`messages.${this.user.id}`)
                 .listen('NewMessage', (e)=>{
                     this.hundleMessage(e.message);
                 })

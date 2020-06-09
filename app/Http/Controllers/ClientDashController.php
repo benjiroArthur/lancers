@@ -75,9 +75,9 @@ class ClientDashController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * */
     public function jobApplication($id) {
-        $client = User::find($id)->userable;
+        $project = Project::find($id);
        // $projects = $client->projectApplication()->with('freelancer', 'project')->get()->groupBy('project_id');
-       $projects = $client->projectApplication()->where('status', 'applied')->with('freelancer', 'project')->get();
+       $projects = $project->projectApplication()->where('status', 'applied')->with('freelancer', 'project')->get();
         return response()->json($projects);
     }
 
@@ -89,6 +89,16 @@ class ClientDashController extends Controller
     public function clientProjects($id) {
         $client = User::find($id)->userable;
             $clientProjects = $client->projects()->latest()->get();
+            return response()->json($clientProjects);
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * */
+    public function appliedProjects($id) {
+        $client = User::find($id)->userable;
+            $clientProjects = $client->projects()->whereHas('projectApplication')->get();
             return response()->json($clientProjects);
     }
 

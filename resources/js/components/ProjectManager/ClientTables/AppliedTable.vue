@@ -7,7 +7,7 @@
 
                 <div class="col-12 table-responsive">
                     <div class="card-body table table-responsive table-borderless p-0">
-                        <bootstrap-table :data="appliedjobs" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/>
+                        <bootstrap-table :data="appliedJobs" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/>
                     </div>
                 </div>
             </div>
@@ -22,7 +22,10 @@
             name: "AppliedJobsTable",
             components: {BootstrapTable},
             props:{
-                appliedjobs:{},
+                appliedJobs: {
+                    type: Object,
+                    default: {}
+                },
             },
             data() {
                 return {
@@ -54,7 +57,7 @@
                             },
                             events: {
                                 'click .show': function (e, value, row) {
-                                    Fire.$emit('viewSingleAdmin', row);
+                                    Fire.$emit('viewProjects', row);
 
                                 },
                                 'click .edit': function (e, value, row) {
@@ -109,23 +112,7 @@
                 };
             },
             methods:{
-                initiatePost(){
-                    $('#postJobModal').modal('show');
-                },
-                postJob(){
-                    if(this.jobForm.job_type_id === 'Select One') return;
-                    $('#postJobModal').modal('hide');
-                    this.$Progress.start();
-                    this.jobForm.post('/data/client/post-project').then((response)=>{
-                        Fire.$emit('jobPosted');
-                        Swal.fire(
-                            'Success',
-                            'Job Posted Successfully',
-                            'success'
-                        );
-                        this.$Progress.finish();
-                    })
-                },
+
 
             },
             mounted() {
