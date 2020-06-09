@@ -52,10 +52,10 @@
                     <div class="card-image m-3 img-fluid cat-card">
                         <img :src="resource_path+'/do_it_your_self/digital.jpg'" alt="Image" class="img-fluid">
                     </div>
-                    <div class="card-title mt-3">How to make digital paintings</div>
+                    <div class="card-title mt-3">Learn to create digital paintings</div>
                     <div class="card-body">
                         <div class="card-text mb-2">
-                            These resources will guid you on how to make professional digital paintings, Explore and learn more.
+                            These resources will guide you on how to make professional digital paintings, Explore and learn more.
                         </div>
                         <a class="btn btn-outline-success mr-0" href="https://paintable.cc/digital-painting-the-ultimate-beginners-guide/" target="_blank">Explore</a>
                     </div>

@@ -20,10 +20,7 @@ class Admin extends Model
     }
 
     public function getImagePathAttribute(){
-        if ($this->profile_picture === 'noimage.jpg'){
-            return asset('images/'.$this->profile_picture);
-        }
-        return asset('storage/images/users/'.$this->profile_picture);
+            return asset('images/users/'.$this->profile_picture);
     }
 
     public function getFullNameAttribute(){

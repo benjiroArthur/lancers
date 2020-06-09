@@ -15,7 +15,7 @@ class ClientDashController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'verified', 'profile', 'address'])->except('getJobTypes');
+        $this->middleware(['auth', 'verified'])->except('getJobTypes');
     }
 
     /**
@@ -75,11 +75,26 @@ class ClientDashController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * */
     public function jobApplication($id) {
-        $client = User::find($id)->userable;
+        $project = Project::find($id);
        // $projects = $client->projectApplication()->with('freelancer', 'project')->get()->groupBy('project_id');
-       $projects = $client->projectApplication()->where('status', 'applied')->with('freelancer', 'project')->get();
+       $projects = $project->projectApplication()->where('status', 'applied')->with('freelancer', 'project')->get();
         return response()->json($projects);
     }
+
+
+
+     // award job to freelancer
+    public function awardJob(Request $request, $id) {
+        $client = User::find($id)->userable;
+        if($client->projectApplication()-where('status', 'accepted')->with('freelancer', 'project')) {
+            // i dont know how to go about it anymore.Finish it please
+        }
+        else {
+
+        }
+
+    }
+
 
     /**
      * @param $id
@@ -93,10 +108,21 @@ class ClientDashController extends Controller
     }
 
     /**
-     *
-     *
-     * @param  \Illuminate\Http\Request  $request
+     * @param $id
      * @return \Illuminate\Http\JsonResponse
+     * */
+    public function appliedProjects($id) {
+        $client = User::find($id)->userable;
+            $clientProjects = $client->projects()->whereHas('projectApplication')->get();
+            return response()->json($clientProjects);
+    }
+
+    /**
+     *
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function projectPostProject(Request $request) {
 
@@ -111,6 +137,31 @@ class ClientDashController extends Controller
         $data = $request->all();
         $data['client_id'] = auth()->user()->userable->id;
         $project = $project->create($data);
+
+        return response()->json($project);
+
+    }
+
+    /**
+     *
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function addProjectFiles(Request $request, $id) {
+
+        $this->validate($request, [
+            'file' => 'required|mimes:zip,rar'
+        ]);
+        $file = $request->file('file');
+        $extension = $file->getClientOriginalExtension();
+        $fileName = time().'.'.$extension;
+        $project = Project::find($id);
+
+
+
 
         return response()->json($project);
 

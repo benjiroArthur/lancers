@@ -65,20 +65,20 @@ return [
         ],
         'profile-picture' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/images/users'),
-            'url' => env('APP_URL').'/storage',
+            'root' => public_path('images/users'),
+            'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],
         'job-category' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/images/job_category'),
-            'url' => env('APP_URL').'/storage',
+            'root' => public_path('images/job_category'),
+            'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],
         'project-files' => [
             'driver' => 'local',
-            'root' => storage_path('app/public/project_files'),
-            'url' => env('APP_URL').'/storage',
+            'root' => public_path('project_files'),
+            'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],
 

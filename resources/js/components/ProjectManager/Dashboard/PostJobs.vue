@@ -29,7 +29,7 @@
                                 <pending-table :pending="this.pending"></pending-table>
                             </div>
                             <div class="tab-pane active" id="tab-eg7-3" role="tabpanel">
-                                <allprojects-table :allprojects="this.allprojects"></allprojects-table>
+                                <applied-table :allprojects="this.appliedJobs"></applied-table>
                             </div>
                             <div class="tab-pane" id="tab-eg7-4" role="tabpanel">
                                 <unappliedjobs-table :unappliedjobs="this.unappliedjobs"></unappliedjobs-table>
@@ -41,11 +41,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+           <!-- <div class="col-md-3">
                 <div class="card">
                     <project-application-table :applications="this.applications"></project-application-table>
                 </div>
-            </div>
+            </div>-->
         </div>
         <!--<div class="row">
             <div class="col-md-12">
@@ -106,6 +106,30 @@
                 </div>
             </div>
         </div>
+
+        <!--Application Modal-->
+        <div class="modal fade" id="viewDetailsModal" tabindex="-1" role="dialog" aria-labelledby="viewDetailsModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="viewDetailsModalLabel">Job Applications</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                        <div class="modal-body">
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-outline-success">Save</button>
+                        </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -139,6 +163,7 @@
                 allprojects: {},
                 inProgress: {},
                 applications: {},
+                appliedJobs: {},
             }
         },
         methods: {
@@ -158,6 +183,7 @@
                 $('#postJobModal').modal('hide');
                 this.$Progress.start();
               this.jobForm.post('/data/client/post-project').then((response)=>{
+                  this.allprojects.push(response.data);
                   Fire.$emit('jobPosted');
                   Swal.fire(
                       'Success',
@@ -205,16 +231,25 @@
                     })
             },
             getApplication(){
-                axios.get(`/data/client/applications/${this.$parent.userId}`)
+                axios.get(`/data/client/applications/${this.project_id}`)
                     .then((response)=>{
                         this.applications = response.data;
                     })
                     .catch()
             },
+            getApplied(){
+                axios.get(`/data/client/applied-projects/${this.$parent.userId}`)
+                    .then((response)=>{
+                        this.appliedJobs = response.data;
+                    })
+                    .catch((error)=>{
+                        console.log(error.message)
+                    })
+            },
 
-            getviewProjects(row){
-                $projectDetails = row;
-                $('#view-details').modal('show');
+            getViewProjects(row){
+                this.projectDetails = row;
+                $('#viewDetailsModal').modal('show');
 
             },
         },
@@ -226,7 +261,8 @@
             this.getCompleted();
             this.getAllProjects();
             this.getApplication();
-            this.getviewProjects();
+            this.getApplied();
+
 
             Fire.$on('jobPosted', ()=>{
                 this.getAllUnappliedJobs();
@@ -234,9 +270,10 @@
                 this.getCompleted();
                 this.getAllProjects();
                 this.getApplication();
+                this.getApplied();
             });
 
-            Fire.$on('viewProjects', (row)=>{this.getviewProjects()});
+            Fire.$on('viewProjects', (row)=>{this.getViewProjects(row)});
         },
 
     };

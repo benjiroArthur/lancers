@@ -56,7 +56,11 @@ class ProfileController extends Controller
     {
         //get the authenticated user
         $user = Auth()->user();
+        $email = $user->email;
+        $email = explode('@', $email);
+        $email = $email[0];
         $oldImage = $user->userable->profile_picture;
+
         if($request->hasfile('profile_picture')){
             //validate file type
 
@@ -71,19 +75,19 @@ class ProfileController extends Controller
             $extension = $image_file->getClientOriginalExtension();
 
             //Filename to store
-            $imageNameToStore = time().'.'.$extension;
+            $imageNameToStore = $email.time().'.'.$extension;
 
             //upload file
 
             //resize image
-            $image = \Image::make($image_file->getRealPath())->fit(400,300)->encode();
+            $image = Image::make($image_file->getRealPath())->fit(400,300)->encode();
 
-            \Storage::disk('profile-picture')->put($imageNameToStore, $image);
-
-            //delete old images
-            if($oldImage !== 'noimage.jpg' &&  \Storage::disk('profile-picture')->exists($oldImage)){
-                \Storage::disk('profile-picture')->delete($oldImage);
+            if(Storage::disk('profile-picture')->exists($oldImage)){
+                Storage::disk('profile-picture')->delete($oldImage);
             }
+
+            Storage::disk('profile-picture')->put($imageNameToStore, $image);
+
 
             //save filename in database
             $user->userable->update([

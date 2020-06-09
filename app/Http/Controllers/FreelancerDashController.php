@@ -12,7 +12,7 @@ class FreelancerDashController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'verified', 'freelancer', 'profile', 'address', 'portfolio']);
+        $this->middleware(['auth', 'verified',]);
     }
     // lists all completed projects
     /**
@@ -128,6 +128,8 @@ class FreelancerDashController extends Controller
 
         return response()->json($projects);
     }
+
+
 
     public function profile() {
 

@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('userable_id');
             $table->string('userable_type');
             $table->boolean('profile_updated')->default(0);
-            $table->boolean('active')->default(0);
+            $table->boolean('active')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

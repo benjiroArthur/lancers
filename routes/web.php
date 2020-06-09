@@ -62,7 +62,7 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::get('/client/projects/{id}', 'ClientDashController@projects');
     Route::get('/client/client-projects/{id}', 'ClientDashController@clientProjects');
     Route::get('/client/unapplied-projects/{id}', 'ClientDashController@unappliedFor');
-    Route::get('/client/applied-projects/{id}', 'ClientDashController@clientProjects');
+    Route::get('/client/applied-projects/{id}', 'ClientDashController@appliedProjects');
     Route::get('/client/delete-project/{id}', 'ClientDashController@deleteProjects');
     Route::get('/client/applications/{id}', 'ClientDashController@jobApplication');
     Route::get('/client/latest-project', 'ClientDashController@getLatestProject');
@@ -89,6 +89,9 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::get('/admin/getLancers', 'AdminController@getLancers');
     Route::get('/admin/getAdmins', 'AdminController@getAdmins');
     Route::resource('/admin/user', 'UserController');
+
+    // check if the route is correct
+    Route::get('/home', 'AdminController@getStats');
 
 
 

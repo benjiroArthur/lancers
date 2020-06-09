@@ -170,5 +170,14 @@
                </div>
            </footer>
     </div>
+
+    <script>
+        $('document').ready(function(){
+            setTimeout(function()
+            {
+                $('.alert').fadeOut('fast');
+            },500);
+        });
+    </script>
 </body>
 </html>
