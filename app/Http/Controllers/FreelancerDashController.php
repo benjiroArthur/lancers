@@ -129,6 +129,8 @@ class FreelancerDashController extends Controller
         return response()->json($projects);
     }
 
+
+
     public function profile() {
 
         // fetching the data for the profile

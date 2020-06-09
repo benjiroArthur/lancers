@@ -81,6 +81,21 @@ class ClientDashController extends Controller
         return response()->json($projects);
     }
 
+
+
+     // award job to freelancer
+    public function awardJob(Request $request, $id) {
+        $client = User::find($id)->userable;
+        if($client->projectApplication()-where('status', 'accepted')->with('freelancer', 'project')) {
+            // i dont know how to go about it anymore.Finish it please
+        }
+        else {
+
+        }
+
+    }
+
+
     /**
      * @param $id
      * @return \Illuminate\Http\JsonResponse

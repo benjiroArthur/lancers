@@ -46,4 +46,25 @@ class AdminController extends Controller
         return response()->json($admin);
 
     }
+
+    public function getStats() {
+        $users = User::all()->count();
+        $admins = Admin::all()->count();
+        $clients = Client::all()->count();
+        $freelancers = Freelancer::all()->count();
+        $usersToday = User::whereData('created_at', today())->get()->count();
+        $usersMonthly = User::whereData('created_at', now()->subDays(30))->get()->count();
+
+        $data = [
+            'users' => $users,
+            'admins' => $admins,
+            'clients' => $clients,
+            'freelancers' => $freelancers,
+            'users_today' => $usersToday,
+            'users_monthly' => $usersMonthly,
+        ];
+
+        return response()->json($data);
+
+    }
 }

@@ -9,10 +9,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">All Users</span>
-                                    <span class="info-box-number">
-                  10
-                  <small>%</small>
-                </span>
+                                    <span class="info-box-number">10<small>%</small> </span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
