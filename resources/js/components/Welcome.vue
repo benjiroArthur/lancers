@@ -6,7 +6,6 @@
         </VueSlickCarousel>
 
 
-
         <!--<div id = "myCarousel" class = "carousel slide mb-5" data-action="carousel">
             <ol class = "carousel-indicators">
                 <li data-target = "#myCarousel" data-slide-to = "0" class="active"></li>
@@ -52,10 +51,10 @@
                     <div class="card-image m-3 img-fluid cat-card">
                         <img :src="resource_path+'/do_it_your_self/digital.jpg'" alt="Image" class="img-fluid">
                     </div>
-                    <div class="card-title mt-3">Learn to create digital paintings</div>
+                    <div class="card-title mt-3">How to make digital paintings</div>
                     <div class="card-body">
                         <div class="card-text mb-2">
-                            These resources will guide you on how to make professional digital paintings, Explore and learn more.
+                            These resources will guid you on how to make professional digital paintings, Explore and learn more.
                         </div>
                         <a class="btn btn-outline-success mr-0" href="https://paintable.cc/digital-painting-the-ultimate-beginners-guide/" target="_blank">Explore</a>
                     </div>
@@ -134,20 +133,20 @@
         <h2 class = "text-centre mt-3 text-bold text-dark mt-5 swift-h2" >What Is Great About Lancers </h2>
 
         <div class = "row">
-                <div class = "col-md-4 text-center ">
-                   <h2 class="text-dark"> <a class="align-center " ><i class="fas fa-images"></i> Browse Jobs</a></h2>
-                    <p>Freelancers and potential clients have the luxury to skim through lots of available jobs to see which one will best fit their skills and needs respectively.
-                        Lancers has millions of jobs ready to be executed, jump right into it!</p>
-                  </div>
-                <div class = "col-md-4 text-center ">
-                    <h2 class="text-dark" ><a class="align-center"><i class="fas fa-money-bill-alt"></i> Secure Payment</a></h2>
-                    <p>Payment is secured and trustworthy. Clients can easily pay work done by Freelancers in a secured manner without having any issues.
-                        Freelancers are assured of getting paid after doing a good job</p>
+            <div class = "col-md-4 text-center ">
+                <h2 class="text-dark"> <a class="align-center " ><i class="fas fa-images"></i> Browse Jobs</a></h2>
+                <p>Freelancers and potential clients have the luxury to skim through lots of available jobs to see which one will best fit their skills and needs respectively.
+                    Lancers has millions of jobs ready to be executed, jump right into it!</p>
             </div>
-                <div class = "col-md-4 text-center ">
+            <div class = "col-md-4 text-center ">
+                <h2 class="text-dark" ><a class="align-center"><i class="fas fa-money-bill-alt"></i> Secure Payment</a></h2>
+                <p>Payment is secured and trustworthy. Clients can easily pay work done by Freelancers in a secured manner without having any issues.
+                    Freelancers are assured of getting paid after doing a good job</p>
+            </div>
+            <div class = "col-md-4 text-center ">
                 <h2 class="text-dark"><a class="align-center"><i class="fas fa-user-circle"></i> View Portfolios</a></h2>
-                    <p>Lancers has the best professionals who can get your work done to the best capacity.
-                        Find professionals you can trust by browsing their samples of previous work and reading their profile reviews.</p>
+                <p>Lancers has the best professionals who can get your work done to the best capacity.
+                    Find professionals you can trust by browsing their samples of previous work and reading their profile reviews.</p>
             </div>
         </div>
         <div class = "row">
@@ -160,7 +159,7 @@
                 <h2 class="text-dark"><a class="align-center"><i class="fas fa-comments"></i> Live Chat</a></h2>
                 <p>Tracking of jobs doesn't end the process but rather initiates you into Live Chat.
                     You can live chat with your freelancers to get constant updates on the progress of your work as well.
-                Keep up-to-date with the progress of your work being done.</p>
+                    Keep up-to-date with the progress of your work being done.</p>
             </div>
             <div class = "col-md-4 text-center ">
                 <h2 class="text-dark"><a class="align-center"><i class="fas fa-headset"></i> 24/7 Support</a></h2>
@@ -191,11 +190,11 @@
         </div>
 
 
-         <h2 class="text-center mt-3 mb-3 text-bold text-dark">HOW TO GET STARTED</h2>
+        <h2 class="text-center mt-3 mb-3 text-bold text-dark">HOW TO GET STARTED</h2>
 
-         <div class="row img-fluid justify-content-center ml-1">
-             <img :src="this.resource_path + '/howToGetStarted.gif'" alt="" class="img-fluid">
-         </div>
+        <div class="row img-fluid justify-content-center ml-1">
+            <img :src="this.resource_path + '/howToGetStarted.gif'" alt="" class="img-fluid">
+        </div>
 
 
 
