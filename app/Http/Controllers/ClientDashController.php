@@ -208,4 +208,16 @@ class ClientDashController extends Controller
         $jobType = JobType::all();
         return response()->json($jobType);
     }
+
+    /**
+     * Display the specified resource.
+     *
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getInvoiceDetails($id){
+        $invoice = JobOffered::where('project_id', $id)->with('freelancer', 'project')->first();
+        return response()->json($invoice);
+
+    }
 }

@@ -89,6 +89,7 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::get('/admin/getLancers', 'AdminController@getLancers');
     Route::get('/admin/getAdmins', 'AdminController@getAdmins');
     Route::resource('/admin/user', 'UserController');
+    Route::get('/client/invoice', 'ClientDashController@getInvoiceDetails');
 
     // check if the route is correct
     Route::get('/home', 'AdminController@getStats');
