@@ -9,7 +9,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">All Users</span>
-                                    <span class="info-box-number">10<small>%</small> </span>
+                                    <span class="info-box-number">{{this.stats.users}}<small>%</small> </span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -22,7 +22,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Admins</span>
-                                    <span class="info-box-number">41,410</span>
+                                    <span class="info-box-number">{{this.stats.admins}}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -39,7 +39,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Clients</span>
-                                    <span class="info-box-number">760</span>
+                                    <span class="info-box-number">{{this.stats.clients}}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -52,7 +52,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Freelancers</span>
-                                    <span class="info-box-number">2,000</span>
+                                    <span class="info-box-number">{{this.stats.freelancers}}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -65,7 +65,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">New Users</span>
-                                    <span class="info-box-number">760</span>
+                                    <span class="info-box-number">{{this.stats.users_today}}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -78,7 +78,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Monthly Users</span>
-                                    <span class="info-box-number">2,000</span>
+                                    <span class="info-box-number">{{this.stats.users_monthly}}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                             </div>
@@ -150,6 +150,22 @@
     export default {
         name: "AdminHome",
         components: {FreelancersTable, ClientsTable, AdminsTable},
+        data(){
+            return{
+                stats: {},
+            }
+        },
+        methods:{
+            getStats(){
+                axios.get('/data/stats').then((response)=>{
+                    this.stats = response.data;
+                }).catch((error)=>{
+                    console.log(error.message);
+                })
+            },
+        },
+        mounted() {
+        },
 
     };
 

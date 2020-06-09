@@ -113,7 +113,7 @@ class ClientDashController extends Controller
      * */
     public function appliedProjects($id) {
         $client = User::find($id)->userable;
-            $clientProjects = $client->projects()->whereHas('projectApplication')->get();
+            $clientProjects = $client->projects()->whereHas('projectApplication')->where('status', 'applied')->get();
             return response()->json($clientProjects);
     }
 

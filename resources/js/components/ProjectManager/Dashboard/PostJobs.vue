@@ -29,7 +29,7 @@
                                 <pending-table :pending="this.pending"></pending-table>
                             </div>
                             <div class="tab-pane active" id="tab-eg7-3" role="tabpanel">
-                                <applied-table :allprojects="this.appliedJobs"></applied-table>
+                                <applied-table :appliedJobs="this.appliedJobs"></applied-table>
                             </div>
                             <div class="tab-pane" id="tab-eg7-4" role="tabpanel">
                                 <unappliedjobs-table :unappliedjobs="this.unappliedjobs"></unappliedjobs-table>
