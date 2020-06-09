@@ -34,6 +34,7 @@
                                 </div>
                             </div>
                             <div v-show="portfolioEditMode === true" class="card shadow">
+
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-12 text-left">
@@ -45,6 +46,7 @@
                                         </div>
 
                                     </div>
+                                    <a href="#" class="btn" @click="portfolioToggle('false', $event)"><span class="fas fa-arrow-left text-lancer"></span></a>
                                 </div>
                             </div>
                         </div>

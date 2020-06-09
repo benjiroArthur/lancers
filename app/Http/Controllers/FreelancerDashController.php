@@ -109,6 +109,10 @@ class FreelancerDashController extends Controller
                    'status' => 'applied'
 
                ];
+               $project = Project::find($id);
+               $project->update([
+                   'status' => 'applied'
+               ]);
                $jobApplication->create($data);
                return response('success');
            }

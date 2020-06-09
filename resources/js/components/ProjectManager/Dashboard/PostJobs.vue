@@ -1,7 +1,7 @@
 <template>
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         <div class="card-tools">
@@ -13,7 +13,7 @@
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-2" class="nav-link text-lancer text-bold">Pending Projects</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-3" class="nav-link text-lancer text-bold">Applied Jobs</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-4" class="nav-link text-lancer text-bold">Jobs Unapplied For</a></li>
-                            <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-4" class="nav-link text-lancer text-bold">In Progress</a></li>
+                            <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-5" class="nav-link text-lancer text-bold">In Progress</a></li>
                         </ul>
 
                     </div>
@@ -28,7 +28,7 @@
                             <div class="tab-pane" id="tab-eg7-2" role="tabpanel">
                                 <pending-table :pending="this.pending"></pending-table>
                             </div>
-                            <div class="tab-pane active" id="tab-eg7-3" role="tabpanel">
+                            <div class="tab-pane" id="tab-eg7-3" role="tabpanel">
                                 <applied-table :appliedJobs="this.appliedJobs"></applied-table>
                             </div>
                             <div class="tab-pane" id="tab-eg7-4" role="tabpanel">
@@ -109,7 +109,7 @@
 
         <!--Application Modal-->
         <div class="modal fade" id="viewDetailsModal" tabindex="-1" role="dialog" aria-labelledby="viewDetailsModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="viewDetailsModalLabel">Job Applications</h5>
@@ -119,7 +119,38 @@
                     </div>
 
                         <div class="modal-body">
+                            <div class="col-12 table-responsive">
+                                <div class="card-body table table-responsive table-borderless p-0">
+                                    <bootstrap-table :data="projectDetails" :options="detmyOptions" :columns="detmyColumns" sticky-header responsive borderless/>
+                                </div>
+                            </div>
 
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-outline-success">Save</button>
+                        </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!--freelancer profile modal-->
+        <div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="profileModalLabel">Applicant Profile</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                        <div class="modal-body">
+                            <div class="image-holder">
+                                <img :src="this.freelancer.image_path" alt="" class="img-fluid" >
+                            </div>
+                            <p>{{this.freelancer.full_name}}</p>
 
                         </div>
                         <div class="modal-footer">
@@ -140,12 +171,14 @@
     import ClientInProgressTable from "../ClientTables/ClientInProgressTable";
     import ProjectApplicationTable from "../ClientTables/ProjectApplicationTable";
     import AppliedTable from "../ClientTables/AppliedTable";
+    import BootstrapTable from 'bootstrap-table/dist/bootstrap-table-vue.min';
 
     export default {
         name: "ClientPostJobs",
-        components: {ProjectApplicationTable, CompletedTable, PendingTable, AllProjectsTable, ClientInProgressTable, AppliedTable},
+        components: {ProjectApplicationTable, CompletedTable, PendingTable, AllProjectsTable, ClientInProgressTable, AppliedTable, BootstrapTable},
         data(){
             return{
+                freelancer:{},
                 categories:{},
                 jobType:{},
                 jobForm: new Form({
@@ -157,13 +190,87 @@
                     projectDetails:{},
                 }),
                 unappliedjobs: {},
-                viewProjects: {},
+                projectDetails: {},
                 pending: {},
                 completed: {},
                 allprojects: {},
                 inProgress: {},
                 applications: {},
                 appliedJobs: {},
+                detmyOptions: {
+                    search: true,
+                    pagination: true,
+                    toolbar: '#toolbar',
+                    clickToSelect: true,
+                    selectItemName: 'id',
+                    index: true,
+
+                },
+                detmyColumns: [
+                    {field: 'project.project_title', title: 'Project Title'},
+                    {field: 'freelancer.full_name', title: 'Freelancer'},
+                    {
+                        field: 'action',
+                        title: 'Action',
+                        align: 'center',
+                        clickToSelect: false,
+                        render: function (e, value, row) {
+                        },
+                        formatter: function (e, value, row) {
+
+                            return ' <a class="btn btn-sm show bg-primary text-white" data-toggle="modal" data-target="#">View Profile</a> ' +
+                                ' <a class="btn btn-sm edit bg-lancer text-white" data-toggle="modal" data-target="#">Award Project</a> '
+                        },
+                        events: {
+                            'click .show': function (e, value, row) {
+                                Fire.$emit('viewProfile', row);
+
+                            },
+                            'click .edit': function (e, value, row) {
+                                Fire.$emit('awardProject', row);
+
+                            },
+                            'click .destroy': function (e, value, row) {
+                                Swal.fire({
+                                    title: 'Are you sure?',
+                                    text: "You won't be able to revert this!",
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Yes, delete it!'
+                                }).then((result) => {
+                                    if (result.value) {
+                                        axios.delete('/data/client/delete-project' + row.id).then((response) => {
+                                            if (response.data === "success") {
+                                                Fire.$emit('tableUpdate');
+                                                Swal.fire(
+                                                    'Deleted!',
+                                                    'Project Deleted Successfully',
+                                                    'success'
+                                                );
+
+                                            } else {
+                                                Swal.fire(
+                                                    'Failed!',
+                                                    response.data,
+                                                    'warning'
+                                                )
+                                            }
+                                        }).catch(() => {
+                                            Swal.fire(
+                                                'Failed!',
+                                                'User Could Not Be Deleted.',
+                                                'warning'
+                                            )
+                                        });
+                                    }
+
+                                });
+                            },
+                        }
+                    }
+                ],
             }
         },
         methods: {
@@ -230,10 +337,10 @@
                         console.log(error.message)
                     })
             },
-            getApplication(){
-                axios.get(`/data/client/applications/${this.project_id}`)
+            getApplication(id){
+                axios.get(`/data/client/applications/${id}`)
                     .then((response)=>{
-                        this.applications = response.data;
+                        this.projectDetails = response.data;
                     })
                     .catch()
             },
@@ -248,9 +355,13 @@
             },
 
             getViewProjects(row){
-                this.projectDetails = row;
+                this.getApplication(row.id);
                 $('#viewDetailsModal').modal('show');
 
+            },
+            viewProfile(freelancer){
+                this.freelancer = freelancer;
+                $('#profileModal').modal('show');
             },
         },
         mounted() {
@@ -269,24 +380,24 @@
                 this.getAllPending();
                 this.getCompleted();
                 this.getAllProjects();
-                this.getApplication();
                 this.getApplied();
             });
 
             Fire.$on('viewProjects', (row)=>{this.getViewProjects(row)});
+            Fire.$on('viewProfile', (row)=>{this.viewProfile(row.freelancer)});
         },
 
     };
 
 
-    let url = document.location.toString();
+    /*let url = document.location.toString();
     if (url.match('#')){
         $('.nav-justified a[href="#' + url.split('#')[1]+ '"]').tab('show');
     }
 
     $('.nav-justified a').on('shown.bs.tab', function (e) {
         window.location.hash = e.target.hash;
-    });
+    });*/
 </script>
 
 <style lang="scss" scoped>
