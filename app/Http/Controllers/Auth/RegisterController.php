@@ -69,7 +69,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return $data;
         $data2['email'] = $data['email'];
         $role = Role::where('name', $data['user_type'])->firstOrFail();
         if($data['user_type'] === 'client'){
