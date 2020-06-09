@@ -161,7 +161,7 @@
                 </div>
             </div>
         </div>
-        <invoice :resourcePath="this.$parent.resource_path"></invoice>
+       <!-- <invoice :resourcePath="this.$parent.resource_path"></invoice>-->
     </div>
 </template>
 
