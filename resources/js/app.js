@@ -8,6 +8,26 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import Vue from 'vue';
+import VueHtmlToPaper from 'vue-html-to-paper';
+
+const options = {
+    name: '_blank',
+    specs: [
+        'fullscreen=yes',
+        'titlebar=yes',
+        'scrollbars=yes',
+        'images=yes',
+
+    ],
+    styles: [
+        'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
+        'https://unpkg.com/kidlat-css/css/kidlat.css'
+    ]
+}
+
+Vue.use(VueHtmlToPaper, options);
+
 import Slick from 'vue-slick';
 import Vuetify from 'vuetify';
 Vue.use(Vuetify);
@@ -222,6 +242,7 @@ Vue.component('lancer-completed-table', require('./components/Freelancer/Freelan
 Vue.component('lancer-inprogress-table', require('./components/Freelancer/FreelancerTables/LancerInProgressTable.vue').default);
 Vue.component('lancer-appliedjobs-table', require('./components/Freelancer/FreelancerTables/LancerAppliedJobsTable.vue').default);
 Vue.component('invoice', require('./components/Resources/Invoice.vue').default);
+Vue.component('new-invoice', require('./components/Resources/NewInvoice.vue').default);
 
 
 
