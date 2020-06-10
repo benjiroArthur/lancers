@@ -153,10 +153,10 @@
                                         <img :src="this.freelancer.image_path" alt="" class="img-fluid" >
                                     </div>
                                 </div>
-                                <div class="col-md-7">
+                                <div v-if="this.freelancer !== null" class="col-md-7">
                                     <p><strong>Name: </strong> {{this.freelancer.full_name}}</p>
-                                    <p><strong>Name: </strong> {{this.freelancer.portfolio.title}}</p>
-                                    <p><strong>Name: </strong> {{this.freelancer.portfolio.description}}</p>
+                                    <p><strong>Name: </strong> {{this.freelancerPortfolio.title}}</p>
+                                    <p><strong>Name: </strong> {{this.freelancerPortfolio.description}}</p>
                                 </div>
                             </div>
                         </div>
@@ -188,6 +188,8 @@
         data(){
             return{
                 freelancer:{},
+                freelancerPortfolio: {},
+                freelancerLinks: {},
                 categories:{},
                 jobType:{},
                 jobForm: new Form({
@@ -370,6 +372,8 @@
             },
             viewProfile(freelancer){
                 this.freelancer = freelancer;
+                this.freelancerPortfolio = freelancer.portfolio;
+                this.freelancerLinks = freelancer.links
                 $('#profileModal').modal('show');
             },
         },
