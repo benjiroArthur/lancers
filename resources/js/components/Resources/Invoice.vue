@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div id="print-invoice" class="container">
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -8,6 +8,8 @@
                             <div class="card-image text-center">
                                 <img :src="this.resourcePath+'/lancers_logo.png'" width="auto" height="50" alt="" loading="lazy">
                             </div>
+
+                                <button class="myPrint" @click="print"><i class="fas fa-print"></i> Print Invoice</button>
 
                             <div class="col-md-6 text-right">
                                 <p class="font-weight-bold mb-1">Invoice #550</p>
@@ -37,7 +39,7 @@
 
                         <div class="col-12 table-responsive">
                             <div class="card-body table table-responsive table-borderless p-0">
-                                <bootstrap-table :data="clients" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/>
+                                <bootstrap-table :data="invoice" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/>
                             </div>
 
                         <!--<div class="row p-5">
@@ -139,12 +141,18 @@
                     })
                     .catch()
             },
+            print () {
+                // Pass the element id here
+                $('.myPrint').addClass('d-none');
+                this.$htmlToPaper('print-invoice');
+                $('.myPrint').removeClass('d-none');
+            }
         },
         mounted() {
             this.getClients();
         },
     }
-</script>
+</script >
 
 <style scoped>
 

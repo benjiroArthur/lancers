@@ -402,7 +402,7 @@
     });*/
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" scoped >
     .nav {
         :hover{
             color: #32a778;
