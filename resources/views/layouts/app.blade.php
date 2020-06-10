@@ -11,10 +11,12 @@
 
     @auth
         <meta name="user-id" content="{{ Auth::user()->id }}">
+        <meta name="auth_user" content="{{ Auth::user()->userable }}">
         <meta name="status" content="{{ Auth::user()->active }}">
         <meta name="pro-update" content="{{ Auth::user()->profile_updated }}">
     @else
         <meta name="user-id" content="0">
+        <meta name="auth_user" content="0">
         <meta name="status" content="0">
         <meta name="pro-update" content="2">
     @endauth

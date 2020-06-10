@@ -192,6 +192,7 @@
         components: {ProjectApplicationTable, CompletedTable, PendingTable, AllProjectsTable, ClientInProgressTable, AppliedTable, Invoice, BootstrapTable},
         data(){
             return{
+                auth_user: {},
                 freelancer:{},
                 freelancerPortfolio: {},
                 freelancerLinks: {},
@@ -242,12 +243,8 @@
                                 Fire.$emit('viewProfile', row);
 
                             },
-                            'click .edit': function (e, value, row) {
-                                Fire.$emit('awardProject', row);
-
-                            },
-                            'click .destroy': function (e, value, row) {
-                                Swal.fire({
+                            'click .delete': function (e, value, row) {
+                                /*Swal.fire({
                                     title: 'Are you sure?',
                                     text: "You won't be able to revert this!",
                                     icon: 'warning',
@@ -282,7 +279,11 @@
                                         });
                                     }
 
-                                });
+                                });*/
+
+                            },
+                            'click .edit': function (e, value, row) {
+                                Fire.$emit('awardJob', row);
                             },
                         }
                     }
@@ -297,6 +298,14 @@
                     }).catch((error)=>{
                         console.log(error.message);
                 })
+            },
+            getUser(){
+                axios
+                    .get('/data/user')
+                    .then((response) => {
+                        let user = response.data;
+                        this.auth_user = user.userable;
+                    })
             },
             initiatePost(){
                 $('#postJobModal').modal('show');
@@ -315,6 +324,51 @@
                   );
                   this.$Progress.finish();
               })
+            },
+            awardJob(row){
+                let freelancer = row.freelancer;
+                let project = row.project;
+                let full_name = this.auth_user.full_name;
+                Swal.fire({
+                    title: 'Award This Project',
+                    text: "I " + full_name + ', do award this project to '+ freelancer.full_name ,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#32a778',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Award it!'
+                }).then((result) => {
+                    if (result.value) {
+                        axios.post('/data/client/award-project', {
+                            project_id: project.id,
+                            freelancer_id: freelancer.id
+                        }).then((response) => {
+                            if (response.data === "success") {
+                                $('#viewDetailsModal').modal('show');
+                                Fire.$emit('jobPosted');
+                                Swal.fire(
+                                    'Success!',
+                                    'Project Awarded',
+                                    'success'
+                                );
+
+                            } else {
+                                Swal.fire(
+                                    'Failed!',
+                                    response.data,
+                                    'warning'
+                                )
+                            }
+                        }).catch((error) => {
+                            Swal.fire(
+                                'Failed!',
+                                error.message,
+                                'warning'
+                            )
+                        });
+                    }
+
+                });
             },
             getAllUnappliedJobs(){
                 axios.get(`/data/client/unapplied-projects/${this.$parent.userId}`)
@@ -389,7 +443,7 @@
             }
         },
         mounted() {
-           // this.user_id = this.$parent.userId
+            this.getUser();
             this.getCat();
             this.getAllUnappliedJobs();
             this.getAllPending();
@@ -405,10 +459,13 @@
                 this.getCompleted();
                 this.getAllProjects();
                 this.getApplied();
+                this.getApplication();
+                this.getApplied();
             });
 
             Fire.$on('viewProjects', (row)=>{this.getViewProjects(row)});
             Fire.$on('viewProfile', (row)=>{this.viewProfile(row.freelancer)});
+            Fire.$on('awardJob', (row)=>{this.awardJob(row)});
         },
 
     };

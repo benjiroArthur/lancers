@@ -24,7 +24,8 @@ class ClientDashController extends Controller
      * */
     public function completed($id) {
         $client = User::findOrFail($id)->userable;
-        $completed = $client->jobOffered()->with('project')->where('status', 'completed')->latest()->get();
+
+        $completed = $client->jobOffered()->where('status', 'completed')->latest()->with('project')->get();
         return response()->json($completed);
     }
 
@@ -44,7 +45,7 @@ class ClientDashController extends Controller
      * */
     public function yet($id) {
         $client = User::findOrFail($id)->userable;
-        $yet = $client->jobOffered()->with('project')->where('status', 'not started')->latest()->get();
+        $yet = $client->jobOffered()->where('status', 'pending')->latest()->with('project')->get();
         return response()->json($yet);
     }
 
@@ -84,15 +85,28 @@ class ClientDashController extends Controller
 
 
      // award job to freelancer
-    public function awardJob(Request $request, $id) {
-        $client = User::find($id)->userable;
-        if($client->projectApplication()-where('status', 'accepted')->with('freelancer', 'project')) {
-            // i dont know how to go about it anymore.Finish it please
+    /**
+     * @param $request
+     * @return \Illuminate\Http\Response
+     * */
+    public function awardJob(Request $request) {
+        $proAward = JobOffered::where('project_id', $request->project_id)->first();
+        if($proAward === null){
+            $data = $request->all();
+            $data['status'] = 'pending';
+            JobOffered::create($data);
         }
-        else {
-
+        else{
+            $proAward->update([
+                'freelancer_id' => $request->freelancer_id,
+                'status' => 'pending'
+            ]);
         }
-
+        $project = Project::find($request->project_id);
+        $project->update([
+            'status' => 'awarded'
+        ]);
+        return response('success');
     }
 
 

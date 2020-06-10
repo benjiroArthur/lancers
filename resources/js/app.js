@@ -309,12 +309,12 @@ const app = new Vue({
     data: () => ({
         pageLoader: true,
         userId: '',
+        auth_user: {},
         resource_path: '',
     }),
     mounted() {
         setTimeout(val => {
             this.pageLoader = false;
-
            /* $('#app').removeAttr('v-cloak');*/
         }, 4000);
 
@@ -322,9 +322,16 @@ const app = new Vue({
             //this.index();
             console.log(e);
         });*/
+
+
     },
     created(){
-        this.userId = $('meta[name = "user-id"]').attr('content')
-        this.resource_path = $('meta[name = "resource_path"]').attr('content')
+        this.userId = $('meta[name = "user-id"]').attr('content');
+        //this.auth_user = $('meta[name = "auth_user"]').attr('content');
+        this.resource_path = $('meta[name = "resource_path"]').attr('content');
+
+
+
+
     },
 });

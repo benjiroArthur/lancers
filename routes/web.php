@@ -66,6 +66,7 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::get('/client/delete-project/{id}', 'ClientDashController@deleteProjects');
     Route::get('/client/applications/{id}', 'ClientDashController@jobApplication');
     Route::get('/client/latest-project', 'ClientDashController@getLatestProject');
+    Route::post('/client/award-project', 'ClientDashController@awardJob');
     Route::post('/client/post-project', 'ClientDashController@projectPostProject');
     Route::get('/job-type', 'ClientDashController@getJobTypes');
     Route::get('/latest-projects', 'ProjectController@latestProjects');
@@ -89,7 +90,7 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::get('/admin/getLancers', 'AdminController@getLancers');
     Route::get('/admin/getAdmins', 'AdminController@getAdmins');
     Route::resource('/admin/user', 'UserController');
-    
+
     Route::get('/stats', 'AdminController@getStats');
 
     Route::get('/client/invoice', 'ClientDashController@getInvoiceDetails');
