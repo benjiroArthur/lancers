@@ -64,7 +64,7 @@
                         <div class="card-body login-card-body justify-content-center mt-3 mb-3">
                             <a href="#" @click="back"><span class="fas fa-arrow-left text-left text-lancer"></span></a>
                             <div class="card-image text-center mb-5">
-                                <img :src="this.$parent.resource_path+'/lancers_logo.png'" width="auto" height="50" alt="" loading="lazy">
+                                <img :src="this.resource_path +'/lancers_logo.png'" width="auto" height="50" alt="" loading="lazy">
                             </div>
 
                            <!-- <b-form-select v-model="form.user_type" :options="options"></b-form-select>-->
@@ -87,7 +87,6 @@
                             <div class="text-center mt-3">
                                 <button type="submit" @click="submit" class="btn btn-success bg-lancer btn-block">Sign Up</button>
                             </div>
-
                         </div>
 
 
@@ -105,6 +104,7 @@
         name: "Register",
         data(){
             return{
+                resource_path:'',
                 options: [
                     { value: null, text: 'Select Your User Type' },
                     { value: 'freelancer', text: 'I Want To Work' },
@@ -132,11 +132,18 @@
                     if (this.form.user_type !== 'What Do You Want To Do') {
                         this.$Progress.start()
                         this.form.post('/register').then((response) => {
+                            Swal.fire(
+                                'success',
+                                'Registration Successful',
+                                'success'
+                            );
                             this.$Progress.finish();
                             window.location.assign('/home');
+
                         })
                             .catch((error) => {
                                 this.nextPage = false;
+                                console.log(error.message);
                             })
                     }
 
@@ -147,6 +154,7 @@
                 },
             },
             mounted() {
+            this.resource_path = this.$parent.resource_path;
                 console.log('Component mounted.')
 
             },
@@ -160,39 +168,6 @@
 </script>
 
 <style lang="scss" scoped>
-    .my-user-type{
-        input[type=radio]
-        {
-            /* Hide original inputs */
-            visibility: hidden;
-            //position: absolute;
-        }
-        input[type=radio] + label:before{
-            background-color: red;
-            color: black;
-            height:30px;
-            width:100px;
-            //margin-right: 2px;
-            //content: " ";
-            display:inline-block;
-            vertical-align: baseline;
-            //border:1px solid #777;
-        }
-        input[type=radio]:checked + label:before{
-            background: #32a778;
-            color: white;
-        }
-
-        /* CUSTOM RADIO AND CHECKBOX STYLES */
-       /* input[type=radio] + label:before{
-            border-radius:50%;
-        }
-        input[type=checkbox] + label:before{
-            border-radius:2px;
-        }*/
-    }
-
-
     .clickable{
         cursor: pointer;
         &:hover{
@@ -203,103 +178,6 @@
             transition: all 0.4s;
         }
 
-    }
-
-    .strength {
-        position: absolute;
-        bottom: 233px;
-        left: 20px;
-        right: 0px;
-        display: inline-block;
-        width: 2%;
-        height: 2%;
-        background-color: #BB4440;
-        border-radius: 40px;
-        overflow: hidden;
-        z-index: 9;
-        transition: all .5s linear;
-    }
-    @mixin level($position, $width, $color) {
-        bottom: 233px;
-        width: $width;
-        background-color: $color;
-    }
-
-    .level_0 {
-        @include level(0, 0%, #BB4440);
-    }
-    .level_1 {
-        @include level(-10px, 25%, #BB4440);
-    }
-    .level_2 {
-        @include level(-10px, 50%, #1cb386);
-    }
- HEAD
-    .strength{
-        width: 25%;
-        margin-top: -3px;
-        height: 3px;
-        border-radius: 10px;
-        //overflow: hidden;
-        //z-index: 9;
-        //transition: all .5s linear;
-    }
-    @mixin level($position, $width, $color){
-        border: $position;
-        width: $width;
-        background-color: $color;
-    }
-    .level_0{
-        @include level(0, 25%, #f80606)
-    }
-    .level_1{
-        @include level(-10, 25%, #f80606)
-    }
-    .level_2{
-        @include level(-10, 50%, #f6681b)
-    }
-    .level_3{
-        @include level(-10, 75%, #f8d006)
-    }
-    .level_4{
-        @include level(-10, 100%, #9bf806)
-    }
-    @mixin showpass($property){
-        position: absolute;
-        left: $property;
-        z-index: 11;
-        cursor: pointer;
-    }
-    .show-icon{
-        @include showpass(20px);
-    }
-    .hide-icon{
-        @include showpass(18px);
-        color: grey;
-    }
-
-    .level_3 {
-        @include level(-10px, 75%, #00e676);
-    }
-    .level_4 {
-        @include level(-10px, 90%, #00e676);
-    }
-
-    @mixin showpass($property) {
-        position: absolute;
-        left: 400px;
-        top: 230px;
-        z-index: 11;
-        cursor: pointer;
-    }
-
-    .show-icon {
-        @include showpass(20px);
-    }
-
-    .hide-icon {
-        @include showpass(18px);
-        color: #4e555b;
     }
 
 </style>
