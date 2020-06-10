@@ -64,7 +64,11 @@
                                        </a>
                                    </li>
                                @endif
-                               <messages></messages>
+                               <li class="nav-item home-navs">
+                                   <a href="{{route('chat.index')}}" class="nav-link text-dark">
+                                       <i class="fas fa-comments text-dark h4"></i> Messages
+                                   </a>
+                               </li>
                                <update></update>
                            @endauth
                        </ul>
