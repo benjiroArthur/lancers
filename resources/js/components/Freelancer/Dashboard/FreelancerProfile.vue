@@ -228,19 +228,19 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <input v-model="profileForm.first_name" type="text" name="first_name" placeholder="First Name"
-                                                       pattern="[a-zA-Z]*" oninvalid="setCustomeValidity('Characters Only')"
+
                                                        class="form-control" :class="{ 'is-invalid': profileForm.errors.has('first_name') }" required>
                                                 <has-error :form="profileForm" field="first_name"></has-error>
                                             </div>
                                             <div class="form-group">
                                                 <input v-model="profileForm.other_name" type="text" name="other_name" placeholder="Other Names"
-                                                       pattern="[a-zA-Z]*" oninvalid="setCustomeValidity('Characters Only')"
+
                                                        class="form-control" :class="{ 'is-invalid': profileForm.errors.has('other_name') }">
                                                 <has-error :form="profileForm" field="other_name"></has-error>
                                             </div>
                                             <div class="form-group">
                                                 <input v-model="profileForm.last_name" type="text" name="last_name" placeholder="Family Name"
-                                                       pattern="[a-zA-Z]*" oninvalid="setCustomeValidity('Characters Only')"
+
                                                        class="form-control" :class="{ 'is-invalid': profileForm.errors.has('last_name') }" required>
                                                 <has-error :form="profileForm" field="last_name"></has-error>
                                             </div>

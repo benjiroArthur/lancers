@@ -22,7 +22,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    {{--<script src="{{ asset('js/jquery.min.js') }}" type="text/javascript"></script>--}}
+    <script src="{{ asset('js/jquery.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -165,7 +165,7 @@
     </div>
 
     <script>
-        $('document').ready(function(){
+        $(document).ready(function(){
             setTimeout(function()
             {
                 $('.alert').fadeOut('fast');

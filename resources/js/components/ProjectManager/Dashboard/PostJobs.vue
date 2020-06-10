@@ -128,7 +128,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-outline-success">Save</button>
+                            <!--<button type="submit" class="btn btn-outline-success">Save</button>-->
                         </div>
 
                 </div>
@@ -147,15 +147,22 @@
                     </div>
 
                         <div class="modal-body">
-                            <div class="image-holder">
-                                <img :src="this.freelancer.image_path" alt="" class="img-fluid" >
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="image-holder image-circle">
+                                        <img :src="this.freelancer.image_path" alt="" class="img-fluid" >
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <p><strong>Name: </strong> {{this.freelancer.full_name}}</p>
+                                    <p><strong>Name: </strong> {{this.freelancer.portfolio.title}}</p>
+                                    <p><strong>Name: </strong> {{this.freelancer.portfolio.description}}</p>
+                                </div>
                             </div>
-                            <p>{{this.freelancer.full_name}}</p>
-
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-outline-success">Save</button>
+                            <!--<button type="submit" class="btn btn-outline-success">Save</button>-->
                         </div>
 
                 </div>
