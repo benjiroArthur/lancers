@@ -156,8 +156,11 @@
                                 </div>
                                 <div v-if="this.freelancer !== null" class="col-md-7">
                                     <p><strong>Name: </strong> {{this.freelancer.full_name}}</p>
-                                    <p><strong>Name: </strong> {{this.freelancerPortfolio.title}}</p>
-                                    <p><strong>Name: </strong> {{this.freelancerPortfolio.description}}</p>
+                                    <p><strong>Job Title: </strong> {{this.freelancerPortfolio.title}}</p>
+                                    <p><strong>Profile Summary: </strong> {{this.freelancerPortfolio.description}}</p>
+                                    <div v-if="this.freelancerLinks !== null">
+                                        <a v-for="(link, i) in this.freelancerLinks" :key="i" :href="link">{{link}}</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
