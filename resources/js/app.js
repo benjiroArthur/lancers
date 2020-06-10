@@ -242,6 +242,7 @@ Vue.component('lancer-completed-table', require('./components/Freelancer/Freelan
 Vue.component('lancer-inprogress-table', require('./components/Freelancer/FreelancerTables/LancerInProgressTable.vue').default);
 Vue.component('lancer-appliedjobs-table', require('./components/Freelancer/FreelancerTables/LancerAppliedJobsTable.vue').default);
 Vue.component('invoice', require('./components/Resources/Invoice.vue').default);
+Vue.component('new-invoice', require('./components/Resources/NewInvoice.vue').default);
 
 
 

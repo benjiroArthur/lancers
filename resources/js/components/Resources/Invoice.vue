@@ -37,52 +37,40 @@
                             </div>
                         </div>
 
-                        <div class="col-12 table-responsive">
+                        <!--<div class="col-12 table-responsive">
                             <div class="card-body table table-responsive table-borderless p-0">
                                 <bootstrap-table :data="invoice" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/>
-                            </div>
+                            </div>-->
 
-                        <!--<div class="row p-5">
+                        <div class="row p-5">
                             <div class="col-md-12">
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th class="border-0 text-uppercase small font-weight-bold">ID</th>
-                                        <th class="border-0 text-uppercase small font-weight-bold">Item</th>
+
                                         <th class="border-0 text-uppercase small font-weight-bold">Description</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Cost</th>
-                                        <th class="border-0 text-uppercase small font-weight-bold">Total</th>
+
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td>1</td>
-                                        <td>Software</td>
+
                                         <td>LTS Versions</td>
-                                        <td>21</td>
-                                        <td>$321</td>
                                         <td>$3452</td>
                                     </tr>
                                     <tr>
-                                        <td>1</td>
-                                        <td>Software</td>
-                                        <td>Support</td>
-                                        <td>234</td>
-                                        <td>$6356</td>
-                                        <td>$23423</td>
+                                        <td>LTS Versions</td>
+                                        <td>$3452</td>
                                     </tr>
                                     <tr>
-                                        <td>1</td>
-                                        <td>Software</td>
-                                        <td>Sofware Collection</td>
-                                        <td>4534</td>
-                                        <td>$354</td>
-                                        <td>$23434</td>
+                                        <td>LTS Versions</td>
+                                        <td>$3452</td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
-                        </div>-->
+                        </div>
 
                         <div class="d-flex flex-row-reverse bg-dark text-white p-4">
                             <div class="py-3 px-5 text-right">
@@ -155,5 +143,10 @@
 </script >
 
 <style scoped>
+    .container{
+        background: grey !important;
+        margin-top: 120px !important;
+        margin-bottom: 120px !important;
+    }
 
 </style>

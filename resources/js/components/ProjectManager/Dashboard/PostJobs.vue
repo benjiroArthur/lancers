@@ -4,8 +4,9 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-tools">
+                        <div  class="card-tools">
                             <a href="#" class="btn btn-outline-success text-center test-lancer" title="Post A Job" @click.prevent="initiatePost">Post Job</a>
+                            <!--<a href="#" id="myPrint" class="btn btn-outline-success text-center test-lancer" title="Post A Job" @click.prevent="print">Print</a>-->
                         </div>
                         <ul class="nav nav-justified">
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-0" class="active nav-link text-lancer text-bold">All Projects</a></li>
@@ -161,6 +162,7 @@
                 </div>
             </div>
         </div>
+        <!--<new-invoice :resourcePath="this.$parent.resource_path"></new-invoice>-->
         <invoice :resourcePath="this.$parent.resource_path"></invoice>
     </div>
 </template>
@@ -365,6 +367,12 @@
                 this.freelancer = freelancer;
                 $('#profileModal').modal('show');
             },
+            print () {
+                // Pass the element id here
+                $('.myPrint').addClass('d-none');
+                this.$htmlToPaper('print-invoice');
+                $('.myPrint').removeClass('d-none');
+            }
         },
         mounted() {
            // this.user_id = this.$parent.userId
