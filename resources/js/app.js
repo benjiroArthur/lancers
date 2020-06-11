@@ -8,6 +8,26 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import Vue from 'vue';
+import VueHtmlToPaper from 'vue-html-to-paper';
+
+const options = {
+    name: '_blank',
+    specs: [
+        'fullscreen=yes',
+        'titlebar=yes',
+        'scrollbars=yes',
+        'images=yes',
+
+    ],
+    styles: [
+        'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
+        'https://unpkg.com/kidlat-css/css/kidlat.css'
+    ]
+}
+
+Vue.use(VueHtmlToPaper, options);
+
 import Slick from 'vue-slick';
 import Vuetify from 'vuetify';
 Vue.use(Vuetify);
@@ -214,14 +234,17 @@ Vue.component('completed-table', require('./components/ProjectManager/ClientTabl
 Vue.component('pending-table', require('./components/ProjectManager/ClientTables/PendingTable.vue').default);
 Vue.component('unappliedjobs-table', require('./components/ProjectManager/ClientTables/UnappliedJobsTable.vue').default);
 Vue.component('client-inprogress-table', require('./components/ProjectManager/ClientTables/ClientInProgressTable.vue').default);
-Vue.component('project-application-table ', require('./components/ProjectManager/ClientTables/ProjectApplicationTable.vue').default);
-Vue.component('applied-jobs ', require('./components/ProjectManager/ClientTables/AppliedTable.vue').default);
+Vue.component('project-application-table', require('./components/ProjectManager/ClientTables/ProjectApplicationTable.vue').default);
+Vue.component('applied-jobs', require('./components/ProjectManager/ClientTables/AppliedTable.vue').default);
 
 Vue.component('lancer-allprojects-table', require('./components/Freelancer/FreelancerTables/LancerAllProjectsTable').default);
 Vue.component('lancer-completed-table', require('./components/Freelancer/FreelancerTables/LancerCompletedTable.vue').default);
 Vue.component('lancer-inprogress-table', require('./components/Freelancer/FreelancerTables/LancerInProgressTable.vue').default);
 Vue.component('lancer-appliedjobs-table', require('./components/Freelancer/FreelancerTables/LancerAppliedJobsTable.vue').default);
+Vue.component('lancer-awarded-table', require('./components/Freelancer/FreelancerTables/LancerAwardedTable.vue').default);
+Vue.component('lancer-awaitpayment-table', require('./components/Freelancer/FreelancerTables/LancerAwaitingPaymentTable.vue').default);
 Vue.component('invoice', require('./components/Resources/Invoice.vue').default);
+Vue.component('new-invoice', require('./components/Resources/NewInvoice.vue').default);
 
 
 
@@ -288,12 +311,12 @@ const app = new Vue({
     data: () => ({
         pageLoader: true,
         userId: '',
+        auth_user: {},
         resource_path: '',
     }),
     mounted() {
         setTimeout(val => {
             this.pageLoader = false;
-
            /* $('#app').removeAttr('v-cloak');*/
         }, 4000);
 
@@ -301,9 +324,16 @@ const app = new Vue({
             //this.index();
             console.log(e);
         });*/
+
+
     },
     created(){
-        this.userId = $('meta[name = "user-id"]').attr('content')
-        this.resource_path = $('meta[name = "resource_path"]').attr('content')
+        this.userId = $('meta[name = "user-id"]').attr('content');
+        //this.auth_user = $('meta[name = "auth_user"]').attr('content');
+        this.resource_path = $('meta[name = "resource_path"]').attr('content');
+
+
+
+
     },
 });

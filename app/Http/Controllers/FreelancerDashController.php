@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Chat;
+use App\Friend;
 use App\JobOffered;
 use App\ProjectApplication;
 use App\Project;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FreelancerDashController extends Controller
 {
@@ -21,7 +24,7 @@ class FreelancerDashController extends Controller
      * */
     public function completed($id) {
         $freelance = User::findOrFail($id)->userable;
-        $completed = $freelance->jobOffered()->where('status', 'completed')->with('project')->latest()->get();
+        $completed = $freelance->jobOffered()->where('job_offereds.status', 'completed')->with('project')->latest()->get();
 
         return response()->json($completed);
     }
@@ -33,7 +36,7 @@ class FreelancerDashController extends Controller
      * */
     public function progress($id) {
         $freelance = User::findOrFail($id)->userable;
-        $progress = $freelance->jobOffered()->where('status', 'in progress')->with('project')->latest()->get();
+        $progress = $freelance->jobOffered()->where('job_offereds.status', 'in progress')->with('project')->latest()->get();
 
         return response()->json($progress);
     }
@@ -45,7 +48,7 @@ class FreelancerDashController extends Controller
      * */
     public function yet($id) {
         $freelance = User::findOrFail($id)->userable;
-        $yet = $freelance->jobOffered()->where('status', 'not started')->with('project')->latest()->get();
+        $yet = $freelance->jobOffered()->where('job_offereds.status', 'not started')->with('project')->latest()->get();
 
         return response()->json($yet);
     }
@@ -125,13 +128,61 @@ class FreelancerDashController extends Controller
         }
 
     }
+
+    //list of jobs freelancer has applied and waiting for award of offer
     public function jobApplied(){
         $user = auth()->user();
-        $projects = ProjectApplication::with('project')->where('status', null)
+        $projects = ProjectApplication::with('project')->where('status', 'applied')
                                             ->where('freelancer_id', $user->userable->id)->get();
 
         return response()->json($projects);
     }
+
+    //jobs awarded, awaiting acceptance from freelancer
+    public function jobAwarded(){
+        $user = auth()->user();
+        $projects = JobOffered::with('project')->where('status', 'pending')
+                                            ->where('freelancer_id', $user->userable->id)->get();
+
+        return response()->json($projects);
+    }
+
+    //list of jobs awaiting payment so freelancer can start working on it
+    public function jobAwaitingPayment(){
+        $user = auth()->user();
+        $projects = JobOffered::with('project')->where('status', 'awaiting payment')
+                                            ->where('freelancer_id', $user->userable->id)->get();
+
+        return response()->json($projects);
+    }
+
+    //accept project
+    public function acceptProject(Request $request){
+        $user = auth()->user();
+        $project = Project::find($request->project_id);
+        $client_id = $project->client_id;
+        $freelancer_id = $user->userable->id;
+        $jobOffer = JobOffered::where('project_id', $request->project_id)->first();
+        if($jobOffer->freelancer_id === $user->userable->id){
+            $jobOffer->update(['status' => 'awaiting payment']);
+            $jobOffer->project()->update(['status' => 'accepted']);
+
+            $friend = Friend::where(function ($query) use ($client_id, $freelancer_id) {
+                    $query->where('user_id',  $freelancer_id)->where('friend_id',  $client_id);
+                })->orWhere(function ($query) use ($client_id, $freelancer_id){
+                    $query->where('user_id', $client_id)->where('friend_id',  $freelancer_id);
+                })->get();
+            if($friend === null){
+                $fr = new Friend();
+                $fr->user_id = $client_id;
+                $fr->friend_id = $freelancer_id;
+                $fr->save();
+            }
+            return response('success');
+        }
+
+    }
+
 
 
 

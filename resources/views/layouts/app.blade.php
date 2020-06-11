@@ -11,10 +11,12 @@
 
     @auth
         <meta name="user-id" content="{{ Auth::user()->id }}">
+        <meta name="auth_user" content="{{ Auth::user()->userable }}">
         <meta name="status" content="{{ Auth::user()->active }}">
         <meta name="pro-update" content="{{ Auth::user()->profile_updated }}">
     @else
         <meta name="user-id" content="0">
+        <meta name="auth_user" content="0">
         <meta name="status" content="0">
         <meta name="pro-update" content="2">
     @endauth
@@ -22,7 +24,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    {{--<script src="{{ asset('js/jquery.min.js') }}" type="text/javascript"></script>--}}
+    <script src="{{ asset('js/jquery.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -64,7 +66,11 @@
                                        </a>
                                    </li>
                                @endif
-                               <messages></messages>
+                               <li class="nav-item home-navs">
+                                   <a href="{{route('chat.index')}}" class="nav-link text-dark">
+                                       <i class="fas fa-comments text-dark h4"></i> Messages
+                                   </a>
+                               </li>
                                <update></update>
                            @endauth
                        </ul>
@@ -165,7 +171,7 @@
     </div>
 
     <script>
-        $('document').ready(function(){
+        $(document).ready(function(){
             setTimeout(function()
             {
                 $('.alert').fadeOut('fast');

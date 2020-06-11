@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div id="print-invoice" class="container">
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -8,6 +8,8 @@
                             <div class="card-image text-center">
                                 <img :src="this.resourcePath+'/lancers_logo.png'" width="auto" height="50" alt="" loading="lazy">
                             </div>
+
+                                <button class="myPrint" @click="print"><i class="fas fa-print"></i> Print Invoice</button>
 
                             <div class="col-md-6 text-right">
                                 <p class="font-weight-bold mb-1">Invoice #550</p>
@@ -35,52 +37,40 @@
                             </div>
                         </div>
 
-                        <div class="col-12 table-responsive">
+                        <!--<div class="col-12 table-responsive">
                             <div class="card-body table table-responsive table-borderless p-0">
-                                <bootstrap-table :data="clients" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/>
-                            </div>
+                                <bootstrap-table :data="invoice" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/>
+                            </div>-->
 
-                        <!--<div class="row p-5">
+                        <div class="row p-5">
                             <div class="col-md-12">
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th class="border-0 text-uppercase small font-weight-bold">ID</th>
-                                        <th class="border-0 text-uppercase small font-weight-bold">Item</th>
+
                                         <th class="border-0 text-uppercase small font-weight-bold">Description</th>
                                         <th class="border-0 text-uppercase small font-weight-bold">Cost</th>
-                                        <th class="border-0 text-uppercase small font-weight-bold">Total</th>
+
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td>1</td>
-                                        <td>Software</td>
+
                                         <td>LTS Versions</td>
-                                        <td>21</td>
-                                        <td>$321</td>
                                         <td>$3452</td>
                                     </tr>
                                     <tr>
-                                        <td>1</td>
-                                        <td>Software</td>
-                                        <td>Support</td>
-                                        <td>234</td>
-                                        <td>$6356</td>
-                                        <td>$23423</td>
+                                        <td>LTS Versions</td>
+                                        <td>$3452</td>
                                     </tr>
                                     <tr>
-                                        <td>1</td>
-                                        <td>Software</td>
-                                        <td>Sofware Collection</td>
-                                        <td>4534</td>
-                                        <td>$354</td>
-                                        <td>$23434</td>
+                                        <td>LTS Versions</td>
+                                        <td>$3452</td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
-                        </div>-->
+                        </div>
 
                         <div class="d-flex flex-row-reverse bg-dark text-white p-4">
                             <div class="py-3 px-5 text-right">
@@ -139,13 +129,24 @@
                     })
                     .catch()
             },
+            print () {
+                // Pass the element id here
+                $('.myPrint').addClass('d-none');
+                this.$htmlToPaper('print-invoice');
+                $('.myPrint').removeClass('d-none');
+            }
         },
         mounted() {
             this.getClients();
         },
     }
-</script>
+</script >
 
 <style scoped>
+    .container{
+        background: grey !important;
+        margin-top: 120px !important;
+        margin-bottom: 120px !important;
+    }
 
 </style>

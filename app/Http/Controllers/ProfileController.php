@@ -81,10 +81,13 @@ class ProfileController extends Controller
 
             //resize image
             $image = Image::make($image_file->getRealPath())->fit(400,300)->encode();
+            $image->save(asset('images/users/'), $imageNameToStore);
 
-            if(Storage::disk('profile-picture')->exists($oldImage)){
-                Storage::disk('profile-picture')->delete($oldImage);
-            }
+          if($oldImage !== 'noimage.jpg'){
+              if(Storage::disk('profile-picture')->exists($oldImage)){
+                  Storage::disk('profile-picture')->delete($oldImage);
+              }
+          }
 
             Storage::disk('profile-picture')->put($imageNameToStore, $image);
 
@@ -158,7 +161,7 @@ class ProfileController extends Controller
      *
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      */
     //save address
     public function address(Request $request){

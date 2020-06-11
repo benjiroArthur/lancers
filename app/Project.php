@@ -11,7 +11,7 @@ use App\JobCategory;
 class Project extends Model
 {
     //fillable
-    protected $fillable = ['job_type_id', 'description', 'client_id', 'project_title', 'project_cost', 'duration', 'approved'];
+    protected $fillable = ['job_type_id', 'description', 'client_id', 'project_title', 'project_cost', 'duration', 'approved','status'];
 
     protected $casts = [
         'approved' => 'boolean'

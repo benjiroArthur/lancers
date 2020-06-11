@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="justify-content-between d-flex">
-                <h6 class="text-uppercase font-weight-bold">Pending Projects</h6>
+                <h6 class="text-uppercase font-weight-bold">Pending Projects (Awaiting Confirmation From freelancer)</h6>
             </div>
 
             <div class="col-12 table-responsive">
@@ -47,9 +47,9 @@
                         },
                         formatter: function (e, value, row) {
 
-                            return ' <a class="btn btn-sm show " data-toggle="modal" data-target="#" id="view-details"><i class="fas fa-check text-success"></i></a> ' +
+                           /* return ' <a class="btn btn-sm show " data-toggle="modal" data-target="#" id="view-details"><i class="fas fa-check text-success"></i></a> ' +
                                     ' <a class="btn btn-sm edit " data-toggle="modal" data-target="#"><i class="fas fa-edit text-warning"></i></a> ' +
-                                    ' <a class="btn btn-sm delete " data-toggle="modal" data-target="#"><i class="fas fa-trash text-danger"></i></a> '
+                                    ' <a class="btn btn-sm delete " data-toggle="modal" data-target="#"><i class="fas fa-trash text-danger"></i></a> '*/
                         },
                         events: {
                             'click .show': function (e, value, row) {
