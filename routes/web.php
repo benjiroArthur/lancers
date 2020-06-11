@@ -56,6 +56,11 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::get('/freelancer/recent-project/{id}', 'FreelancerDashController@recentProject');
     Route::get('/freelancer/applied/{id}', 'FreelancerDashController@jobApplied');
     Route::get('/freelancer/browse-jobs', 'FreelancerDashController@jobs');
+    Route::get('/freelancer/awarded-jobs', 'FreelancerDashController@jobAwarded');
+    Route::get('/freelancer/jobs-waiting-payment', 'FreelancerDashController@jobAwaitingPayment');
+    Route::post('/freelancer/accept-jobs', 'FreelancerDashController@acceptProject');
+
+
     Route::get('/client/completed-projects/{id}', 'ClientDashController@completed');
     Route::get('/client/in-progress/{id}', 'ClientDashController@progress');
     Route::get('/client/not-completed/{id}', 'ClientDashController@yet');
@@ -69,8 +74,11 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::post('/client/award-project', 'ClientDashController@awardJob');
     Route::post('/client/post-project', 'ClientDashController@projectPostProject');
     Route::get('/job-type', 'ClientDashController@getJobTypes');
+
+
     Route::get('/latest-projects', 'ProjectController@latestProjects');
     Route::get('/available-projects', 'ProjectController@availableProjects');
+
     Route::post('/user/profile', 'ProfileController@profile');
     Route::post('/user/profile_picture', 'ProfileController@profilePicture');
     Route::post('/user/portfolio', 'ProfileController@portfolio');

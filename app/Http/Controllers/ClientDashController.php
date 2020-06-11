@@ -25,7 +25,7 @@ class ClientDashController extends Controller
     public function completed($id) {
         $client = User::findOrFail($id)->userable;
 
-        $completed = $client->jobOffered()->where('status', 'completed')->latest()->with('project')->get();
+        $completed = $client->jobOffered()->where('job_offereds.status', 'completed')->latest()->with('project')->get();
         return response()->json($completed);
     }
 
@@ -35,7 +35,7 @@ class ClientDashController extends Controller
      * */
     public function progress($id) {
         $client = User::findOrFail($id)->userable;
-        $progress = $client->jobOffered()->with('project')->where('status', 'in progress')->latest()->get();
+        $progress = $client->jobOffered()->with('project')->where('job_offereds.status', 'in progress')->latest()->get();
         return response()->json($progress);
     }
 
@@ -45,7 +45,7 @@ class ClientDashController extends Controller
      * */
     public function yet($id) {
         $client = User::findOrFail($id)->userable;
-        $yet = $client->jobOffered()->where('status', 'pending')->latest()->with('project')->get();
+        $yet = $client->jobOffered()->where('job_offereds.status', 'pending')->latest()->with('project')->get();
         return response()->json($yet);
     }
 

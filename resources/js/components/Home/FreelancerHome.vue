@@ -4,21 +4,7 @@
             <div class="col-md-8">
                 <div class="row">
                     <div class="col-md-12">
-                        <!--<div class="card shadow">
-                            <div class="card-header">
-                                <div class="card-title text-bold">Recent Projects</div>
-                                <div class="card-tools">
-                                    <a class="text-lancer" href="#">View All <span class="fas fa-arrow-right"></span></a>
-                                </div>
-                            </div>
 
-                            <div class="card-body text-center">
-                               <div class="mt-2 ml-5 pr-2">
-
-                                   <a class="btn bg-lancer text-white">Browse Projects</a>
-                               </div>
-                            </div>
-                        </div>-->
                         <div class="card shadow">
                             <div class="card-header">
                                 <div class="card-title text-bold">Recent Projects</div>
