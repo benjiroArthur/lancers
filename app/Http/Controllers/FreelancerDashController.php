@@ -140,7 +140,14 @@ class FreelancerDashController extends Controller
         // fetching the data for the profile
     }
 
-    public function submit() {
+    public function submit(Request $request) {
+        $user = auth()->user();
+        $project = Project::find($request->project_id);
+        $project->update(['status', 'completed']);
+        $joboffered = JobOffered::where('project_id', $request->project_id);
+        $joboffered->update(['status', 'completed']);
+
+        return response('success');
 
         // submitting of completed projects
     }
