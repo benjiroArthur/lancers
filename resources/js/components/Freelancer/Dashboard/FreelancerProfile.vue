@@ -22,6 +22,8 @@
                                         <div v-if="this.portfolio != null" class="card-body text-left">
                                             <p>{{this.portfolio.title}}</p>
                                             <p>{{this.portfolio.description}}</p>
+                                            <p>{{this.portfolio.academic}}</p>
+
                                         </div>
                                     </div>
                                 </div>
@@ -398,7 +400,8 @@
                 portfolio:{},
                 portfolioForm: new Form({
                     title: '',
-                    description: ''
+                    description: '',
+                    academic: '',
                 }),
                 addressForm: new Form({
                     country: 'Country',
