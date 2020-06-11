@@ -23,9 +23,9 @@ class FriendsController extends Controller
     public function index()
     {
         //backup
-        //$contactList = Auth::user()->friends;
+        $contactList = Auth::user()->friends;
         //for test purposes
-        if(Auth::user()->role->name === 'freelancer'){
+        /*if(Auth::user()->role->name === 'freelancer'){
             $role = Role::where('name', 'client')->first();
             $contactList = User::where('role_id', $role->id)->get();
         }
@@ -35,7 +35,7 @@ class FriendsController extends Controller
         }
         else{
             $contactList = User::all();
-        }
+        }*/
 
         $unreadIds = Chat::select(\DB::raw('`from` as sender_id, count(`from`) as messages_count'))
             ->where('to', auth()->user()->id)
@@ -74,9 +74,6 @@ class FriendsController extends Controller
         $friend->user_id = Auth::user()->id;
         $friend->friend_id = $request->friend_id;
         $friend->save();
-
-        // send  success message
-        Session::flash('Success', 'New friend has been added');
 
         // redirect back
         return redirect()->back();
