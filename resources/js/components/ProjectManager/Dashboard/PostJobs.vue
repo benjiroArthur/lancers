@@ -174,6 +174,8 @@
         </div>
         <!--<new-invoice :resourcePath="this.$parent.resource_path"></new-invoice>-->
         <invoice :resourcePath="this.$parent.resource_path"></invoice>
+        <payout></payout>
+
     </div>
 </template>
 

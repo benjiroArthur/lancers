@@ -15,7 +15,7 @@ try {
 
 } catch (e) {}
 
-
+import('./stripe');
 
 
 /*try {
