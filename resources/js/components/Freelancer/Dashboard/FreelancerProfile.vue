@@ -57,6 +57,11 @@
                                                     <has-error :form="portfolioForm" field="title"></has-error>
                                                 </div>
                                                 <div class="form-group">
+                                                    <input v-model="portfolioForm.academic" type="text" name="academic" placeholder="Current Qualification"
+                                                           class="form-control" :class="{ 'is-invalid': portfolioForm.errors.has('academic') }">
+                                                    <has-error :form="portfolioForm" field="academic"></has-error>
+                                                </div>
+                                                <div class="form-group">
                                                     <textarea v-model="portfolioForm.description" type="text" name="description" rows="5" placeholder="Summary"
                                                               class="form-control" :class="{ 'is-invalid': portfolioForm.errors.has('description') }"></textarea>
                                                     <has-error :form="portfolioForm" field="description"></has-error>
