@@ -56,7 +56,6 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::get('/freelancer/recent-project/{id}', 'FreelancerDashController@recentProject');
     Route::get('/freelancer/applied/{id}', 'FreelancerDashController@jobApplied');
     Route::get('/freelancer/browse-jobs', 'FreelancerDashController@jobs');
- HEAD
     Route::get('/freelancer/submit-jobs', 'FreelancerDashController@submit');
 
     Route::get('/freelancer/awarded-jobs', 'FreelancerDashController@jobAwarded');
@@ -64,7 +63,6 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::post('/freelancer/accept-jobs', 'FreelancerDashController@acceptProject');
 
 
- staged
     Route::get('/client/completed-projects/{id}', 'ClientDashController@completed');
     Route::get('/client/in-progress/{id}', 'ClientDashController@progress');
     Route::get('/client/not-completed/{id}', 'ClientDashController@yet');
@@ -90,7 +88,6 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::post('/user/job_link', 'ProfileController@addLinks');
     Route::post('/user/job_link/edit/{id}', 'ProfileController@editLink');
     Route::post('/user/address', 'ProfileController@address');
-
 
 
 
