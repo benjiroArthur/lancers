@@ -57,6 +57,8 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::get('/freelancer/recent-project/{id}', 'FreelancerDashController@recentProject');
     Route::get('/freelancer/applied/{id}', 'FreelancerDashController@jobApplied');
     Route::get('/freelancer/browse-jobs', 'FreelancerDashController@jobs');
+
+
     Route::get('/freelancer/submit-jobs', 'FreelancerDashController@submit');
 
     Route::get('/freelancer/awarded-jobs', 'FreelancerDashController@jobAwarded');
