@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\JobType;
 use App\Project;
 use App\JobOffered;
+use App\ProjectApplication;
 use App\User;
 use http\Client;
 use Illuminate\Http\Request;
@@ -161,8 +162,6 @@ class ClientDashController extends Controller
         $project = Project::find($id);
 
 
-
-
         return response()->json($project);
 
     }
@@ -218,6 +217,15 @@ class ClientDashController extends Controller
     public function getInvoiceDetails($id){
         $invoice = JobOffered::where('project_id', $id)->with('freelancer', 'project')->first();
         return response()->json($invoice);
+
+    }
+
+    public function acceptJob(Request $request) {
+        $user = auth()->user();
+        $project = Project::find($request->project_id);
+        $project->update('status', 'accepted');
+
+        return response('success');
 
     }
 }
