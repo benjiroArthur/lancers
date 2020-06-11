@@ -8,13 +8,15 @@
                             <a href="#" class="btn btn-outline-success text-center test-lancer" title="Post A Job" @click.prevent="initiatePost">Post Job</a>
                             <!--<a href="#" id="myPrint" class="btn btn-outline-success text-center test-lancer" title="Post A Job" @click.prevent="print">Print</a>-->
                         </div>
-                        <ul class="nav nav-justified">
+                        <ul class="nav nav-justified my-tabs">
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-0" class="active nav-link text-lancer text-bold">All Projects</a></li>
-                            <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-1" class="nav-link text-lancer text-bold">Completed Project</a></li>
-                            <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-2" class="nav-link text-lancer text-bold">Pending Projects</a></li>
-                            <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-3" class="nav-link text-lancer text-bold">Applied Jobs</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-4" class="nav-link text-lancer text-bold">Jobs Unapplied For</a></li>
+                            <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-3" class="nav-link text-lancer text-bold">Applied Jobs</a></li>
+                            <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-2" class="nav-link text-lancer text-bold">Pending Projects</a></li>
+                            <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-6" class="nav-link text-lancer text-bold">Awaiting Payment</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-5" class="nav-link text-lancer text-bold">In Progress</a></li>
+                            <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-1" class="nav-link text-lancer text-bold">Completed Project</a></li>
+
                         </ul>
 
                     </div>
@@ -37,6 +39,9 @@
                             </div>
                             <div class="tab-pane" id="tab-eg7-5" role="tabpanel">
                                 <client-inprogress-table :inProgress="this.inProgress"></client-inprogress-table>
+                            </div>
+                            <div class="tab-pane" id="tab-eg7-6" role="tabpanel">
+                                <awaitpayment-table :awaitingPayment="this.awaitingPayment"></awaitpayment-table>
                             </div>
                         </div>
                     </div>
@@ -172,8 +177,16 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="invoiceModal" tabindex="-1" role="dialog" aria-labelledby="invoiceModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                        <div class="modal-body">
+                            <invoice :resourcePath="this.$parent.resource_path" :project="this.selectedProject" :client="this.auth_user"></invoice>
+                        </div>
+                </div>
+            </div>
+        </div>
         <!--<new-invoice :resourcePath="this.$parent.resource_path"></new-invoice>-->
-        <invoice :resourcePath="this.$parent.resource_path"></invoice>
     </div>
 </template>
 
@@ -186,18 +199,21 @@
     import ProjectApplicationTable from "../ClientTables/ProjectApplicationTable";
     import AppliedTable from "../ClientTables/AppliedTable";
     import BootstrapTable from 'bootstrap-table/dist/bootstrap-table-vue.min';
+    import AwaitingPaymentTable from "../ClientTables/AwaitingPaymentTable";
 
     export default {
         name: "ClientPostJobs",
-        components: {ProjectApplicationTable, CompletedTable, PendingTable, AllProjectsTable, ClientInProgressTable, AppliedTable, Invoice, BootstrapTable},
+        components: {ProjectApplicationTable, CompletedTable, PendingTable, AllProjectsTable, ClientInProgressTable, AppliedTable, Invoice, BootstrapTable, AwaitingPaymentTable},
         data(){
             return{
                 auth_user: {},
                 freelancer:{},
+                selectedProject:{},
                 freelancerPortfolio: {},
                 freelancerLinks: {},
                 categories:{},
                 jobType:{},
+                awaitingPayment: {},
                 jobForm: new Form({
                     project_title:'',
                     job_type_id:'Select One',
@@ -244,42 +260,6 @@
 
                             },
                             'click .delete': function (e, value, row) {
-                                /*Swal.fire({
-                                    title: 'Are you sure?',
-                                    text: "You won't be able to revert this!",
-                                    icon: 'warning',
-                                    showCancelButton: true,
-                                    confirmButtonColor: '#3085d6',
-                                    cancelButtonColor: '#d33',
-                                    confirmButtonText: 'Yes, delete it!'
-                                }).then((result) => {
-                                    if (result.value) {
-                                        axios.delete('/data/client/delete-project' + row.id).then((response) => {
-                                            if (response.data === "success") {
-                                                Fire.$emit('tableUpdate');
-                                                Swal.fire(
-                                                    'Deleted!',
-                                                    'Project Deleted Successfully',
-                                                    'success'
-                                                );
-
-                                            } else {
-                                                Swal.fire(
-                                                    'Failed!',
-                                                    response.data,
-                                                    'warning'
-                                                )
-                                            }
-                                        }).catch(() => {
-                                            Swal.fire(
-                                                'Failed!',
-                                                'User Could Not Be Deleted.',
-                                                'warning'
-                                            )
-                                        });
-                                    }
-
-                                });*/
 
                             },
                             'click .edit': function (e, value, row) {
@@ -404,7 +384,7 @@
                         this.allprojects = response.data;
                     })
                     .catch((error)=>{
-                        console.log(error.message)
+                        console.log(error.message);
                     })
             },
             getApplication(id){
@@ -418,6 +398,15 @@
                 axios.get(`/data/client/applied-projects/${this.$parent.userId}`)
                     .then((response)=>{
                         this.appliedJobs = response.data;
+                    })
+                    .catch((error)=>{
+                        console.log(error.message)
+                    })
+            },
+            getAwaitingPayment(){
+                axios.get(`/data/client/awaitingPaymentProjects`)
+                    .then((response)=>{
+                        this.awaitingPayment = response.data;
                     })
                     .catch((error)=>{
                         console.log(error.message)
@@ -440,7 +429,12 @@
                 $('.myPrint').addClass('d-none');
                 this.$htmlToPaper('print-invoice');
                 $('.myPrint').removeClass('d-none');
-            }
+                $('#invoiceModal').modal('hide');
+            },
+            invoice (row) {
+                this.selectedProject = row;
+                $('#invoiceModal').modal('show');
+            },
         },
         mounted() {
             this.getUser();
@@ -451,6 +445,7 @@
             this.getAllProjects();
             this.getApplication();
             this.getApplied();
+            this.getAwaitingPayment();
 
 
             Fire.$on('jobPosted', ()=>{
@@ -461,11 +456,13 @@
                 this.getApplied();
                 this.getApplication();
                 this.getApplied();
+                this.getAwaitingPayment();
             });
 
             Fire.$on('viewProjects', (row)=>{this.getViewProjects(row)});
             Fire.$on('viewProfile', (row)=>{this.viewProfile(row.freelancer)});
             Fire.$on('awardJob', (row)=>{this.awardJob(row)});
+            Fire.$on('invoice', (row)=>{this.invoice(row)});
         },
 
     };
@@ -489,6 +486,9 @@
         .active {
             border-bottom: 2px solid #32a778;
         }
+        /*@media (max-width: 600px) {
+            overflow: scroll;
+        }*/
 
     }
 

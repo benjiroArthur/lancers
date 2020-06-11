@@ -131,6 +131,17 @@ class ClientDashController extends Controller
             return response()->json($clientProjects);
     }
 
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * */
+    public function awaitingPaymentProjects() {
+        $client = auth()->user()->userable;
+        $clientProjects = $client->projects()->where('status', 'accepted')->get();
+        return response()->json($clientProjects);
+    }
+
     /**
      *
      *
