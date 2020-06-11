@@ -56,6 +56,7 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::get('/freelancer/recent-project/{id}', 'FreelancerDashController@recentProject');
     Route::get('/freelancer/applied/{id}', 'FreelancerDashController@jobApplied');
     Route::get('/freelancer/browse-jobs', 'FreelancerDashController@jobs');
+    Route::get('/freelancer/submit-jobs', 'FreelancerDashController@submit');
     Route::get('/client/completed-projects/{id}', 'ClientDashController@completed');
     Route::get('/client/in-progress/{id}', 'ClientDashController@progress');
     Route::get('/client/not-completed/{id}', 'ClientDashController@yet');
@@ -67,6 +68,7 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::get('/client/applications/{id}', 'ClientDashController@jobApplication');
     Route::get('/client/latest-project', 'ClientDashController@getLatestProject');
     Route::post('/client/post-project', 'ClientDashController@projectPostProject');
+    Route::post('/client/accept-job', 'ClientDashController@acceptJob');
     Route::get('/job-type', 'ClientDashController@getJobTypes');
     Route::get('/latest-projects', 'ProjectController@latestProjects');
     Route::get('/available-projects', 'ProjectController@availableProjects');
@@ -76,6 +78,8 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::post('/user/job_link', 'ProfileController@addLinks');
     Route::post('/user/job_link/edit/{id}', 'ProfileController@editLink');
     Route::post('/user/address', 'ProfileController@address');
+
+
 
 
     // routes for deletion for clients
@@ -89,7 +93,7 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::get('/admin/getLancers', 'AdminController@getLancers');
     Route::get('/admin/getAdmins', 'AdminController@getAdmins');
     Route::resource('/admin/user', 'UserController');
-    
+
     Route::get('/stats', 'AdminController@getStats');
 
     Route::get('/client/invoice', 'ClientDashController@getInvoiceDetails');
