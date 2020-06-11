@@ -93,7 +93,6 @@
             </div>
         </div>
     </div>
-    </div>
 </template>
 
 <script>
@@ -144,7 +143,7 @@
 
 <style scoped>
     .container{
-        background: grey !important;
+        /*background: grey !important;*/
         margin-top: 120px !important;
         margin-bottom: 120px !important;
     }

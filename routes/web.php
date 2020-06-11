@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +46,7 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::resource('/job-category', 'JobCategoryController');
 
     Route::get('/completed-projects', 'FreelancerDashController@completed');
-    Route::get('/in-progress', 'FreelancerDasController@progress');
+    Route::get('/in-progress', 'FreelancerDashController@progress');
     Route::get('/not-completed', 'FreelancerDashController@yet');
     Route::get('/job-offered', 'FreelancerDashController@all');
     Route::get('/freelancer/completed-projects/{id}', 'FreelancerDashController@completed');
@@ -120,9 +121,7 @@ Route::get('/browse/post-jobs', 'PagesController@postJobs')->name('browse-post-j
 // routes for messaging
 
 Route::resource('/chat', 'ChatController')->middleware('auth');
-
-
-
+Route::resource('/payment', 'PaymentController')->middleware('auth');
 
 
 
