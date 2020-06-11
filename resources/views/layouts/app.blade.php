@@ -71,7 +71,7 @@
                                        <i class="fas fa-comments text-dark h4"></i> Messages
                                    </a>
                                </li>
-                               <update></update>
+                               {{--<update></update>--}}
                            @endauth
                        </ul>
 
@@ -112,14 +112,9 @@
                                        <ul class="text-dark text-left">
                                            <li class="nav-item my-nav-link">
                                                <a href="{{url('/profile')}}" class="dropdown-item nav-link  text-dark"><i class="fas fa-user"></i> Profile</a>
-                                           </li>
-                                           <li class="nav-item my-nav-link">
-                                               <a href="#" class="dropdown-item nav-link  text-dark"><i class="fas fa-user-cog"></i> User Settings</a>
-                                           </li>
 
-                                           <li class="nav-item text-dark my-nav-link">
-                                               <a href="#" class="dropdown-item nav-link  text-dark"><i class="fas fa-headset"></i> Get Support</a>
-                                           </li>
+
+
                                            <li class="nav-item text-dark my-nav-link">
                                                <a class="dropdown-item nav-link text-left text-dark" href="{{ route('logout') }}"
                                                   onclick="event.preventDefault();

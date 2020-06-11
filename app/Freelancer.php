@@ -24,7 +24,7 @@ class Freelancer extends Model
         return $this->first_name.' '.$this->last_name;
     }
 
-    public function project_apply(){
+    public function projectApplication(){
         return $this->hasMany(ProjectApplication::class);
     }
     public function jobOffered(){

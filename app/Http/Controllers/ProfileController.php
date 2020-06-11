@@ -81,7 +81,7 @@ class ProfileController extends Controller
 
             //resize image
             $image = Image::make($image_file->getRealPath())->fit(400,300)->encode();
-            $image->save(asset('images/users/'), $imageNameToStore);
+            //$image->save(asset('images/users/'), $imageNameToStore);
 
           if($oldImage !== 'noimage.jpg'){
               if(Storage::disk('profile-picture')->exists($oldImage)){

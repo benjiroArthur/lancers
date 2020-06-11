@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +46,7 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::resource('/job-category', 'JobCategoryController');
 
     Route::get('/completed-projects', 'FreelancerDashController@completed');
-    Route::get('/in-progress', 'FreelancerDasController@progress');
+    Route::get('/in-progress', 'FreelancerDashController@progress');
     Route::get('/not-completed', 'FreelancerDashController@yet');
     Route::get('/job-offered', 'FreelancerDashController@all');
     Route::get('/freelancer/completed-projects/{id}', 'FreelancerDashController@completed');
@@ -60,7 +61,9 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
 
     Route::get('/freelancer/awarded-jobs', 'FreelancerDashController@jobAwarded');
     Route::get('/freelancer/jobs-waiting-payment', 'FreelancerDashController@jobAwaitingPayment');
+    Route::get('/get/client/{id}', 'FreelancerDashController@getClient');
     Route::post('/freelancer/accept-jobs', 'FreelancerDashController@acceptProject');
+    Route::post('/freelancer/reject-project', 'FreelancerDashController@rejectProject');
 
 
     Route::get('/client/completed-projects/{id}', 'ClientDashController@completed');
@@ -76,6 +79,7 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::post('/client/award-project', 'ClientDashController@awardJob');
     Route::post('/client/post-project', 'ClientDashController@projectPostProject');
     Route::post('/client/accept-job', 'ClientDashController@acceptJob');
+    Route::get('/client/awaitingPaymentProjects', 'ClientDashController@awaitingPaymentProjects');
     Route::get('/job-type', 'ClientDashController@getJobTypes');
 
 
@@ -124,9 +128,7 @@ Route::get('/browse/post-jobs', 'PagesController@postJobs')->name('browse-post-j
 // routes for messaging
 
 Route::resource('/chat', 'ChatController')->middleware('auth');
-
-
-
+Route::resource('/payment', 'PaymentController')->middleware('auth');
 
 
 

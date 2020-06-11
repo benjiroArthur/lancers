@@ -9,12 +9,13 @@
                                 <img :src="this.resourcePath+'/lancers_logo.png'" width="auto" height="50" alt="" loading="lazy">
                             </div>
 
-                                <button class="myPrint" @click="print"><i class="fas fa-print"></i> Print Invoice</button>
+
 
                             <div class="col-md-6 text-right">
                                 <p class="font-weight-bold mb-1">Invoice #550</p>
                                 <p class="text-muted">Due to: 4 Dec, 2019</p>
                             </div>
+                            <button class="myPrint text-right" @click="print"><i class="fas fa-print"></i> Print Invoice</button>
                         </div>
 
                         <hr class="my-5">
@@ -93,7 +94,6 @@
             </div>
         </div>
     </div>
-    </div>
 </template>
 
 <script>
@@ -102,7 +102,11 @@
     export default {
         name: "Invoice",
         components: {BootstrapTable},
-        props: {resourcePath:{type: String}},
+        props: {
+            resourcePath:{type: String},
+            selectedProject: {},
+            client: {},
+        },
         data() {
             return {
                 myOptions: {
@@ -144,7 +148,7 @@
 
 <style scoped>
     .container{
-        background: grey !important;
+        /*background: grey !important;*/
         margin-top: 120px !important;
         margin-bottom: 120px !important;
     }

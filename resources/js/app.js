@@ -9,8 +9,8 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import Vue from 'vue';
-import VueHtmlToPaper from 'vue-html-to-paper';
 
+import VueHtmlToPaper from 'vue-html-to-paper';
 const options = {
     name: '_blank',
     specs: [
@@ -27,6 +27,23 @@ const options = {
 }
 
 Vue.use(VueHtmlToPaper, options);
+
+/*import VueStripeCheckout from 'vue-stripe-checkout';
+
+// base/global options
+// these options can be overridden
+// by the options in the .open(options)
+// function.
+const myOptions = {
+    key: 'your-publishable-key',
+    image: 'https://cdn.meme.am/images/100x100/15882140.jpg',
+    locale: 'auto',
+    currency: 'PHP',
+    billingAddress: true,
+    panelLabel: 'Subscribe {{amount}}'
+}
+
+Vue.use(VueStripeCheckout, myOptions);*/
 
 import Slick from 'vue-slick';
 import Vuetify from 'vuetify';
@@ -236,6 +253,7 @@ Vue.component('unappliedjobs-table', require('./components/ProjectManager/Client
 Vue.component('client-inprogress-table', require('./components/ProjectManager/ClientTables/ClientInProgressTable.vue').default);
 Vue.component('project-application-table', require('./components/ProjectManager/ClientTables/ProjectApplicationTable.vue').default);
 Vue.component('applied-jobs', require('./components/ProjectManager/ClientTables/AppliedTable.vue').default);
+Vue.component('awaitpayment-table', require('./components/ProjectManager/ClientTables/AwaitingPaymentTable.vue').default);
 
 Vue.component('lancer-allprojects-table', require('./components/Freelancer/FreelancerTables/LancerAllProjectsTable').default);
 Vue.component('lancer-completed-table', require('./components/Freelancer/FreelancerTables/LancerCompletedTable.vue').default);
@@ -245,6 +263,7 @@ Vue.component('lancer-awarded-table', require('./components/Freelancer/Freelance
 Vue.component('lancer-awaitpayment-table', require('./components/Freelancer/FreelancerTables/LancerAwaitingPaymentTable.vue').default);
 Vue.component('invoice', require('./components/Resources/Invoice.vue').default);
 Vue.component('new-invoice', require('./components/Resources/NewInvoice.vue').default);
+Vue.component('payout', require('./components/Resources/Payment.vue').default);
 
 
 

@@ -21,6 +21,11 @@ class PagesController extends Controller
         return view('Pages.browse_jobs');
     }
 
+    //payment
+    public function paymentDetails(){
+        return view('Pages.checkout');
+    }
+
     //post jobs
     public function postJobs(){
       if(Auth::user()->role->name === 'client') {

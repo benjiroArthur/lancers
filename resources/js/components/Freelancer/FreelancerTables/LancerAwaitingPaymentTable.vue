@@ -48,11 +48,11 @@
                         },
                         formatter: function (e, value, row) {
 
-                            return '<a class="btn btn-sm show bg-lancer" data-toggle="modal" data-target="#">Decline</a>'
+                            return '<a class="btn btn-sm show bg-lancer text-white" data-toggle="modal" data-target="#">Decline</a>'
                         },
                         events: {
                             'click .show': function (e, value, row) {
-                                Fire.$emit('viewSingleProject', row);
+                                Fire.$emit('declineJob', row);
 
                             },
                             'click .edit': function (e, value, row) {
