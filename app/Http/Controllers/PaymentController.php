@@ -36,6 +36,12 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
+        $project = Project::find($request->project_id);
+        $jobOff = JobOffered::where('project_id', $request->project_id);
+        $project->update([
+            'status' => 'in progress'
+        ]);
+        $jobOff->update(['status' => 'in progress']);
         return redirect('/home')->with('success', 'Payment processed succesfully');
         /*$project = Project::find($request->project_id);
         $amount = $project->project_cost;

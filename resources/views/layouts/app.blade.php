@@ -169,8 +169,8 @@
         $(document).ready(function(){
             setTimeout(function()
             {
-                $('.alert').fadeOut('fast');
-            },500);
+                $('.alert').fadeOut('slow');
+            },5000);
         });
     </script>
 </body>

@@ -16,8 +16,9 @@
                             <img class="img-responsive cc-img" src="{{url('/images/lancers_logo.png')}}" width="150px">
                         </div>
                     </div>
+                    <form class="form-horizontal" method="POST" id="payment-form" role="form" action="{{url('/payment')}}">
                     <div class="card-body justify-content-center">
-                        <form class="form-horizontal" method="POST" id="payment-form" role="form" action="{{url('/payment')}}">
+
                             {{ csrf_field() }}
                             <input name="project_id" type="text" hidden="hidden" value="{{$project->id}}">
                             <div class="row">
@@ -25,7 +26,7 @@
                                     <div class="form-group">
                                         <label>CARD NUMBER</label>
                                         <div class="input-group">
-                                            <input name="card_number" type="tel" class="form-control" placeholder="Valid Card Number" required/><br>
+                                            <input maxlength="16" minlength="16" name="card_number" type="tel" class="form-control" placeholder="Valid Card Number" required/><br>
                                             {{--<span class="input-group-addon"><span class="fa fa-credit-card"></span></span>--}}
                                         </div>
                                     </div>
@@ -34,14 +35,14 @@
                             <div class="row justify-content-center">
                                 <div class="col-xs-7 col-md-7">
                                     <div class="form-group">
-                                        <label><span class="hidden-xs">EXPIRATION</span><span class="visible-xs-inline">EXP</span> DATE</label>
+                                        <label><span class="hidden-xs">EXPIRATION</span> DATE</label>
                                         <input type="tel" class="form-control" placeholder="MM / YY" required/>
                                     </div>
                                 </div>
                                 <div class="col-xs-5 col-md-5 pull-right">
                                     <div class="form-group">
                                         <label>CV CODE</label>
-                                        <input type="tel" class="form-control" placeholder="CVC" required/>
+                                        <input type="tel" class="form-control" placeholder="CVC" required maxlength="3" min="3"/>
                                     </div>
                                 </div>
                             </div>
@@ -49,7 +50,7 @@
                                 <div class="col-xs-12 col-12">
                                     <div class="form-group">
                                         <label>CARD OWNER</label>
-                                        <input type="text" class="form-control" placeholder="Card Owner Names" required/>
+                                        <input readonly type="text" class="form-control" placeholder="Card Owner Names" required value="{{$project->client->full_name}}"/>
                                     </div>
                                 </div>
                             </div>
