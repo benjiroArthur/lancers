@@ -77,7 +77,7 @@
             <div class="col-md-3">
                 <div class="card text-center">
                     <div class="card-image m-3 img-fluid cat-card">
-                        <img :src="resource_path+'/do_it_your_self/bootstrap.jpg'" alt="Image" class="img-fluid">
+                        <img :src="resource_path+'/do_it_your_self/data-entry.jpg'" alt="Image" class="img-fluid">
                     </div>
                     <div class="card-title mt-3">Data Entry</div>
                     <div class="card-body">
