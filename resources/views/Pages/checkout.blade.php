@@ -74,5 +74,18 @@
 
 </div>
 
+
+<form action="{{url('/payment')}}" method="POST">
+    <script
+        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="pk_test_51GsHjkGNuu2KMujroGyXVUFkk9o2uq4RQton08NoG6PNShAt5Cv7MaI12g5oSlywfbcaulw2AJpznmSjnR33OvwD005D6hk0Qt"
+        data-amount="{{($project->project_cost) + ((12/100)*$project->project_cost)}}"
+        data-name="Lancers"
+        data-description="Make payment to Lancers Escrow account"
+        data-image="{{url('/images/lancers_logo.png')}}"
+        data-locale="auto">
+    </script>
+</form>
+
 @endsection
 
