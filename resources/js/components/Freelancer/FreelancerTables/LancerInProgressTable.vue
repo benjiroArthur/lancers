@@ -7,7 +7,7 @@
 
             <div class="col-12 table-responsive">
                 <div class="card-body table table-responsive table-borderless p-0">
-                    <bootstrap-table :data="inProgressProjects" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/>
+                    <bootstrap-table :data="inProgressProjects" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/
                 </div>
             </div>
         </div>
