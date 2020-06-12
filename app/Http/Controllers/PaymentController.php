@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\JobOffered;
 use App\Project;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,13 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect('/home')->with('success', 'Payment processed succesfully');
+        /*$project = Project::find($request->project_id);
+        $amount = $project->project_cost;
+        $vat = (12/100)*$amount;
+        $amount = $amount + $vat;
+        $job_offd = JobOffered::where('project_id', $request->project_id)->first();*/
+
     }
 
     /**
