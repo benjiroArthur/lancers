@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\JobOffered;
 use App\Project;
+//use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Illuminate\Http\Request;
+use Stripe\Stripe;
 
 class PaymentController extends Controller
 {
@@ -36,6 +38,8 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
+        Stripe::setApiKey(env(STRIPE_KEY));
+
         $project = Project::find($request->project_id);
         $jobOff = JobOffered::where('project_id', $request->project_id);
         $project->update([
