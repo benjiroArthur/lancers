@@ -83,10 +83,12 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::post('/client/accept-job', 'ClientDashController@acceptJob');
     Route::get('/client/awaitingPaymentProjects', 'ClientDashController@awaitingPaymentProjects');
     Route::get('/job-type', 'ClientDashController@getJobTypes');
+    Route::post('/client/add-file', 'ClientDashController@addProjectFiles');
 
 
     Route::get('/latest-projects', 'ProjectController@latestProjects');
     Route::get('/available-projects', 'ProjectController@availableProjects');
+    Route::get('/download-files/{id}', 'ProjectController@downloadProjectFiles');
 
     Route::post('/user/profile', 'ProfileController@profile');
     Route::post('/user/profile_picture', 'ProfileController@profilePicture');

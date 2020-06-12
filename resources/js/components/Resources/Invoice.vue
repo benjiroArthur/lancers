@@ -1,21 +1,26 @@
 <template>
     <div id="print-invoice" class="container">
-        <div class="row">
+        <div v-if="selectedProject" class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body p-0">
+                        <div class="card-header bg-transparent">
+                            <div class="card-tools">
+                                <button class="myPrint text-right " @click="print"><i class="fas fa-print"></i> Print Invoice</button>
+                            </div>
+                        </div>
                         <div class="row p-5">
                             <div class="card-image text-center">
-                                <img :src="this.resourcePath+'/lancers_logo.png'" width="auto" height="50" alt="" loading="lazy">
+                                <img :src="resourcePath+'/lancers_logo.png'" width="auto" height="50" alt="" loading="lazy">
                             </div>
 
 
 
                             <div class="col-md-6 text-right">
-                                <p class="font-weight-bold mb-1">Invoice #550</p>
-                                <p class="text-muted">Due to: 4 Dec, 2019</p>
+                                <p class="font-weight-bold mb-1">Invoice #0{{selectedProject.id}}{{client.id}}</p>
+                                <p class="text-muted">{{this.today}}</p>
                             </div>
-                            <button class="myPrint text-right" @click="print"><i class="fas fa-print"></i> Print Invoice</button>
+
                         </div>
 
                         <hr class="my-5">
@@ -23,10 +28,8 @@
                         <div class="row pb-5 p-5">
                             <div class="col-md-6">
                                 <p class="font-weight-bold mb-4">Client Information</p>
-                                <p class="mb-1">John Doe, Mrs Emma Downson</p>
-                                <p>Acme Inc</p>
-                                <p class="mb-1">Berlin, Germany</p>
-                                <p class="mb-1">6781 45P</p>
+                                <p class="mb-1">{{client.full_name}}</p>
+                                <p class="mb-1">{{userAddress.city}}, {{userAddress.country}}</p>
                             </div>
 
                             <div class="col-md-6 text-right">
@@ -34,7 +37,7 @@
                                 <p class="mb-1"><span class="text-muted">VAT: </span> 1425782</p>
                                 <p class="mb-1"><span class="text-muted">VAT ID: </span> 10253642</p>
                                 <p class="mb-1"><span class="text-muted">Payment Type: </span> Root</p>
-                                <p class="mb-1"><span class="text-muted">Name: </span> John Doe</p>
+                                <p class="mb-1"><span class="text-muted">Name: </span> {{client.full_name}}</p>
                             </div>
                         </div>
 
@@ -56,17 +59,8 @@
                                     </thead>
                                     <tbody>
                                     <tr>
-
-                                        <td>LTS Versions</td>
-                                        <td>$3452</td>
-                                    </tr>
-                                    <tr>
-                                        <td>LTS Versions</td>
-                                        <td>$3452</td>
-                                    </tr>
-                                    <tr>
-                                        <td>LTS Versions</td>
-                                        <td>$3452</td>
+                                        <td>{{selectedProject.project_title}}</td>
+                                        <td>${{selectedProject.project_cost}}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -106,6 +100,7 @@
             resourcePath:{type: String},
             selectedProject: {},
             client: {},
+            userAddress: {},
         },
         data() {
             return {
@@ -114,6 +109,7 @@
                     clickToSelect: false,
                     selectItemName: 'id',
                     index: true,
+                    today:'',
 
                 },
                 myColumns: [
@@ -126,13 +122,13 @@
             };
         },
         methods:{
-            getClients(){
+           /* getClients(){
                 axios.get('/data/admin/getClients')
                     .then((response)=>{
                         this.invoice = response.data;
                     })
                     .catch()
-            },
+            },*/
             print () {
                 // Pass the element id here
                 $('.myPrint').addClass('d-none');
@@ -141,7 +137,8 @@
             }
         },
         mounted() {
-            this.getClients();
+            //this.getClients();
+            this.today = new Date();
         },
     }
 </script >

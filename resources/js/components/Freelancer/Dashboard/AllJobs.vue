@@ -223,6 +223,45 @@
                 });
             },
 
+            download(id){
+                let filename = 'projectFiles.zip';
+                axios.get('/data/download-files/'+id, {responseType: 'blob'})
+                    .then(response => {
+                       if(response.data !== 'no file'){
+                           this.downloadFile(response, filename);
+                       }
+                       else{
+                           Swal.fire(
+                               'Error',
+                               'No Files Available',
+                               'warning'
+                           );
+                       }
+                        //console.log(response);
+                    }).catch(error => {
+                    this.loading = false;
+                    this.error = error.response.data.message || error.message;
+                });
+            },
+            downloadFile(response, filename) {
+                // It is necessary to create a new blob object with mime-type explicitly set
+                // otherwise only Chrome works like it should
+                var newBlob = new Blob([response.data]);
+                // IE doesn't allow using a blob object directly as link href
+                // instead it is necessary to use msSaveOrOpenBlob
+                if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+                    window.navigator.msSaveOrOpenBlob(newBlob);
+                    return;
+                }
+                // For other browsers:
+                // Create a link pointing to the ObjectURL containing the blob.
+                const data = window.URL.createObjectURL(newBlob);
+                var link = document.createElement('a');
+                link.href = data;
+                link.download = filename;
+                link.click();
+            },
+
         },
         mounted() {
             this. getInProgressProjects();
@@ -243,6 +282,9 @@
 
             Fire.$on('declineJob', (row)=>{
                 this.declineJob(row);
+            });
+            Fire.$on('downloadFiles', (row)=>{
+                this.download(row.project.id);
             });
             Fire.$on('jobUpdate', ()=>{
                 this. getInProgressProjects();

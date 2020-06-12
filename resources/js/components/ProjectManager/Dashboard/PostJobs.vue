@@ -177,18 +177,20 @@
                 </div>
             </div>
         </div>
+
+        <!--invoice modal-->
         <div class="modal fade" id="invoiceModal" tabindex="-1" role="dialog" aria-labelledby="invoiceModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                         <div class="modal-body">
-                            <invoice :resourcePath="this.$parent.resource_path" :project="this.selectedProject" :client="this.auth_user"></invoice>
+                            <invoice :userAddress="this.userAddress" :resourcePath="this.$parent.resource_path" :project="this.selectedProject" :client="this.auth_user"></invoice>
                         </div>
                 </div>
             </div>
         </div>
         <!--<new-invoice :resourcePath="this.$parent.resource_path"></new-invoice>-->
-        <invoice :resourcePath="this.$parent.resource_path"></invoice>
-        <payout></payout>
+       <!-- <invoice :resourcePath="this.$parent.resource_path"></invoice>
+        <payout></payout>-->
 
     </div>
 </template>
@@ -216,6 +218,7 @@
                 freelancerLinks: {},
                 categories:{},
                 jobType:{},
+                userAddress:{},
                 awaitingPayment: {},
                 jobForm: new Form({
                     project_title:'',
@@ -288,6 +291,7 @@
                     .then((response) => {
                         let user = response.data;
                         this.auth_user = user.userable;
+                        this.userAddress = user.address;
                     })
             },
             initiatePost(){

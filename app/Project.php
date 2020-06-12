@@ -54,7 +54,7 @@ class Project extends Model
     }
 
     public function projectFiles(){
-        return $this->hasMany(ProjectFile::class);
+        return $this->hasOne(ProjectFile::class);
     }
 
 }

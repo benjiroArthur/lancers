@@ -48,8 +48,8 @@
                          },
                          formatter: function (e, value, row) {
 
-                             return ' <a class="btn btn-sm show bg-lancer text-white" data-toggle="modal" data-target="#">Make Payment</a> '+
-                             ' <a class="btn btn-sm edit bg-lancer text-white" data-toggle="modal" data-target="#">Invoice</a> '
+                             return ' <a class="btn btn-sm show bg-lancer text-white" data-toggle="modal" data-target="#">Make Payment</a> '
+                             /*' <a class="btn btn-sm edit bg-lancer text-white" data-toggle="modal" data-target="#">Invoice</a> '*/
                          },
                          events: {
                              'click .show': function (e, value, row) {

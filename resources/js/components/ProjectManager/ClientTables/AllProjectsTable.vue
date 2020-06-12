@@ -11,6 +11,28 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="addFileModal" tabindex="-1" role="dialog" aria-labelledby="addFileModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="profileModalLabel">Add Project Files</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <input type="file" ref="file" accept="application/zip" @change="loadFile($event)" name="file">
+                        <span class="text-danger"> *Accept Zip Files Only</span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" @click="uploadFile" class="btn btn-outline-success">Save</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
     </div>
 </template>
@@ -25,6 +47,8 @@
         },
         data() {
             return {
+                project: {},
+                file: null,
                 myOptions: {
                     search: true,
                     pagination: true,
@@ -39,7 +63,7 @@
                     {field: 'project_cost', title: 'Project Cost'},
                     {field: 'description', title: 'Project Description'},
                     {field: 'status', title: 'Project Status'},
-                   /* {
+                    {
                         field: 'action',
                         title: 'Action',
                         align: 'center',
@@ -48,13 +72,11 @@
                         },
                         formatter: function (e, value, row) {
 
-                            return ' <a class="btn btn-sm show " data-toggle="modal" data-target="#"><i class="fas fa-check text-success"></i></a> ' +
-                                ' <a class="btn btn-sm edit " data-toggle="modal" data-target="#"><i class="fas fa-edit text-warning"></i></a> ' +
-                                ' <a class="btn btn-sm delete " data-toggle="modal" data-target="#"><i class="fas fa-trash text-danger"></i></a> '
+                            return ' <a class="btn btn-sm show bg-lancer text-white" data-toggle="modal" data-target="#">Add Project Files</a> '
                         },
                         events: {
                             'click .show': function (e, value, row) {
-                                Fire.$emit('viewSingleProject', row);
+                                Fire.$emit('addFiles', row);
 
                             },
                             'click .edit': function (e, value, row) {
@@ -100,13 +122,49 @@
                                 });
                             },
                         }
-                    }*/
+                    }
                 ],
 
             };
         },
-        methods: {},
+        methods: {
+            openFileModal(row){
+                this.project = row;
+                $('#addFileModal').modal('show');
+            },
+            loadFile(e){
+                this.file = e.target.files[0];
+            },
+            uploadFile(){
+                let formData = new FormData();
+                formData.append('project_id', this.project.id);
+                formData.append('file', this.file);
+
+                axios.post( '/data/client/add-file',
+                    formData,
+                    {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    },
+                    this.$Progress.start()
+                ).then((response)=>{
+                    if(response.data === 'success'){
+                        $('#addFileModal').modal('hide');
+                        Swal.fire(
+                            'success',
+                            'Files Uploaded Successfully',
+                            'success'
+                        );
+                        this.$Progress.finish();
+                    }
+                }).catch((error)=>{console.log(error.message)})
+            },
+        },
         mounted() {
+            Fire.$on('addFiles', (row)=>{
+                this.openFileModal(row);
+            });
         },
     }
 </script>

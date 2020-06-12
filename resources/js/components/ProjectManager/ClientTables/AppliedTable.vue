@@ -22,10 +22,7 @@
             name: "AppliedJobsTable",
             components: {BootstrapTable},
             props:{
-                appliedJobs: {
-                    type: Object,
-                    default: {}
-                },
+                appliedJobs: {},
             },
             data() {
                 return {

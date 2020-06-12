@@ -14,7 +14,25 @@
                             </div>
 
                             <div class="card-body text-center">
-                               <div class="mt-2 ml-5 pr-2">
+                                <div v-if="recentProjects.length > 0">
+                                    <div v-for="(project, i) in recentProjects" :key="i" class="col-12">
+                                        <div class="card m-0">
+                                            <div class="card-body m-0 p-1">
+                                                <div class="row">
+                                                    <div class="col-9">
+                                                        <h6 class="m-0">{{project.project_title}}</h6>
+                                                        <small class="p00 m-0">{{project.description}}</small><br>
+                                                    </div>
+                                                    <div class="col-3 text-right">
+                                                        <small class="p00 m-0">$ {{project.project_cost}}.00</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                               <div v-else class="mt-2 ml-5 pr-2">
                                    <i class="fas fa-clipboard-list pro-list-icon text-lancer"></i>
                                    <p>Start bidding now on projects that meet your skills</p>
                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -92,8 +110,8 @@
                             <div class="card-header bg-lancer text-white text-bold">
                                 <div class="card-title text-wrap">
                                     <p>Welcome Back</p>
-                                    <p v-if="freelancer.userable.full_name !== null">{{this.freelancer.userable.full_name}}</p>
-                                    <p>{{this.freelancer.email}}</p>
+                                    <p class="text-wrap" v-if="freelancer.userable.full_name !== null">{{this.freelancer.userable.full_name}}</p>
+                                    <p class="text-wrap">{{this.freelancer.email}}</p>
                                 </div>
                                 <div class="card-tools"></div>
                             </div>
@@ -110,7 +128,7 @@
                     <div class="col-md-12">
                         <div class="card shadow">
                             <div class="card-header">
-                                <div class="card-title"></div>
+                                <div class="card-title">Advertisement</div>
                                 <div class="card-tools"></div>
                             </div>
 

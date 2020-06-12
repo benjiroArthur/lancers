@@ -73,8 +73,8 @@ class FreelancerDashController extends Controller
      * */
     public function recentProject($id) {
         $freelance = User::findOrFail($id)->userable;
-        $projects = $freelance->jobOffered()->with('project')->latest()->limit(3)->get();
-
+        //$projects = $freelance->jobOffered()->with('project')->latest()->limit(3)->get();
+        $projects = Project::latest()->limit(3)->get();
         return response()->json($projects);
     }
 
