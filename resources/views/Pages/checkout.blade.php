@@ -7,7 +7,19 @@
     <!-- Credit Card Payment Form - START -->
 
     <div class="container">
-        <div class="row justify-content-center">
+        <form method="POST" id="payment-form" role="form" action="{{url('/payment')}}">
+            {{ csrf_field() }}
+            <script
+                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="pk_test_51Gsp1YHwY27JJuNij8V9ZALfUO1U3TOVNTJvFWmXv0JtamV4VXo1FzhTvp0zqOLez4GGPVRCLd59tGVxmMiA49Lh00lT75itjZ"
+                data-amount="100"
+                data-name="Adwumafie Payment"
+                data-description="Make payment to adwumafie Escrow account"
+                data-image="http://localhost/adwumafieWeb/vendors/img/adwumafie-stripe.png"
+                data-locale="auto">
+            </script>
+        </form>
+        {{--<div class="row justify-content-center">
             <div class="col-xs-12 col-md-4 justify-content-center">
                 <div class="card">
                     <div class="card-header bg-transparent">
@@ -27,7 +39,7 @@
                                         <label>CARD NUMBER</label>
                                         <div class="input-group">
                                             <input maxlength="16" minlength="16" name="card_number" type="tel" class="form-control" placeholder="Valid Card Number" required/><br>
-                                            {{--<span class="input-group-addon"><span class="fa fa-credit-card"></span></span>--}}
+                                            --}}{{--<span class="input-group-addon"><span class="fa fa-credit-card"></span></span>--}}{{--
                                         </div>
                                     </div>
                                 </div>
@@ -67,7 +79,7 @@
                 </div>
 
             </div>
-        </div>
+        </div>--}}
     </div>
 
     <!-- Credit Card Payment Form - END -->

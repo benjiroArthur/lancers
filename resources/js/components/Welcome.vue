@@ -135,36 +135,29 @@
         <div class = "row">
             <div class = "col-md-4 text-center ">
                 <h2 class="text-dark"> <a class="align-center " ><i class="fas fa-images"></i> Browse Jobs</a></h2>
-                <p>Freelancers and potential clients have the luxury to skim through lots of available jobs to see which one will best fit their skills and needs respectively.
-                    Lancers has millions of jobs ready to be executed, jump right into it!</p>
+                <p>Freelancers and potential clients have the luxury to skim through lots of available jobs to see which one will best fit their skills and needs respectively.</p>
             </div>
             <div class = "col-md-4 text-center ">
                 <h2 class="text-dark" ><a class="align-center"><i class="fas fa-money-bill-alt"></i> Secure Payment</a></h2>
-                <p>Payment is secured and trustworthy. Clients can easily pay work done by Freelancers in a secured manner without having any issues.
-                    Freelancers are assured of getting paid after doing a good job</p>
+                <p>Payment is secured and trustworthy. Clients can easily pay work done by Freelancers in a secured manner without having any issues.</p>
             </div>
             <div class = "col-md-4 text-center ">
                 <h2 class="text-dark"><a class="align-center"><i class="fas fa-user-circle"></i> View Portfolios</a></h2>
-                <p>Lancers has the best professionals who can get your work done to the best capacity.
-                    Find professionals you can trust by browsing their samples of previous work and reading their profile reviews.</p>
+                <p>Lancers has the best professionals who can get your work done to the best capacity.</p>
             </div>
         </div>
         <div class = "row">
             <div class = "col-md-4 text-center ">
                 <h2 class="text-dark"><a class="align-center"><i class="fas fa-thumbtack"></i> Job Tracking</a></h2>
-                <p>Lancers believe in information and how the progress of each projects unfold. Clients get to see the progress of their projects as Freelancers are working on it.
-                    It creates an environment which makes client feel comfortable about getting their work done.</p>
+                <p>Lancers believe in information and how the progress of each project unfolds.</p>
             </div>
             <div class = "col-md-4 text-center ">
                 <h2 class="text-dark"><a class="align-center"><i class="fas fa-comments"></i> Live Chat</a></h2>
-                <p>Tracking of jobs doesn't end the process but rather initiates you into Live Chat.
-                    You can live chat with your freelancers to get constant updates on the progress of your work as well.
-                    Keep up-to-date with the progress of your work being done.</p>
+                <p>Tracking of jobs doesn't end the process but rather initiates you into Live Chat.</p>
             </div>
             <div class = "col-md-4 text-center ">
                 <h2 class="text-dark"><a class="align-center"><i class="fas fa-headset"></i> 24/7 Support</a></h2>
-                <p>Our support system is top-notch. We are available 24/7 to help users get their issues resolved.
-                    We have the best customer service out there. Don't hesitate to reach us for any kind of help as we are always on standby to help.</p>
+                <p>Our support system is top-notch. We are available 24/7 to help users get their issues resolved.</p>
             </div>
         </div>
         <hr>
@@ -190,11 +183,11 @@
         </div>
 
 
-        <h2 class="text-center mt-3 mb-3 text-bold text-dark">HOW TO GET STARTED</h2>
+       <!-- <h2 class="text-center mt-3 mb-3 text-bold text-dark">HOW TO GET STARTED</h2>
 
         <div class="row img-fluid justify-content-center ml-1">
-            <img :src="this.resource_path + '/howToGetStarted.gif'" alt="" class="img-fluid">
-        </div>
+            <img :src="this.resource_path + '/lancers.gif'" alt="" class="img-fluid">
+        </div>-->
 
 
 

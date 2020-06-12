@@ -35,7 +35,7 @@ Vue.use(VueHtmlToPaper, options);
 // by the options in the .open(options)
 // function.
 const myOptions = {
-    key: 'your-publishable-key',
+    key: 'pk_test_51Gsp1YHwY27JJuNij8V9ZALfUO1U3TOVNTJvFWmXv0JtamV4VXo1FzhTvp0zqOLez4GGPVRCLd59tGVxmMiA49Lh00lT75itjZ',
     image: 'https://cdn.meme.am/images/100x100/15882140.jpg',
     locale: 'auto',
     currency: 'PHP',
@@ -263,7 +263,7 @@ Vue.component('lancer-awarded-table', require('./components/Freelancer/Freelance
 Vue.component('lancer-awaitpayment-table', require('./components/Freelancer/FreelancerTables/LancerAwaitingPaymentTable.vue').default);
 Vue.component('invoice', require('./components/Resources/Invoice.vue').default);
 Vue.component('new-invoice', require('./components/Resources/NewInvoice.vue').default);
-Vue.component('payout', require('./components/Resources/Payment.vue').default);
+Vue.component('payout', require('./components/ProjectManager/Dashboard/Payment.vue').default);
 
 
 

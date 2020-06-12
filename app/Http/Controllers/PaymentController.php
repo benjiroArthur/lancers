@@ -41,6 +41,7 @@ class PaymentController extends Controller
         $project->update([
             'status' => 'in progress'
         ]);
+
         $jobOff->update(['status' => 'in progress']);
         return redirect('/home')->with('success', 'Payment processed succesfully');
         /*$project = Project::find($request->project_id);
