@@ -60,7 +60,7 @@
 
                             },
                             'click .destroy': function (e, value, row) {
-                                swal.fire({
+                                /*swal.fire({
                                     title: 'Are you sure?',
                                     text: "You won't be able to revert this!",
                                     icon: 'warning',
@@ -95,7 +95,7 @@
                                         });
                                     }
 
-                                });
+                                });*/
                             },
                         }
                     }
@@ -110,7 +110,7 @@
 
         },
         mounted() {
-            Fire.$on('ProjectDetails', row);
+            /*Fire.$on('ProjectDetails', row);*/
         },
     }
 </script>

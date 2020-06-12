@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\JobType;
 use App\Project;
 use App\JobOffered;
+use App\ProjectApplication;
 use App\User;
 use http\Client;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Storage;
 
 
 class ClientDashController extends Controller
@@ -131,6 +133,17 @@ class ClientDashController extends Controller
             return response()->json($clientProjects);
     }
 
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     * */
+    public function awaitingPaymentProjects() {
+        $client = auth()->user()->userable;
+        $clientProjects = $client->projects()->where('status', 'accepted')->get();
+        return response()->json($clientProjects);
+    }
+
     /**
      *
      *
@@ -161,23 +174,28 @@ class ClientDashController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function addProjectFiles(Request $request, $id) {
+    public function addProjectFiles(Request $request) {
 
         $this->validate($request, [
             'file' => 'required|mimes:zip,rar'
         ]);
-        $file = $request->file('file');
-        $extension = $file->getClientOriginalExtension();
-        $fileName = time().'.'.$extension;
-        $project = Project::find($id);
+        if($request->hasFile('file')){
+            $file = $request->file('file');
+            $extension = $file->getClientOriginalExtension();
+            $fileName = time().'.'.$extension;
+            Storage::disk('project-files')->putFile($fileName, $file);
+            $project = Project::find($request->project_id);
+            $project->projectFiles()->create([
+                'name' => $fileName,
+            ]);
+            return response('success');
+        }
 
 
-
-
-        return response()->json($project);
+        return response('No file selected');
 
     }
 
@@ -232,6 +250,15 @@ class ClientDashController extends Controller
     public function getInvoiceDetails($id){
         $invoice = JobOffered::where('project_id', $id)->with('freelancer', 'project')->first();
         return response()->json($invoice);
+
+    }
+
+    public function acceptJob(Request $request) {
+        $user = auth()->user();
+        $project = Project::find($request->project_id);
+        $project->update('status', 'accepted');
+
+        return response('success');
 
     }
 }

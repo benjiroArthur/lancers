@@ -6,6 +6,8 @@ use App\JobType;
 use App\JobCategory;
 use App\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use ZipArchive;
 
 class ProjectController extends Controller
 {
@@ -145,6 +147,14 @@ class ProjectController extends Controller
     public function availableProjects(){
         $projects = \App\Project::with('jobType')->whereDoesntHave('jobOffered')->latest()->get();
         return response()->json($projects);
+    }
+
+    public function downloadProjectFiles($id){
+        $project = Project::find($id);
+        $files = $project->projectFiles;
+        $file_path = public_path('/project_files/'.$files->name);
+        $fileName = $files->name;
+        return response()->download($file_path, $fileName, ['Content-Type: application/zip']);
     }
 
 }

@@ -27,7 +27,8 @@
         "mpociot/laravel-apidoc-generator": "^4.8",
         "pusher/pusher-php-server": "^4.1",
         "spatie/laravel-permission": "^3.13",
-        "stripe/stripe-php": "^7.37"
+        "stripe/stripe-php": "^7.37",
+      "ext-zip": "*"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.7",

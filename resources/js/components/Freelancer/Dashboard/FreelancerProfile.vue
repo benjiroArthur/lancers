@@ -22,6 +22,8 @@
                                         <div v-if="this.portfolio != null" class="card-body text-left">
                                             <p>{{this.portfolio.title}}</p>
                                             <p>{{this.portfolio.description}}</p>
+                                            <p>{{this.portfolio.academic}}</p>
+
                                         </div>
                                     </div>
                                 </div>
@@ -53,6 +55,11 @@
                                                     <input v-model="portfolioForm.title" type="text" name="title" placeholder="Professional Title"
                                                            class="form-control" :class="{ 'is-invalid': portfolioForm.errors.has('title') }">
                                                     <has-error :form="portfolioForm" field="title"></has-error>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input v-model="portfolioForm.academic" type="text" name="academic" placeholder="Current Qualification"
+                                                           class="form-control" :class="{ 'is-invalid': portfolioForm.errors.has('academic') }">
+                                                    <has-error :form="portfolioForm" field="academic"></has-error>
                                                 </div>
                                                 <div class="form-group">
                                                     <textarea v-model="portfolioForm.description" type="text" name="description" rows="5" placeholder="Summary"
@@ -398,7 +405,8 @@
                 portfolio:{},
                 portfolioForm: new Form({
                     title: '',
-                    description: ''
+                    description: '',
+                    academic: '',
                 }),
                 addressForm: new Form({
                     country: 'Country',

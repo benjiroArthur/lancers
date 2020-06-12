@@ -36,7 +36,7 @@
                     <div class="card-image m-3 img-fluid cat-card">
                         <img :src="resource_path+'/do_it_your_self/laravel.jpg'" alt="Image" class="img-fluid">
                     </div>
-                    <div class="card-title mt-3">Build a basic Laravel website</div>
+                    <div class="card-title mt-3">Build A Basic Laravel Website</div>
                     <div class="card-body">
                         <div class="card-text mb-2">
                             This tutorial gives an overview of Laravel and walks beginners through making a simple Laravel website.
@@ -51,7 +51,7 @@
                     <div class="card-image m-3 img-fluid cat-card">
                         <img :src="resource_path+'/do_it_your_self/digital.jpg'" alt="Image" class="img-fluid">
                     </div>
-                    <div class="card-title mt-3">How to make digital paintings</div>
+                    <div class="card-title mt-3">How To Make Digital Paintings</div>
                     <div class="card-body">
                         <div class="card-text mb-2">
                             These resources will guid you on how to make professional digital paintings, Explore and learn more.
@@ -79,12 +79,12 @@
                     <div class="card-image m-3 img-fluid cat-card">
                         <img :src="resource_path+'/do_it_your_self/bootstrap.jpg'" alt="Image" class="img-fluid">
                     </div>
-                    <div class="card-title mt-3">Bootstrap Collections</div>
+                    <div class="card-title mt-3">Data Entry</div>
                     <div class="card-body">
                         <div class="card-text mb-2">
                             Get all your bootstrap icons, templates, themes, and documentation from this ultimate bootstrap resource.
                         </div>
-                        <a class="btn btn-outline-success mr-0" href="https://getbootstrap.com/" target="_blank">Explore</a>
+                        <a class="btn btn-outline-success mr-0" href="https://www.dreamhomebasedwork.com/online-data-entry-jobs-2/" target="_blank">Explore</a>
                     </div>
                 </div>
             </div>
