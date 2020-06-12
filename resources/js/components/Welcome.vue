@@ -82,7 +82,7 @@
                     <div class="card-title mt-3">Data Entry</div>
                     <div class="card-body">
                         <div class="card-text mb-2">
-                            Get all your bootstrap icons, templates, themes, and documentation from this ultimate bootstrap resource.
+                            Online data entry jobs involve typing in data from one source into another using a computer. Many businesses outsource data entry jobs to large companies that hire home-based independent contractors.
                         </div>
                         <a class="btn btn-outline-success mr-0" href="https://www.dreamhomebasedwork.com/online-data-entry-jobs-2/" target="_blank">Explore</a>
                     </div>

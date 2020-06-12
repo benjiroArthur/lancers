@@ -47,11 +47,23 @@
                     </div>
                 </div>
             </div>
-           <!-- <div class="col-md-3">
-                <div class="card">
-                    <project-application-table :applications="this.applications"></project-application-table>
-                </div>
-            </div>-->
+            <div class="col-md-3">
+                <!-- Mount the instance within a <label> -->
+                <!--<label>Card
+                    <div id="card-element"></div>
+                </label>-->
+
+                <!--
+                  Or create a <label> with a 'for' attribute,
+                  referencing the ID of your container.
+                -->
+                <label for="card-element">Card</label>
+                <div id="card-element"></div>
+
+                <!--<script>
+                    cardElement.mount('#card-element');
+                </script>-->
+            </div>
         </div>
         <!--<div class="row">
             <div class="col-md-12">
