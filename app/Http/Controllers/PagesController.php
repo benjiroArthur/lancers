@@ -9,11 +9,11 @@ class PagesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'verified', 'profile', 'address',]);
+        $this->middleware(['auth', 'verified', 'profile']);
 
-         if(Auth::check() && auth::user()->role->name === 'freelancer'){
+       /*  if(Auth::check() && auth::user()->role->name === 'freelancer'){
             $this->middleware(['portfolio']);
-        }
+        }*/
 
     }
     //browse jobs

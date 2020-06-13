@@ -27,6 +27,7 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.13.0",
         "@mdi/font": "^4.9.95",
+        "@stripe/stripe-js": "^1.7.0",
         "admin-lte": "^3.0.0-alpha",
         "animate.css": "^3.7.2",
         "bootstrap-datetime-picker": "^2.4.4",

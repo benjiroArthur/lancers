@@ -5,9 +5,19 @@ namespace App\Http\Controllers;
 use App\JobOffered;
 use App\Project;
 use Illuminate\Http\Request;
+use Stripe;
 
 class PaymentController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
     /**
      * Display a listing of the resource.
      * @param $id
@@ -32,17 +42,50 @@ class PaymentController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
+        //return response()->json($request->all());
         $project = Project::find($request->project_id);
-        $jobOff = JobOffered::where('project_id', $request->project_id);
+       // \Stripe\Stripe::setApiKey('sk_test_m52rQlAWfPQK8k1NTQCOXSrA');
+        $stripe = new \Stripe\StripeClient(
+            'sk_test_m52rQlAWfPQK8k1NTQCOXSrA'
+        );
+        //try{
+        $customer = $stripe->customers->create([
+            'source' => 'tok_visa',
+            'email' => $project->client->email,
+        ]);
+
+        $source = $stripe->customers->createSource(
+            $customer->id,
+            ['source' => $customer->source]
+        );
+        /*$customer = \Stripe\Customer::create([
+            'source' => $request->_token,
+            'email' => $project->client->email,
+        ]);*/
+            $stripe->charges->create(array(
+                'amount' => $project->amount * 100,
+                'customer' => $customer->id,
+                'currency' => 'usd',
+                'description' => 'Payment for the project titled '.$project->project_title
+            ));
+
+            return redirect('/home')->with('success', 'Payment successful');
+        /*}catch(\Exception $e){
+
+            return redirect()->back()->with('error', $e);
+        }*/
+
+        //$project = Project::find($request->project_id);
+      /*  $jobOff = JobOffered::where('project_id', $request->project_id);
         $project->update([
             'status' => 'in progress'
         ]);
         $jobOff->update(['status' => 'in progress']);
-        return redirect('/home')->with('success', 'Payment processed succesfully');
+        return redirect('/home')->with('success', 'Payment processed succesfully');*/
         /*$project = Project::find($request->project_id);
         $amount = $project->project_cost;
         $vat = (12/100)*$amount;
