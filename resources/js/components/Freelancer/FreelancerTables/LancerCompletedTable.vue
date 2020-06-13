@@ -47,12 +47,11 @@
                         },
                         formatter: function (e, value, row) {
 
-                            return '<a class="btn btn-sm show " data-toggle="modal" data-target="#"><i class="fas fa-eye text-lancer"></i></a>'
+                            return '<a class="btn btn-sm show bg-lancer text-white" data-toggle="modal" data-target="#">Submit Job</a> '
                         },
                         events: {
                             'click .show': function (e, value, row) {
-                                Fire.$emit('viewSingleProject', row);
-
+                                Fire.$emit('submitProject', row);
                             },
                             'click .edit': function (e, value, row) {
 

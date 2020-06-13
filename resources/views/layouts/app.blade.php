@@ -107,14 +107,13 @@
                                    <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                        <img class="img-bordered-sm img-sm rounded-circle mr-2" src="{{auth()->user()->userable->image_path}}" alt="Profile image">
                                        <span>{{auth()->user()->userable->full_name}}</span>
+
                                    </a>
 
                                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="navbarDropdown">
                                        <ul class="text-dark text-left">
                                            <li class="nav-item my-nav-link">
                                                <a href="{{url('/profile')}}" class="dropdown-item nav-link  text-dark"><i class="fas fa-user"></i> Profile</a>
-
-
 
                                            <li class="nav-item text-dark my-nav-link">
                                                <a class="dropdown-item nav-link text-left text-dark" href="{{ route('logout') }}"

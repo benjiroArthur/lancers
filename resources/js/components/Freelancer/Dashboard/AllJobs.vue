@@ -262,9 +262,13 @@
                 link.click();
             },
 
+            submitProject(row) {
+
+            },
+
         },
         mounted() {
-            this. getInProgressProjects();
+            this.getInProgressProjects();
             this.getCompletedProjects();
             this.getAppliedProjects();
             this.getAllProjects();
@@ -282,6 +286,9 @@
 
             Fire.$on('declineJob', (row)=>{
                 this.declineJob(row);
+            });
+            Fire.$on('submitProject', (row)=>{
+                this.submitProject(row);
             });
             Fire.$on('downloadFiles', (row)=>{
                 this.download(row.project.id);
