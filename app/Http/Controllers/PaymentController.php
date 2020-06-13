@@ -5,9 +5,20 @@ namespace App\Http\Controllers;
 use App\JobOffered;
 use App\Project;
 use Illuminate\Http\Request;
+use Stripe;
+use Stripe\Checkout\Session;
 
 class PaymentController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
     /**
      * Display a listing of the resource.
      * @param $id
