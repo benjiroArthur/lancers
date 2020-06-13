@@ -9,6 +9,9 @@
             margin: 0;
         }
         *!*/
+    #card-element input{
+        color: black;
+    }
 
 
         form {

@@ -6,7 +6,6 @@ use App\JobOffered;
 use App\Project;
 use Illuminate\Http\Request;
 use Stripe;
-use Stripe\Checkout\Session;
 
 class PaymentController extends Controller
 {
@@ -43,25 +42,42 @@ class PaymentController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
+        //return response()->json($request->all());
         $project = Project::find($request->project_id);
-        \Stripe\Stripe::setApiKey('sk_test_m52rQlAWfPQK8k1NTQCOXSrA');
-        try{
-            \Stripe\Charge::create(array(
+       // \Stripe\Stripe::setApiKey('sk_test_m52rQlAWfPQK8k1NTQCOXSrA');
+        $stripe = new \Stripe\StripeClient(
+            'sk_test_m52rQlAWfPQK8k1NTQCOXSrA'
+        );
+        //try{
+        $customer = $stripe->customers->create([
+            'source' => 'tok_visa',
+            'email' => $project->client->email,
+        ]);
+
+        $source = $stripe->customers->createSource(
+            $customer->id,
+            ['source' => $customer->source]
+        );
+        /*$customer = \Stripe\Customer::create([
+            'source' => $request->_token,
+            'email' => $project->client->email,
+        ]);*/
+            $stripe->charges->create(array(
                 'amount' => $project->amount * 100,
+                'customer' => $customer->id,
                 'currency' => 'usd',
-                'source' => $request->stripeToken,
                 'description' => 'Payment for the project titled '.$project->project_title
             ));
-            Session::flush('success-message', 'Payment Done Successfully');
-            return redirect('/home');
-        }catch(\Exception $e){
-            Session::flush('fail-message', 'Error! Please try again');
-            return redirect()->back();
-        }
+
+            return redirect('/home')->with('success', 'Payment successful');
+        /*}catch(\Exception $e){
+
+            return redirect()->back()->with('error', $e);
+        }*/
 
         //$project = Project::find($request->project_id);
       /*  $jobOff = JobOffered::where('project_id', $request->project_id);
