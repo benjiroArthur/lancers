@@ -153,6 +153,8 @@
                 signIn() {
                     window.location.assign('/login');
                 },
+
+
             },
             mounted() {
             this.resource_path = this.$parent.resource_path;
