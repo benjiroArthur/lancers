@@ -6,26 +6,23 @@
 
 
         <div id = "myCarousel" class = "carousel slide mb-5" data-action="carousel">
-            <!--<ol class = "carousel-indicators">
+            <ol class = "carousel-indicators">
                 <li data-target = "#myCarousel" data-slide-to = "0" class="active"></li>
                 <li data-target = "#myCarousel" data-slide-to = "1"></li>
                 <li data-target = "#myCarousel" data-slide-to = "2"></li>
                 <li data-target = "#myCarousel" data-slide-to = "3"></li>
-            </ol>-->
+            </ol>
 
 
-                <div class = "carousel-item active">
+                <!--<div class = "carousel-item active">
                     <svg class = "bd-placeholder-img" width="100%" height="100%" xmlns = "" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/> </svg>
                 </div>
                 <div class = "container">
                     <div class = "carousel-caption text-lg-left">
-                        <h1>HIRE THE BEST FREELANCERS<span class="badge badge-secondary"></span></h1>
-                        <h1>FOR ANY IDEAS YOU<span class="badge badge-secondary"></span></h1>
-                        <h1>HAVE IN MIND<span class="badge badge-secondary"></span></h1>
                         <button type="button" class="btn btn-outline-success mr-0 btn-lg active" href="#">Hire A Freelancer</button>
                         <button type="button" class="btn btn-outline-success mr-0 btn-lg active" href="#">Earn Money Freelancing</button>
                     </div>
-                </div>
+                </div>-->
         </div>
         <hr>
 
