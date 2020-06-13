@@ -33,6 +33,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('style')
 </head>
 <body class="bg-lancer-light">
     <div id="app">
@@ -174,7 +175,7 @@
         });
     </script>
 
-    <script src="https://js.stripe.com/v3/"></script>
-
+    {{--<script src="https://js.stripe.com/v3/"></script>--}}
+@yield('script')
 </body>
 </html>
