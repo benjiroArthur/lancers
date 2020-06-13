@@ -272,3 +272,7 @@
     }
 
 </style>
+<!--
+STRIPE_KEY=pk_test_ysYG2YLE6Dlfb2WptP1IYcuV
+STRIPE_SECRET=sk_test_m52rQlAWfPQK8k1NTQCOXSrA
+-->
