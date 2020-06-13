@@ -53,96 +53,6 @@
                     </div>
                     <!--Portfolio ends-->
 
-                    <!--Address Details Starts-->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div v-show="addressEditMode === false" class="card shadow">
-                                <div class="card-header bg-none">
-                                    <div class="card-title text-bold">Address Information</div>
-                                    <div class="card-tools text-right">
-                                        <a class="text-white text-bold text-left btn bg-lancer" @click="addressToggle('true', $event)" href="#">Edit</a>
-                                    </div>
-                                </div>
-
-                                <div class="card-body text-left">
-                                    <div class="row">
-                                        <div v-if="client.address !== null" class="col-md-6" >
-
-                                            <div class="row">
-                                                <div class="col-md-6 col-lg-6 col-sm-4">
-                                                    <p>Country:  </p>
-                                                    <p>City:  </p>
-                                                    <p>Zip Code: </p>
-                                                    <p>Phone number: </p>
-                                                </div>
-                                                <div class="col-md-6 col-lg-6 col-sm-8">
-                                                    <p>{{this.client.address.country | checkNull}}</p>
-                                                    <p>{{this.client.address.city | checkNull}}</p>
-                                                    <p>{{this.client.address.zip_code | checkNull}}</p>
-                                                    <p>{{this.client.address.phone_number | checkNull}}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p v-else class="text-black text-center text-bold h-align-middle h6 v-align-middle">No Information Available To Display</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div v-show="addressEditMode === true" class="card shadow">
-                                <div class="card-header bg-none">
-                                    <div class="card-title text-bold">Edit Address</div>
-                                </div>
-                                <div class="card-body text-center">
-                                    <form ref="profileForm" @submit.prevent="updateAddress">
-                                        <div class="row">
-                                            <div class ="col-md-6">
-                                                <div class="form-group">
-                                                    <select v-model="addressForm.country" type="text" name="country"
-                                                            class="form-control" :class="{ 'is-invalid': addressForm.errors.has('country') }" required>
-                                                        <option selected>Country</option>
-                                                        <option v-for="(country, i) in countries" :key="i">{{country.name}}</option>
-                                                    </select>
-                                                    <has-error :form="addressForm" field="country"></has-error>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input v-model="addressForm.city" type="text" name="city" placeholder="City" pattern="[a-zA-Z]*"
-                                                           class="form-control" :class="{ 'is-invalid': addressForm.errors.has('city') }"
-                                                           oninvalid="setCustomeValidity('Characters Only')">
-                                                    <has-error :form="addressForm" field="city"></has-error>
-                                                </div>
-                                            </div>
-                                            <div class ="col-md-6">
-                                                <div class="form-group">
-                                                    <input v-model="addressForm.zip_code" type="text" name="zip_code" placeholder="Zip Code"
-                                                           pattern="[0-9]*" maxlength="5"
-                                                           class="form-control" :class="{ 'is-invalid': addressForm.errors.has('zip_code') }" required>
-                                                    <has-error :form="addressForm" field="zip_code"></has-error>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input v-model="addressForm.phone_number" type="text" name="phone_number" placeholder="Phone Number"
-                                                           pattern="[0-9]*" maxlength="15"
-                                                           class="form-control" :class="{ 'is-invalid': addressForm.errors.has('phone_number') }" required>
-                                                    <has-error :form="addressForm" field="phone_number"></has-error>
-                                                </div>
-
-                                            </div>
-
-
-                                        </div>
-                                        <div class ="row justify-content-center text-center">
-                                            <div class="text-center">
-                                                <button type="button" class="btn btn-danger" @click="addressToggle('false', $event)" >Cancel</button>
-                                                <button type="submit" class="btn bg-lancer text-white">Save</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </div>
-                    <!--Address Details Ends-->
-
                     <!--Bio data starts-->
                     <div class="row">
                         <div class="col-md-12">
@@ -235,6 +145,98 @@
                         </div>
                     </div>
                     <!--Bio data ends-->
+
+                    <!--Address Details Starts-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div v-show="addressEditMode === false" class="card shadow">
+                                <div class="card-header bg-none">
+                                    <div class="card-title text-bold">Address Information</div>
+                                    <div class="card-tools text-right">
+                                        <a class="text-white text-bold text-left btn bg-lancer" @click="addressToggle('true', $event)" href="#">Edit</a>
+                                    </div>
+                                </div>
+
+                                <div class="card-body text-left">
+                                    <div class="row">
+                                        <div v-if="client.address !== null" class="col-md-6" >
+
+                                            <div class="row">
+                                                <div class="col-md-6 col-lg-6 col-sm-4">
+                                                    <p>Country:  </p>
+                                                    <p>City:  </p>
+                                                    <p>Zip Code: </p>
+                                                    <p>Phone number: </p>
+                                                </div>
+                                                <div class="col-md-6 col-lg-6 col-sm-8">
+                                                    <p>{{this.client.address.country | checkNull}}</p>
+                                                    <p>{{this.client.address.city | checkNull}}</p>
+                                                    <p>{{this.client.address.zip_code | checkNull}}</p>
+                                                    <p>{{this.client.address.phone_number | checkNull}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p v-else class="text-black text-center text-bold h-align-middle h6 v-align-middle">No Information Available To Display</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-show="addressEditMode === true" class="card shadow">
+                                <div class="card-header bg-none">
+                                    <div class="card-title text-bold">Edit Address</div>
+                                </div>
+                                <div class="card-body text-center">
+                                    <form ref="profileForm" @submit.prevent="updateAddress">
+                                        <div class="row">
+                                            <div class ="col-md-6">
+                                                <div class="form-group">
+                                                    <select v-model="addressForm.country" type="text" name="country"
+                                                            class="form-control" :class="{ 'is-invalid': addressForm.errors.has('country') }" required>
+                                                        <option selected>Country</option>
+                                                        <option v-for="(country, i) in countries" :key="i">{{country.name}}</option>
+                                                    </select>
+                                                    <has-error :form="addressForm" field="country"></has-error>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input v-model="addressForm.city" type="text" name="city" placeholder="City" pattern="[a-zA-Z]*"
+                                                           class="form-control" :class="{ 'is-invalid': addressForm.errors.has('city') }"
+                                                           oninvalid="setCustomeValidity('Characters Only')">
+                                                    <has-error :form="addressForm" field="city"></has-error>
+                                                </div>
+                                            </div>
+                                            <div class ="col-md-6">
+                                                <div class="form-group">
+                                                    <input v-model="addressForm.zip_code" type="text" name="zip_code" placeholder="Zip Code"
+                                                           pattern="[0-9]*" maxlength="5"
+                                                           class="form-control" :class="{ 'is-invalid': addressForm.errors.has('zip_code') }" required>
+                                                    <has-error :form="addressForm" field="zip_code"></has-error>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input v-model="addressForm.phone_number" type="text" name="phone_number" placeholder="Phone Number"
+                                                           pattern="[0-9]*" maxlength="15"
+                                                           class="form-control" :class="{ 'is-invalid': addressForm.errors.has('phone_number') }" required>
+                                                    <has-error :form="addressForm" field="phone_number"></has-error>
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class ="row justify-content-center text-center">
+                                            <div class="text-center">
+                                                <button type="button" class="btn btn-danger" @click="addressToggle('false', $event)" >Cancel</button>
+                                                <button type="submit" class="btn bg-lancer text-white">Save</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Address Details Ends-->
+
+
 
                 </div>
                 <div class="col-md-4">

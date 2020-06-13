@@ -57,7 +57,7 @@ class PaymentController extends Controller
                 'description' => 'Payment for the project titled '.$project->project_title
             ));
             Session::flush('success-message', 'Payment Done Successfully');
-            return redirect('/home');
+            return redirect('/browse/post-jobs');
         }catch(\Exception $e){
             Session::flush('fail-message', 'Error! Please try again');
             return redirect()->back();
