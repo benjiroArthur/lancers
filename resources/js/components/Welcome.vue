@@ -114,7 +114,7 @@
                     <v-card-title primary-title class="m-3 text-center">
                         <div>
                             <h4 class="headline mb-2 text-bold">{{category.name}}</h4>
-                            <p> {{ category.description }} </p>
+                            <p> {{ category.description}} </p>
                             <a class="btn btn-outline-success mr-0" href="#" target="_blank">Get Jobs</a>
                         </div>
                     </v-card-title>
