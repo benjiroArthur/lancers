@@ -187,6 +187,12 @@ Vue.filter('trimtext', function(value){
     return value.length < len ? value : val + '...';
 });
 
+Vue.filter('trimtextMax', function(value){
+    let len = 500;
+    let val = value.slice(0, len);
+    return value.length < len ? value : val + '...';
+});
+
 
 
 

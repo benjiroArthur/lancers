@@ -115,7 +115,7 @@
                         <div>
                             <h4 class="headline mb-2 text-bold">{{category.name}}</h4>
                             <p> {{ category.description }} </p>
-                            <a class="btn btn-outline-success mr-0" @click="getJobs" href="#" target="_blank">Get Jobs</a>
+                            <a class="btn btn-outline-success mr-0" @click="getJobs" href="#" >Get Jobs</a>
                         </div>
                     </v-card-title>
                     <v-img class="m-3"
