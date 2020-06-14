@@ -114,7 +114,7 @@ class ProfileController extends Controller
         //get the authenticated user and update their records
         $user = Auth()->user();
         $portfolio = $user->userable->portfolio;
-        if($portfolio === null){
+        if(count($portfolio) < 1){
             $port = $user->userable->portfolio()->create($request->all());
 
         }
