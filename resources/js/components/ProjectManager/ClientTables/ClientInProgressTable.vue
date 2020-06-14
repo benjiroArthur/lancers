@@ -38,7 +38,7 @@
                     {field: 'project.project_title', title: 'Project Title'},
                     {field: 'project.project_cost', title: 'Project Cost'},
                     {field: 'project.description', title: 'Project Description'},
-                    {
+                    /*{
                         field: 'action',
                         title: 'Action',
                         align: 'center',
@@ -63,7 +63,7 @@
 
                             },
                         }
-                    }
+                    }*/
                 ],
 
             };

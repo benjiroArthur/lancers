@@ -48,7 +48,7 @@
                         },
                         formatter: function (e, value, row) {
 
-                            return ' <a class="btn btn-sm show bg-lancer">Accept</a> '+
+                            return ' <a class="btn btn-sm show text-white bg-lancer">Accept</a> '+
                                 ' <a class="btn btn-sm edit bg-danger">Reject</a> '
                         },
                         events: {

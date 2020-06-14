@@ -706,7 +706,7 @@
 
             submitEducation(){
                 this.singleEducation.freelancer_id = this.freelancer.userable.id;
-                This.$Progress.start();
+                this.$Progress.start();
                 this.singleEducation
                     .post('/data/education')
                     .then((response)=>{

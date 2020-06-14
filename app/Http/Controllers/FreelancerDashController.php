@@ -9,6 +9,7 @@ use App\Friend;
 use App\JobOffered;
 use App\ProjectApplication;
 use App\Project;
+use App\Review;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -138,7 +139,7 @@ class FreelancerDashController extends Controller
                         ];
                         $free = $fr->create($friendsData);
                         broadcast(new ProjectUpdateEvent())->toOthers();
-                        return response()->json($free);
+                        return response('success');
                     }
                     else{
                         broadcast(new ProjectUpdateEvent())->toOthers();
@@ -192,7 +193,7 @@ class FreelancerDashController extends Controller
     public function jobAwaitingAcceptance(){
         $user = auth()->user();
         $projects = JobOffered::with('project')->where('freelancer_id', $user->userable->id)
-            ->where(static function($q){
+            ->where(function($q){
                 $q->where('status', 'awaiting acceptance')->orWhere('status', 'rejected');
             })->get();
 
@@ -243,17 +244,33 @@ class FreelancerDashController extends Controller
     }
 
     public function submit(Request $request) {
-        $user = auth()->user();
+
         $project = Project::find($request->project_id);
-        $project->update(['status', 'awaiting acceptance']);
-        $jobOffered = JobOffered::where('project_id', $request->project_id);
-        $jobOffered->update(['status', 'awaiting acceptance']);
+        $project->update(['status' => 'awaiting acceptance']);
+
+        $jobOffered = JobOffered::where('project_id', $request->project_id)->first();
+
+        $jobOffered->update(['status' => 'awaiting acceptance']);
         broadcast(new ProjectUpdateEvent())->toOthers();
         return response('success');
+        //return response($jobOffered);
 
         // submitting of completed projects
     }
 
+    public function review(Request $request, $id){
+        $project = Project::find($id);
+        $client = Client::find($project->client_id);
+        $userId = $client->user->id;
 
+        $review = new Review();
+        $review->create([
+            'rating' => (int) $request->rating,
+            'user_id' => $userId,
+            'project_id' => $id,
+            'comment' => $request->comment
+        ]);
+        return response('success');
+    }
 
 }
