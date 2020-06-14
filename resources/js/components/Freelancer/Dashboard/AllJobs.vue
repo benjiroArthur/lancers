@@ -341,6 +341,12 @@
                 this.getAwaitingAcceptance();
                 this.getUser();
             });
+
+
+            Echo.channel('projectUpdate')
+                .listen('ProjectUpdateEvent', (e)=>{
+                    Fire.$emit('jobUpdate');
+                });
         }
     }
 </script>

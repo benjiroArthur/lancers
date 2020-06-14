@@ -490,6 +490,11 @@
             Fire.$on('awardJob', (row)=>{this.awardJob(row)});
             Fire.$on('invoice', (row)=>{this.invoice(row)});
             Fire.$on('makeChoice', (action, row)=>{this.AcceptReject(action, row)});
+
+            Echo.channel('projectUpdate')
+                .listen('ProjectUpdateEvent', (e)=>{
+                    Fire.$emit('jobPosted');
+                });
         },
 
     };
