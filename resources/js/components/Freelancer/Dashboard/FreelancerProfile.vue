@@ -706,6 +706,7 @@
 
             submitEducation(){
                 this.singleEducation.freelancer_id = this.freelancer.userable.id;
+                This.$Progress.start();
                 this.singleEducation
                     .post('/data/education')
                     .then((response)=>{
@@ -714,9 +715,10 @@
                         Fire.$emit('profileUpdate');
                         Swal.fire(
                             'Success',
-                            'Link Added Successfully',
+                            'Education Profile Added Successfully',
                             'success'
                         );
+                        this.$Progress.finish();
                     })
                     .catch((error)=>{})
             },

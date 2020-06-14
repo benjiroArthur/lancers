@@ -97,7 +97,7 @@
             Echo.private(`messages.${this.user.id}`)
                 .listen('NewMessage', (e)=>{
                     this.hundleMessage(e.message);
-                })
+                });
         },
         created() {
             this.getContact();

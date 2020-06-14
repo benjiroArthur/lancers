@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Chat;
 use App\Client;
+use App\Events\ProjectUpdateEvent;
 use App\Friend;
 use App\JobOffered;
 use App\ProjectApplication;
@@ -102,7 +103,7 @@ class FreelancerDashController extends Controller
      */
     public function applyForJobs($id) {
         $user = auth()->user();
-        if($user->role->nwme === 'freelancer'){
+        if($user->role->name === 'freelancer'){
             if($user->profile_updated === true){
                 $jobApp = ProjectApplication::where('project_id', $id)->where('freelancer_id', $user->userable->id)->first();
 
@@ -119,7 +120,31 @@ class FreelancerDashController extends Controller
                         'status' => 'applied'
                     ]);
                     $jobApplication->create($data);
-                    return response('success');
+
+                    $client = Client::find($project->client_id);
+                    $client = $client->user;
+                    $client_id = $client->id;
+                    $freelancer_id =  $user->id;
+                    $friend = Friend::where(static function ($query) use ($client_id, $freelancer_id) {
+                        $query->where('user_id',  $freelancer_id)->where('friend_id',  $client_id);
+                    })->orWhere(function ($query) use ($client_id, $freelancer_id){
+                        $query->where('user_id', $client_id)->where('friend_id',  $freelancer_id);
+                    })->get();
+                    if(count($friend) < 1){
+                        $fr = new Friend();
+                        $friendsData = [
+                            'user_id' => $client_id,
+                            'friend_id' => $freelancer_id
+                        ];
+                        $free = $fr->create($friendsData);
+                        broadcast(new ProjectUpdateEvent())->toOthers();
+                        return response()->json($free);
+                    }
+                    else{
+                        broadcast(new ProjectUpdateEvent())->toOthers();
+                        return response('success');
+                    }
+
                 }
                 else{
                     return response('You Have Already Applied For This Job');
@@ -184,18 +209,7 @@ class FreelancerDashController extends Controller
         if($jobOffer->freelancer_id === $user->userable->id){
             $jobOffer->update(['status' => 'awaiting payment']);
             $jobOffer->project()->update(['status' => 'accepted']);
-
-            $friend = Friend::where(function ($query) use ($client_id, $freelancer_id) {
-                    $query->where('user_id',  $freelancer_id)->where('friend_id',  $client_id);
-                })->orWhere(function ($query) use ($client_id, $freelancer_id){
-                    $query->where('user_id', $client_id)->where('friend_id',  $freelancer_id);
-                })->get();
-            if($friend === null){
-                $fr = new Friend();
-                $fr->user_id = $client_id;
-                $fr->friend_id = $freelancer_id;
-                $fr->save();
-            }
+            broadcast(new ProjectUpdateEvent())->toOthers();
             return response('success');
         }
 
@@ -222,6 +236,7 @@ class FreelancerDashController extends Controller
             if($friend !== null){
                 $friend->delete();
             }
+            broadcast(new ProjectUpdateEvent())->toOthers();
             return response('success');
         }
 
@@ -241,7 +256,7 @@ class FreelancerDashController extends Controller
         $project->update(['status', 'awaiting acceptance']);
         $jobOffered = JobOffered::where('project_id', $request->project_id);
         $jobOffered->update(['status', 'awaiting acceptance']);
-
+        broadcast(new ProjectUpdateEvent())->toOthers();
         return response('success');
 
         // submitting of completed projects
