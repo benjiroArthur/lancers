@@ -45,6 +45,8 @@ const myOptions = {
 
 Vue.use(VueStripeCheckout, myOptions);*/
 
+
+
 import Slick from 'vue-slick';
 import Vuetify from 'vuetify';
 Vue.use(Vuetify);
@@ -197,7 +199,9 @@ import 'cropperjs/dist/cropper.css';
 Vue.component(VueCropper);
 
 
+import loadStripe from '@stripe/stripe-js';
 
+//const stripe = await loadStripe(process.env.STRIPE_KEY);
 
 
 /**

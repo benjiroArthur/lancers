@@ -152,9 +152,11 @@ class ProjectController extends Controller
     public function downloadProjectFiles($id){
         $project = Project::find($id);
         $files = $project->projectFiles;
-        $file_path = public_path('/project_files/'.$files->name);
-        $fileName = $files->name;
-        return response()->download($file_path, $fileName, ['Content-Type: application/zip']);
+        return response()->json($files);
+
+        /*$file_path = public_path('/project_files/'.$files->name);
+        $fileName = $files->name;*/
+        //return response()->download($file_path, $fileName, ['Content-Type: application/zip']);
     }
 
 }

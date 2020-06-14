@@ -80,6 +80,99 @@
                 </div>
                 <!--Portfolio ends-->
 
+                <!--Bio data starts-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div v-show="profileEditMode === false" class="card shadow">
+                            <div class="card-header bg-none">
+                                <div class="card-title text-bold">Profile Information</div>
+                                <div class="card-tools text-right">
+                                    <a class="text-white text-bold text-left btn bg-lancer" @click="profileToggle('true', $event)" href="#">Edit</a>
+                                </div>
+                            </div>
+
+                            <div class="card-body text-left">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p>First Name:  {{this.freelancer.userable.first_name | checkNull}}</p>
+                                        <p>Other Name:  {{this.freelancer.userable.other_name | checkNull}}</p>
+                                        <p>Family Name: {{this.freelancer.userable.last_name | checkNull}}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Email:  {{this.freelancer.userable.email | checkNull}}</p>
+                                        <p>Date Of Birth: {{this.freelancer.userable.dob | checkNull }}</p>
+                                        <p>Gender: {{this.freelancer.userable.gender | checkNull}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-show="profileEditMode === true" class="card shadow">
+                            <div class="card-header bg-none">
+                                <div class="card-title text-bold">Edit Profile</div>
+                            </div>
+                            <div class="card-body text-center">
+                                <form ref="profileForm" @submit.prevent="updateProfile">
+                                    <div class="row text-center">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input v-model="profileForm.first_name" type="text" name="first_name" placeholder="First Name"
+
+                                                       class="form-control" :class="{ 'is-invalid': profileForm.errors.has('first_name') }" required>
+                                                <has-error :form="profileForm" field="first_name"></has-error>
+                                            </div>
+                                            <div class="form-group">
+                                                <input v-model="profileForm.other_name" type="text" name="other_name" placeholder="Other Names"
+
+                                                       class="form-control" :class="{ 'is-invalid': profileForm.errors.has('other_name') }">
+                                                <has-error :form="profileForm" field="other_name"></has-error>
+                                            </div>
+                                            <div class="form-group">
+                                                <input v-model="profileForm.last_name" type="text" name="last_name" placeholder="Family Name"
+
+                                                       class="form-control" :class="{ 'is-invalid': profileForm.errors.has('last_name') }" required>
+                                                <has-error :form="profileForm" field="last_name"></has-error>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input v-model="profileForm.email" type="email" name="email" placeholder="Email"
+                                                       class="form-control" :class="{ 'is-invalid': profileForm.errors.has('email') }" readonly>
+                                                <has-error :form="profileForm" field="email"></has-error>
+                                            </div>
+                                            <div class="form-group">
+                                                <input v-model="profileForm.dob" type="date" name="dob" placeholder="Professional Title"
+                                                       class="form-control" :class="{ 'is-invalid': profileForm.errors.has('dob') }">
+                                                <has-error :form="profileForm" field="dob"></has-error>
+                                            </div>
+                                            <div class="form-group-inline">
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input v-model="profileForm.gender" value="male"  type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
+                                                    <label class="custom-control-label" for="defaultInline1">Male</label>
+                                                </div>
+
+                                                <!-- Default inline 2-->
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input v-model="profileForm.gender" value="female"  type="radio" class="custom-control-input" id="defaultInline2" name="inlineDefaultRadiosExample">
+                                                    <label class="custom-control-label" for="defaultInline2">Female</label>
+                                                </div>
+                                                <has-error :form="profileForm" field="gender"></has-error>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="text-center text-center">
+                                                <button type="button" class="btn btn-danger" @click="profileToggle('false', $event)" >Cancel</button>
+                                                <button type="submit" class="btn bg-lancer text-white">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Bio data ends-->
+
                 <!--Address Details Starts-->
                 <div class="row">
                     <div class="col-md-12">
@@ -199,98 +292,7 @@
                     </div>
                 </div>
                 <!--Links ends-->
-                <!--Bio data starts-->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div v-show="profileEditMode === false" class="card shadow">
-                            <div class="card-header bg-none">
-                                <div class="card-title text-bold">Profile Information</div>
-                                <div class="card-tools text-right">
-                                    <a class="text-white text-bold text-left btn bg-lancer" @click="profileToggle('true', $event)" href="#">Edit</a>
-                                </div>
-                            </div>
 
-                            <div class="card-body text-left">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <p>First Name:  {{this.freelancer.userable.first_name | checkNull}}</p>
-                                        <p>Other Name:  {{this.freelancer.userable.other_name | checkNull}}</p>
-                                        <p>Family Name: {{this.freelancer.userable.last_name | checkNull}}</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Email:  {{this.freelancer.userable.email | checkNull}}</p>
-                                        <p>Date Of Birth: {{this.freelancer.userable.dob | checkNull }}</p>
-                                        <p>Gender: {{this.freelancer.userable.gender | checkNull}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div v-show="profileEditMode === true" class="card shadow">
-                            <div class="card-header bg-none">
-                                <div class="card-title text-bold">Edit Profile</div>
-                            </div>
-                            <div class="card-body text-center">
-                                <form ref="profileForm" @submit.prevent="updateProfile">
-                                    <div class="row text-center">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input v-model="profileForm.first_name" type="text" name="first_name" placeholder="First Name"
-
-                                                       class="form-control" :class="{ 'is-invalid': profileForm.errors.has('first_name') }" required>
-                                                <has-error :form="profileForm" field="first_name"></has-error>
-                                            </div>
-                                            <div class="form-group">
-                                                <input v-model="profileForm.other_name" type="text" name="other_name" placeholder="Other Names"
-
-                                                       class="form-control" :class="{ 'is-invalid': profileForm.errors.has('other_name') }">
-                                                <has-error :form="profileForm" field="other_name"></has-error>
-                                            </div>
-                                            <div class="form-group">
-                                                <input v-model="profileForm.last_name" type="text" name="last_name" placeholder="Family Name"
-
-                                                       class="form-control" :class="{ 'is-invalid': profileForm.errors.has('last_name') }" required>
-                                                <has-error :form="profileForm" field="last_name"></has-error>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <input v-model="profileForm.email" type="email" name="email" placeholder="Email"
-                                                       class="form-control" :class="{ 'is-invalid': profileForm.errors.has('email') }" readonly>
-                                                <has-error :form="profileForm" field="email"></has-error>
-                                            </div>
-                                            <div class="form-group">
-                                                <input v-model="profileForm.dob" type="date" name="dob" placeholder="Professional Title"
-                                                       class="form-control" :class="{ 'is-invalid': profileForm.errors.has('dob') }">
-                                                <has-error :form="profileForm" field="dob"></has-error>
-                                            </div>
-                                            <div class="form-group-inline">
-                                                <div class="custom-control custom-radio custom-control-inline">
-                                                    <input v-model="profileForm.gender" value="male"  type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample">
-                                                    <label class="custom-control-label" for="defaultInline1">Male</label>
-                                                </div>
-
-                                                <!-- Default inline 2-->
-                                                <div class="custom-control custom-radio custom-control-inline">
-                                                    <input v-model="profileForm.gender" value="female"  type="radio" class="custom-control-input" id="defaultInline2" name="inlineDefaultRadiosExample">
-                                                    <label class="custom-control-label" for="defaultInline2">Female</label>
-                                                </div>
-                                                <has-error :form="profileForm" field="gender"></has-error>
-                                            </div>
-
-                                        </div>
-                                       <div class="col-md-12">
-                                           <div class="text-center text-center">
-                                               <button type="button" class="btn btn-danger" @click="profileToggle('false', $event)" >Cancel</button>
-                                               <button type="submit" class="btn bg-lancer text-white">Save</button>
-                                           </div>
-                                       </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Bio data ends-->
 
             </div>
             <div class="col-md-4">
