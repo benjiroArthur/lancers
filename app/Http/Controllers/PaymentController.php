@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ProjectUpdateEvent;
 use App\JobOffered;
 use App\Project;
 use Illuminate\Http\Request;
@@ -43,7 +44,7 @@ class PaymentController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
@@ -69,7 +70,8 @@ class PaymentController extends Controller
             'status' => 'in progress'
         ]);
         $jobOff->update(['status' => 'in progress']);
-        return redirect('/home')->with('success', 'Payment processed succesfully');
+        broadcast(new ProjectUpdateEvent());
+        return redirect('/browse/post-jobs')->with('success', 'Payment processed succesfully');
         /*$project = Project::find($request->project_id);
         $amount = $project->project_cost;
         $vat = (12/100)*$amount;
@@ -82,7 +84,7 @@ class PaymentController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id)
     {

@@ -223,7 +223,7 @@
                 settings: {
                     dots: false,
                     autoplay: true,
-                    slidesToShow: 2,
+                    slidesToShow: 1,
                     arrow: true,
                     dotsClass: "slick-dots",
                     infinite: true,

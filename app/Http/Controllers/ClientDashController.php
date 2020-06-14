@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ProjectUpdateEvent;
 use App\JobType;
 use App\Project;
 use App\JobOffered;
@@ -113,6 +114,8 @@ class ClientDashController extends Controller
         $project->update([
             'status' => 'awarded'
         ]);
+
+        broadcast(new ProjectUpdateEvent())->toOthers();
         return response('success');
     }
 
@@ -180,6 +183,7 @@ class ClientDashController extends Controller
         $data['client_id'] = auth()->user()->userable->id;
         $project = $project->create($data);
 
+        broadcast(new ProjectUpdateEvent())->toOthers();
         return response()->json($project);
 
     }
@@ -209,7 +213,7 @@ class ClientDashController extends Controller
             return response('success');
         }
 
-
+        broadcast(new ProjectUpdateEvent())->toOthers();
         return response('No file selected');
 
     }
@@ -225,6 +229,7 @@ class ClientDashController extends Controller
       $project = Project::find($id);
       if($project->client_id === auth()-user()->userable->id){
           $project->delete();
+          broadcast(new ProjectUpdateEvent())->toOthers();
           return response('success');
       }
 
@@ -281,10 +286,12 @@ class ClientDashController extends Controller
             $project->update(['status', 'completed']);
             $project->jobOffered->update(['status', 'completed']);
 
+            broadcast(new ProjectUpdateEvent())->toOthers();
             return response('accepted');
         }else{
             $project->update(['status', 'rejected']);
             $project->jobOffered->update(['status', 'rejected']);
+            broadcast(new ProjectUpdateEvent())->toOthers();
             return response('rejected');
         }
 
