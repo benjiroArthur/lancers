@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Events\ProjectUpdateEvent;
+use App\Freelancer;
 use App\JobType;
 use App\Project;
 use App\JobOffered;
 use App\ProjectApplication;
+use App\Review;
 use App\User;
-use http\Client;
+use App\Client;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
@@ -87,8 +89,8 @@ class ClientDashController extends Controller
 
     public function editProject(Request $request, $id) {
         $project = Project::find($id);
-        $project->update()->$request()->all();
-        return response()->json($project);
+        $project->update($request->all());
+        return response('success');
     }
 
 
@@ -99,7 +101,7 @@ class ClientDashController extends Controller
      * */
     public function awardJob(Request $request) {
         $proAward = JobOffered::where('project_id', $request->project_id)->first();
-        if(count($proAward) < 1){
+        if($proAward === null){
             $data = $request->all();
             $data['status'] = 'pending';
             JobOffered::create($data);
@@ -283,18 +285,33 @@ class ClientDashController extends Controller
         $user = auth()->user();
         $project = Project::find($request->project_id);
         if($request->action === 'accept'){
-            $project->update(['status', 'completed']);
-            $project->jobOffered->update(['status', 'completed']);
+            $project->update(['status' => 'completed']);
+            $project->jobOffered->update(['status' => 'completed']);
 
             broadcast(new ProjectUpdateEvent())->toOthers();
             return response('accepted');
         }else{
-            $project->update(['status', 'rejected']);
-            $project->jobOffered->update(['status', 'rejected']);
+            $project->update(['status' => 'rejected']);
+            $project->jobOffered->update(['status' => 'rejected']);
             broadcast(new ProjectUpdateEvent())->toOthers();
             return response('rejected');
         }
 
 
+    }
+
+    public function review(Request $request, $id){
+        $project = JobOffered::where('project_id', $id)->first();
+        $freelancer = Freelancer::find($project->freelancer_id);
+        $userId = $freelancer->user->id;
+
+        $review = new Review();
+        $review->create([
+            'rating' => (int) $request->rating,
+            'user_id' => $userId,
+            'project_id' => $id,
+            'comment' => $request->comment
+        ]);
+        return response('success');
     }
 }

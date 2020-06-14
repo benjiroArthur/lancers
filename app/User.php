@@ -42,11 +42,15 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     //return with
-    protected $with = ['userable', 'address'];
+    protected $with = ['userable', 'address', 'reviews'];
 
     //relationships
     public function role(){
         return $this->belongsTo('App\Role');
+    }
+
+    public function reviews(){
+        return $this->hasMany(Review::class);
     }
 
     public function userable(){
@@ -68,9 +72,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(User::class, 'friends', 'friend_id', 'user_id');
     }
 
-    /*public function friends(){
-        return $this->friendsOfMine->merge($this->friendOf);
-    }*/
+    public function getRatingAttribute(){
+        /*$reviews = $this->reviews;
+        $count = count($reviews);
+        $total =0;
+        foreach ($reviews as $review){
+            $total += (int)$review->rating;
+        }
+        return ($total / $count);*/
+
+    }
 
     public function getFriendsAttribute(){
         $friendsOfMine = $this->friendOfMine;

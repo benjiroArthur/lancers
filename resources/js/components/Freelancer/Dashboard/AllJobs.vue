@@ -82,8 +82,8 @@
                         this.auth_user = user.userable;
                     })
             },
-            getAwaitingAcceptance(){
-                axios.get(`/data/freelancer/await-acceptance`)
+            getAcceptance(){
+                axios.get('/data/freelancer/await-acceptance')
                     .then((response)=>{
                         this.awaitingAcceptance = response.data;
                     })
@@ -101,7 +101,7 @@
             getCompletedProjects(){
                 axios.get(`/data/freelancer/completed-projects/${this.$parent.userId}`)
                     .then((response)=>{
-                        this.allprojects = response.data;
+                        this.completedProjects = response.data;
                     })
                     .catch()
             },
@@ -310,7 +310,7 @@
             this.getAllProjects();
             this.getawardedProjects();
             this.getawaitpayProjects();
-            this.getAwaitingAcceptance();
+            this.getAcceptance();
             this.getUser();
 
             Fire.$on('acceptJob', (row)=>{
@@ -338,7 +338,7 @@
                 this.getAllProjects();
                 this.getawardedProjects();
                 this.getawaitpayProjects();
-                this.getAwaitingAcceptance();
+                this.getAcceptance();
                 this.getUser();
             });
 

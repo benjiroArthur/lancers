@@ -143,109 +143,42 @@
 @endsection
 @section('content')
 
-{{--<div class="container">
-
-
-    <!-- Credit Card Payment Form - START -->
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-xs-12 col-md-4 justify-content-center">
-                <div class="card">
-                    <div class="card-header bg-transparent">
-                        <div class="row justify-content-center">
-                            <h3 class="text-center">Payment Details</h3>
-                            <img class="img-responsive cc-img" src="{{url('/images/lancers_logo.png')}}" width="150px">
-                        </div>
-                    </div>
-                    <form class="form-horizontal" method="POST" id="payment-form" role="form" action="{{url('/payment')}}">
-                    <div class="card-body justify-content-center">
-
-                            {{ csrf_field() }}
-                            <input name="project_id" type="text" hidden="hidden" value="{{$project->id}}">
-                            <div class="row">
-                                <div class="col-xs-12 col-12">
-                                    <div class="form-group">
-                                        <label>CARD NUMBER</label>
-                                        <div class="input-group">
-                                            <input maxlength="16" minlength="16" name="card_number" type="tel" class="form-control" placeholder="Valid Card Number" required/><br>
-                                            <span class="input-group-addon"><span class="fa fa-credit-card"></span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row justify-content-center">
-                                <div class="col-xs-7 col-md-7">
-                                    <div class="form-group">
-                                        <label><span class="hidden-xs">EXPIRATION</span> DATE</label>
-                                        <input type="tel" class="form-control" placeholder="MM / YY" required/>
-                                    </div>
-                                </div>
-                                <div class="col-xs-5 col-md-5 pull-right">
-                                    <div class="form-group">
-                                        <label>CV CODE</label>
-                                        <input type="tel" class="form-control" placeholder="CVC" required maxlength="3" min="3"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-12 col-12">
-                                    <div class="form-group">
-                                        <label>CARD OWNER</label>
-                                        <input readonly type="text" class="form-control" placeholder="Card Owner Names" required value="{{$project->client->full_name}}"/>
-                                    </div>
-                                </div>
-                            </div>
-
-                    </div>
-                    <div class="card-footer bg-transparent">
-                        <div class="row justify-content-center">
-                            <div class="col-xs-12">
-                                <button type="submit" class="btn btn-success bg-lancer text-white btn-lg btn-block">Process payment</button>
-                            </div>
-                        </div>
-                    </div>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- Credit Card Payment Form - END -->
-
-
-
-</div>--}}
 
 <div class="container">
-    <div class='row'>
-        <div class='col-md-4'></div>
-        <div class='col-md-4'>
-            <form action="{{url('/payment')}}" method="post">
-                @csrf
-                <label>
-                    <input name="cardholder-name" class="field is-empty" placeholder="Jane Doe" required/>
-                    <span><span>Name</span></span>
-                </label>
-                <input type="text" name="project_id" value="{{$project->id}}" readonly hidden="hidden">
+    <div class='row justify-content-center'>
 
-                <input name="amount" class="" type="text" value="{{($project->project_cost) + ((12/100)*$project->project_cost)}}" readonly hidden="hidden"/>
 
-                <label>
-                    <div id="card-element" class="field is-empty"></div>
-                    <span><span>Credit or debit card</span></span>
-                </label>
-                <button type="submit">Pay ${{($project->project_cost) + ((12/100)*$project->project_cost)}}</button>
-                <div class="outcome">
-                    <div class="error" role="alert"></div>
-                    <div class="success">
-                        Success! Your Stripe token is <span class="token"></span>
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-image text-center">
+                        <img src="{{asset('images/lancers_logo.png')}}" alt="..." height="40">
                     </div>
+                    <form action="{{url('/payment')}}" method="post">
+                        @csrf
+                        <label>
+                            <input name="cardholder-name" class="field is-empty" placeholder="Jane Doe" required/>
+                            <span><span>Name</span></span>
+                        </label>
+                        <input type="text" name="project_id" value="{{$project->id}}" readonly hidden="hidden">
+
+                        <input name="amount" class="" type="text" value="{{($project->project_cost) + ((12/100)*$project->project_cost)}}" readonly hidden="hidden"/>
+
+                        <label>
+                            <div id="card-element" class="field is-empty"></div>
+                            <span><span>Credit or debit card</span></span>
+                        </label>
+                        <button type="submit">Pay ${{($project->project_cost) + ((12/100)*$project->project_cost)}}</button>
+                        <div class="outcome">
+                            <div class="error" role="alert"></div>
+                            <div class="success">
+                                Success! Your Stripe token is <span class="token"></span>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </form>
-        </div>
-        <div class='col-md-4'></div>
+            </div>
+
+
     </div>
 </div>
 
@@ -253,7 +186,7 @@
 
 
 @section('script')
-    {{--<script src='https://js.stripe.com/v3/' type='text/javascript'></script>--}}
+
     <script type="text/javascript">
     $(function(){
 
@@ -265,7 +198,7 @@
             style: {
                 base: {
                     iconColor: '#8898AA',
-                    color: 'white',
+                    color: 'black',
                     lineHeight: '36px',
                     fontWeight: 300,
                     fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
