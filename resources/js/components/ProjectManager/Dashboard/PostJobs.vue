@@ -15,6 +15,7 @@
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-2" class="nav-link text-lancer text-bold">Pending Projects</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-6" class="nav-link text-lancer text-bold">Awaiting Payment</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-5" class="nav-link text-lancer text-bold">In Progress</a></li>
+                            <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-7" class="nav-link text-lancer text-bold">Awaiting Acceptance</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-1" class="nav-link text-lancer text-bold">Completed Project</a></li>
 
                         </ul>
@@ -43,40 +44,16 @@
                             <div class="tab-pane" id="tab-eg7-6" role="tabpanel">
                                 <awaitpayment-table :awaitingPayment="this.awaitingPayment"></awaitpayment-table>
                             </div>
+                            <div class="tab-pane" id="tab-eg7-7" role="tabpanel">
+                                <awaitacceptance-table :awaitingAcceptance="this.awaitingAcceptance"></awaitacceptance-table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <!-- Mount the instance within a <label> -->
-                <!--<label>Card
-                    <div id="card-element"></div>
-                </label>-->
 
-                <!--
-                  Or create a <label> with a 'for' attribute,
-                  referencing the ID of your container.
-                -->
-                <label for="card-element">Card</label>
-                <div id="card-element"></div>
-
-                <!--<script>
-                    cardElement.mount('#card-element');
-                </script>-->
-            </div>
         </div>
-        <!--<div class="row">
-            <div class="col-md-12">
-                <div class="card shadow">
-                    <div class="card-header">
-                        <div class="card-title"></div>
-                        <div class="card-tools"></div>
-                    </div>
 
-                    <div class="card-body"></div>
-                </div>
-            </div>
-        </div>-->
         <!--post job modal-->
         <div class="modal fade" id="postJobModal" tabindex="-1" role="dialog" aria-labelledby="postJobModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -217,10 +194,11 @@
     import AppliedTable from "../ClientTables/AppliedTable";
     import BootstrapTable from 'bootstrap-table/dist/bootstrap-table-vue.min';
     import AwaitingPaymentTable from "../ClientTables/AwaitingPaymentTable";
+    import AwaitingAcceptanceTable from "../ClientTables/AwaitingAcceptanceTable";
 
     export default {
         name: "ClientPostJobs",
-        components: {ProjectApplicationTable, CompletedTable, PendingTable, AllProjectsTable, ClientInProgressTable, AppliedTable, Invoice, BootstrapTable, AwaitingPaymentTable},
+        components: {ProjectApplicationTable, CompletedTable, PendingTable, AllProjectsTable, ClientInProgressTable, AppliedTable, Invoice, BootstrapTable, AwaitingPaymentTable, AwaitingAcceptanceTable},
         data(){
             return{
                 auth_user: {},
@@ -232,6 +210,7 @@
                 jobType:{},
                 userAddress:{},
                 awaitingPayment: {},
+                awaitingAcceptance: {},
                 jobForm: new Form({
                     project_title:'',
                     job_type_id:'Select One',
@@ -369,6 +348,25 @@
 
                 });
             },
+            AcceptReject(action, row){
+                axios.post('/data/client/accept-job',
+                    {
+                        project_id: row.id,
+                        action: action
+                    }
+                ).then((response)=>{
+                    if(response.data === 'accepted'){
+
+                    }else if(response.data === 'rejected'){
+
+                    }
+                }).catch((error)=>{
+                    console.log(error.message);
+                });
+            },
+
+
+
             getAllUnappliedJobs(){
                 axios.get(`/data/client/unapplied-projects/${this.$parent.userId}`)
                     .then((response)=>{
@@ -431,6 +429,15 @@
                         console.log(error.message)
                     })
             },
+            getAwaitingAcceptance(){
+                axios.get(`/data/client/await-acceptance`)
+                    .then((response)=>{
+                        this.awaitingAcceptance = response.data;
+                    })
+                    .catch((error)=>{
+                        console.log(error.message)
+                    })
+            },
 
             getViewProjects(row){
                 this.getApplication(row.id);
@@ -462,9 +469,9 @@
             this.getAllPending();
             this.getCompleted();
             this.getAllProjects();
-            this.getApplication();
             this.getApplied();
             this.getAwaitingPayment();
+            this.getAwaitingAcceptance();
 
 
             Fire.$on('jobPosted', ()=>{
@@ -473,15 +480,16 @@
                 this.getCompleted();
                 this.getAllProjects();
                 this.getApplied();
-                this.getApplication();
                 this.getApplied();
                 this.getAwaitingPayment();
+                this.getAwaitingAcceptance();
             });
 
             Fire.$on('viewProjects', (row)=>{this.getViewProjects(row)});
             Fire.$on('viewProfile', (row)=>{this.viewProfile(row.freelancer)});
             Fire.$on('awardJob', (row)=>{this.awardJob(row)});
             Fire.$on('invoice', (row)=>{this.invoice(row)});
+            Fire.$on('makeChoice', (action, row)=>{this.AcceptReject(action, row)});
         },
 
     };

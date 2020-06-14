@@ -74,7 +74,7 @@ class FreelancerDashController extends Controller
     public function recentProject($id) {
         $freelance = User::findOrFail($id)->userable;
         //$projects = $freelance->jobOffered()->with('project')->latest()->limit(3)->get();
-        $projects = Project::latest()->limit(3)->get();
+        $projects = Project::whereDoesntHave('jobOffered')->latest()->limit(3)->get();
         return response()->json($projects);
     }
 
@@ -102,30 +102,34 @@ class FreelancerDashController extends Controller
      */
     public function applyForJobs($id) {
         $user = auth()->user();
-        if($user->profile_updated === true){
-            $jobApp = ProjectApplication::where('project_id', $id)->where('freelancer_id', $user->userable->id)->first();
+        if($user->role->nwme === 'freelancer'){
+            if($user->profile_updated === true){
+                $jobApp = ProjectApplication::where('project_id', $id)->where('freelancer_id', $user->userable->id)->first();
 
-           if($jobApp === null){
-               $jobApplication = new ProjectApplication();
-               $data = [
-                   'project_id' => $id,
-                   'freelancer_id' => $user->userable->id,
-                   'status' => 'applied'
+                if($jobApp === null){
+                    $jobApplication = new ProjectApplication();
+                    $data = [
+                        'project_id' => $id,
+                        'freelancer_id' => $user->userable->id,
+                        'status' => 'applied'
 
-               ];
-               $project = Project::find($id);
-               $project->update([
-                   'status' => 'applied'
-               ]);
-               $jobApplication->create($data);
-               return response('success');
-           }
-           else{
-               return response('You Have Already Applied For This Job');
-           }
-        }
-        else{
-            return response('You Cannot Apply For A Job, Please Update Your profile');
+                    ];
+                    $project = Project::find($id);
+                    $project->update([
+                        'status' => 'applied'
+                    ]);
+                    $jobApplication->create($data);
+                    return response('success');
+                }
+                else{
+                    return response('You Have Already Applied For This Job');
+                }
+            }
+            else{
+                return response('You Cannot Apply For A Job, Please Update Your profile');
+            }
+        }else{
+            return response('You cannot apply for a job');
         }
 
     }
@@ -153,6 +157,19 @@ class FreelancerDashController extends Controller
         $user = auth()->user();
         $projects = JobOffered::with('project')->where('status', 'awaiting payment')
                                             ->where('freelancer_id', $user->userable->id)->get();
+
+        return response()->json($projects);
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     * */
+    public function jobAwaitingAcceptance(){
+        $user = auth()->user();
+        $projects = JobOffered::with('project')->where('freelancer_id', $user->userable->id)
+            ->where(static function($q){
+                $q->where('status', 'awaiting acceptance')->orWhere('status', 'rejected');
+            })->get();
 
         return response()->json($projects);
     }
@@ -221,9 +238,9 @@ class FreelancerDashController extends Controller
     public function submit(Request $request) {
         $user = auth()->user();
         $project = Project::find($request->project_id);
-        $project->update(['status', 'completed']);
-        $joboffered = JobOffered::where('project_id', $request->project_id);
-        $joboffered->update(['status', 'completed']);
+        $project->update(['status', 'awaiting acceptance']);
+        $jobOffered = JobOffered::where('project_id', $request->project_id);
+        $jobOffered->update(['status', 'awaiting acceptance']);
 
         return response('success');
 

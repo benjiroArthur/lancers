@@ -1,10 +1,10 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <all-projects></all-projects>
             </div>
-            <div class="col-md-2">
+            <!--<div class="col-md-2">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card shadow">
@@ -14,12 +14,12 @@
                                 <div class="card-tools"></div>
                             </div>
                             <div class="card-body">
-                                <!--<nav class="nav flex-column">
+                                &lt;!&ndash;<nav class="nav flex-column">
                                     <a class="nav-link active " href="#">Active</a>
                                     <a class="nav-link" href="#">Link</a>
                                     <a class="nav-link" href="#">Link</a>
                                     <a class="nav-link disabled" href="#">Disabled</a>
-                                </nav>-->
+                                </nav>&ndash;&gt;
                             </div>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
         </div>
     </div>
 </template>

@@ -39,6 +39,7 @@
                         {field: 'project_title', title: 'Project Title'},
                         {field: 'project_cost', title: 'Project Cost'},
                         {field: 'description', title: 'Project Description'},
+                        {field: 'status', title: 'Project Status'},
                         {
                             field: 'action',
                             title: 'Action',
@@ -48,7 +49,7 @@
                             },
                             formatter: function (e, value, row) {
 
-                                return ' <a class="btn btn-sm show " data-toggle="modal" @click.prevent="initiatePost" ><i class="fas fa-eye text-success"></i></a> '
+                                return ' <a class="btn btn-sm show "><i class="fas fa-eye text-success"></i></a> '
                             },
                             events: {
                                 'click .show': function (e, value, row) {

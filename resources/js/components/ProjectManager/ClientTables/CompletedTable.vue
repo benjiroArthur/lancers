@@ -35,9 +35,10 @@
 
                 },
                 myColumns: [
-                    {field: 'project.project_title', title: 'Project Title'},
-                    {field: 'project.project_cost', title: 'Project Cost'},
-                    {field: 'project.description', title: 'Project Description'},
+                    {field: 'project_title', title: 'Project Title'},
+                    {field: 'project_cost', title: 'Project Cost'},
+                    {field: 'description', title: 'Project Description'},
+                    {field: 'status', title: 'Project Status'},
                     {
                         field: 'action',
                         title: 'Action',
@@ -47,12 +48,11 @@
                         },
                         formatter: function (e, value, row) {
 
-                            return ' <a class="btn btn-sm show " data-toggle="modal" data-target="#"><i class="fas fa-check text-success"></i></a> ' +
-                                ' <a class="btn btn-sm edit " data-toggle="modal" data-target="#"><i class="fas fa-edit text-warning"></i></a> '
+                            return ' <a class="btn btn-sm show " data-toggle="modal" data-target="#">Review Project</a> '
                         },
                         events: {
                             'click .show': function (e, value, row) {
-                                Fire.$emit('viewSingleAdmin', row);
+                                Fire.$emit('review', row);
 
                             },
                             'click .edit': function (e, value, row) {

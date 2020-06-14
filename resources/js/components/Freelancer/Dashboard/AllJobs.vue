@@ -10,6 +10,7 @@
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-4" class="nav-link text-lancer text-bold">Awarded Jobs</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-5" class="nav-link text-lancer text-bold">Awaiting Payment</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-2" class="nav-link text-lancer text-bold">Projects In Progress</a></li>
+                            <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-7" class="nav-link text-lancer text-bold">Awaiting Acceptance</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-1" class="nav-link text-lancer text-bold">Completed Project</a></li>
                         </ul>
 
@@ -34,33 +35,16 @@
                             <div class="tab-pane" id="tab-eg7-5" role="tabpanel">
                                 <lancer-awaitpayment-table :awaitPayProjects="this.awaitPayProjects"></lancer-awaitpayment-table>
                             </div>
+                            <div class="tab-pane" id="tab-eg7-7" role="tabpanel">
+                                <lancer-awaitacceptance-table :awaitingAcceptance="this.awaitingAcceptance"></lancer-awaitacceptance-table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--<div class="col-md-3">
-                <div class="card shadow">
-                    <div class="card-header">
-                        <div class="card-title"></div>
-                        <div class="card-tools"></div>
-                    </div>
 
-                    <div class="card-body"></div>
-                </div>
-            </div>-->
         </div>
-        <!--<div class="row">
-            <div class="col-md-12">
-                <div class="card shadow">
-                    <div class="card-header">
-                        <div class="card-title"></div>
-                        <div class="card-tools"></div>
-                    </div>
 
-                    <div class="card-body"></div>
-                </div>
-            </div>
-        </div>-->
     </div>
 </template>
 
@@ -71,16 +55,18 @@
     import LancerAppliedJobsTable from "../FreelancerTables/LancerAppliedJobsTable";
     import LancerAwardedTable from "../FreelancerTables/LancerAwardedTable";
     import LancerAwaitingPaymentTable from "../FreelancerTables/LancerAwaitingPaymentTable";
+    import LancerAwaitingAcceptanceTable from "../FreelancerTables/LancerAwaitingAcceptanceTable";
 
     export default {
         name: "AllJobs",
-        components:{LancerAllProjectsTable, LancerCompletedTable, LancerInProgressTable, LancerAppliedJobsTable, LancerAwardedTable, LancerAwaitingPaymentTable},
+        components:{LancerAwaitingAcceptanceTable, LancerAllProjectsTable, LancerCompletedTable, LancerInProgressTable, LancerAppliedJobsTable, LancerAwardedTable, LancerAwaitingPaymentTable},
         data(){
             return{
                 client:{},
                 auth_user: {},
                 awardedProjects: {},
                 awaitPayProjects: {},
+                awaitingAcceptance: {},
                 inProgressProjects: {},
                 completedProjects: {},
                 appliedProjects: {},
@@ -94,6 +80,15 @@
                     .then((response) => {
                         let user = response.data;
                         this.auth_user = user.userable;
+                    })
+            },
+            getAwaitingAcceptance(){
+                axios.get(`/data/freelancer/await-acceptance`)
+                    .then((response)=>{
+                        this.awaitingAcceptance = response.data;
+                    })
+                    .catch((error)=>{
+                        console.log(error.message)
                     })
             },
             getInProgressProjects(){
@@ -222,6 +217,47 @@
 
                 });
             },
+            submitJob(row){
+                let project_id = row.project.id;
+                Swal.fire({
+                    title: 'Submit This Project',
+                    text: 'I declare that I have completed this project' ,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#32a778',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, Submit It!'
+                }).then((result) => {
+                    if (result.value) {
+                        axios.post('/data/freelancer/submit-jobs', {
+                            project_id: project_id
+                        }).then((response) => {
+                            if (response.data === "success") {
+                                Fire.$emit('jobUpdate');
+                                Swal.fire(
+                                    'Success!',
+                                    'Project Submitted',
+                                    'success'
+                                );
+
+                            } else {
+                                Swal.fire(
+                                    'Failed!',
+                                    response.data,
+                                    'warning'
+                                )
+                            }
+                        }).catch((error) => {
+                            Swal.fire(
+                                'Failed!',
+                                error.message,
+                                'warning'
+                            )
+                        });
+                    }
+
+                });
+            },
 
             download(id){
                 let filename = 'projectFiles.zip';
@@ -270,6 +306,7 @@
             this.getAllProjects();
             this.getawardedProjects();
             this.getawaitpayProjects();
+            this.getAwaitingAcceptance();
             this.getUser();
 
             Fire.$on('acceptJob', (row)=>{
@@ -283,6 +320,10 @@
             Fire.$on('declineJob', (row)=>{
                 this.declineJob(row);
             });
+
+            Fire.$on('submitProject', (row)=>{
+                this.submitJob(row);
+            });
             Fire.$on('downloadFiles', (row)=>{
                 this.download(row.project.id);
             });
@@ -293,6 +334,7 @@
                 this.getAllProjects();
                 this.getawardedProjects();
                 this.getawaitpayProjects();
+                this.getAwaitingAcceptance();
                 this.getUser();
             });
         }

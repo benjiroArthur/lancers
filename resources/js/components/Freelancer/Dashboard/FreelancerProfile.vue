@@ -56,11 +56,11 @@
                                                            class="form-control" :class="{ 'is-invalid': portfolioForm.errors.has('title') }">
                                                     <has-error :form="portfolioForm" field="title"></has-error>
                                                 </div>
-                                                <div class="form-group">
+                                                <!--<div class="form-group">
                                                     <input v-model="portfolioForm.academic" type="text" name="academic" placeholder="Current Qualification"
                                                            class="form-control" :class="{ 'is-invalid': portfolioForm.errors.has('academic') }">
                                                     <has-error :form="portfolioForm" field="academic"></has-error>
-                                                </div>
+                                                </div>-->
                                                 <div class="form-group">
                                                     <textarea v-model="portfolioForm.description" type="text" name="description" rows="5" placeholder="Summary"
                                                               class="form-control" :class="{ 'is-invalid': portfolioForm.errors.has('description') }"></textarea>
@@ -293,6 +293,34 @@
                 </div>
                 <!--Links ends-->
 
+                <!--education background starts-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card shadow">
+                            <div class="card-header bg-none">
+                                <div class="card-title text-bold">Educational Background</div>
+                                <div class="card-tools text-right">
+                                    <a class="text-white text-bold text-left btn bg-lancer" @click="educationToggle($event)" href="#">Add </a>
+                                </div>
+                            </div>
+
+                            <div class="card-body text-left text-dark">
+                               <div v-if="education.length > 0">
+                                   <div v-for="(edu, i) in education" :key="i">
+                                       <p><strong>Institution Name:  {{edu.institution}}</strong></p>
+                                       <p>Qualification:  {{edu.qualification}}</p>
+                                       <p>Year Completed:  {{edu.year}}</p>
+                                   </div>
+                               </div>
+                               <div v-else>
+                                   <p class="text-bold h6 text-dark">Add Educational Information</p>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--education background ends-->
+
 
             </div>
             <div class="col-md-4">
@@ -391,6 +419,40 @@
         </div>
     </div>
     <!--link modal end-->
+
+    <!--education-->
+    <div class="modal" id="educationModal" tabindex="-1" role="dialog" aria-labelledby="educationModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h5 class="modal-title">Add Educational Information</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form @submit.prevent="submitEducation">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Institution Name</label>
+                            <input   id="institution" type="text" name="institution"  class="form-control" v-model="singleEducation.institution" required placeholder="Institution Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Qualification</label>
+                            <input   id="qualification" type="text" name="qualification"  class="form-control" v-model="singleEducation.qualification" required placeholder="Qualification">
+                        </div>
+                        <div class="form-group">
+                            <label>Year</label>
+                            <input  maxlength="4" minlength="4" id="year" type="text" name="year"  class="form-control" v-model="singleEducation.year" required placeholder="Year">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success">Submit<i class="fas fa-user-plus"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 </template>
 
@@ -405,6 +467,7 @@
             return{
                 freelancer:{},
                 portfolio:{},
+                education:{},
                 portfolioForm: new Form({
                     title: '',
                     description: '',
@@ -416,6 +479,12 @@
                     zip_code: '',
                     phone_number: '',
                     user_id: '',
+                }),
+                singleEducation: new Form({
+                    institution: '',
+                    qualification: '',
+                    year: '',
+                    freelancer_id: ''
                 }),
 
                 profileForm: new Form({
@@ -463,6 +532,13 @@
                     .get('https://restcountries.eu/rest/v2/all')
                     .then((response) => {
                         this.countries = response.data;
+                    })
+            },
+            getEducation(){
+                axios
+                    .get('/data/education')
+                    .then((response) => {
+                        this.education = response.data;
                     })
             },
             //update user portfolio
@@ -623,6 +699,27 @@
                 event.preventDefault();
                 $('#linkModal').modal('show');
             },
+            educationToggle(event){
+                event.preventDefault();
+                $('#educationModal').modal('show');
+            },
+
+            submitEducation(){
+                this.singleEducation.freelancer_id = this.freelancer.userable.id;
+                this.singleEducation
+                    .post('/data/education')
+                    .then((response)=>{
+                        $('#educationModal').modal('hide');
+                        this.education.push(response.data);
+                        Fire.$emit('profileUpdate');
+                        Swal.fire(
+                            'Success',
+                            'Link Added Successfully',
+                            'success'
+                        );
+                    })
+                    .catch((error)=>{})
+            },
         },
         filters:{
             checkNull(val){
@@ -635,6 +732,7 @@
         mounted() {
             this.getIndex();
             this.getCountries();
+            this.getEducation();
 
             Fire.$on('profileUpdate', ()=>{
                 this.getIndex();
