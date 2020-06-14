@@ -48,7 +48,7 @@ class PaymentController extends Controller
     public function store(Request $request)
     {
         $project = Project::find($request->project_id);
-        \Stripe\Stripe::setApiKey('sk_test_m52rQlAWfPQK8k1NTQCOXSrA');
+       /* \Stripe\Stripe::setApiKey('sk_test_m52rQlAWfPQK8k1NTQCOXSrA');
         try{
             \Stripe\Charge::create(array(
                 'amount' => $project->amount * 100,
@@ -61,15 +61,15 @@ class PaymentController extends Controller
         }catch(\Exception $e){
             Session::flush('fail-message', 'Error! Please try again');
             return redirect()->back();
-        }
+        }*/
 
-        //$project = Project::find($request->project_id);
-      /*  $jobOff = JobOffered::where('project_id', $request->project_id);
+
+        $jobOff = JobOffered::where('project_id', $request->project_id);
         $project->update([
             'status' => 'in progress'
         ]);
         $jobOff->update(['status' => 'in progress']);
-        return redirect('/home')->with('success', 'Payment processed succesfully');*/
+        return redirect('/home')->with('success', 'Payment processed succesfully');
         /*$project = Project::find($request->project_id);
         $amount = $project->project_cost;
         $vat = (12/100)*$amount;

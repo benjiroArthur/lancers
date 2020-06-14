@@ -264,6 +264,7 @@ Vue.component('client-inprogress-table', require('./components/ProjectManager/Cl
 Vue.component('project-application-table', require('./components/ProjectManager/ClientTables/ProjectApplicationTable.vue').default);
 Vue.component('applied-jobs', require('./components/ProjectManager/ClientTables/AppliedTable.vue').default);
 Vue.component('awaitpayment-table', require('./components/ProjectManager/ClientTables/AwaitingPaymentTable.vue').default);
+Vue.component('awaitacceptance-table', require('./components/ProjectManager/ClientTables/AwaitingAcceptanceTable.vue').default);
 
 Vue.component('lancer-allprojects-table', require('./components/Freelancer/FreelancerTables/LancerAllProjectsTable').default);
 Vue.component('lancer-completed-table', require('./components/Freelancer/FreelancerTables/LancerCompletedTable.vue').default);
@@ -271,6 +272,7 @@ Vue.component('lancer-inprogress-table', require('./components/Freelancer/Freela
 Vue.component('lancer-appliedjobs-table', require('./components/Freelancer/FreelancerTables/LancerAppliedJobsTable.vue').default);
 Vue.component('lancer-awarded-table', require('./components/Freelancer/FreelancerTables/LancerAwardedTable.vue').default);
 Vue.component('lancer-awaitpayment-table', require('./components/Freelancer/FreelancerTables/LancerAwaitingPaymentTable.vue').default);
+Vue.component('lancer-awaitacceptance-table', require('./components/Freelancer/FreelancerTables/LancerAwaitingAcceptanceTable.vue').default);
 Vue.component('invoice', require('./components/Resources/Invoice.vue').default);
 Vue.component('new-invoice', require('./components/Resources/NewInvoice.vue').default);
 Vue.component('payout', require('./components/Resources/Payment.vue').default);

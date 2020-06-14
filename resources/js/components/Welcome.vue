@@ -114,8 +114,8 @@
                     <v-card-title primary-title class="m-3 text-center">
                         <div>
                             <h4 class="headline mb-2 text-bold">{{category.name}}</h4>
-                            <p> {{ category.description}} </p>
-                            <a class="btn btn-outline-success mr-0" href="#" target="_blank">Get Jobs</a>
+                            <p> {{ category.description }} </p>
+                            <a class="btn btn-outline-success mr-0" @click="getJobs" href="#" >Get Jobs</a>
                         </div>
                     </v-card-title>
                     <v-img class="m-3"
@@ -180,7 +180,7 @@
                     <div class="card-title mt-3">Data Entry</div>
                     <div class="card-body">
                         <div class="card-text mb-2">
-                            Find an Amazing New Job Today.Job Alerts Sent to Your Inbox. Find Online Jobs Available Now for Immediate Placement.
+                            Find an Amazing New Job Today.Job Alerts Sent to Your Inbox. Find Jobs Available Now for Immediate Placement.
                         </div>
                         <a class="btn btn-outline-success mr-0" href="https://www.dreamhomebasedwork.com/online-data-entry-jobs-2/" target="_blank">Explore</a>
                     </div>
@@ -240,8 +240,15 @@
                         this.categories = response.data;
                     })
                     .catch()
-            }
+            },
+
+            getJobs() {
+                window.location.assign('/browse-jobs');
+            },
+
         },
+
+
         mounted() {
             this.resource_path = this.$parent.resource_path;
             this.getCat();
