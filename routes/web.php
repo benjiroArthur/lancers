@@ -18,12 +18,12 @@ if (App::environment('production')) {
     URL::forceScheme('https');
 }
 
-Route::get('/storage-link', function() {
+/*Route::get('/storage-link', function() {
     $targetFolder = $_SERVER['DOCUMENT_ROOT'].'lancers/storage/app/public';
     $linkFolder = $_SERVER['DOCUMENT_ROOT'].'/lance/storage';
     symlink($targetFolder,$linkFolder);
     echo 'Symlink completed';
-});
+});*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -44,11 +44,11 @@ Route::get('/profile', 'ProfileController@index')->name('profile');
 
 Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::resource('/job-category', 'JobCategoryController');
+    Route::resource('/education', 'EducationController');
 
     Route::get('/completed-projects', 'FreelancerDashController@completed');
     Route::get('/in-progress', 'FreelancerDashController@progress');
     Route::get('/not-completed', 'FreelancerDashController@yet');
-    Route::get('/job-offered', 'FreelancerDashController@all');
     Route::get('/freelancer/completed-projects/{id}', 'FreelancerDashController@completed');
     Route::get('/freelancer/in-progress/{id}', 'FreelancerDashController@progress');
     Route::get('/freelancer/not-started/{id}', 'FreelancerDashController@yet');
@@ -66,6 +66,7 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::get('/get/client/{id}', 'FreelancerDashController@getClient');
     Route::post('/freelancer/accept-jobs', 'FreelancerDashController@acceptProject');
     Route::post('/freelancer/reject-project', 'FreelancerDashController@rejectProject');
+    Route::post('/freelancer/await-acceptance', 'FreelancerDashController@jobAwaitingAcceptance');
 
 
     Route::get('/client/completed-projects/{id}', 'ClientDashController@completed');
@@ -84,6 +85,7 @@ Route::group(['prefix' => 'data', 'as' => 'data.'], function() {
     Route::get('/client/awaitingPaymentProjects', 'ClientDashController@awaitingPaymentProjects');
     Route::get('/job-type', 'ClientDashController@getJobTypes');
     Route::post('/client/add-file', 'ClientDashController@addProjectFiles');
+    Route::get('/client/await-acceptance', 'ClientDashController@awaitingAcceptanceProjects');
 
 
     Route::get('/latest-projects', 'ProjectController@latestProjects');

@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid">
+    <div class="container-fluid top-bg-img">
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
@@ -189,6 +189,10 @@
             border-bottom: 2px solid #32a778;
         }
 
+    }
+    .top-bg-img{
+        background-image: url("/images/banner/bodybanner.jpg");
+        margin-top: -50px;
     }
 
 </style>

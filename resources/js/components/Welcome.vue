@@ -180,7 +180,7 @@
                     <div class="card-title mt-3">Data Entry</div>
                     <div class="card-body">
                         <div class="card-text mb-2">
-                            Find an Amazing New Job Today.Job Alerts Sent to Your Inbox. Find Online Jobs Available Now for Immediate Placement.
+                            Find an Amazing New Job Today.Job Alerts Sent to Your Inbox. Find Jobs Available Now for Immediate Placement.
                         </div>
                         <a class="btn btn-outline-success mr-0" href="https://www.dreamhomebasedwork.com/online-data-entry-jobs-2/" target="_blank">Explore</a>
                     </div>

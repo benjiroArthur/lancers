@@ -27,7 +27,7 @@ class ClientDashController extends Controller
     public function completed($id) {
         $client = User::findOrFail($id)->userable;
 
-        $completed = $client->jobOffered()->where('job_offereds.status', 'completed')->latest()->with('project')->get();
+        $completed = $client->projects()->where('status', 'completed')->latest()->get();
         return response()->json($completed);
     }
 
@@ -47,7 +47,7 @@ class ClientDashController extends Controller
      * */
     public function yet($id) {
         $client = User::findOrFail($id)->userable;
-        $yet = $client->jobOffered()->where('job_offereds.status', 'pending')->latest()->with('project')->get();
+        $yet = $client->projects()->where('status', 'awarded')->latest()->get();
         return response()->json($yet);
     }
 
@@ -135,12 +135,22 @@ class ClientDashController extends Controller
 
 
     /**
-     * @param $id
+     *
      * @return \Illuminate\Http\JsonResponse
      * */
     public function awaitingPaymentProjects() {
         $client = auth()->user()->userable;
         $clientProjects = $client->projects()->where('status', 'accepted')->get();
+        return response()->json($clientProjects);
+    }
+
+    /**
+     *
+     * @return \Illuminate\Http\JsonResponse
+     * */
+    public function awaitingAcceptanceProjects() {
+        $client = auth()->user()->userable;
+        $clientProjects = $client->projects()->where('status', 'awaiting acceptance')->orWhere('status', 'rejected')->get();
         return response()->json($clientProjects);
     }
 
@@ -244,7 +254,7 @@ class ClientDashController extends Controller
     /**
      * Display the specified resource.
      *
-     *
+     * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function getInvoiceDetails($id){
@@ -253,12 +263,26 @@ class ClientDashController extends Controller
 
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function acceptJob(Request $request) {
         $user = auth()->user();
         $project = Project::find($request->project_id);
-        $project->update('status', 'accepted');
+        if($request->action === 'accept'){
+            $project->update(['status', 'completed']);
+            $project->jobOffered->update(['status', 'completed']);
 
-        return response('success');
+            return response('accepted');
+        }else{
+            $project->update(['status', 'rejected']);
+            $project->jobOffered->update(['status', 'rejected']);
+            return response('rejected');
+        }
+
 
     }
 }

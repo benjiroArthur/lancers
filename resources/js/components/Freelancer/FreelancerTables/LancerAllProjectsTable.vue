@@ -1,10 +1,9 @@
 <template>
     <div class="row">
         <div class="col-md-12">
-            <!--<div class="justify-content-between d-flex">
+           <!-- <div class="justify-content-between d-flex">
                 <h6 class="text-uppercase font-weight-bold">All Projects</h6>
             </div>-->
-
             <div class="col-12 table-responsive">
                 <div class="card-body table table-responsive table-borderless p-0">
                     <bootstrap-table :data="allProjects" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/>
