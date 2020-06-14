@@ -84,6 +84,11 @@ class ClientDashController extends Controller
         return response()->json($projects);
     }
 
+    public function editProject(Request $request, $id) {
+        $project = Project::find($id);
+        $project->update()->$request()->all();
+        return response()->json($project);
+    }
 
 
      // award job to freelancer
@@ -93,7 +98,7 @@ class ClientDashController extends Controller
      * */
     public function awardJob(Request $request) {
         $proAward = JobOffered::where('project_id', $request->project_id)->first();
-        if($proAward === null){
+        if(count($proAward) < 1){
             $data = $request->all();
             $data['status'] = 'pending';
             JobOffered::create($data);

@@ -197,14 +197,6 @@ class FreelancerDashController extends Controller
            $application->update(['status' => 'decline']);
             $jobOffer->delete();
 
-            $friend = Friend::where(function ($query) use ($client_id, $freelancer_id) {
-                    $query->where('user_id',  $freelancer_id)->where('friend_id',  $client_id);
-                })->orWhere(function ($query) use ($client_id, $freelancer_id){
-                    $query->where('user_id', $client_id)->where('friend_id',  $freelancer_id);
-                })->get();
-            if($friend !== null){
-                $friend->delete();
-            }
             return response('success');
         }
 
