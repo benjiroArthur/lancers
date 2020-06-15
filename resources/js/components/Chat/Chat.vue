@@ -101,7 +101,20 @@
         },
         created() {
             this.getContact();
-        }
+        },
+        watch:{
+            selectedContact: function () {
+                setTimeout(()=>{
+                    axios
+                        .get(`/getChat/${this.contact.id}`)
+                        .then((response) => {
+                            this.messages = response.data;
+                        })
+                        .catch((error)=>{})
+                }, 300)
+            }
+        },
+
     }
 </script>
 

@@ -62,7 +62,7 @@ class FreelancerDashController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * */
     public function all($id) {
-        $freelance = User::findOrFail($id)->userable;
+        $freelance = auth()->user()->userable;
         $projects = $freelance->jobOffered()->with('project')->latest()->get();
 
         return response()->json($projects);
@@ -207,11 +207,14 @@ class FreelancerDashController extends Controller
         $client_id = $project->client_id;
         $freelancer_id = $user->userable->id;
         $jobOffer = JobOffered::where('project_id', $request->project_id)->first();
-        if($jobOffer->freelancer_id === $user->userable->id){
+        if((int) $jobOffer->freelancer_id === (int) $user->userable->id){
             $jobOffer->update(['status' => 'awaiting payment']);
             $jobOffer->project()->update(['status' => 'accepted']);
-            broadcast(new ProjectUpdateEvent())->toOthers();
+            //broadcast(new ProjectUpdateEvent())->toOthers();
             return response('success');
+        }
+        else{
+            return response('error');
         }
 
     }
