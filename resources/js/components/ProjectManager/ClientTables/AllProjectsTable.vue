@@ -72,7 +72,9 @@
                         },
                         formatter: function (e, value, row) {
 
-                            return ' <a class="btn btn-sm show bg-lancer text-white" data-toggle="modal" data-target="#">Add Project Files</a> '
+                            return ' <a class="btn btn-sm show bg-lancer text-white" data-toggle="modal" data-target="#">Add Project Files</a> '+
+                                ' <a class="btn btn-sm edit " data-target="#"><i class="fas fa-edit text-warning"></i></a> ' +
+                                ' <a class="btn btn-sm delete "  data-target="#"><i class="fas fa-trash text-danger"></i></a> '
                         },
                         events: {
                             'click .show': function (e, value, row) {
@@ -80,8 +82,7 @@
 
                             },
                             'click .edit': function (e, value, row) {
-
-
+                                Fire.$emit('editProject', row);
                             },
                             'click .destroy': function (e, value, row) {
                                 Swal.fire({

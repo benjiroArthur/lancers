@@ -159,6 +159,14 @@
                 this.job = row;
                 this.apply();
             });
+            Fire.$on('jobUpdate', ()=>{
+                this.getProjects();
+            });
+
+            Echo.channel('projectUpdate')
+                .listen('ProjectUpdateEvent', (e)=>{
+                    Fire.$emit('jobUpdate');
+                });
         },
     }
 </script>

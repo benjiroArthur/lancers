@@ -1,12 +1,11 @@
 <template>
     <div class="container-fluid">
-        <VueSlickCarousel
-            v-bind="settings" >
+        <VueSlickCarousel v-bind="settings" >
             <img v-for="(item,i) in items" :src="resource_path+item.src" class="img-fluid" alt="..."  :key="i">
         </VueSlickCarousel>
 
 
-        <!--<div id = "myCarousel" class = "carousel slide mb-5" data-action="carousel">
+        <div id = "myCarousel" class = "carousel slide mb-5" data-action="carousel">
             <ol class = "carousel-indicators">
                 <li data-target = "#myCarousel" data-slide-to = "0" class="active"></li>
                 <li data-target = "#myCarousel" data-slide-to = "1"></li>
@@ -14,19 +13,111 @@
                 <li data-target = "#myCarousel" data-slide-to = "3"></li>
             </ol>
 
-            <div class = "carousel-inner">
-                <div class = "carousel-item active">
+
+                <!--<div class = "carousel-item active">
                     <svg class = "bd-placeholder-img" width="100%" height="100%" xmlns = "" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/> </svg>
                 </div>
                 <div class = "container">
-                    <div class = "carousel-caption text-center">
-                        <button type="button" class="btn btn-success btn-sm">Hire A Freelancer</button>
-                        <button type="button" class="btn btn-success btn-sm">Earn Money Freelancing</button>
+                    <div class = "carousel-caption text-lg-left">
+                        <button type="button" class="btn btn-outline-success mr-0 btn-lg active" href="#">Hire A Freelancer</button>
+                        <button type="button" class="btn btn-outline-success mr-0 btn-lg active" href="#">Earn Money Freelancing</button>
                     </div>
+                </div>-->
+        </div>
+        <hr>
+
+
+        <!--<h2 class = "text-centre mt-3 text-bold text-dark mt-5 swift-h2">NEED WORK DONE?</h2>
+
+        <div class="row">
+            <div class="col-md-3">
+                <img :src="resource_path+'/do_it_your_self/post_job.jpg'" alt="Image" class="img-fluid img-circle">
+                <div class="card-text mb-2 text-center ">
+                    <h3 class="text-bold">Post a Job</h3><br>
+                    <h5>Easy way to get your projects or ideas become a reality. Post a job and get it done to your best satisfaction.</h5>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <img :src="resource_path+'/do_it_your_self/hire_freelancer.jpg'" alt="Image" class="img-fluid img-circle">
+                <div class="card-text mb-2 text-center ">
+                <h3 class="text-bold">Choose A Freelancer</h3><br>
+                <h5>
+                    You get the option to choose a particular freelancer to execute your project for you. The experience of freelancers span in many fields from
+                    Web Development, Mobile Applications, Graphic Design etc.
+                </h5>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <img :src="resource_path+'/do_it_your_self/safe_payment.jpg'" alt="Image" class="img-fluid img-circle">
+                <div class="card-text mb-2 text-center ">
+                    <h3 class="text-bold">Secure Payment</h3><br>
+                    <h5>
+                        We have a secured payment platform that works seamlessly with easy steps and process to get freelancers paid.
+                    </h5>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <img :src="resource_path+'/do_it_your_self/safe_payment.jpg'" alt="Image" class="img-fluid img-circle">
+                <div class="card-text mb-2 text-center ">
+                    <h3 class="text-bold">Secure Payment</h3><br>
+                    <h5>
+                        We have a secured payment platform that works seamlessly with easy steps and process to get freelancers paid.
+                    </h5>
                 </div>
             </div>
         </div>-->
 
+        <h2 class = "text-centre mt-3 text-bold text-dark mt-5 swift-h2" >What Is Great About Lancers </h2>
+        <div class = "row">
+            <div class = "col-md-4 text-center ">
+                <h2 class="text-dark"> <a class="align-center " ><i class="fas fa-images"></i> Browse Jobs</a></h2>
+                <p>Freelancers and potential clients have the luxury to skim through lots of available jobs to see which one will best fit their skills and needs respectively.</p>
+            </div>
+            <div class = "col-md-4 text-center ">
+                <h2 class="text-dark" ><a class="align-center"><i class="fas fa-money-bill-alt"></i> Secure Payment</a></h2>
+                <p>Payment is secured and trustworthy. Clients can easily pay work done by Freelancers in a secured manner without having any issues.</p>
+            </div>
+            <div class = "col-md-4 text-center ">
+                <h2 class="text-dark"><a class="align-center"><i class="fas fa-user-circle"></i> View Portfolios</a></h2>
+                <p>Lancers has the best professionals who can get your work done to the best capacity.</p>
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "col-md-4 text-center ">
+                <h2 class="text-dark"><a class="align-center"><i class="fas fa-thumbtack"></i> Job Tracking</a></h2>
+                <p>Lancers believe in information and how the progress of each project unfolds.</p>
+            </div>
+            <div class = "col-md-4 text-center ">
+                <h2 class="text-dark"><a class="align-center"><i class="fas fa-comments"></i> Live Chat</a></h2>
+                <p>Tracking of jobs doesn't end the process but rather initiates you into Live Chat.</p>
+            </div>
+            <div class = "col-md-4 text-center ">
+                <h2 class="text-dark"><a class="align-center"><i class="fas fa-headset"></i> 24/7 Support</a></h2>
+                <p>Our support system is top-notch. We are available 24/7 to help users get their issues resolved.</p>
+            </div>
+        </div>
+        <hr>
+
+        <h2 class="text-center mt-3 mb-3 text-bold text-dark swift-h2 mt-5">MOST POPULAR JOB CATEGORIES</h2>
+        <div v-if="categories.length > 0" class="row">
+
+            <div v-for="category in this.categories"  class="col-md-6 col-lg-3">
+
+                <v-card class="cat-card p-2 shadow">
+                    <v-card-title primary-title class="m-3 text-center">
+                        <div>
+                            <h4 class="headline mb-2 text-bold">{{category.name}}</h4>
+                            <p> {{ category.description }} </p>
+                            <a class="btn btn-outline-success mr-0" @click="getJobs" href="#" >Get Jobs</a>
+                        </div>
+                    </v-card-title>
+                    <v-img class="m-3"
+                           :src="category.image_path"
+                    ></v-img>
+
+                </v-card>
+            </div>
+        </div>
 
         <h2 class="text-center mt-3 mb-3 text-bold text-dark pa-5 swift-h2 mt-5">DO IT YOURSELF</h2>
 
@@ -82,7 +173,7 @@
                     <div class="card-title mt-3">Data Entry</div>
                     <div class="card-body">
                         <div class="card-text mb-2">
-                            Online data entry jobs involve typing in data from one source into another using a computer. Many businesses outsource data entry jobs to large companies that hire home-based independent contractors.
+                            Find an Amazing New Job Today.Job Alerts Sent to Your Inbox. Find Jobs Available Now for Immediate Placement.
                         </div>
                         <a class="btn btn-outline-success mr-0" href="https://www.dreamhomebasedwork.com/online-data-entry-jobs-2/" target="_blank">Explore</a>
                     </div>
@@ -90,107 +181,12 @@
             </div>
         </div>
 
-        <!--<h2 class = "text-centre mt-3 text-bold text-dark mt-5 swift-h2">NEED WORK DONE?</h2>
 
-        <div class="row">
-            <div class="col-md-3">
-                <img :src="resource_path+'/do_it_your_self/post_job.jpg'" alt="Image" class="img-fluid img-circle">
-                <div class="card-text mb-2 text-center ">
-                    <h3 class="text-bold">Post a Job</h3><br>
-                    <h5>Easy way to get your projects or ideas become a reality. Post a job and get it done to your best satisfaction.</h5>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <img :src="resource_path+'/do_it_your_self/hire_freelancer.jpg'" alt="Image" class="img-fluid img-circle">
-                <div class="card-text mb-2 text-center ">
-                <h3 class="text-bold">Choose A Freelancer</h3><br>
-                <h5>
-                    You get the option to choose a particular freelancer to execute your project for you. The experience of freelancers span in many fields from
-                    Web Development, Mobile Applications, Graphic Design etc.
-                </h5>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <img :src="resource_path+'/do_it_your_self/safe_payment.jpg'" alt="Image" class="img-fluid img-circle">
-                <div class="card-text mb-2 text-center ">
-                    <h3 class="text-bold">Secure Payment</h3><br>
-                    <h5>
-                        We have a secured payment platform that works seamlessly with easy steps and process to get freelancers paid.
-                    </h5>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <img :src="resource_path+'/do_it_your_self/safe_payment.jpg'" alt="Image" class="img-fluid img-circle">
-                <div class="card-text mb-2 text-center ">
-                    <h3 class="text-bold">Secure Payment</h3><br>
-                    <h5>
-                        We have a secured payment platform that works seamlessly with easy steps and process to get freelancers paid.
-                    </h5>
-                </div>
-            </div>
-        </div>-->
-        <hr>
-        <h2 class = "text-centre mt-3 text-bold text-dark mt-5 swift-h2" >What Is Great About Lancers </h2>
-
-        <div class = "row">
-            <div class = "col-md-4 text-center ">
-                <h2 class="text-dark"> <a class="align-center " ><i class="fas fa-images"></i> Browse Jobs</a></h2>
-                <p>Freelancers and potential clients have the luxury to skim through lots of available jobs to see which one will best fit their skills and needs respectively.</p>
-            </div>
-            <div class = "col-md-4 text-center ">
-                <h2 class="text-dark" ><a class="align-center"><i class="fas fa-money-bill-alt"></i> Secure Payment</a></h2>
-                <p>Payment is secured and trustworthy. Clients can easily pay work done by Freelancers in a secured manner without having any issues.</p>
-            </div>
-            <div class = "col-md-4 text-center ">
-                <h2 class="text-dark"><a class="align-center"><i class="fas fa-user-circle"></i> View Portfolios</a></h2>
-                <p>Lancers has the best professionals who can get your work done to the best capacity.</p>
-            </div>
-        </div>
-        <div class = "row">
-            <div class = "col-md-4 text-center ">
-                <h2 class="text-dark"><a class="align-center"><i class="fas fa-thumbtack"></i> Job Tracking</a></h2>
-                <p>Lancers believe in information and how the progress of each project unfolds.</p>
-            </div>
-            <div class = "col-md-4 text-center ">
-                <h2 class="text-dark"><a class="align-center"><i class="fas fa-comments"></i> Live Chat</a></h2>
-                <p>Tracking of jobs doesn't end the process but rather initiates you into Live Chat.</p>
-            </div>
-            <div class = "col-md-4 text-center ">
-                <h2 class="text-dark"><a class="align-center"><i class="fas fa-headset"></i> 24/7 Support</a></h2>
-                <p>Our support system is top-notch. We are available 24/7 to help users get their issues resolved.</p>
-            </div>
-        </div>
-        <hr>
-
-        <h2 class="text-center mt-3 mb-3 text-bold text-dark swift-h2 mt-5">MOST POPULAR JOB CATEGORIES</h2>
-        <div v-if="categories.length > 0" class="row">
-
-            <div v-for="category in this.categories"  class="col-md-6 col-lg-3">
-
-                <v-card class="cat-card p-2 shadow">
-                    <v-card-title primary-title class="m-3 text-center">
-                        <div>
-                            <h4 class="headline mb-2 text-bold">{{category.name}}</h4>
-                            <p> {{ category.description }} </p>
-                        </div>
-                    </v-card-title>
-                    <v-img class="m-3"
-                           :src="category.image_path"
-                    ></v-img>
-
-                </v-card>
-            </div>
-        </div>
-
-
-       <!-- <h2 class="text-center mt-3 mb-3 text-bold text-dark">HOW TO GET STARTED</h2>
+        <h2 class="text-center mt-3 mb-3 text-bold text-dark">HOW TO GET STARTED</h2>
 
         <div class="row img-fluid justify-content-center ml-1">
-            <img :src="this.resource_path + '/lancers.gif'" alt="" class="img-fluid">
-        </div>-->
-
-
-
+            <img :src="this.resource_path + '/howToGetStarted.gif'" alt="" class="img-fluid">
+        </div>
 
     </div>
 </template>
@@ -220,7 +216,7 @@
                 settings: {
                     dots: false,
                     autoplay: true,
-                    slidesToShow: 2,
+                    slidesToShow: 1,
                     arrow: true,
                     dotsClass: "slick-dots",
                     infinite: true,
@@ -237,8 +233,15 @@
                         this.categories = response.data;
                     })
                     .catch()
-            }
+            },
+
+            getJobs() {
+                window.location.assign('/browse-jobs');
+            },
+
         },
+
+
         mounted() {
             this.resource_path = this.$parent.resource_path;
             this.getCat();
@@ -266,3 +269,7 @@
     }
 
 </style>
+<!--
+STRIPE_KEY=pk_test_ysYG2YLE6Dlfb2WptP1IYcuV
+STRIPE_SECRET=sk_test_m52rQlAWfPQK8k1NTQCOXSrA
+-->

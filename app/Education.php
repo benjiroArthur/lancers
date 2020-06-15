@@ -4,13 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Portfolio extends Model
+class Education extends Model
 {
     //fillables
-    protected $fillable = ['freelancer_id', 'title', 'description'];
+    protected $fillable = ['freelancer_id', 'institution', 'qualification', 'year'];
 
-    //relationships
-
+    //relationship
     public function freelancer(){
         return $this->belongsTo(Freelancer::class);
     }

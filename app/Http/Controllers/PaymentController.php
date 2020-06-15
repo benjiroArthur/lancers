@@ -2,12 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ProjectUpdateEvent;
 use App\JobOffered;
 use App\Project;
 use Illuminate\Http\Request;
+use Stripe;
+use Stripe\Checkout\Session;
 
 class PaymentController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
     /**
      * Display a listing of the resource.
      * @param $id
@@ -32,18 +44,35 @@ class PaymentController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
         $project = Project::find($request->project_id);
+       /* \Stripe\Stripe::setApiKey('sk_test_m52rQlAWfPQK8k1NTQCOXSrA');
+        try{
+            \Stripe\Charge::create(array(
+                'amount' => $project->amount * 100,
+                'currency' => 'usd',
+                'source' => $request->stripeToken,
+                'description' => 'Payment for the project titled '.$project->project_title
+            ));
+            Session::flush('success-message', 'Payment Done Successfully');
+            return redirect('/browse/post-jobs');
+        }catch(\Exception $e){
+            Session::flush('fail-message', 'Error! Please try again');
+            return redirect()->back();
+        }*/
+
+
         $jobOff = JobOffered::where('project_id', $request->project_id);
         $project->update([
             'status' => 'in progress'
         ]);
 
         $jobOff->update(['status' => 'in progress']);
-        return redirect('/home')->with('success', 'Payment processed succesfully');
+        broadcast(new ProjectUpdateEvent());
+        return redirect('/browse/post-jobs')->with('success', 'Payment processed succesfully');
         /*$project = Project::find($request->project_id);
         $amount = $project->project_cost;
         $vat = (12/100)*$amount;
@@ -56,7 +85,7 @@ class PaymentController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show($id)
     {

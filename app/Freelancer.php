@@ -11,10 +11,14 @@ class Freelancer extends Model
         'first_name', 'last_name', 'other_name', 'gender', 'dob', 'profile_picture', 'email'
     ];
     protected $appends = ['full_name', 'image_path'];
-    protected $with = ['portfolio', 'links'];
+    protected $with = ['portfolio', 'links', 'education'];
 
     public function user(){
         return $this->morphOne(User::class, 'userable');
+    }
+
+    public function education(){
+        return $this->hasMany(Education::class);
     }
 
     public function getFullNameAttribute(){

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="justify-content-between d-flex">
-                <h6 class="text-uppercase font-weight-bold">All Projects</h6>
+                <h6 class="text-uppercase font-weight-bold">Projects Awaiting Payment</h6>
             </div>
 
             <div class="col-12 table-responsive">

@@ -15,6 +15,7 @@
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-2" class="nav-link text-lancer text-bold">Pending Projects</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-6" class="nav-link text-lancer text-bold">Awaiting Payment</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-5" class="nav-link text-lancer text-bold">In Progress</a></li>
+                            <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-7" class="nav-link text-lancer text-bold">Awaiting Acceptance</a></li>
                             <li class="nav-item"><a data-toggle="tab" href="#tab-eg7-1" class="nav-link text-lancer text-bold">Completed Project</a></li>
 
                         </ul>
@@ -43,51 +44,28 @@
                             <div class="tab-pane" id="tab-eg7-6" role="tabpanel">
                                 <awaitpayment-table :awaitingPayment="this.awaitingPayment"></awaitpayment-table>
                             </div>
+                            <div class="tab-pane" id="tab-eg7-7" role="tabpanel">
+                                <awaitacceptance-table :awaitingAcceptance="this.awaitingAcceptance"></awaitacceptance-table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <!-- Mount the instance within a <label> -->
-                <!--<label>Card
-                    <div id="card-element"></div>
-                </label>-->
 
-                <!--
-                  Or create a <label> with a 'for' attribute,
-                  referencing the ID of your container.
-                -->
-                <label for="card-element">Card</label>
-                <div id="card-element"></div>
-
-                <!--<script>
-                    cardElement.mount('#card-element');
-                </script>-->
-            </div>
         </div>
-        <!--<div class="row">
-            <div class="col-md-12">
-                <div class="card shadow">
-                    <div class="card-header">
-                        <div class="card-title"></div>
-                        <div class="card-tools"></div>
-                    </div>
 
-                    <div class="card-body"></div>
-                </div>
-            </div>
-        </div>-->
         <!--post job modal-->
         <div class="modal fade" id="postJobModal" tabindex="-1" role="dialog" aria-labelledby="postJobModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="postJobModalLabel">Post A Job</h5>
+                        <h5 class="modal-title" id="postJobModalLabel" v-show="!editMode">Post A Job</h5>
+                        <h5 class="modal-title" id="editJobModalLabel" v-show="editMode">Edit A Job</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form ref="form" @submit.prevent="postJob">
+                    <form ref="form" @submit.prevent="editMode === true ? updateJob() : postJob()" >
                         <div class="modal-body">
 
                             <div class="form-group">
@@ -118,7 +96,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-outline-success">Save</button>
+                            <button v-show="editMode" type="submit" class="btn btn-outline-success">Update</button>
+                            <button v-show="!editMode" type="submit" class="btn btn-outline-success">Create</button>
                         </div>
                     </form>
                 </div>
@@ -175,6 +154,15 @@
                                     <p><strong>Name: </strong> {{this.freelancer.full_name}}</p>
                                     <p><strong>Job Title: </strong> {{this.freelancerPortfolio.title}}</p>
                                     <p><strong>Profile Summary: </strong> {{this.freelancerPortfolio.description}}</p>
+                                    <hr>
+                                    <div v-if="this.education !== null">
+                                        <div v-for="(edu, i) in this.freelancerEducation" :key="i">
+                                            <p><strong>Institution: {{edu.institution}}</strong></p>
+                                            <p>Qualification: {{edu.qualification}}</p>
+                                            <hr>
+                                        </div>
+
+                                    </div>
                                     <div v-if="this.freelancerLinks !== null">
                                         <a v-for="(link, i) in this.freelancerLinks" :key="i" :href="link">{{link}}</a>
                                     </div>
@@ -217,22 +205,27 @@
     import AppliedTable from "../ClientTables/AppliedTable";
     import BootstrapTable from 'bootstrap-table/dist/bootstrap-table-vue.min';
     import AwaitingPaymentTable from "../ClientTables/AwaitingPaymentTable";
+    import AwaitingAcceptanceTable from "../ClientTables/AwaitingAcceptanceTable";
 
     export default {
         name: "ClientPostJobs",
-        components: {ProjectApplicationTable, CompletedTable, PendingTable, AllProjectsTable, ClientInProgressTable, AppliedTable, Invoice, BootstrapTable, AwaitingPaymentTable},
+        components: {ProjectApplicationTable, CompletedTable, PendingTable, AllProjectsTable, ClientInProgressTable, AppliedTable, Invoice, BootstrapTable, AwaitingPaymentTable, AwaitingAcceptanceTable},
         data(){
             return{
+                editMode: false,
                 auth_user: {},
                 freelancer:{},
                 selectedProject:{},
                 freelancerPortfolio: {},
+                freelancerEducation: {},
                 freelancerLinks: {},
                 categories:{},
                 jobType:{},
                 userAddress:{},
                 awaitingPayment: {},
+                awaitingAcceptance: {},
                 jobForm: new Form({
+                    id: '',
                     project_title:'',
                     job_type_id:'Select One',
                     description:'',
@@ -307,6 +300,8 @@
                     })
             },
             initiatePost(){
+                this.editMode = false;
+                this.jobForm.reset();
                 $('#postJobModal').modal('show');
             },
             postJob(){
@@ -369,6 +364,58 @@
 
                 });
             },
+            AcceptReject(action, row){
+                axios.post('/data/client/accept-job',
+                    {
+                        project_id: row.id,
+                        action: action
+                    }
+                ).then((response)=>{
+                    if(response.data === 'accepted'){
+                        Swal.fire(
+                            'Success',
+                            'Project Accepted',
+                            'success'
+                        );
+                    }else if(response.data === 'rejected'){
+                        Swal.fire(
+                            'Success',
+                            'Project Rejected',
+                            'success'
+                        );
+                    }
+                }).catch((error)=>{
+                    console.log(error.message);
+                });
+            },
+            initiateEdit(row){
+               this.editMode = true;
+               this.jobForm.fill(row);
+               $('#postJobModal').modal('show');
+            },
+            updateJob(){
+
+                this.$Progress.start();
+                this.jobForm.post('/data/client/post-project/' + this.jobForm.id)
+                .then((response) => {
+                    if(response.data === 'success'){
+                        $('#postJobModal').modal('hide');
+                        Fire.$emit('jobPosted');
+                        Swal.fire(
+                            'Updated',
+                            'Job information been updated',
+                            'success'
+                        );
+                        this.$Progress.finish();
+                    }
+                })
+                .catch((error) => {
+                    console.log(error.message);
+                });
+            },
+
+
+
             getAllUnappliedJobs(){
                 axios.get(`/data/client/unapplied-projects/${this.$parent.userId}`)
                     .then((response)=>{
@@ -431,6 +478,15 @@
                         console.log(error.message)
                     })
             },
+            getAwaitingAcceptance(){
+                axios.get(`/data/client/await-acceptance`)
+                    .then((response)=>{
+                        this.awaitingAcceptance = response.data;
+                    })
+                    .catch((error)=>{
+                        console.log(error.message)
+                    })
+            },
 
             getViewProjects(row){
                 this.getApplication(row.id);
@@ -440,7 +496,8 @@
             viewProfile(freelancer){
                 this.freelancer = freelancer;
                 this.freelancerPortfolio = freelancer.portfolio;
-                this.freelancerLinks = freelancer.links
+                this.freelancerLinks = freelancer.links;
+                this.freelancerEducation = freelancer.education;
                 $('#profileModal').modal('show');
             },
             print () {
@@ -462,9 +519,10 @@
             this.getAllPending();
             this.getCompleted();
             this.getAllProjects();
-            this.getApplication();
             this.getApplied();
             this.getAwaitingPayment();
+            this.getAwaitingAcceptance();
+            this.getInProgress();
 
 
             Fire.$on('jobPosted', ()=>{
@@ -473,15 +531,23 @@
                 this.getCompleted();
                 this.getAllProjects();
                 this.getApplied();
-                this.getApplication();
                 this.getApplied();
                 this.getAwaitingPayment();
+                this.getAwaitingAcceptance();
+                this.getInProgress();
             });
 
             Fire.$on('viewProjects', (row)=>{this.getViewProjects(row)});
             Fire.$on('viewProfile', (row)=>{this.viewProfile(row.freelancer)});
             Fire.$on('awardJob', (row)=>{this.awardJob(row)});
             Fire.$on('invoice', (row)=>{this.invoice(row)});
+            Fire.$on('makeChoice', (action, row)=>{this.AcceptReject(action, row)});
+            Fire.$on('editProject', (row)=>{this.initiateEdit(row)});
+
+            Echo.channel('projectUpdate')
+                .listen('ProjectUpdateEvent', (e)=>{
+                    Fire.$emit('jobPosted');
+                });
         },
 
     };

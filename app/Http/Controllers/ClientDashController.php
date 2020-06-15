@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ProjectUpdateEvent;
+use App\Freelancer;
 use App\JobType;
 use App\Project;
 use App\JobOffered;
 use App\ProjectApplication;
+use App\Review;
 use App\User;
-use http\Client;
+use App\Client;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Storage;
@@ -27,7 +30,7 @@ class ClientDashController extends Controller
     public function completed($id) {
         $client = User::findOrFail($id)->userable;
 
-        $completed = $client->jobOffered()->where('job_offereds.status', 'completed')->latest()->with('project')->get();
+        $completed = $client->projects()->where('status', 'completed')->latest()->get();
         return response()->json($completed);
     }
 
@@ -47,7 +50,7 @@ class ClientDashController extends Controller
      * */
     public function yet($id) {
         $client = User::findOrFail($id)->userable;
-        $yet = $client->jobOffered()->where('job_offereds.status', 'pending')->latest()->with('project')->get();
+        $yet = $client->projects()->where('status', 'awarded')->latest()->get();
         return response()->json($yet);
     }
 
@@ -84,6 +87,11 @@ class ClientDashController extends Controller
         return response()->json($projects);
     }
 
+    public function editProject(Request $request, $id) {
+        $project = Project::find($id);
+        $project->update($request->all());
+        return response('success');
+    }
 
 
      // award job to freelancer
@@ -108,6 +116,8 @@ class ClientDashController extends Controller
         $project->update([
             'status' => 'awarded'
         ]);
+
+        broadcast(new ProjectUpdateEvent())->toOthers();
         return response('success');
     }
 
@@ -135,12 +145,22 @@ class ClientDashController extends Controller
 
 
     /**
-     * @param $id
+     *
      * @return \Illuminate\Http\JsonResponse
      * */
     public function awaitingPaymentProjects() {
         $client = auth()->user()->userable;
         $clientProjects = $client->projects()->where('status', 'accepted')->get();
+        return response()->json($clientProjects);
+    }
+
+    /**
+     *
+     * @return \Illuminate\Http\JsonResponse
+     * */
+    public function awaitingAcceptanceProjects() {
+        $client = auth()->user()->userable;
+        $clientProjects = $client->projects()->where('status', 'awaiting acceptance')->orWhere('status', 'rejected')->get();
         return response()->json($clientProjects);
     }
 
@@ -165,6 +185,7 @@ class ClientDashController extends Controller
         $data['client_id'] = auth()->user()->userable->id;
         $project = $project->create($data);
 
+        broadcast(new ProjectUpdateEvent())->toOthers();
         return response()->json($project);
 
     }
@@ -194,7 +215,7 @@ class ClientDashController extends Controller
             return response('success');
         }
 
-
+        broadcast(new ProjectUpdateEvent())->toOthers();
         return response('No file selected');
 
     }
@@ -210,6 +231,7 @@ class ClientDashController extends Controller
       $project = Project::find($id);
       if($project->client_id === auth()-user()->userable->id){
           $project->delete();
+          broadcast(new ProjectUpdateEvent())->toOthers();
           return response('success');
       }
 
@@ -244,7 +266,7 @@ class ClientDashController extends Controller
     /**
      * Display the specified resource.
      *
-     *
+     * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
     public function getInvoiceDetails($id){
@@ -253,12 +275,43 @@ class ClientDashController extends Controller
 
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
     public function acceptJob(Request $request) {
         $user = auth()->user();
         $project = Project::find($request->project_id);
-        $project->update('status', 'accepted');
+        if($request->action === 'accept'){
+            $project->update(['status' => 'completed']);
+            $project->jobOffered->update(['status' => 'completed']);
 
+            broadcast(new ProjectUpdateEvent())->toOthers();
+            return response('accepted');
+        }else{
+            $project->update(['status' => 'rejected']);
+            $project->jobOffered->update(['status' => 'rejected']);
+            broadcast(new ProjectUpdateEvent())->toOthers();
+            return response('rejected');
+        }
+
+
+    }
+
+    public function review(Request $request, $id){
+        $project = JobOffered::where('project_id', $id)->first();
+        $freelancer = Freelancer::find($project->freelancer_id);
+        $userId = $freelancer->user->id;
+
+        $review = new Review();
+        $review->create([
+            'rating' => (int) $request->rating,
+            'user_id' => $userId,
+            'project_id' => $id,
+            'comment' => $request->comment
+        ]);
         return response('success');
-
     }
 }

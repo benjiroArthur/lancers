@@ -7,7 +7,7 @@
 
             <div class="col-12 table-responsive">
                 <div class="card-body table table-responsive table-borderless p-0">
-                    <bootstrap-table :data="inProgressProjects" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/
+                    <bootstrap-table :data="inProgressProjects" :options="myOptions" :columns="myColumns" sticky-header responsive borderless/>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
                 },
                 myColumns: [
                     {field: 'project.project_title', title: 'Project Title'},
-                    {field: 'project.project_cost', title: 'Project Cost'},
+                    {field: 'project.project_cost', title: 'Project Cost ($)'},
                     {field: 'project.description', title: 'Project Description'},
                     {
                         field: 'action',
@@ -47,11 +47,11 @@
                         },
                         formatter: function (e, value, row) {
 
-                            return '<a class="btn btn-sm show " data-toggle="modal" data-target="#"><i class="fas fa-eye text-lancer"></i></a>'
+                            return '<a class="btn btn-sm show bg-lancer text-white" data-toggle="modal" data-target="#">Submit Project</a>'
                         },
                         events: {
                             'click .show': function (e, value, row) {
-                                Fire.$emit('viewSingleProject', row);
+                                Fire.$emit('submitProject', row);
 
                             },
                             'click .edit': function (e, value, row) {
