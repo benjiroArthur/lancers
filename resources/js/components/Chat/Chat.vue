@@ -79,7 +79,7 @@
                 this.selectedContact = contact;
             },
             hundleMessage(message){
-                if(this.selectedContact && message.from === this.selectedContact){
+                if(this.selectedContact && message.from === this.selectedContact.id){
                     this.messages.push(message);
                 }
             },
