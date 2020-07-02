@@ -169,13 +169,6 @@
         -webkit-border-radius:50%;
     }
 
-    /*.rating span:hover ~ span label,
-    .rating span:hover label,
-    .rating span.checked label,
-    .rating span.checked ~ span label {
-        //background:#F90;
-        color:#F90;
-    }*/
     .rating label:hover,
     {
         color:#F90;
