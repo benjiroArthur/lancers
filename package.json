@@ -47,7 +47,7 @@
         "pusher-js": "^6.0.3",
         "socket.io-client": "^2.3.0",
         "sweetalert2": "^9.10.13",
-        "tableexport.jquery.plugin": "^1.10.18",
+        "tableexport.jquery.plugin": "^1.25.0",
         "vform": "^1.0.1",
         "vue-avatar": "^2.2.0",
         "vue-bootstrap-datetimepicker": "^5.0.1",
